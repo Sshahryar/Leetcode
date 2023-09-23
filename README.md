@@ -2,7 +2,7 @@
 
 Repository where I will be pushing my solutions for Leetcode daily challenges, starting September 23, 2023.
 
-## Solution Sept 23:
+## Solution Sept 23 (Java):
 
     import java.util.Arrays;
     import java.util.HashMap;
