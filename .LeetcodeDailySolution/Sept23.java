@@ -4,7 +4,7 @@
 
 import java.util.Arrays;
 
-class September2320231048LongestStringChain{
+class solution{
   
     public int longestStrChain(String[] words) {
         int ans = 0;
