@@ -2,7 +2,7 @@
 *  1048. Longest String Chain
 */
 
-class Solution {
+public class September 23, 2023, 1048 Longest String Chain  {
   
     public int longestStrChain(String[] words) {
         int ans = 0;
