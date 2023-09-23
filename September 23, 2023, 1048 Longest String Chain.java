@@ -2,7 +2,9 @@
 *  1048. Longest String Chain
 */
 
-public class September 23, 2023, 1048 Longest String Chain  {
+import java.util.Arrays;
+
+class September2320231048LongestStringChain{
   
     public int longestStrChain(String[] words) {
         int ans = 0;
