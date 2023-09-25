@@ -1,5 +1,5 @@
 /* September 23, 2023
-* 1048. Longest String Chain
+* 1049. LastStoneWeightII
 */
 
 class Solution {
