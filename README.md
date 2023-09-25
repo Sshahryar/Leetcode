@@ -51,5 +51,5 @@ Return the length of the longest possible word chain with words chosen from the 
 
 What was learned was how to use word chains effectively utilizing the first letter from a word list, done by problem-solving and an algorithm that iterated the lists. 
 
-### Solution Sept 24 (Java, leetcode ide) 
+### Solution Sept 24 (Java, leetcode ide) 1049. LastStoneWeightII:
 
