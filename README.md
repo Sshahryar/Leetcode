@@ -7,6 +7,7 @@ Leetcode is a website that offers coding problems and challenges and enhancement
 Below will be updates on the Daily Challenge Solutions**. Info on other folders in the repository such as courses, challenges, etc. can be found in the wiki. 
 
 **The updates are based on this title format: Solution (date) (language, leetcode ide) (name of challenge).
+
 **The solutions are designed to work on the leetcode ide, and may or may not work on ide's outside of leetcode. 
 
 ## Leetcode Daily Challenge Solutions:
