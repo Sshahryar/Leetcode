@@ -1,3 +1,7 @@
+/* September 23, 2023
+* 1048. Longest String Chain
+*/
+
 class Solution {
     public int lastStoneWeightII(int[] stones) {
         int totalWeight = 0;
