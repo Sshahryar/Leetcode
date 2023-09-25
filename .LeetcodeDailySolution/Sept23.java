@@ -1,4 +1,4 @@
-/* September 22, 2023
+/* September 23, 2023
 * 1048. LongestStringChain
 */
 
