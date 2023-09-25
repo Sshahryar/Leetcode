@@ -1,5 +1,5 @@
 /* September 22, 2023
-*  1048. Longest String Chain
+* 1048. Longest String Chain
 */
 
 class Solution {
