@@ -8,7 +8,7 @@ Below will be updates on the Daily Challenge Solutions. Info on other folders in
 
 ## Leetcode Daily Challenge Solutions:
 
-### Solution Sept 23 (Done in Java, based on leetcode internal editor) 1048. LongestStrChain: 
+### Solution Sept 23 (Java, leetcode internal editor) 1048. LongestStrChain: 
 
     class Solution {
         public int longestStrChain(String[] words) {
@@ -34,5 +34,5 @@ Below will be updates on the Daily Challenge Solutions. Info on other folders in
 
 What was learned was how to use word chains effectively utilizing the first letter from a word list, done by problem-solving and an algorithm that iterated the lists. 
 
-### Solution Sept 24 (Done in Java, based on leetcode internal editor) ...
+### Solution Sept 24 (Java, leetcode internal editor) ...
 
