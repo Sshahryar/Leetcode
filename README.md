@@ -12,7 +12,7 @@ Below will be updates on the Daily Challenge Solutions**. Info on other folders 
 
 ## Leetcode Daily Challenge Solutions:
 
-### Solution Sept 23 (Java, leetcode ide) 1048. LongestStrChain (Medium): 
+### Solution Sept 23, 2023 (Java, leetcode ide) 1048. LongestStrChain (Medium): 
 
 #### Prompt:
 
@@ -47,11 +47,11 @@ Return the length of the longest possible word chain with words chosen from the 
     }
     }
 
-#### Application:
+#### Concepts Applied:
 
 Dynamic programming, arrays, map, hashmap, e.t.c
     
-### Solution Sept 25 (Java, leetcode ide) 389. Find the Difference (Easy):
+### Solution Sept 25, 2023 (Java, leetcode ide) 389. Find the Difference (Easy):
 
 #### Prompt:
 
@@ -93,11 +93,11 @@ Return the letter that was added to t.
     }
     }
 
-#### Application:
+#### Concepts Applied:
 
 Character arrays.
 
-### Solution Sept 26 (Java, leetcode ide) 316. Remove Duplicate Letters (Medium): 
+### Solution Sept 26, 2023 (Java, leetcode ide) 316. Remove Duplicate Letters (Medium): 
 
 #### Prompt:
 
@@ -141,6 +141,58 @@ the smallest in lexicographical order among all possible results.
     }
     }
 
-#### Application:
+#### Concepts Applied:
 
 CharacterArray and stack. 
+
+### Solution Sept 27, 2023 (Java, leetcode ide) 880. Decoded String at Index (Medium):
+
+#### Prompt:
+
+You are given an encoded string s. To decode the string to a tape, the encoded string is read one character at a time and the following steps are taken:
+
+If the character read is a letter, that letter is written onto the tape.
+If the character read is a digit d, the entire current tape is repeatedly written d - 1 more times in total.
+Given an integer k, return the kth letter (1-indexed) in the decoded string.
+
+#### Solution:
+
+    class Solution {
+    public String decodeAtIndex(String encodedString, int k) {
+       Stack<Long> characterLengths = new Stack<>();
+
+        characterLengths.push(0L); 
+
+        for (int i = 0; i < encodedString.length(); i++) {
+            char c = encodedString.charAt(i);
+            if (Character.isDigit(c)) {
+
+                long length = characterLengths.peek() * (c - '0');
+                characterLengths.push(length);
+            } else {
+
+                long length = characterLengths.peek() + 1;
+                characterLengths.push(length);
+            }
+        }
+
+        int ln = characterLengths.size();
+        while (!characterLengths.isEmpty()) {
+            k %= characterLengths.peek(); 
+            ln--;
+
+            if (k == 0 && Character.isLetter(encodedString.charAt(ln - 1))) {
+                return String.valueOf(encodedString.charAt(ln - 1));
+            }
+
+
+            characterLengths.pop();
+        }
+
+        return ""; 
+    }
+    }
+
+#### Concepts Applied:
+
+Strings, stack, character lengths, e.t.c
