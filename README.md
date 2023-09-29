@@ -17,9 +17,11 @@ Below will be updates on the Daily Challenge Solutions**. Info on other folders 
 **The daily challenge solutions are designed to work on the leetcode, and may or may not work on ide's outside of 
 leetcode, because of test cases and specific parameters. 
 
-## Leetcode Daily Challenge Solutions:
+## Leetcode Daily Challenge Solutions (From .LeetcodeDailySolution): 
 
 ### Solution Sept 23, 2023 (Java, leetcode) 1048. LongestStrChain (Medium): 
+
+In .LeetcodeDailySolution folder as Sept23,2023.java.
 
 #### Prompt:
 
@@ -206,6 +208,12 @@ Strings, stack, character lengths, e.t.c
 
 ### Solution Sept 28, 2023 (Java, leetcode) 905. Sort Array by Parity (Easy):
 
+#### Prompt:
+
+Given an integer array nums, move all the even integers at the beginning of the array followed by all the odd integers.
+
+Return any array that satisfies this condition.
+
 #### Solution:
 
     class Solution {
@@ -238,4 +246,39 @@ Strings, stack, character lengths, e.t.c
 
 While loop, if and else-if. 
 
-### 
+### Solution Sept 29, 2023 (Java, leetcode) 896. Monotonic Array (Easy):
+
+#### Prompt: 
+
+An array is monotonic if it is either monotone increasing or monotone decreasing.
+
+An array nums is monotone increasing if for all i <= j, nums[i] <= nums[j]. An array nums is monotone decreasing if for all i <= j, nums[i] >= nums[j].
+
+Given an integer array nums, return true if the given array is monotonic, or false otherwise.
+
+#### Solution:
+
+    class Solution {
+       public boolean isMonotonic(int[] nums) {
+        boolean increasing = true;
+        boolean decreasing = true;
+
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i - 1] > nums[i]) {
+                increasing = false; 
+            } else if (nums[i - 1] < nums[i]) {
+                decreasing = false; 
+            }
+            
+            if (!increasing && !decreasing) {
+                return false;
+            }
+        }
+
+        return true; 
+      }
+    }
+
+#### Concepts Applied:
+
+Booleans, for loop, if, and else-if. 
