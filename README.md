@@ -7,6 +7,7 @@ Including my solutions for daily challenges, problems and contests.
 Leetcode is a website for technical interview preparation that offers coding problems, challenges, contests, enhancement of problem-solving skills, algorithms and data structures. 
 
 My profile is linked below:
+
 https://leetcode.com/Sshahryar/
 
 Below will be updates on the Daily Challenge Solutions**. Info on other folders in the repository such as courses, challenges, etc. can be found in the wiki. 
