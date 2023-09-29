@@ -1,6 +1,7 @@
 # Leetcode
 
-Repository of my Leetcode journey, starting September 23, 2023. Including my solutions for daily challenges, problems and contests. 
+Repository of my Leetcode journey, starting September 23, 2023. 
+Including my solutions for daily challenges, problems and contests. 
 Leetcode is a website for technical interview preparation that offers coding problems, challenges, contests, enhancement of problem-solving skills, algorithms and data structures. 
 My profile is linked below:
 https://leetcode.com/Sshahryar/
