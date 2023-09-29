@@ -21,7 +21,7 @@ leetcode, because of test cases and specific parameters.
 
 ### Solution Sept 23, 2023 (Java, leetcode) 1048. LongestStrChain (Medium): 
 
-In .LeetcodeDailySolution folder as Sept23,2023.java.
+In .LeetcodeDailySolution folder as Sept23,2023.java
 
 #### Prompt:
 
@@ -61,6 +61,7 @@ Return the length of the longest possible word chain with words chosen from the 
 Dynamic programming, arrays, map, hashmap, e.t.c
     
 ### Solution Sept 25, 2023 (Java, leetcode) 389. Find the Difference (Easy):
+In .LeetcodeDailySolution folder as Sept25,2023.java
 
 #### Prompt:
 
@@ -107,6 +108,7 @@ Return the letter that was added to t.
 Character arrays.
 
 ### Solution Sept 26, 2023 (Java, leetcode) 316. Remove Duplicate Letters (Medium): 
+In .LeetcodeDailySolution folder as Sept26,2023.java
 
 #### Prompt:
 
@@ -155,6 +157,7 @@ the smallest in lexicographical order among all possible results.
 CharacterArray and stack. 
 
 ### Solution Sept 27, 2023 (Java, leetcode) 880. Decoded String at Index (Medium):
+In .LeetcodeDailySolution folder as Sept27,2023.java
 
 #### Prompt:
 
@@ -207,6 +210,7 @@ Given an integer k, return the kth letter (1-indexed) in the decoded string.
 Strings, stack, character lengths, e.t.c
 
 ### Solution Sept 28, 2023 (Java, leetcode) 905. Sort Array by Parity (Easy):
+In .LeetcodeDailySolution folder as Sept28,2023.java
 
 #### Prompt:
 
@@ -247,6 +251,7 @@ Return any array that satisfies this condition.
 While loop, if and else-if. 
 
 ### Solution Sept 29, 2023 (Java, leetcode) 896. Monotonic Array (Easy):
+In .LeetcodeDailySolution folder as Sept29,2023.java
 
 #### Prompt: 
 
