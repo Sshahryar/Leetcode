@@ -12,13 +12,14 @@ https://leetcode.com/Sshahryar/
 
 Below will be updates on the Daily Challenge Solutions**. Info on other folders in the repository such as courses, challenges, etc. can be found in the wiki. 
 
-**The daily challenge updates are based on this title format: Solution (date) (language, leetcode ide) (name of challenge) (difficulty). 
+**The daily challenge updates are based on this title format: Solution (date) (language, leetcode) (name of challenge) (difficulty). 
 
-**The daily challenge solutions are designed to work on the leetcode ide, and may or may not work on ide's outside of leetcode. 
+**The daily challenge solutions are designed to work on the leetcode, and may or may not work on ide's outside of 
+leetcode, because of test cases and specific parameters. 
 
 ## Leetcode Daily Challenge Solutions:
 
-### Solution Sept 23, 2023 (Java, leetcode ide) 1048. LongestStrChain (Medium): 
+### Solution Sept 23, 2023 (Java, leetcode) 1048. LongestStrChain (Medium): 
 
 #### Prompt:
 
@@ -57,7 +58,7 @@ Return the length of the longest possible word chain with words chosen from the 
 
 Dynamic programming, arrays, map, hashmap, e.t.c
     
-### Solution Sept 25, 2023 (Java, leetcode ide) 389. Find the Difference (Easy):
+### Solution Sept 25, 2023 (Java, leetcode) 389. Find the Difference (Easy):
 
 #### Prompt:
 
@@ -103,7 +104,7 @@ Return the letter that was added to t.
 
 Character arrays.
 
-### Solution Sept 26, 2023 (Java, leetcode ide) 316. Remove Duplicate Letters (Medium): 
+### Solution Sept 26, 2023 (Java, leetcode) 316. Remove Duplicate Letters (Medium): 
 
 #### Prompt:
 
@@ -151,7 +152,7 @@ the smallest in lexicographical order among all possible results.
 
 CharacterArray and stack. 
 
-### Solution Sept 27, 2023 (Java, leetcode ide) 880. Decoded String at Index (Medium):
+### Solution Sept 27, 2023 (Java, leetcode) 880. Decoded String at Index (Medium):
 
 #### Prompt:
 
@@ -202,3 +203,39 @@ Given an integer k, return the kth letter (1-indexed) in the decoded string.
 #### Concepts Applied:
 
 Strings, stack, character lengths, e.t.c
+
+### Solution Sept 28, 2023 (Java, leetcode) 905. Sort Array by Parity (Easy):
+
+#### Solution:
+
+    class Solution {
+      public int[] sortArrayByParity(int[] nums) {
+        int left = 0;
+        int right = nums.length - 1;
+
+        while (left < right) {
+            if (nums[left] % 2 == 0) {
+                left++;  
+
+            } else if (nums[right] % 2 == 1) {
+                right--;  
+
+            } else {
+                
+                int temp = nums[left];
+                nums[left] = nums[right];
+                nums[right] = temp;
+                left++;
+                right--;
+            }
+        }
+
+        return nums;
+     }
+    }
+
+#### Concepts Applied:
+
+While loop, if and else-if. 
+
+### 
