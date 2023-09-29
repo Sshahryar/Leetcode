@@ -1,8 +1,9 @@
 # Leetcode
 
-Repository where I will be pushing my solutions for Leetcode daily challenges, contests, problems, and all things Leetcode. Starting September 23, 2023. 
-
-Leetcode is a website that offers coding problems and challenges and enhancement of problem-solving skills and algorithms, including data structures. 
+Repository of my Leetcode journey, starting September 23, 2023. Including my solutions for daily challenges, problems and contests. 
+Leetcode is a website for technical interview preparation that offers coding problems, challenges, contests, enhancement of problem-solving skills, algorithms and data structures. 
+My profile is linked below:
+https://leetcode.com/Sshahryar/
 
 Below will be updates on the Daily Challenge Solutions**. Info on other folders in the repository such as courses, challenges, etc. can be found in the wiki. 
 
