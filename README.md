@@ -58,7 +58,7 @@ Return the length of the longest possible word chain with words chosen from the 
 
 #### Concepts Applied:
 
-Dynamic programming, arrays, map, hashmap, e.t.c
+Dynamic programming, arrays, map, and hashmap.
     
 ### Solution Sept 25, 2023 (Java, leetcode) 389. Find the Difference (Easy):
 In .LeetcodeDailySolution folder as Sept25,2023.java
@@ -105,7 +105,7 @@ Return the letter that was added to t.
 
 #### Concepts Applied:
 
-Character arrays.
+Character arrays and for loop. 
 
 ### Solution Sept 26, 2023 (Java, leetcode) 316. Remove Duplicate Letters (Medium): 
 In .LeetcodeDailySolution folder as Sept26,2023.java
@@ -288,8 +288,36 @@ Given an integer array nums, return true if the given array is monotonic, or fal
 
 Booleans, for loop, if, and else-if. 
 
-### Solution Sept 30, 2023 (Java, leetcode) 456. 132 Pattern (Easy):
+### Solution Sept 30, 2023 (Java, leetcode) 456. 132 Pattern (Medium):
 In .LeetcodeDailySolution folder as Sept30,2023.java
+
+#### Prompt:
+
+Given an array of n integers nums, a 132 pattern is a subsequence of three integers nums[i], nums[j] and nums[k] such that i < j < k and nums[i] < nums[k] < nums[j].
+
+Return true if there is a 132 pattern in nums, otherwise, return false.
+
+Example 1:
+
+Input: nums = [1,2,3,4]
+Output: false
+Explanation: There is no 132 pattern in the sequence.
+Example 2:
+
+Input: nums = [3,1,4,2]
+Output: true
+Explanation: There is a 132 pattern in the sequence: [1, 4, 2].
+Example 3:
+
+Input: nums = [-1,3,2,0]
+Output: true
+Explanation: There are three 132 patterns in the sequence: [-1, 3, 2], [-1, 3, 0] and [-1, 2, 0].
+ 
+Constraints:
+
+n == nums.length
+1 <= n <= 2 * 105
+-109 <= nums[i] <= 109
 
 #### Solution:
 
@@ -328,6 +356,28 @@ In .LeetcodeDailySolution folder as Sept30,2023.java
 Stack, for and while loop. 
 
 ### Solution Oct 1, 2023 (Java, leetcode) 557. Rever Words In a String III (Easy): 
+In .LeetcodeDailySolution folder as Oct1,2023.java
+
+#### Prompt:
+
+Given a string s, reverse the order of characters in each word within a sentence while still preserving whitespace and initial word order.
+
+Example 1:
+
+Input: s = "Let's take LeetCode contest"
+Output: "s'teL ekat edoCteeL tsetnoc"
+Example 2:
+
+Input: s = "God Ding"
+Output: "doG gniD"
+
+Constraints:
+
+1 <= s.length <= 5 * 104
+s contains printable ASCII characters.
+s does not contain any leading or trailing spaces.
+There is at least one word in s.
+All the words in s are separated by a single space.
 
 #### Solution:
 
