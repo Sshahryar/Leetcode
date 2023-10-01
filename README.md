@@ -56,6 +56,9 @@ Return the length of the longest possible word chain with words chosen from the 
     }
     }
 
+Runtime: 41 ms, beating 31.27% of leetcode users solutions using java.
+Memory: 43.9 mb, beating 34.67% of leetcode users solutions using java.
+
 #### Concepts Applied:
 
 Dynamic programming, arrays, map, and hashmap.
@@ -102,6 +105,9 @@ Return the letter that was added to t.
         System.out.println("The added letter is: " + addedLetter);
     }
     }
+
+Runtime: 1 ms, beating 100% of leetcode users solutions using java.
+Memory: 40.9 mb, beating 20.52% of leetcode users solutions using java.
 
 #### Concepts Applied:
 
@@ -151,6 +157,9 @@ the smallest in lexicographical order among all possible results.
         return result.toString();
     }
     }
+    
+Runtime: 2 ms, beating 96.27% of leetcode users solutions using java.
+Memory: 41.1 mb, beating 62.98% of leetcode users solutions using java.
 
 #### Concepts Applied:
 
@@ -205,6 +214,9 @@ Given an integer k, return the kth letter (1-indexed) in the decoded string.
     }
     }
 
+Runtime: 1 ms, beating 13.46% of leetcode users solutions using java.
+Memory: 40.8 mb, beating 8.48% of leetcode users solutions using java.
+
 #### Concepts Applied:
 
 Strings, stack, character lengths, e.t.c
@@ -246,6 +258,9 @@ Return any array that satisfies this condition.
      }
     }
 
+Runtime: 0 ms, beating 100% of leetcode users solutions using java.
+Memory: 44.1 mb, beating 40.77% of leetcode users solutions using java.
+
 #### Concepts Applied:
 
 While loop, if and else-if. 
@@ -283,6 +298,9 @@ Given an integer array nums, return true if the given array is monotonic, or fal
         return true; 
       }
     }
+
+Runtime: 2 ms, beating 58.97% of leetcode users solutions using java.
+Memory: 54.4 mb, beating 73.26% of leetcode users solutions using java.
 
 #### Concepts Applied:
 
@@ -351,11 +369,14 @@ n == nums.length
       }
     }
 
+Runtime: 15 ms, beating 68.8% of leetcode users solutions using java.
+Memory: 64.1 mb, beating 8.57% of leetcode users solutions using java.
+
 #### Concepts Applied:
 
 Stack, for and while loop. 
 
-### Solution Oct 1, 2023 (Java, leetcode) 557. Rever Words In a String III (Easy): 
+### Solution Oct 1, 2023 (Java, leetcode) 557. Reverse Words In a String III (Easy): 
 In .LeetcodeDailySolution folder as Oct1,2023.java
 
 #### Prompt:
@@ -414,6 +435,9 @@ All the words in s are separated by a single space.
         return new String(chars); 
       }
     }
+
+Runtime: 4 ms, beating 87.77% of leetcode users solutions using java.
+Memory: 43.9 mb, beating 85.88% of leetcode users solutions using java.
 
 #### Concepts Applied:
 
