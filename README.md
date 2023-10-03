@@ -76,7 +76,7 @@ Return the letter that was added to t.
 
 #### Solution:
 
-    public class Solution {
+    class Solution {
         public char findTheDifference(String s, String t) {
             int[] charCount = new int[26];
         
