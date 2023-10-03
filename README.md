@@ -442,3 +442,44 @@ Memory: 43.9 mb, beating 85.88% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Character arrays, for and while loop. 
+
+### Solution Oct 2, 2023 (Java, leetcode) 2038. Remove Colored Pieces if Both Neighbors are the Same (Medium): 
+
+#### Prompt:
+
+There are n pieces arranged in a line, and each piece is colored either by 'A' or by 'B'. You are given a string colors of length n where colors[i] is the color of the ith piece.
+
+Alice and Bob are playing a game where they take alternating turns removing pieces from the line. In this game, Alice moves first.
+
+Alice is only allowed to remove a piece colored 'A' if both its neighbors are also colored 'A'. She is not allowed to remove pieces that are colored 'B'.
+Bob is only allowed to remove a piece colored 'B' if both its neighbors are also colored 'B'. He is not allowed to remove pieces that are colored 'A'.
+Alice and Bob cannot remove pieces from the edge of the line.
+If a player cannot make a move on their turn, that player loses and the other player wins.
+Assuming Alice and Bob play optimally, return true if Alice wins, or return false if Bob wins.
+
+#### Solution:
+
+    class Solution {
+      public boolean winnerOfGame(String colors) {
+        int n = colors.length();
+        int aliceCount = 0;
+        int bobCount = 0;
+        
+        for (int i = 1; i < n - 1; i++) {
+            if (colors.charAt(i) == 'A' && colors.charAt(i - 1) == 'A' && colors.charAt(i +         1) == 'A') {
+                aliceCount++;
+            } else if (colors.charAt(i) == 'B' && colors.charAt(i - 1) == 'B' && colors.    charAt(i + 1) == 'B') {
+                bobCount++;
+            }
+        }
+        
+        return aliceCount > bobCount;
+      }
+    }
+
+Runtime 16 ms, beating 52.45% of leetcode users solutions using java.
+Memory: 44.2 mb, beating 55.98% of leetcode users solutions using java. 
+
+#### Concepts Applied:
+
+Strings, for loop, if, else-if, and charAt. 
