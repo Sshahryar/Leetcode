@@ -402,7 +402,7 @@ All the words in s are separated by a single space.
 
 #### Solution:
 
-    public class Solution {
+    class Solution {
        public String reverseWords(String s) {
           String[] words = s.split(" "); 
 
