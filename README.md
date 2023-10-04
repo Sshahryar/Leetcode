@@ -444,6 +444,7 @@ Memory: 43.9 mb, beating 85.88% of leetcode users solutions using java.
 Character arrays, for and while loop. 
 
 ### Solution Oct 2, 2023 (Java, leetcode) 2038. Remove Colored Pieces if Both Neighbors are the Same (Medium): 
+In .LeetcodeDailySolution folder as Oct2,2023.java
 
 #### Prompt:
 
@@ -483,3 +484,42 @@ Memory: 44.2 mb, beating 55.98% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Strings, for loop, if, else-if, and charAt. 
+
+### Solution Oct 2, 2023 (Java, leetcode) 2038. Remove Colored Pieces if Both Neighbors are the Same (Medium): 
+In .LeetcodeDailySolution folder as Oct3,2023.java
+
+#### Prompt:
+
+Given an array of integers nums, return the number of good pairs.
+
+A pair (i, j) is called good if nums[i] == nums[j] and i < j.
+
+#### Solution:
+
+    class Solution {
+       public int numIdenticalPairs(int[] nums) {
+           int[] count = new int[101]; 
+
+        for (int num : nums) {
+            count[num]++;
+        }
+        
+        int goodPairs = 0;
+        
+        for (int c : count) {
+            if (c > 1) {
+                goodPairs += (c * (c - 1)) / 2;
+            }
+        }
+        
+        return goodPairs;
+      }
+    }
+
+Runtime 0 ms, beating 100% of leetcode users solutions using java.
+Memory: 40, beating 34.61% of leetcode users solutions using java. 
+
+#### Concepts Applied:
+
+For loop.
+
