@@ -478,14 +478,14 @@ Assuming Alice and Bob play optimally, return true if Alice wins, or return fals
       }
     }
 
-Runtime 16 ms, beating 52.45% of leetcode users solutions using java.
+Runtime: 16 ms, beating 52.45% of leetcode users solutions using java.
 Memory: 44.2 mb, beating 55.98% of leetcode users solutions using java. 
 
 #### Concepts Applied:
 
 Strings, for loop, if, else-if, and charAt. 
 
-### Solution Oct 2, 2023 (Java, leetcode) 2038. Remove Colored Pieces if Both Neighbors are the Same (Medium): 
+### Solution Oct 3, 2023 (Java, leetcode) 1512. Number of Good Pairs (Easy): 
 In .LeetcodeDailySolution folder as Oct3,2023.java
 
 #### Prompt:
@@ -516,10 +516,98 @@ A pair (i, j) is called good if nums[i] == nums[j] and i < j.
       }
     }
 
-Runtime 0 ms, beating 100% of leetcode users solutions using java.
+Runtime: 0 ms, beating 100% of leetcode users solutions using java.
 Memory: 40, beating 34.61% of leetcode users solutions using java. 
 
 #### Concepts Applied:
 
 For loop.
 
+### Solution Oct 4, 2023 (Java, leetcode) 706. Design HashMap (Easy)
+In .LeetcodeDailySolution folder as Oct4,2023.java
+
+#### Prompt:
+
+Design a HashMap without using any built-in hash table libraries.
+
+Implement the MyHashMap class:
+
+MyHashMap() initializes the object with an empty map.
+void put(int key, int value) inserts a (key, value) pair into the HashMap. If the key already exists in the map, update the corresponding value.
+int get(int key) returns the value to which the specified key is mapped, or -1 if this map contains no mapping for the key.
+void remove(key) removes the key and its corresponding value if the map contains the mapping for the key.
+
+#### Solution
+
+    import java.util.ArrayList;
+    import java.util.List;
+  
+    class MyHashMap {
+
+    private static final int SIZE = 1000;
+    private List<List<int[]>> data;
+
+    public MyHashMap() {
+        data = new ArrayList<>(SIZE);
+        for (int i = 0; i < SIZE; i++) {
+            data.add(new ArrayList<>());
+        }
+    }
+
+    private int getIndex(int key) {
+        return Integer.hashCode(key) % SIZE;
+    }
+
+    public void put(int key, int value) {
+        int index = getIndex(key);
+        for (int[] entry : data.get(index)) {
+            if (entry[0] == key) {
+                entry[1] = value;
+                return;
+            }
+        }
+        data.get(index).add(new int[]{key, value});
+    }
+
+    public int get(int key) {
+        int index = getIndex(key);
+        for (int[] entry : data.get(index)) {
+            if (entry[0] == key) {
+                return entry[1];
+            }
+        }
+        return -1;
+    }
+
+    public void remove(int key) {
+        int index = getIndex(key);
+        List<int[]> entries = data.get(index);
+        for (int i = 0; i < entries.size(); i++) {
+            if (entries.get(i)[0] == key) {
+                entries.remove(i);
+                return;
+            }
+        }
+      }
+    }
+
+    public class Main {
+      public static void main(String[] args) {
+        MyHashMap myHashMap = new MyHashMap();
+        myHashMap.put(1, 1);
+        myHashMap.put(2, 2);
+        System.out.println(myHashMap.get(1)); 
+        System.out.println(myHashMap.get(3)); 
+        myHashMap.put(2, 1);
+        System.out.println(myHashMap.get(2)); 
+        myHashMap.remove(2);
+        System.out.println(myHashMap.get(2)); 
+      }
+    }
+
+Runtime: 17 ms, beating 65.77% of leetcode users using java.
+Memory: 47.6 mb, beating 69.68% of leetcode users using java.
+
+#### Concepts Applied:
+
+Array, hash table, linked list, design, and hash function.
