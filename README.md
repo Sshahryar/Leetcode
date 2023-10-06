@@ -611,3 +611,69 @@ Memory: 47.6 mb, beating 69.68% of leetcode users using java.
 #### Concepts Applied:
 
 Array, hash table, linked list, design, and hash function.
+
+### Soluton Oct 5, 2023 (Java, leetcode) 229. Majorty Element II (Medium)
+In .LeetcodeDailySolution folder as Oct5,2023.java
+
+#### Prompt:
+
+Given an integer array of size n, find all elements that appear more than ⌊ n/3 ⌋ times.
+
+#### Solution:
+
+    import java.util.ArrayList;
+    import java.util.List;
+
+    class Solution {
+      public List<Integer> majorityElement(int[] nums) {
+        List<Integer> result = new ArrayList<>();
+        int n = nums.length;
+
+        if (n == 0) return result;
+
+        int candidate1 = 0, candidate2 = 0, count1 = 0, count2 = 0;
+
+        for (int num : nums) {
+            if (num == candidate1) {
+                count1++;
+            } else if (num == candidate2) {
+                count2++;
+            } else if (count1 == 0) {
+                candidate1 = num;
+                count1 = 1;
+            } else if (count2 == 0) {
+                candidate2 = num;
+                count2 = 1;
+            } else {
+                count1--;
+                count2--;
+            }
+        }
+
+        count1 = 0;
+        count2 = 0;
+        for (int num : nums) {
+            if (num == candidate1) {
+                count1++;
+            } else if (num == candidate2) {
+                count2++;
+            }
+        }
+
+        if (count1 > n / 3) {
+            result.add(candidate1);
+        }
+        if (count2 > n / 3) {
+            result.add(candidate2);
+        }
+
+        return result;
+      }
+    }
+
+Runtime: 1 ms, beating 99.94% of leetcode users solutions using java. 
+Memory: 47.2 mb, beating 10.66% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Array, hash table, sorting, counting.
