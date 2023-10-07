@@ -676,4 +676,30 @@ Memory: 47.2 mb, beating 10.66% of leetcode users solutions using java.
 
 #### Concepts Applied:
 
-Array, hash table, sorting, counting.
+Array, hash table, sorting, and counting.
+
+### Solution Oct 6, 2023 (Java, leetcode) 343. Integer Break (Medium)
+In .LeetcodeDailySolution folder as Oct6,2023.java
+
+#### Solution:
+
+    class Solution {
+        public int integerBreak(int n) {
+                if(n == 1) return 1;
+                        int[] dp = new int[n + 1];
+                                dp[1] = 1;
+                                        for(int i = 2; i <= n; i++){
+                                                    for(int j = 1; j < i; j++){
+                                                                    dp[i] = Math.max(dp[i], Math.max(j * (i - j), j * dp[i - j]));
+                                                                                }
+                                                                                        }
+                                                                                                return dp[n];
+                                                                                                    }
+                                                                                                    }
+                                                                                                    
+Runtime: 1 ms, beating 33.22% of leetcode users solutions using java.
+Memory: 39.9 mb, beating 6.52% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Dynamic programming and for loop.
