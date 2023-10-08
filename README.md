@@ -744,7 +744,7 @@ Memory: 43.6 mb, beating 24.29% of leetcode users solutions using java.
 
 #### Concepts Applied:
 
-Arrays, for loop and if statements.
+Arrays, for loop, dynamic programming, and if statements.
 
 ### Solution Oct 8, 2023 (Java, leetcode) 1458. Max Dot Product of Two Subtances (Hard):
 In .LeetcodeDailySolutions folder as Oct8,2023.java
