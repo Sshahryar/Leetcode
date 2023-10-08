@@ -710,7 +710,7 @@ Memory: 39.9 mb, beating 6.52% of leetcode users solutions using java.
 
 Dynamic programming and for loop.
 
-### Solution Oct7, 2023 (Java, leetcode) 1420. Build Array Where You Can Find The Maximum Exactly K Comparisons (Hard)
+### Solution Oct 7, 2023 (Java, leetcode) 1420. Build Array Where You Can Find The Maximum Exactly K Comparisons (Hard)
 Im .LeetcodeDailySolution folder as Oct7,2023.java
 
 #### Prompt:
