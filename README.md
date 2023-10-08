@@ -517,7 +517,7 @@ A pair (i, j) is called good if nums[i] == nums[j] and i < j.
     }
 
 Runtime: 0 ms, beating 100% of leetcode users solutions using java.
-Memory: 40, beating 34.61% of leetcode users solutions using java. 
+Memory: 40 mb, beating 34.61% of leetcode users solutions using java. 
 
 #### Concepts Applied:
 
