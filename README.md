@@ -681,6 +681,12 @@ Array, hash table, sorting, and counting.
 ### Solution Oct 6, 2023 (Java, leetcode) 343. Integer Break (Medium)
 In .LeetcodeDailySolution folder as Oct6,2023.java
 
+#### Prompt:
+
+Given an integer n, break it into the sum of k positive integers, where k >= 2, and maximize the product of those integers.
+
+Return the maximum product you can get.
+
 #### Solution:
 
     class Solution {
@@ -706,6 +712,19 @@ Dynamic programming and for loop.
 
 ### Solution Oct7, 2023 (Java, leetcode) 1420. Build Array Where You Can Find The Maximum Exactly K Comparisons (Hard)
 Im .LeetcodeDailySolution folder as Oct7,2023.java
+
+#### Prompt:
+
+You are given three integers n, m and k. Consider the following algorithm to find the maximum element of an array of positive integers:
+
+![image](https://github.com/Sshahryar/Leetcode/assets/123003299/213847ce-4a27-441a-9b8a-06910e1736ce)
+
+You should build the array arr which has the following properties:
+
+arr has exactly n integers.
+1 <= arr[i] <= m where (0 <= i < n).
+After applying the mentioned algorithm to arr, the value search_cost is equal to k.
+Return the number of ways to build the array arr under the mentioned conditions. As the answer may grow large, the answer must be computed modulo 109 + 7.
 
 #### Solution:
 
@@ -748,6 +767,14 @@ Arrays, for loop, dynamic programming, and if statements.
 
 ### Solution Oct 8, 2023 (Java, leetcode) 1458. Max Dot Product of Two Subtances (Hard):
 In .LeetcodeDailySolutions folder as Oct8,2023.java
+
+#### Prompt:
+
+Given two arrays nums1 and nums2.
+
+Return the maximum dot product between non-empty subsequences of nums1 and nums2 with the same length.
+
+A subsequence of a array is a new array which is formed from the original array by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (ie, [2,3,5] is a subsequence of [1,2,3,4,5] while [1,5,3] is not).
 
 #### Solution:
 
