@@ -19,7 +19,7 @@ leetcode, because of test cases and specific parameters.
 
 ## Leetcode Daily Challenge Solutions (From .LeetcodeDailySolution): 
 
-### Solution Sept 23, 2023 (Java, leetcode) 1048. LongestStrChain (Medium): 
+### Solution Sept 23, 2023 (Java, leetcode) 1048. LongestStrChain (Medium) 
 
 In .LeetcodeDailySolution folder as Sept23,2023.java
 
@@ -63,7 +63,7 @@ Memory: 43.9 mb, beating 34.67% of leetcode users solutions using java.
 
 Dynamic programming, arrays, map, and hashmap.
     
-### Solution Sept 25, 2023 (Java, leetcode) 389. Find the Difference (Easy):
+### Solution Sept 25, 2023 (Java, leetcode) 389. Find the Difference (Easy)
 In .LeetcodeDailySolution folder as Sept25,2023.java
 
 #### Prompt:
@@ -113,7 +113,7 @@ Memory: 40.9 mb, beating 20.52% of leetcode users solutions using java.
 
 Character arrays and for loop. 
 
-### Solution Sept 26, 2023 (Java, leetcode) 316. Remove Duplicate Letters (Medium): 
+### Solution Sept 26, 2023 (Java, leetcode) 316. Remove Duplicate Letters (Medium) 
 In .LeetcodeDailySolution folder as Sept26,2023.java
 
 #### Prompt:
@@ -165,7 +165,7 @@ Memory: 41.1 mb, beating 62.98% of leetcode users solutions using java.
 
 CharacterArray and stack. 
 
-### Solution Sept 27, 2023 (Java, leetcode) 880. Decoded String at Index (Medium):
+### Solution Sept 27, 2023 (Java, leetcode) 880. Decoded String at Index (Medium)
 In .LeetcodeDailySolution folder as Sept27,2023.java
 
 #### Prompt:
@@ -221,7 +221,7 @@ Memory: 40.8 mb, beating 8.48% of leetcode users solutions using java.
 
 Strings, stack, character lengths, e.t.c
 
-### Solution Sept 28, 2023 (Java, leetcode) 905. Sort Array by Parity (Easy):
+### Solution Sept 28, 2023 (Java, leetcode) 905. Sort Array by Parity (Easy)
 In .LeetcodeDailySolution folder as Sept28,2023.java
 
 #### Prompt:
@@ -265,7 +265,7 @@ Memory: 44.1 mb, beating 40.77% of leetcode users solutions using java.
 
 While loop, if and else-if. 
 
-### Solution Sept 29, 2023 (Java, leetcode) 896. Monotonic Array (Easy):
+### Solution Sept 29, 2023 (Java, leetcode) 896. Monotonic Array (Easy)
 In .LeetcodeDailySolution folder as Sept29,2023.java
 
 #### Prompt: 
@@ -306,7 +306,7 @@ Memory: 54.4 mb, beating 73.26% of leetcode users solutions using java.
 
 Booleans, for loop, if, and else-if. 
 
-### Solution Sept 30, 2023 (Java, leetcode) 456. 132 Pattern (Medium):
+### Solution Sept 30, 2023 (Java, leetcode) 456. 132 Pattern (Medium)
 In .LeetcodeDailySolution folder as Sept30,2023.java
 
 #### Prompt:
@@ -376,7 +376,7 @@ Memory: 64.1 mb, beating 8.57% of leetcode users solutions using java.
 
 Stack, for and while loop. 
 
-### Solution Oct 1, 2023 (Java, leetcode) 557. Reverse Words In a String III (Easy): 
+### Solution Oct 1, 2023 (Java, leetcode) 557. Reverse Words In a String III (Easy) 
 In .LeetcodeDailySolution folder as Oct1,2023.java
 
 #### Prompt:
@@ -443,7 +443,7 @@ Memory: 43.9 mb, beating 85.88% of leetcode users solutions using java.
 
 Character arrays, for and while loop. 
 
-### Solution Oct 2, 2023 (Java, leetcode) 2038. Remove Colored Pieces if Both Neighbors are the Same (Medium): 
+### Solution Oct 2, 2023 (Java, leetcode) 2038. Remove Colored Pieces if Both Neighbors are the Same (Medium) 
 In .LeetcodeDailySolution folder as Oct2,2023.java
 
 #### Prompt:
@@ -485,7 +485,7 @@ Memory: 44.2 mb, beating 55.98% of leetcode users solutions using java.
 
 Strings, for loop, if, else-if, and charAt. 
 
-### Solution Oct 3, 2023 (Java, leetcode) 1512. Number of Good Pairs (Easy): 
+### Solution Oct 3, 2023 (Java, leetcode) 1512. Number of Good Pairs (Easy) 
 In .LeetcodeDailySolution folder as Oct3,2023.java
 
 #### Prompt:
@@ -703,3 +703,79 @@ Memory: 39.9 mb, beating 6.52% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Dynamic programming and for loop.
+
+### Solution Oct7, 2023 (Java, leetcode) 1420. Build Array Where You Can Find The Maximum Exactly K Comparisons (Hard)
+Im .LeetcodeDailySolution folder as Oct7,2023.java
+
+#### Solution:
+
+    class Solution {
+        public int numOfArrays(int n, int m, int k) {
+        long[][][] dp = new long[n][k][m];
+        long mod = 1000000007;
+        Arrays.fill(dp[0][0], 1);
+        
+        for (int i = 1; i < n; i++) {
+            for (int cost = 0; cost < Math.min(i + 1, k); cost++) {
+                for (int max = 0; max < m; max++) {
+                    dp[i][cost][max] = (dp[i][cost][max] + (max + 1) * dp[i - 1][cost][max]) % mod;
+                    if (cost != 0) {
+                        long sum = 0;
+                        for (int prevMax = 0; prevMax < max; prevMax++) {
+                            sum += dp[i - 1][cost - 1][prevMax];
+                            sum %= mod;
+                        }
+                        dp[i][cost][max] = (dp[i][cost][max] + sum) % mod;
+                    }
+                }
+            }
+        }
+        long ans = 0;
+        for (int max = 0; max < m; max++) {
+            ans += dp[n - 1][k - 1][max];
+            ans %= mod;
+        }
+        return (int) ans;
+      }
+    }
+
+Runtime: 27 ms, beating 85.37% of leetcode users solutions using java.
+Memory: 43.6 mb, beating 24.29% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Arrays, for loop and if statements.
+
+### Solution Oct 8, 2023 (Java, leetcode) 1458. Max Dot Product of Two Subtances (Hard):
+In .LeetcodeDailySolutions folder as Oct8,2023.java
+
+#### Solution:
+
+    class Solution {
+        public int maxDotProduct(int[] nums1, int[] nums2) {
+        int[][] marks = new int[nums1.length][nums2.length];
+        for (int i = 0; i < nums1.length; i++) {
+            for (int j = 0; j < nums2.length; j++) {
+                int max = nums1[i] * nums2[j];
+                if (i > 0 && j > 0) {
+                    max = Math.max(max, max + marks[i - 1][j - 1]);
+                }
+                if (i > 0) {
+                    max = Math.max(max, marks[i - 1][j]);
+                }
+                if (j > 0) {
+                    max = Math.max(max, marks[i][j - 1]);
+                }
+                marks[i][j] = max;
+            }
+        }
+        return marks[nums1.length - 1][nums2.length - 1];
+      }
+    }
+    
+Runtime: 10 ms, beating 81.94% of leetcode users solutions using java.
+Memory: 42.9 mb, beating 80.56% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Math, for-loop and if statements.
