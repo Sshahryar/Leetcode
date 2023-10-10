@@ -806,3 +806,38 @@ Memory: 42.9 mb, beating 80.56% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Math, for-loop and if statements.
+
+### Solution Oct 9, 2023 (Java, leetcode) 34. Find First and Last Position of Element in Sorted Array (Medium):
+In .LeetcodeDailySolution folder as Oct9,2023.java
+
+#### Prompt:
+
+Given an array of integers nums sorted in non-decreasing order, find the starting and ending position of a given target value.
+
+If target is not found in the array, return [-1, -1].
+
+You must write an algorithm with O(log n) runtime complexity.
+
+#### Solution:
+
+    class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        int first = -1, last = -1;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == target) {
+                if (first == -1) {
+                    first = i;
+                }
+                last = i;
+            }
+        }
+        return new int[]{first, last};
+      }
+    }
+
+Runtime: 1 ms, beating 20.94% of leetcode users solutions using java.
+Memory: 44.1 mb, beating 82.90% of leetcode users solutions using java. 
+
+#### Concepts Applied:
+
+If statements.
