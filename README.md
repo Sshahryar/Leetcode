@@ -841,3 +841,48 @@ Memory: 44.1 mb, beating 82.90% of leetcode users solutions using java.
 #### Concepts Applied:
 
 If statements.
+
+### Solution Oct 10, 2023 (Java, leetcode) 2009. Minimum Number of Operation to Make Array Continuous
+
+#### Prompt:
+
+You are given an integer array nums. In one operation, you can replace any element in nums with any integer.
+
+nums is considered continuous if both of the following conditions are fulfilled:
+
+All elements in nums are unique.
+The difference between the maximum element and the minimum element in nums equals nums.length - 1.
+For example, nums = [4, 2, 5, 3] is continuous, but nums = [1, 2, 3, 5, 6] is not continuous.
+
+Return the minimum number of operations to make nums continuous.
+
+#### Solution:
+
+    class Solution {
+      public int minOperations(int[] nums) {
+        Arrays.sort(nums);
+        int uniqueLen = 1;
+        for (int i = 1; i < nums.length; ++i) {
+            if (nums[i] != nums[i - 1]) {
+                nums[uniqueLen++] = nums[i];
+            }
+        }
+        
+        int ans = nums.length;
+        for (int i = 0, j = 0; i < uniqueLen; ++i) {
+            while (j < uniqueLen && nums[j] - nums[i] <= nums.length - 1) {
+                ++j;
+            }
+            ans = Math.min(ans, nums.length - (j - i));
+        }
+        
+        return ans;
+      }
+    }
+
+Runtime: 36 ms, beating 99.3% of leetcode users solutions using java.
+Memory: 58 mb, beating 43.69% of leetcode users solutons using java.
+
+#### Concepts Applied:
+
+Arrays, for loop, while loop, and if statements.
