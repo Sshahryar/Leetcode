@@ -843,6 +843,7 @@ Memory: 44.1 mb, beating 82.90% of leetcode users solutions using java.
 If statements.
 
 ### Solution Oct 10, 2023 (Java, leetcode) 2009. Minimum Number of Operation to Make Array Continuous
+In .LeetcodeDailySolution folder as Oct10,2023.java
 
 #### Prompt:
 
