@@ -886,3 +886,67 @@ Memory: 58 mb, beating 43.69% of leetcode users solutons using java.
 #### Concepts Applied:
 
 Arrays, for loop, while loop, and if statements.
+
+### Solution Oct 11, 2023 (Java, leetcode) 2251. Numbers of Flowers in Full Bloom (Hard)
+In .LeetcodeDailySolution folder as Oct11,2023.java
+
+#### Prompt: 
+
+You are given a 0-indexed 2D integer array flowers, where flowers[i] = [starti, endi] means the ith flower will be in full bloom from starti to endi (inclusive). You are also given a 0-indexed integer array people of size n, where people[i] is the time that the ith person will arrive to see the flowers.
+
+Return an integer array answer of size n, where answer[i] is the number of flowers that are in full bloom when the ith person arrives.
+
+Example 1:
+
+Input: flowers = [[1,6],[3,7],[9,12],[4,13]], people = [2,3,7,11]
+Output: [1,2,2,2]
+Explanation: The figure above shows the times when the flowers are in full bloom and when the people arrive.
+For each person, we return the number of flowers in full bloom during their arrival.
+
+Example 2:
+
+Input: flowers = [[1,10],[3,3]], people = [3,3,2]
+Output: [2,2,1]
+Explanation: The figure above shows the times when the flowers are in full bloom and when the people arrive.
+For each person, we return the number of flowers in full bloom during their arrival.
+
+#### Solution:
+
+    class Solution {
+    public int[] fullBloomFlowers(int[][] flowers, int[] persons) {
+        int n = persons.length;
+        int[] result = new int[n];
+
+        TreeMap<Integer, Integer> treeMap = new TreeMap<>();
+        for (int i = 0; i < flowers.length; i++) {
+        
+            treeMap.put(flowers[i][0], treeMap.getOrDefault(flowers[i][0], 0) + 1);
+
+            treeMap.put(flowers[i][1] + 1, treeMap.getOrDefault(flowers[i][1] + 1, 0) - 1);
+        }
+        
+        TreeMap<Integer, Integer> sum = new TreeMap<>();
+        int prev = 0;
+        for (Map.Entry<Integer, Integer> entry : treeMap.entrySet()) {
+            prev += entry.getValue();
+            sum.put(entry.getKey(), prev);
+        }
+
+        for (int i = 0; i < n; i++) {
+
+            Map.Entry<Integer, Integer> entry = sum.floorEntry(persons[i]);
+            if (entry != null) {
+                result[i] = entry.getValue(); 
+            }
+        }
+        return result;
+        }
+    }
+
+Runtime: 102 ms, beating 19.78% of leetcode users using java.
+Memory: 73.5 mb, beating 22.1% of leetcode users using java.
+
+#### Concepts Applied:
+
+Treemap, for loop, and if statements. 
+
