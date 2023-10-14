@@ -951,8 +951,95 @@ Memory: 73.5 mb, beating 22.1% of leetcode users using java.
 
 Treemap, for loop, and if statements. 
 
-### Solution Oct 12, 2023 (Java, leetcode) 746. Min Cost Climbing Stairs (Easy)
+### Solution Oct 12, 2023 (Java, leetcode) 1095. Find in Mountain Array (Easy)
 In .LeetcodeDailySolution folder as Oct12,2023.java
+
+#### Prompt:
+
+(This problem is an interactive problem.)
+
+You may recall that an array arr is a mountain array if and only if:
+
+arr.length >= 3
+There exists some i with 0 < i < arr.length - 1 such that:
+arr[0] < arr[1] < ... < arr[i - 1] < arr[i]
+arr[i] > arr[i + 1] > ... > arr[arr.length - 1]
+Given a mountain array mountainArr, return the minimum index such that mountainArr.get(index) == target. If such an index does not exist, return -1.
+
+You cannot access the mountain array directly. You may only access the array using a MountainArray interface:
+
+MountainArray.get(k) returns the element of the array at index k (0-indexed).
+MountainArray.length() returns the length of the array.
+Submissions making more than 100 calls to MountainArray.get will be judged Wrong Answer. Also, any solutions that attempt to circumvent the judge will result in disqualification.
+
+#### Solution:
+     
+    class Solution {
+    public int findInMountainArray(int target, MountainArray mountainArr) {
+        int length = mountainArr.length();
+        int peakIndex = findPeak(mountainArr, length);
+
+        int result = findTarget(mountainArr, 0, peakIndex, target, true);
+        if (result != -1) {
+            return result;
+        }
+
+        return findTarget(mountainArr, peakIndex + 1, length - 1, target, false);
+    }
+
+    private int findTarget(MountainArray mountainArr, int left, int right, int target, boolean isUpside) {
+        while (left <= right) {
+            int mid = (left + right) / 2;
+            int midVal = mountainArr.get(mid);
+
+            if (midVal == target) {
+                return mid;
+            }
+
+            if (isUpside) {
+                if (target > midVal) {
+                    left = mid + 1;
+                } else {
+                    right = mid - 1;
+                }
+            } else {
+                if (target > midVal) {
+                    right = mid - 1;
+                } else {
+                    left = mid + 1;
+                }
+            }
+        }
+
+        return -1;
+    }
+
+    private int findPeak(MountainArray mountainArr, int length) {
+        int left = 0;
+        int right = length - 1;
+
+        while (left < right) {
+            int mid = (left + right) / 2;
+            if (mountainArr.get(mid) < mountainArr.get(mid + 1)) {
+                left = mid + 1;
+            } else {
+                right = mid;
+            }
+        }
+
+        return left;
+        }    
+    }
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using java.
+Memory: 42.9 mb, beating 85.75% of leetcode users solutions using java.
+
+#### Concepts Applied: 
+
+Dynamic programming, math and for loop.
+
+### Solution Oct 13, 2023 (Java, leetcode) 746. Min Cost Climbing Stairs (Easy)
+In .LeetcodeDailySolution folder as Oct13,2023.java
 
 #### Prompt:
 
@@ -964,32 +1051,3 @@ Return the minimum cost to reach the top of the floor.
 
 #### Solution:
 
-    class Solution {
-
-    public int minCostClimbingStairs(int[] cost) {
-
-        int n = cost.length;
-
-        int[] dp = new int[n];
-
-        dp[0] = cost[0];
-
-        dp[1] = cost[1];
-
-        for (int i = 2; i < n; i++) {
-
-            dp[i] = cost[i] + Math.min(dp[i-1], dp[i-2]);
-
-        }
-
-        return Math.min(dp[n-1], dp[n-2]);
-
-        }
-    }
-
-Runtime: 0 ms, beating 100% of leetcode users solutions using java.
-Memory: 43.1 mb, beating 27.27% of leetcode users solutions using java.
-
-#### Concepts Applied: 
-
-Dynamic programming, math and for loop.
