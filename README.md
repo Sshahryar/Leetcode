@@ -951,7 +951,7 @@ Memory: 73.5 mb, beating 22.1% of leetcode users using java.
 
 Treemap, for loop, and if statements. 
 
-### Solution Oct 12, 2023 (Java, leetcode) 1095. Find in Mountain Array (Easy)
+### Solution Oct 12, 2023 (Java, leetcode) 1095. Find in Mountain Array (Hard)
 In .LeetcodeDailySolution folder as Oct12,2023.java
 
 #### Prompt:
@@ -1051,3 +1051,37 @@ Return the minimum cost to reach the top of the floor.
 
 #### Solution:
 
+    class Solution {
+
+    public int minCostClimbingStairs(int[] cost) {
+
+        int n = cost.length;
+
+        int[] dp = new int[n];
+
+        dp[0] = cost[0];
+
+        dp[1] = cost[1];
+
+        
+
+        for (int i = 2; i < n; i++) {
+
+            dp[i] = cost[i] + Math.min(dp[i-1], dp[i-2]);
+
+        }
+
+        
+
+        return Math.min(dp[n-1], dp[n-2]);
+
+        }
+
+    }
+    
+Runtime: 0 ms, beating 100% of leetcode users solutions using java.
+Memory: 43.1 mb, beating 24.85% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Dyanmic programming, math and for loop.
