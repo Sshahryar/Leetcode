@@ -1089,5 +1089,36 @@ Dyanmic programming, math and for loop.
 ### Solution Oct 14, 2023 (Java, leetcode) 2742. Painting the Walls (Hard)
 In .LeetcodeDailySolution folder as Oct14,2023.java
 
-### Solution:
+#### Prompt:
 
+You are given two 0-indexed integer arrays, cost and time, of size n representing the costs and the time taken to paint n different walls respectively. There are two painters available:
+
+A paid painter that paints the ith wall in time[i] units of time and takes cost[i] units of money.
+A free painter that paints any wall in 1 unit of time at a cost of 0. But the free painter can only be used if the paid painter is already occupied.
+Return the minimum amount of money required to paint the n walls.
+
+#### Solution:
+
+    class Solution {
+    public int paintWalls(int[] cost, int[] time) {
+        int n = cost.length;
+        int[] money = new int[n+1];
+        Arrays.fill(money,(int)1e9);
+        money[0]=0;
+        for(int i=0;i<n;i++)
+        {
+            for(int j=n;j>0;j--)
+            {
+                money[j]=Math.min(money[j],money[Math.max(j-time[i]-1,0)]+cost[i]);
+            }
+        }
+        return money[n];
+        }
+    }
+
+Runtime: 8 ms, beating 98.47% of leetcode users solutions using java.
+Memory: 43.3 mb, beating 95.41% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Arrays, math and for loop. 
