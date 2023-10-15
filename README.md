@@ -1085,3 +1085,9 @@ Memory: 43.1 mb, beating 24.85% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Dyanmic programming, math and for loop.
+
+### Solution Oct 14, 2023 (Java, leetcode) 2742. Painting the Walls (Hard)
+In .LeetcodeDailySolution folder as Oct14,2023.java
+
+### Solution:
+
