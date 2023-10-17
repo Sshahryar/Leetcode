@@ -1122,3 +1122,83 @@ Memory: 43.3 mb, beating 95.41% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Arrays, math and for loop. 
+
+### Solution Oct 15, 2023 (Java, leetcode) 1269. Number of Ways to Stay in the Same Place After Some Steps (Hard)
+In .LeetcodeDailySolution as Oct15,2023.java
+
+#### Prompts:
+
+You have a pointer at index 0 in an array of size arrLen. At each step, you can move 1 position to the left, 1 position to the right in the array, or stay in the same place (The pointer should not be placed outside the array at any time).
+
+Given two integers steps and arrLen, return the number of ways such that your pointer is still at index 0 after exactly steps steps. Since the answer may be too large, return it modulo 109 + 7.
+
+#### Solution:
+
+    class Solution {
+    public int numWays(int steps, int arrLen) {
+        int m = steps;
+        int n = Math.min(steps / 2 + 1, arrLen);
+        
+        int[][] dp = new int[m + 1][n];
+        dp[0][0] = 1;
+        
+        int mod = 1000000007;
+        
+        for (int i = 1; i <= m; i++) {
+            for (int j = 0; j < n; j++) {
+                dp[i][j] = dp[i - 1][j];
+                if (j > 0) {
+                    dp[i][j] = (dp[i][j] + dp[i - 1][j - 1]) % mod;
+                }
+                if (j < n - 1) {
+                    dp[i][j] = (dp[i][j] + dp[i - 1][j + 1]) % mod;
+                }
+            }
+        }
+        
+        return dp[m][0];
+        }
+    }
+
+Runtime: 9 ms, beating 67.90% of leetcode users solutions using java.
+Memory: 42.1 mb, beating 89.20% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Math, dynamic programming, for loops, and if statements.
+
+### Solution Oct 16, 2023 (Java, leetcode) 119. Pascals Triangle II (Easy) 
+
+#### Prompt:
+
+Given an integer rowIndex, return the rowIndexth (0-indexed) row of the Pascal's triangle.
+
+In Pascal's triangle, each number is the sum of the two numbers directly above it as shown:
+
+![image](https://github.com/Sshahryar/Leetcode/assets/123003299/4de7c43b-3fb2-43b2-8d4f-806d74ff3e22)
+
+#### Solution:
+
+    class Solution {
+    public List<Integer> getRow(int rowIndex) {
+        List<Integer> res = new ArrayList<>();
+
+        res.add(1);
+        long prev = 1;
+
+        for (int k = 1; k<= rowIndex; k++) {
+            long next_val = prev * (rowIndex - k+1) / k;
+            res.add((int) next_val);
+            prev = next_val;
+
+        }
+        return res;
+        }
+    }
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using java.
+Memory: 39.9 mb, beating 78.30% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Lists and for loop.
