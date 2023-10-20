@@ -1344,3 +1344,62 @@ Memory: 68 mb, beating 56.45% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Graphs, boolean, and for loops.
+
+### Solution Oct 19, 2023 (Java, leetcode) 844. Backspace String Compare (Easy)
+In .LeetcodeDailySolution folder as Oct19,2023.java
+
+#### Prompt:
+
+Given two strings s and t, return true if they are equal when both are typed into empty text editors. '#' means a backspace character.
+
+Note that after backspacing an empty text, the text will continue empty.
+
+#### Solution:
+
+    class Solution {
+    public boolean backspaceCompare(String s, String t) {
+        int ps = s.length() - 1;
+        int pt = t.length() - 1;
+
+        while (ps >= 0 || pt >= 0) {
+            ps = get_next_valid_char_index(s, ps);
+            pt = get_next_valid_char_index(t, pt);
+
+            if (ps < 0 && pt < 0) {
+                return true;
+            }
+            if (ps < 0 || pt < 0) {
+                return false;
+            } else if (s.charAt(ps) != t.charAt(pt)) {
+                return false;
+            }
+
+            ps--;
+            pt--;
+        }
+
+        return true;        
+    }
+
+    private int get_next_valid_char_index(String str, int end) {
+        int backspace_count = 0;
+        while (end >= 0) {
+            if (str.charAt(end) == '#') {
+                backspace_count++;
+            } else if (backspace_count > 0) {
+                backspace_count--;
+            } else {
+                break;
+            }
+            end--;
+        }
+        return end;
+        }    
+    }
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using java.
+Memory: 40.5 mb, beating 67.63% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+CharAt, while loop, if, else and else-if statements.
