@@ -1403,3 +1403,50 @@ Memory: 40.5 mb, beating 67.63% of leetcode users solutions using java.
 #### Concepts Applied:
 
 CharAt, while loop, if, else and else-if statements.
+
+### Solution Oct 21, 2023 (Java, leetcode) 1425. Constrained Subsequence Sum (Hard)
+In .LeetcodeDailySolution folder as Oct21,2023.java
+
+#### Prompt:
+
+Given an integer array nums and an integer k, return the maximum sum of a non-empty subsequence of that array such that for every two consecutive integers in the subsequence, nums[i] and nums[j], where i < j, the condition j - i <= k is satisfied.
+
+A subsequence of an array is obtained by deleting some number of elements (can be zero) from the array, leaving the remaining elements in their original order.
+
+#### Solution:
+
+    class Solution {
+    public int constrainedSubsetSum(int[] nums, int k) {
+        Deque<Integer> queue = new ArrayDeque<>();
+        int dp[] = new int[nums.length];
+        
+        for (int i = 0; i < nums.length; i++) {
+            if (!queue.isEmpty() && i - queue.peek() > k) {
+                queue.poll();
+            }
+            
+            dp[i] = (!queue.isEmpty() ? dp[queue.peek()] : 0) + nums[i];
+            while (!queue.isEmpty() && dp[queue.peekLast()] < dp[i]) {
+                queue.pollLast();
+            }
+            
+            if (dp[i] > 0) {
+                queue.offer(i);
+            }
+        }
+        
+        int ans = Integer.MIN_VALUE;
+        for (int num : dp) {
+            ans = Math.max(ans, num);
+        }
+        
+        return ans;
+        }
+    }
+
+Runtime: 33 ms, beating 94.49% of leetcode users solutions using java.
+Memory: 56.2 mb, beating 85.83% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Deque, dynamic programming, for loop, and if statemnt.
