@@ -1451,9 +1451,49 @@ Memory: 56.2 mb, beating 85.83% of leetcode users solutions using java.
 
 Deque, dynamic programming, for loop, and if statement.
 
-### Solution Oct 22, 2023 (Java, leetcode)
+### Solution Oct 22, 2023 (Java, leetcode) 1793. Maximum Score of a Good Subarray (Hard)
 In .LeetcodeDailySolution folder as Oct22,2023.java
 
+#### Prompt:
+
+You are given an array of integers nums (0-indexed) and an integer k.
+
+The score of a subarray (i, j) is defined as min(nums[i], nums[i+1], ..., nums[j]) * (j - i + 1). A good subarray is a subarray where i <= k <= j.
+
+Return the maximum possible score of a good subarray.
+
+#### Solution:
+
+    class Solution {
+    public int maximumScore(int[] nums, int k) {
+        int n = nums.length;
+        int left = k;
+        int right = k;
+        int ans = nums[k];
+        int currMin = nums[k];
+        
+        while (left > 0 || right < n - 1) {
+            if ((left > 0 ? nums[left - 1]: 0) < (right < n - 1 ? nums[right + 1] : 0)) {
+                right++;
+                currMin = Math.min(currMin, nums[right]);
+            } else {
+                left--;
+                currMin = Math.min(currMin, nums[left]);
+            }
+            
+            ans = Math.max(ans, currMin * (right - left + 1));
+        }
+        
+        return ans;
+        }
+    }    
+
+Runtime: 7 ms, beating 88.29& of leetcode users solutions using java.
+Memory: 59.22 mb, beating 39.39% of leetcode users solutions using java. 
+
+#### Concepts Applied:
+
+While loop, if-statement, else-statement, and math.
 
 ### Solution Oct 23, 2023 (Java, leetcode) 342. Power of Four (Easy)
 In .LeetcodeDailySolution folder as Oct23,2023.java
