@@ -17,7 +17,7 @@ Below will be updates on the Daily Challenge Solutions**. Info on other folders 
 **The daily challenge solutions are designed to work on the leetcode, and may or may not work on ide's outside of 
 leetcode, because of test cases and specific parameters. 
 
-## Leetcode Daily Challenge Solutions (From .LeetcodeDailySolution): 
+## Leetcode Daily Challenge Solutions (From .LeetcodeDailySolution)
 
 ### Solution Sept 23, 2023 (Java, leetcode) 1048. LongestStrChain (Medium) 
 
@@ -765,7 +765,7 @@ Memory: 43.6 mb, beating 24.29% of leetcode users solutions using java.
 
 Arrays, for loop, dynamic programming, and if statements.
 
-### Solution Oct 8, 2023 (Java, leetcode) 1458. Max Dot Product of Two Subtances (Hard):
+### Solution Oct 8, 2023 (Java, leetcode) 1458. Max Dot Product of Two Subtances (Hard)
 In .LeetcodeDailySolutions folder as Oct8,2023.java
 
 #### Prompt:
@@ -807,7 +807,7 @@ Memory: 42.9 mb, beating 80.56% of leetcode users solutions using java.
 
 Math, for-loop and if statements.
 
-### Solution Oct 9, 2023 (Java, leetcode) 34. Find First and Last Position of Element in Sorted Array (Medium):
+### Solution Oct 9, 2023 (Java, leetcode) 34. Find First and Last Position of Element in Sorted Array (Medium)
 In .LeetcodeDailySolution folder as Oct9,2023.java
 
 #### Prompt:
@@ -1449,4 +1449,30 @@ Memory: 56.2 mb, beating 85.83% of leetcode users solutions using java.
 
 #### Concepts Applied:
 
-Deque, dynamic programming, for loop, and if statemnt.
+Deque, dynamic programming, for loop, and if statement.
+
+### Solution Oct 12, 2023 (Java, leetcode) 342. Power of Four (Easy)
+
+#### Prompt:
+
+Given an integer n, return true if it is a power of four. Otherwise, return false.
+
+An integer n is a power of four, if there exists an integer x such that n == 4x.
+
+#### Solution:
+
+    class Solution {
+       public boolean isPowerOfFour(int n) {
+       for(int i = 2 ;i<=32;i+=2){
+           if((1<<i) == n) return true;
+       }
+       return false;
+       }
+    }
+    
+Runtime: 1 ms, beating 76.50% of leetcode users solutions using java.
+Memory: 39.00 mb, beating 93.98% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+For loop and if-statement.
