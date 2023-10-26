@@ -1451,7 +1451,12 @@ Memory: 56.2 mb, beating 85.83% of leetcode users solutions using java.
 
 Deque, dynamic programming, for loop, and if statement.
 
-### Solution Oct 12, 2023 (Java, leetcode) 342. Power of Four (Easy)
+### Solution Oct 22, 2023 (Java, leetcode)
+In .LeetcodeDailySolution folder as Oct22,2023.java
+
+
+### Solution Oct 23, 2023 (Java, leetcode) 342. Power of Four (Easy)
+In .LeetcodeDailySolution folder as Oct23,2023.java
 
 #### Prompt:
 
