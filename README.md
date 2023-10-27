@@ -1616,3 +1616,52 @@ Memory: 43.46 mb, beating 34.07% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Arrays, long, dp, Map, for loops, if-statements, and indexMap.
+
+### Solution Oct 26, 2023 (Java, leetcode) 823. Binary Trees With Factors (Medium)
+In .LeetcodeDailySolution folder as Oct26,2023.java
+
+#### Prompt:
+
+Given an array of unique integers, arr, where each integer arr[i] is strictly greater than 1.
+
+We make a binary tree using these integers, and each number may be used for any number of times. Each non-leaf node's value should be equal to the product of the values of its children.
+
+Return the number of binary trees we can make. The answer may be too large so return the answer modulo 109 + 7.
+
+#### Solution:
+
+public class Solution {
+    private static final int MOD = 1000000007;
+
+    public int numFactoredBinaryTrees(int[] arr) {
+        Arrays.sort(arr);
+        Set<Integer> s = new HashSet<>();
+        for (int x : arr) s.add(x);
+
+        Map<Integer, Integer> dp = new HashMap<>();
+        for (int x : arr) dp.put(x, 1);
+        
+        for (int i : arr) {
+            for (int j : arr) {
+                if (j > Math.sqrt(i)) break;
+                if (i % j == 0 && s.contains(i / j)) {
+                    long temp = (long) dp.get(j) * dp.get(i / j);
+                    dp.put(i, (int) ((dp.get(i) + (i / j == j ? temp : temp * 2)) % MOD));
+                }
+            }
+        }
+        
+        int result = 0;
+        for (int val : dp.values()) {
+            result = (result + val) % MOD;
+        }
+        return result;
+        }
+    }
+
+Runtime: 14 ms, beating 82.51% of leetcode users solutions using java.
+Memory: 43.46 mb, beating 36.41% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Arrays, Set, HashSet, for-loops, Map, HashMap, if statements, and dp.
