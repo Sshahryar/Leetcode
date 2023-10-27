@@ -1488,7 +1488,7 @@ Return the maximum possible score of a good subarray.
         }
     }    
 
-Runtime: 7 ms, beating 88.29& of leetcode users solutions using java.
+Runtime: 7 ms, beating 88.29% of leetcode users solutions using java.
 Memory: 59.22 mb, beating 39.39% of leetcode users solutions using java. 
 
 #### Concepts Applied:
