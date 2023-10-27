@@ -1,28 +1,23 @@
 class Solution {
-    public int constrainedSubsetSum(int[] nums, int k) {
-        Deque<Integer> queue = new ArrayDeque<>();
-        int dp[] = new int[nums.length];
+    public int maximumScore(int[] nums, int k) {
+        int n = nums.length;
+        int left = k;
+        int right = k;
+        int ans = nums[k];
+        int currMin = nums[k];
         
-        for (int i = 0; i < nums.length; i++) {
-            if (!queue.isEmpty() && i - queue.peek() > k) {
-                queue.poll();
+        while (left > 0 || right < n - 1) {
+            if ((left > 0 ? nums[left - 1]: 0) < (right < n - 1 ? nums[right + 1] : 0)) {
+                right++;
+                currMin = Math.min(currMin, nums[right]);
+            } else {
+                left--;
+                currMin = Math.min(currMin, nums[left]);
             }
             
-            dp[i] = (!queue.isEmpty() ? dp[queue.peek()] : 0) + nums[i];
-            while (!queue.isEmpty() && dp[queue.peekLast()] < dp[i]) {
-                queue.pollLast();
-            }
-            
-            if (dp[i] > 0) {
-                queue.offer(i);
-            }
-        }
-        
-        int ans = Integer.MIN_VALUE;
-        for (int num : dp) {
-            ans = Math.max(ans, num);
+            ans = Math.max(ans, currMin * (right - left + 1));
         }
         
         return ans;
     }
-}
+}                                                                         
