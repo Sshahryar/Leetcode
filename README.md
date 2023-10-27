@@ -1521,3 +1521,49 @@ Memory: 39.00 mb, beating 93.98% of leetcode users solutions using java.
 #### Concepts Applied:
 
 For loop and if-statement.
+
+### Solution Oct 24, 2023 (Java, leetcode) 515. Find Largest Value in Each Tree Row (Medium)
+In .LeetcodeDailySolution folder as Oct24,2023.java
+
+#### Prompt:
+
+Given the root of a binary tree, return an array of the largest value in each row of the tree (0-indexed).
+
+Example 1:
+
+Input: root = [1,3,2,5,3,null,9]
+Output: [1,3,9]
+Example 2:
+
+Input: root = [1,2,3]
+Output: [1,3]
+ 
+Constraints:
+
+The number of nodes in the tree will be in the range [0, 104].
+-231 <= Node.val <= 231 - 1
+
+#### Solution:
+
+    class Solution {
+    public List<Integer> largestValues(TreeNode root) {
+       Map <Integer , Integer> map = new HashMap(); 
+       dfs(root, 0, map);
+       return new ArrayList(map.values());
+    }
+
+    private void dfs(TreeNode root, int level, Map<Integer , Integer> map){
+        if(root==null) return;
+
+        map.put(level, Math.max(root.val, map.getOrDefault(level, Integer.MIN_VALUE)));
+        dfs(root.left, level+1, map);
+        dfs(root.right, level+1, map);
+        }
+    }
+
+Runtime: 1 ms, beating 98.02% of leetcode users solutions using java.
+Memory: 43.94 mb, beating 61.09% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Lists, HashMap, ArrayList, TreeNode, Map, Math, if-statement, and dfs. 
