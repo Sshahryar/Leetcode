@@ -1,4 +1,4 @@
-public class Solution {
+class Solution {
     private static final int MOD = 1000000007;
 
     public int numFactoredBinaryTrees(int[] arr) {
