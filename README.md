@@ -1679,3 +1679,50 @@ Memory: 43.47 mb, beating 53.35% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Char, charArray, for loops, if-statments, while loops, Math, charAt, strings.
+
+### Solution Oct 28, 2023 (Java, leetcode) 1220. Count Vowels Permutation (Hard)
+In .LeetcodeDailySolution folder as Oct28,2023.java
+
+#### Prompt:
+
+Given an integer n, your task is to count how many strings of length n can be formed under the following rules:
+
+Each character is a lower case vowel ('a', 'e', 'i', 'o', 'u')
+Each vowel 'a' may only be followed by an 'e'.
+Each vowel 'e' may only be followed by an 'a' or an 'i'.
+Each vowel 'i' may not be followed by another 'i'.
+Each vowel 'o' may only be followed by an 'i' or a 'u'.
+Each vowel 'u' may only be followed by an 'a'.
+Since the answer may be too large, return it modulo 10^9 + 7.
+
+#### Solution:
+
+    class Solution {
+    public int countVowelPermutation(int n) {
+        final int MOD = 1000000007;
+
+        long a = 1, e = 1, i = 1, o = 1, u = 1;
+
+        for (int j = 1; j < n; j++) {
+            long a_next = e;
+            long e_next = (a + i) % MOD;
+            long i_next = (a + e + o + u) % MOD;
+            long o_next = (i + u) % MOD;
+            long u_next = a;
+            a = a_next;
+            e = e_next;
+            i = i_next;
+            o = o_next;
+            u = u_next;
+            
+        }
+        return (int)((a + e + i + o + u) % MOD);
+        }
+    }
+
+Runtime: 5 ms, beating 99.02% of leetcode users solutions using java.
+Memory: 39.30 mb, beating 84.92% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Long and for loop.
