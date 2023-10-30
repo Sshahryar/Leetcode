@@ -1726,3 +1726,34 @@ Memory: 39.30 mb, beating 84.92% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Long and for loop.
+
+### Solution Oct 30, 2023 (Java, leetcode) 1356. Sort Integers by The Number of 1 Bits (Easy)
+In .LeetcodeDailySolution folder as Oct30,2023.java
+
+#### Prompt:
+
+You are given an integer array arr. Sort the integers in the array in ascending order by the number of 1's in their binary representation and in case of two or more integers have the same number of 1's you have to sort them in ascending order.
+
+Return the array after sorting it.
+
+#### Solution:
+
+    class Solution {
+    public int[] sortByBits(int[] arr) {
+        for ( int i =0 ;i< arr.length ;i++){
+            arr[i] += Integer.bitCount(arr[i])*10001;
+        }
+        Arrays.sort(arr);
+         for ( int i =0 ;i< arr.length ;i++){
+             arr[i] = arr[i] %10001;
+         }
+        return arr;
+        }
+    }    
+
+Runtime: 3 ms, beating 99.12% of leetcode users solutions using java.
+Memory: 43.92 mb, beating 29.36% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+For loops and arrays.
