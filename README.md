@@ -1404,6 +1404,66 @@ Memory: 40.5 mb, beating 67.63% of leetcode users solutions using java.
 
 CharAt, while loop, if, else and else-if statements.
 
+### Solution Oct 20, 2023 (Java, leetcode) 341. Flatten Nested List Iterator
+In .LeetcodeDailySolution folder as Oct20,2023.java
+
+#### Prompt:
+
+You are given a nested list of integers nestedList. Each element is either an integer or a list whose elements may also be integers or other lists. Implement an iterator to flatten it.
+
+Implement the NestedIterator class:
+
+NestedIterator(List<NestedInteger> nestedList) Initializes the iterator with the nested list nestedList.
+int next() Returns the next integer in the nested list.
+boolean hasNext() Returns true if there are still some integers in the nested list and false otherwise.
+Your code will be tested with the following pseudocode:
+
+initialize iterator with nestedList
+res = []
+while iterator.hasNext()
+    append iterator.next() to the end of res
+return res
+If res matches the expected flattened list, then your code will be judged as correct.
+
+#### Solution:
+
+    class NestedIterator implements Iterator<Integer> {
+    private Stack<NestedInteger> stack;
+
+    public NestedIterator(List<NestedInteger> nestedList) {
+        stack = new Stack<>();
+        for (int i = nestedList.size() - 1; i >= 0; i--) {
+            stack.push(nestedList.get(i));
+        }
+    }
+
+    @Override
+    public Integer next() {
+        return stack.pop().getInteger();
+    }
+
+    @Override
+    public boolean hasNext() {
+        while (!stack.isEmpty()) {
+            if (stack.peek().isInteger()) {
+                return true;
+            }
+            List<NestedInteger> nestedList = stack.pop().getList();
+            for (int i = nestedList.size() - 1; i >= 0; i--) {
+                stack.push(nestedList.get(i));
+            }
+        }
+        return false;
+        }
+    }
+
+Runtime: 4 ms, beating 25.17% of leetcode users solutions using java.
+Memory: 44.26 mb, beating 74.13% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+NestedIterator, Iterators, Stack, nestedList, boolean, and list.
+
 ### Solution Oct 21, 2023 (Java, leetcode) 1425. Constrained Subsequence Sum (Hard)
 In .LeetcodeDailySolution folder as Oct21,2023.java
 
