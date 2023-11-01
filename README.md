@@ -1823,6 +1823,44 @@ Memory: 39.30 mb, beating 84.92% of leetcode users solutions using java.
 
 Long and for loop.
 
+### Solution Oct 29, 2023 (Java, leetcode) 458. Poor Pigs (Hard)
+In .LeetcodeDailySolution folder as Oct29,2023.java
+
+#### Prompt:
+
+There are buckets buckets of liquid, where exactly one of the buckets is poisonous. To figure out which one is poisonous, you feed some number of (poor) pigs the liquid to see whether they will die or not. Unfortunately, you only have minutesToTest minutes to determine which bucket is poisonous.
+
+You can feed the pigs according to these steps:
+
+Choose some live pigs to feed.
+For each pig, choose which buckets to feed it. The pig will consume all the chosen buckets simultaneously and will take no time. Each pig can feed from any number of buckets, and each bucket can be fed from by any number of pigs.
+Wait for minutesToDie minutes. You may not feed any other pigs during this time.
+After minutesToDie minutes have passed, any pigs that have been fed the poisonous bucket will die, and all others will survive.
+Repeat this process until you run out of time.
+Given buckets, minutesToDie, and minutesToTest, return the minimum number of pigs needed to figure out which bucket is poisonous within the allotted time.
+
+#### Solution:
+
+    class Solution{
+    public int poorPigs(int buckets, int tdie, int ttest){
+        int test = ttest/tdie;
+        int i=0;
+        
+        while(Math.pow(test+1,i)< buckets)
+        {
+            i++;
+        }
+        return i;
+        }
+    }
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using java.
+Memory: 38.70 mb, beating 95.03% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Math and while loop.
+
 ### Solution Oct 30, 2023 (Java, leetcode) 1356. Sort Integers by The Number of 1 Bits (Easy)
 In .LeetcodeDailySolution folder as Oct30,2023.java
 
