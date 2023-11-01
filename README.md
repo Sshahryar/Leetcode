@@ -1757,3 +1757,38 @@ Memory: 43.92 mb, beating 29.36% of leetcode users solutions using java.
 #### Concepts Applied:
 
 For loops and arrays.
+
+### Solution Oct 31, 2023 (Java, leetcode) 2433. Find The Original Array of Prefix Xor (Medium)
+In .LeetcodeDailySolution folder as Oct31,2023.java
+
+#### Prompt:
+
+You are given an integer array pref of size n. Find and return the array arr of size n that satisfies:
+
+pref[i] = arr[0] ^ arr[1] ^ ... ^ arr[i].
+Note that ^ denotes the bitwise-xor operation.
+
+It can be proven that the answer is unique.
+
+#### Solution:
+
+    class Solution {
+    public int[] findArray(int[] pref) {
+        int prev = pref[0];
+        
+        for (int i = 1; i < pref.length; i++) {
+            pref[i] ^= prev;
+            prev ^= pref[i];
+        }
+        return pref;        
+        }
+    }
+
+Runtime: 1 ms, beating 100% of leetcode users solutions using java. 
+Memory: 58.68 mb, beating 54.80% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+findArray and for loop.
+
+
