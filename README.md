@@ -1628,6 +1628,42 @@ Memory: 43.94 mb, beating 61.09% of leetcode users solutions using java.
 
 Lists, HashMap, ArrayList, TreeNode, Map, Math, if-statement, and dfs. 
 
+### Solution Oct 25, 2023 (Java, leetcode) 779. K-th Symbol in Grammar (Medium)
+In .LeetcodeDailySolution folder as Oct25,2023.java
+
+#### Prompt:
+
+We build a table of n rows (1-indexed). We start by writing 0 in the 1st row. Now in every subsequent row, we look at the previous row and replace each occurrence of 0 with 01, and each occurrence of 1 with 10.
+
+For example, for n = 3, the 1st row is 0, the 2nd row is 01, and the 3rd row is 0110.
+Given two integer n and k, return the kth (1-indexed) symbol in the nth row of a table of n rows.
+
+#### Solution:
+
+    class Solution {
+    public int kthGrammar(int n, int k) {
+        if (n == 1) {
+            return 0;
+        }
+        
+        int parent = kthGrammar(n - 1, (int) Math.ceil(k / 2.0));
+        boolean isOdd = k % 2 == 1;
+
+        if (parent == 0) {
+            return isOdd ? 0 : 1;
+        } else {
+            return isOdd ? 1 : 0;
+            }  
+        }
+    }
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using java.
+Memory: 39.04 mb, beating 49.27% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Boolean, Math, and if-statements.
+
 ### Solution Oct 26, 2023 (Java, leetcode) 823. Binary Trees With Factors (Medium)
 In .LeetcodeDailySolution folder as Oct26,2023.java
 
