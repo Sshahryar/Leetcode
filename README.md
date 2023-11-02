@@ -1925,4 +1925,68 @@ Memory: 58.68 mb, beating 54.80% of leetcode users solutions using java.
 
 findArray and for loop.
 
+### Solution Nov 1, 2023 (Java, leetcode) 501. Find Mode in Binary Search Tree (Easy)
+In .LeetcodeDailySolution folder as Nov1,2023.java
 
+#### Prompt:
+
+Given the root of a binary search tree (BST) with duplicates, return all the mode(s) (i.e., the most frequently occurred element) in it.
+
+If the tree has more than one mode, return them in any order.
+
+Assume a BST is defined as follows:
+
+The left subtree of a node contains only nodes with keys less than or equal to the node's key.
+The right subtree of a node contains only nodes with keys greater than or equal to the node's key.
+Both the left and right subtrees must also be binary search trees.
+
+#### Solution:
+
+    class Solution {
+    private int currentVal;
+    private int currentCount = 0;
+    private int maxCount = 0;
+    private int modeCount = 0;
+    private int[] modes;
+    public int[] findMode(TreeNode root) {
+        inOrderTraversal(root);
+
+        modes = new int[modeCount];
+        modeCount = 0;
+        currentCount = 0;
+
+        inOrderTraversal(root);
+
+        return modes;
+    }
+    private void inOrderTraversal(TreeNode node) {
+        if (node == null) return;
+        inOrderTraversal(node.left);
+        handleValue(node.val);
+        inOrderTraversal(node.right);
+    }
+    private void handleValue(int val) {
+        if (val == currentVal) {
+            currentCount++;
+        } else {
+            currentVal = val;
+            currentCount = 1;
+        }
+        if (currentCount > maxCount) {
+            maxCount = currentCount;
+            modeCount = 1;
+        } else if (currentCount == maxCount) {
+            if (modes != null) {
+                modes[modeCount] = currentVal;
+            }
+            modeCount++;
+            }
+        }
+    }    
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using java.
+Memory: 43.46 mb, beating 93.96% of leetcode users solutions using java.
+
+#### Concepts Applied: 
+
+Treenodes, traversals, if-statements, else statements, and else-if statements.
