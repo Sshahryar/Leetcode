@@ -1990,3 +1990,47 @@ Memory: 43.46 mb, beating 93.96% of leetcode users solutions using java.
 #### Concepts Applied: 
 
 Treenodes, traversals, if-statements, else statements, and else-if statements.
+
+### Solution Nov 2, 2023 (Java, leetcode) 2265. Count Nodes Equal to Average of Subtree (Medium)
+In .LeetcodeDailySolution folder as Nov2,2023.java
+
+#### Prompt:
+
+Given the root of a binary tree, return the number of nodes where the value of the node is equal to the average of the values in its subtree.
+
+Note:
+
+The average of n elements is the sum of the n elements divided by n and rounded down to the nearest integer.
+A subtree of root is a tree consisting of root and all of its descendants.
+
+#### Solution:
+
+    class Solution {
+    int count = 0;
+    public int averageOfSubtree(TreeNode root) {
+        dfs(root);
+        return count;
+    }
+        private int[] dfs(TreeNode node) {
+        if(node == null) {
+            return new int[]{0, 0};
+        } 
+        int[] leftResults = dfs(node.left);
+        int[] rightResults = dfs(node.right);
+        
+        int totalSum = node.val + leftResults[0] + rightResults[0];
+
+        int totalCount = 1 + leftResults[1] + rightResults[1];
+
+        if(node.val == totalSum/totalCount) count++;
+
+        return new int[]{totalSum, totalCount};
+        }
+    }
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using java.
+Memory: 42.40 mb, beating 95.77% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+dfs, Treenode, and if-statements.
