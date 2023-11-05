@@ -2034,3 +2034,36 @@ Memory: 42.40 mb, beating 95.77% of leetcode users solutions using java.
 #### Concepts Applied:
 
 dfs, Treenode, and if-statements.
+
+### Solution Nov 4, 2023 (Java, leetcode) 1503. Last Momment Before All Ants Fall Out of a Plank (Medium)
+In .LeetcodeDailySolution folder as Nov4,2023.java
+
+#### Prompt:
+
+We have a wooden plank of the length n units. Some ants are walking on the plank, each ant moves with a speed of 1 unit per second. Some of the ants move to the left, the other move to the right.
+
+When two ants moving in two different directions meet at some point, they change their directions and continue moving again. Assume changing directions does not take any additional time.
+
+When an ant reaches one end of the plank at a time t, it falls out of the plank immediately.
+
+Given an integer n and two integer arrays left and right, the positions of the ants moving to the left and the right, return the moment when the last ant(s) fall out of the plank.
+
+#### Solution:
+
+    class Solution {
+        public int getLastMoment(int n, int[] left, int[] right) {
+        int res = 0;
+        for (int i: left)
+            res = Math.max(res, i);
+        for (int i: right)
+            res = Math.max(res, n - i);
+        return res;
+        }
+    }
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using java.
+Memory: 43.49 mb, beating 92.47% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+For loops and Math.
