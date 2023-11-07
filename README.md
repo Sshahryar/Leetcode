@@ -2067,3 +2067,42 @@ Memory: 43.49 mb, beating 92.47% of leetcode users solutions using java.
 #### Concepts Applied:
 
 For loops and Math.
+
+### Solution Nov 5, 2023 (Java, leetcode) 1535. Find the Winner of an Array Game (Medium)
+In .LeetcodeDailySolution folder as Nov5,2023.java
+
+#### Prompt:
+
+Given an integer array arr of distinct integers and an integer k.
+
+A game will be played between the first two elements of the array (i.e. arr[0] and arr[1]). In each round of the game, we compare arr[0] with arr[1], the larger integer wins and remains at position 0, and the smaller integer moves to the end of the array. The game ends when an integer wins k consecutive rounds.
+
+Return the integer which will win the game.
+
+It is guaranteed that there will be a winner of the game.
+
+#### Solution:
+
+    public class Solution {
+    public int getWinner(int[] A, int k) {
+        int cur = A[0]; int win = 0;
+        
+        for (int i = 1; i < A.length; ++i) {
+            if (A[i] > cur) {
+                cur = A[i];
+                win = 0;
+            }
+            if (++win == k) {
+                break;
+            }
+        }
+        return cur;
+        }
+    }
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using java.
+Memory: 56.40 mb, beating 69.18% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Arrays, for loops, and if statements. 
