@@ -2106,3 +2106,49 @@ Memory: 56.40 mb, beating 69.18% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Arrays, for loops, and if statements. 
+
+### Solution Nov 7, 2023 (Java, leetcode) 1921. Eliminate Maximum Number of Monsters (Medium)
+In .LeetcodeDailySolution folder as Nov7,2023.java
+
+#### Prompt:
+
+You are playing a video game where you are defending your city from a group of n monsters. You are given a 0-indexed integer array dist of size n, where dist[i] is the initial distance in kilometers of the ith monster from the city.
+
+The monsters walk toward the city at a constant speed. The speed of each monster is given to you in an integer array speed of size n, where speed[i] is the speed of the ith monster in kilometers per minute.
+
+You have a weapon that, once fully charged, can eliminate a single monster. However, the weapon takes one minute to charge. The weapon is fully charged at the very start.
+
+You lose when any monster reaches your city. If a monster reaches the city at the exact moment the weapon is fully charged, it counts as a loss, and the game ends before you can use your weapon.
+
+Return the maximum number of monsters that you can eliminate before you lose, or n if you can eliminate all the monsters before they reach the city.
+
+#### Solution:
+
+    class Solution {
+    public int eliminateMaximum(int[] dist, int[] speed) {
+        int[] time = new int[dist.length];
+
+        for(int i=0;i<dist.length;i++)
+            time[i] = (int)Math.ceil((double)dist[i]/speed[i]);
+
+        Arrays.sort(time);
+
+        int ans = 0;
+        int T = 0;
+        for(int i=0;i<time.length;i++)
+        {
+            if(T++<time[i])
+                ans++;
+            else
+                break;
+        }
+        return ans;
+        }
+    }
+
+Runtime: 19 ms, beating 62.18% of leetcode users solutions using java.
+Memory: 54.50 mb, beating 83.52% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Arrays, Math, for loops, and else condition. 
