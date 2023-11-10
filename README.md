@@ -2152,3 +2152,50 @@ Memory: 54.50 mb, beating 83.52% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Arrays, Math, for loops, and else condition. 
+
+### Solution Nov 8, 2023 (Java, leetcode) 2849. Determine if a Cell is Reachable at a Given Time (Medium)
+In .LeetcodeDailySolution folder as Nov8,2023.java
+
+#### Prompt:
+
+You are given four integers sx, sy, fx, fy, and a non-negative integer t.
+
+In an infinite 2D grid, you start at the cell (sx, sy). Each second, you must move to any of its adjacent cells.
+
+Return true if you can reach cell (fx, fy) after exactly t seconds, or false otherwise.
+
+A cell's adjacent cells are the 8 cells around it that share at least one corner with it. You can visit the same cell several times.
+
+#### Solution:
+
+    public class Solution {
+    public static boolean isReachableAtTime(int sx, int sy, int fx, int fy, int t) {
+        int minsteps = 0;
+        int a = Math.abs(fx - sx);
+        int b = Math.abs(fy - sy);
+        
+        if (a == 0 && b == 0) {
+            return t != 1;
+        }
+        if (a < b) {
+            if (sy < fy) {
+                return (fy - (sy + a) + a) <= t;
+            } else {
+                return (sy - (fy + a) + a) <= t;
+            }
+        } else {
+            if (sx < fx) {
+                return (fx - (sx + b) + b) <= t;
+            } else {
+                return (sx - (fx + b) + b) <= t;
+                }
+            }
+        }
+    }
+
+Runtime: 1 ms, beating 91.04% of leetcode users solutions using java.
+Memory: 39.60 mb, beating 53.57% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Math, boolean, if and else statements.
