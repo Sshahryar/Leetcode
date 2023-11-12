@@ -1677,7 +1677,7 @@ Return the number of binary trees we can make. The answer may be too large so re
 
 #### Solution:
 
-public class Solution {
+    class Solution {
     private static final int MOD = 1000000007;
 
     public int numFactoredBinaryTrees(int[] arr) {
@@ -2083,7 +2083,7 @@ It is guaranteed that there will be a winner of the game.
 
 #### Solution:
 
-    public class Solution {
+    class Solution {
     public int getWinner(int[] A, int k) {
         int cur = A[0]; int win = 0;
         
@@ -2168,7 +2168,7 @@ A cell's adjacent cells are the 8 cells around it that share at least one corner
 
 #### Solution:
 
-    public class Solution {
+    class Solution {
     public static boolean isReachableAtTime(int sx, int sy, int fx, int fy, int t) {
         int minsteps = 0;
         int a = Math.abs(fx - sx);
