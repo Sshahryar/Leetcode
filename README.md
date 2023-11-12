@@ -2234,3 +2234,69 @@ Memory: 44.08 mb, beatiing 63.58% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Var, charArray, and if statement.
+
+### Solution Nov 10, 2023 (Java, leetcode) 1743. Restore the Array From Adjacent Pairs (Medium)
+In .LeetcodeDailySolution folder as Nov10,2023.java
+
+#### Prompt:
+
+There is an integer array nums that consists of n unique elements, but you have forgotten it. However, you do remember every pair of adjacent elements in nums.
+
+You are given a 2D integer array adjacentPairs of size n - 1 where each adjacentPairs[i] = [ui, vi] indicates that the elements ui and vi are adjacent in nums.
+
+It is guaranteed that every adjacent pair of elements nums[i] and nums[i+1] will exist in adjacentPairs, either as [nums[i], nums[i+1]] or [nums[i+1], nums[i]]. The pairs can appear in any order.
+
+Return the original array nums. If there are multiple solutions, return any of them.
+
+#### Solution:
+
+    class Solution {
+    private static final int MINV = -100000, MAXV = 100000,
+    RANGEV = MAXV - MINV + 1;
+    private static final long UINT_MAX = 0xFFFFFFFFl;
+    private static long[] index = new long[RANGEV];
+
+    public int[] restoreArray(int[][] apairs) {
+        final int n = apairs.length;
+        if (n == 1) return apairs[0];
+        int minv = MAXV, maxv = MINV;
+        for (int i = 0; i < n; i++) {
+            final var ap = apairs[i];
+            final int v0 = ap[0], v1 = ap[1];
+            final long j = i + 1;
+            index[v0-MINV] += index[v0-MINV] == 0 ? j : j << 32;
+            index[v1-MINV] += index[v1-MINV] == 0 ? j : j << 32;
+            final int mn = Math.min(v0, v1);
+            final int mx = Math.max(v0, v1);
+            minv = Math.min(mn, minv);
+            maxv = Math.max(mx, maxv);
+        }
+
+        int head = minv;
+        while (head <= maxv
+            && (index[head-MINV] > UINT_MAX || index[head-MINV] == 0))
+            head++;
+
+        int[] r = new int[n + 1];
+        r[0] = head;
+        int ri = 1;
+        for (long idx = index[head-MINV]; idx != 0; idx = index[head-MINV]) {
+            final int loidx = (int)(idx & UINT_MAX);
+            final var ap = apairs[loidx - 1];
+            index[head-MINV] >>>= 32;
+            r[ri++] = head = ap[ap[0] == head ? 1 : 0];
+            final int lonext = (int)(index[head-MINV] & UINT_MAX),
+                      hinext = (int)(index[head-MINV] >>> 32);
+            if (lonext == loidx) index[head-MINV] = hinext;
+            else if (hinext == loidx) index[head-MINV] = lonext;
+        }
+        return r;
+        }
+    }
+
+Runtime: 18 ms, beating 99.78% of leetcode users solutions using java.
+Memory: 87.14 mb, beating 68.17% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Long, apairs, index, Math, if statements, while and for loops.
