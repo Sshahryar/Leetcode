@@ -2199,3 +2199,38 @@ Memory: 39.60 mb, beating 53.57% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Math, boolean, if and else statements.
+
+### Solution Nov 9, 2023 (Java, leetcode) 1759. Count Number of Homogenous Substrings (Medium)
+In .LeetcodeDailySolution folder as Nov9,2023.java
+
+#### Prompt:
+
+Given a string s, return the number of homogenous substrings of s. Since the answer may be too large, return it modulo 109 + 7.
+
+A string is homogenous if all the characters of the string are the same.
+
+A substring is a contiguous sequence of characters within a string.
+
+#### Solution: 
+
+    class Solution {
+    public int countHomogenous(String s) {
+    var prev = '?'; var cnt = 1; var sum = 0;
+
+    for (var c : s.toCharArray()) {
+      if (c != prev) {
+        cnt = 1;
+        prev = c;
+          }
+      sum = (sum + cnt++) % 1000000007;
+        }
+    return sum;
+      }
+    }
+
+Runtime: 6 ms, beating 95.62% of leetcode users solutions using java.
+Memory: 44.08 mb, beatiing 63.58% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Var, charArray, and if statement.
