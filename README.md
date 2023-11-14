@@ -2300,3 +2300,76 @@ Memory: 87.14 mb, beating 68.17% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Long, apairs, index, Math, if statements, while and for loops.
+
+### Solution Nov 11, 2023 (Java, leetcode) 2642. Design Graph With Shortest Path Calculator (Hard)
+In .LeetcodeDailySolution folder as Nov11,2023.java
+
+#### Prompt:
+
+There is a directed weighted graph that consists of n nodes numbered from 0 to n - 1. The edges of the graph are initially represented by the given array edges where edges[i] = [fromi, toi, edgeCosti] meaning that there is an edge from fromi to toi with the cost edgeCosti.
+
+Implement the Graph class:
+
+Graph(int n, int[][] edges) initializes the object with n nodes and the given edges.
+addEdge(int[] edge) adds an edge to the list of edges where edge = [from, to, edgeCost]. It is guaranteed that there is no edge between the two nodes before adding this one.
+int shortestPath(int node1, int node2) returns the minimum cost of a path from node1 to node2. If no path exists, return -1. The cost of a path is the sum of the costs of the edges in the path.
+
+#### Solution:
+
+    class Graph {
+    int[][] distance; int n;
+    final int MAX_VALUE = 500_000_000;
+
+    public Graph(int n, int[][] edges) {
+        this.n = n;
+        distance = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                distance[i][j] = MAX_VALUE;
+            }
+            distance[i][i] = 0;
+        }
+        for (int[] edge : edges) {
+            distance[edge[0]][edge[1]] = edge[2];
+        }
+        for (int k = 0; k < n; k++) {
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    distance[i][j] = Math.min(
+                        distance[i][j],
+                        distance[i][k] + distance[k][j]
+                    );
+                }
+            }
+        }
+    }
+    
+    public void addEdge(int[] edge) {
+        if (distance[edge[0]][edge[1]] <= edge[2]) {
+            return;
+        }
+        distance[edge[0]][edge[1]] = edge[2];
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                distance[i][j] = Math.min(
+                    distance[i][j],
+                    distance[i][edge[0]] + edge[2] + distance[edge[1]][j]
+                );
+            }
+        }
+    }
+    public int shortestPath(int node1, int node2) {
+        if (distance[node1][node2] == MAX_VALUE) {
+            return -1;
+        }
+        return distance[node1][node2];
+        }
+    }
+
+Runtime: 64 ms, beating 97.92% of leetcode users solutions using java.
+Memory: 54.40 mb, beating 76.67% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Graph, for loops, if statements, Math, and nodes.
