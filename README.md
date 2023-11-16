@@ -2373,3 +2373,65 @@ Memory: 54.40 mb, beating 76.67% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Graph, for loops, if statements, Math, and nodes.
+
+### Solution Nov 12, 2023 (Java, leetcode) 815 Bus Routes (Hard)
+In .LeetcodeDailySolution folder as Nov12,2023.java
+
+#### Prompt:
+
+You are given an array routes representing bus routes where routes[i] is a bus route that the ith bus repeats forever.
+
+For example, if routes[0] = [1, 5, 7], this means that the 0th bus travels in the sequence 1 -> 5 -> 7 -> 1 -> 5 -> 7 -> 1 -> ... forever.
+You will start at the bus stop source (You are not on any bus initially), and you want to go to the bus stop target. You can travel between bus stops by buses only.
+
+Return the least number of buses you must take to travel from source to target. Return -1 if it is not possible.
+
+#### Solution:
+
+    class Solution {
+    public int numBusesToDestination(int[][] routes, int source, int target) {
+        if (source == target) {
+            return 0;
+        }
+        int maxStop = -1;
+        for (int[] route : routes) {
+            for (int stop : route) {
+                maxStop = Math.max(maxStop, stop);
+            }
+        }
+        if (maxStop < target) {
+            return -1;
+        }
+        int n = routes.length;
+        int[] minBusesToReach = new int[maxStop + 1];
+        Arrays.fill(minBusesToReach, n + 1);
+        minBusesToReach[source] = 0;
+        boolean flag = true;
+        while (flag) {
+            flag = false;
+            for (int[] route : routes) {
+                int min = n + 1;
+                for (int stop : route) {
+                    min = Math.min(min, minBusesToReach[stop]);
+                }
+                min++;
+                for (int stop : route) {
+                    if (minBusesToReach[stop] > min) {
+                        minBusesToReach[stop] = min;
+                        flag = true;
+                    }
+                }
+            }
+            
+        }
+        return (minBusesToReach[target] < n + 1 ? minBusesToReach[target] : -1);
+        }
+    }
+
+Runtime: 4 ms, beating 82.66% of leetcode users solutions using java.
+Memory: 53.89 mb, beating 97.41% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+For loops, Math, Arrays, boolean, while loop, and if statements.
+
