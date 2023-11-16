@@ -2435,3 +2435,54 @@ Memory: 53.89 mb, beating 97.41% of leetcode users solutions using java.
 
 For loops, Math, Arrays, boolean, while loop, and if statements.
 
+### Solution Nov 13, 2023 (Java, leetcode) 2785. Sort Vowels in a String (Medium)
+In .LeetcodeDailySolution folder as Nov13,2023.java
+
+#### Prompt:
+
+Given a 0-indexed string s, permute s to get a new string t such that:
+
+All consonants remain in their original places. More formally, if there is an index i with 0 <= i < s.length such that s[i] is a consonant, then t[i] = s[i].
+The vowels must be sorted in the nondecreasing order of their ASCII values. More formally, for pairs of indices i, j with 0 <= i < j < s.length such that s[i] and s[j] are vowels, then t[i] must not have a higher ASCII value than t[j].
+Return the resulting string.
+
+The vowels are 'a', 'e', 'i', 'o', and 'u', and they can appear in lowercase or uppercase. Consonants comprise all letters that are not vowels.
+
+#### Solution:
+
+    class Solution {
+    boolean isVowel(Character c) {
+        return c == 'a' || c == 'e' || c == 'o'|| c == 'u'|| c == 'i'
+                || c == 'A' || c == 'E' || c == 'O'|| c == 'U'|| c == 'I';
+    }
+    public String sortVowels(String s) {
+        int[] count = new int[1000];
+        for (char c : s.toCharArray()) {
+            if (isVowel(c)) {
+                count[c - 'A']++;
+            }
+        }
+        String sortedVowel = "AEIOUaeiou";
+        StringBuilder ans = new StringBuilder();
+        int j = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (!isVowel(s.charAt(i))) {
+                ans.append(s.charAt(i));
+            } else {
+                while (count[sortedVowel.charAt(j) - 'A'] == 0) {
+                    j++;
+                }
+                ans.append(sortedVowel.charAt(j));
+                count[sortedVowel.charAt(j) - 'A']--;
+            }
+        }
+        return ans.toString();
+        }
+    }
+
+Runtime: 21 ms, beating 82.90% of leetcode users solutions using java.
+Memory: 44.37 mb, beating 91.33% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Booleans, chars, charArr, strings, for loops, charAt, if statements, else statements, and while loop.
