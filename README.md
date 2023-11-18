@@ -2486,3 +2486,55 @@ Memory: 44.37 mb, beating 91.33% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Booleans, chars, charArr, strings, for loops, charAt, if statements, else statements, and while loop.
+
+### Solution Nov 14, 2023 (Java, leetcode) 1930. Unique Length-3 Palindromic Subsequences (Medium)
+In .LeetcodeDailySolution folder as Nov14,2023.java
+
+#### Prompt:
+
+Given a string s, return the number of unique palindromes of length three that are a subsequence of s.
+
+Note that even if there are multiple ways to obtain the same subsequence, it is still only counted once.
+
+A palindrome is a string that reads the same forwards and backwards.
+
+A subsequence of a string is a new string generated from the original string with some characters (can be none) deleted without changing the relative order of the remaining characters.
+
+For example, "ace" is a subsequence of "abcde".
+
+#### Solution:
+
+    class Solution {
+    public int countPalindromicSubsequence(String inputString) {
+        int[] minExist = new int[26];
+        int[] maxExist = new int[26];
+        for (int i = 0; i < 26; i++) {
+            minExist[i] = Integer.MAX_VALUE;
+            maxExist[i] = Integer.MIN_VALUE;
+        }
+        for (int i = 0; i < inputString.length(); i++) {
+            int charIndex = inputString.charAt(i) - 'a';
+            minExist[charIndex] = Math.min(minExist[charIndex], i);
+            maxExist[charIndex] = Math.max(maxExist[charIndex], i);
+        }
+        int uniqueCount = 0;
+        for (int charIndex = 0; charIndex < 26; charIndex++) {
+            if (minExist[charIndex] == Integer.MAX_VALUE || maxExist[charIndex] == Integer.MIN_VALUE) {
+                continue; 
+            }
+            HashSet<Character> uniqueCharsBetween = new HashSet<>();
+            for (int j = minExist[charIndex] + 1; j < maxExist[charIndex]; j++) {
+                uniqueCharsBetween.add(inputString.charAt(j));
+            }
+            uniqueCount += uniqueCharsBetween.size();
+        }
+        return uniqueCount;
+        }
+    }
+
+Runtime: 155 ms, beating 75.16% of leetcode users solutions using java.
+Memory: 44.29 mb, beating 71.41% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Strings, for loops, charIndex, charAt, Math, and HashSet.
