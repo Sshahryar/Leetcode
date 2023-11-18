@@ -2578,4 +2578,32 @@ Memory: 56.68 mb, beating 48.40% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Arrays, for loop, Math, if and else statements.
- 
+
+### Solution Nov 16, 2023 (Java, leetcode) 1980. Find Unique Binary String (Medium)
+In .LeetcodeDailySolution folder as Nov16,2023.java
+
+#### Prompt:
+
+Given an array of strings nums containing n unique binary strings each of length n, return a binary string of length n that does not appear in nums. 
+If there are multiple answers, you may return any of them.
+
+#### Solution:
+
+    class Solution {
+    public String findDifferentBinaryString(String[] nums) {
+        StringBuilder sb = new StringBuilder();
+
+        for(int i=0;i<nums.length;i++)
+        {
+            sb.append(nums[i].charAt(i) == '0'? "1": "0");
+        }
+        return new String(sb);
+        }
+    }
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using java.
+Memory: 40.43 mb, beating 73.89% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Strings, for loop, and charAt.
