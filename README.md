@@ -2607,3 +2607,42 @@ Memory: 40.43 mb, beating 73.89% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Strings, for loop, and charAt.
+
+### Solution Nov 17, 2023 (Java, leetcode) 1877. Minimize Maximum Pair Sum in Array (Medium)
+In .LeetcodeDailySolution folder as Nov17,2023.java
+
+#### Prompt:
+
+The pair sum of a pair (a,b) is equal to a + b. The maximum pair sum is the largest pair sum in a list of pairs.
+
+For example, if we have pairs (1,5), (2,3), and (4,4), the maximum pair sum would be max(1+5, 2+3, 4+4) = max(6, 5, 8) = 8.
+Given an array nums of even length n, pair up the elements of nums into n / 2 pairs such that:
+
+Each element of nums is in exactly one pair, and
+The maximum pair sum is minimized.
+Return the minimized maximum pair sum after optimally pairing up the elements.
+
+#### Solution: 
+
+    class Solution {
+    public int minPairSum(int[] nums) {
+        Arrays.sort(nums);
+        int left = 0, right = nums.length - 1;
+        int minMaxPairSum = Integer.MIN_VALUE;
+
+        while (left < right) {
+            int currentPairSum = nums[left] + nums[right];
+            minMaxPairSum = Math.max(minMaxPairSum, currentPairSum);
+            left++;
+            right--;
+        }
+        return minMaxPairSum;
+        }
+    }
+
+Runtime: 53 ms, beating 86.60% of leetcode users solutions using java.
+Memory: 56.48 mb, beating 96.69% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Arrays, while loop, and Math.
