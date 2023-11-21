@@ -2687,4 +2687,46 @@ Memory: 56.53 mb, beating 83.11% of leetcode users solutions using java.
 
 Arrays, for loop, while loop, and Math.
 
-### Solution Nov 19, 2023 (Java, leetcode) 
+### Solution Nov 19, 2023 (Java, leetcode) 1887. Reduction Operations to Make the Array Element Equal (Medium)
+In .LeetcodeDailySolution folder as Nov19,2023.java
+
+#### Prompt:
+
+Given an integer array nums, your goal is to make all elements in nums equal. To complete one operation, follow these steps:
+
+Find the largest value in nums. Let its index be i (0-indexed) and its value be largest. If there are multiple elements with the largest value, pick the smallest i.
+Find the next largest value in nums strictly smaller than largest. Let its value be nextLargest.
+Reduce nums[i] to nextLargest.
+Return the number of operations to make all elements in nums equal.
+
+#### Solution:
+
+    class Solution {
+    public int reductionOperations(int[] nums) {
+        int n = nums.length;
+        int[] freq = new int[50001];
+
+        for (int i = 0; i < n; i++) {
+            freq[nums[i]]++;
+        }
+        int res = 0, operations = 0;
+
+        for (int i = 50000; i >= 1; i--) {
+
+            if (freq[i] > 0) {
+
+                operations += freq[i];
+
+                res += operations - freq[i];
+            }
+        }
+        return res;
+        }
+    }
+
+Runtime: 7 ms, beating 99.25% of leetcode users solutions using java.
+Memory: 53.99 mb, beating 98.99% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Array, for loop, and if statements.
