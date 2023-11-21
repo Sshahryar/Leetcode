@@ -2646,3 +2646,45 @@ Memory: 56.48 mb, beating 96.69% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Arrays, while loop, and Math.
+
+### Solution Nov 18, 2023 (Java, leetcode) 1838. Frequency of the Most Frequent Element (Medium)
+In .LeetcodeDailySolution folder as Nov18,2023.java
+
+#### Prompt:
+
+The frequency of an element is the number of times it occurs in an array.
+
+You are given an integer array nums and an integer k. In one operation, you can choose an index of nums and increment the element at that index by 1.
+
+Return the maximum possible frequency of an element after performing at most k operations.
+
+#### Solution:
+
+    class Solution {
+    public int maxFrequency(int[] nums, int k) {
+        Arrays.sort(nums);
+        int i = 0;
+        int j = 0;
+        int sum = 0;
+        int maxLength = 0;
+
+        for (i = 0; i < nums.length; i++) {
+            sum += nums[i];
+            while ((i - j + 1) * nums[i] - sum > k) {
+                sum -= nums[j];
+                j++;
+            }
+            maxLength = Math.max(maxLength, i - j + 1);
+        }
+        return maxLength;
+        }
+    }
+
+Runtime: 29 ms, beating 77.42% of leetcode users solutions using java.
+Memory: 56.53 mb, beating 83.11% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Arrays, for loop, while loop, and Math.
+
+### Solution Nov 19, 2023 (Java, leetcode) 
