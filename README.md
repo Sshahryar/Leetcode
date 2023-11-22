@@ -2791,4 +2791,52 @@ Memory: 60.74 mb, beating 88.61% of leetcode users solutions using java.
 
 Boolean, for loops, and strings.
 
-### Solution 
+### Solution Nov 21, 2023 (Java, leetcode) 1814. Count Nice Pairs in an Array (Medium)3
+In .LeetcodeDailySolution folder as Nov21,2023.java
+
+#### Prompt:
+
+You are given an array nums that consists of non-negative integers. Let us define rev(x) as the reverse of the non-negative integer x. For example, rev(123) = 321, and rev(120) = 21. A pair of indices (i, j) is nice if it satisfies all of the following conditions:
+
+0 <= i < j < nums.length
+nums[i] + rev(nums[j]) == nums[j] + rev(nums[i])
+Return the number of nice pairs of indices. Since that number can be too large, return it modulo 109 + 7.
+
+#### Solution:
+
+    class Solution {
+    public int countNicePairs(int[] nums) {
+        final int mod = 1000000007;
+        int len = nums.length;
+        for (int i = 0; i < len; i++) {
+            nums[i] = nums[i] - reverse(nums[i]);
+        }
+        Arrays.sort(nums);
+        long res = 0;
+        for (int i = 0; i < len - 1; i++) {
+            long count = 1;
+            while (i < len - 1 && nums[i] == nums[i + 1]) {
+                count++;
+                i++;
+            }
+            res = (res % mod + (count * (count - 1)) / 2) % mod;
+        }
+
+        return (int) (res % mod);
+    }
+    private int reverse(int num) {
+        int rev = 0;
+        while (num > 0) {
+            rev = rev * 10 + num % 10;
+            num /= 10;
+        }
+        return rev;
+        }
+    }
+
+Runtime: 20 ms, beating 100% of leetcode users solutions using java.
+Memory: 54.70 mb, beating 63.24% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Arrays, long, for loops, and while loops.
