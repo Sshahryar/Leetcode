@@ -2730,3 +2730,65 @@ Memory: 53.99 mb, beating 98.99% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Array, for loop, and if statements.
+
+### Solution Nov 20, 2023 (Java, leetcode) 2391. Minimum Amount of Time to Collect Garbage (Medium)
+In .LeetcodeDailySolution folder as Nov20,2023.java
+
+#### Prompt:
+
+You are given a 0-indexed array of strings garbage where garbage[i] represents the assortment of garbage at the ith house. garbage[i] consists only of the characters 'M', 'P' and 'G' representing one unit of metal, paper and glass garbage respectively. Picking up one unit of any type of garbage takes 1 minute.
+
+You are also given a 0-indexed integer array travel where travel[i] is the number of minutes needed to go from house i to house i + 1.
+
+There are three garbage trucks in the city, each responsible for picking up one type of garbage. Each garbage truck starts at house 0 and must visit each house in order; however, they do not need to visit every house.
+
+Only one garbage truck may be used at any given moment. While one truck is driving or picking up garbage, the other two trucks cannot do anything.
+
+Return the minimum number of minutes needed to pick up all the garbage.
+
+#### Solution:
+
+    class Solution {
+    boolean hasG = false, hasP = false, hasM = false;
+    public int garbageCollection(String[] garbage, int[] travel) {
+        int n = garbage.length;
+        int ans = 0;
+        for (int i = 0; i < n - 1; i++) {
+            ans += 3 * travel[i];
+        }
+        for (String s : garbage) {
+            ans += s.length();
+        }
+        for (int i = n - 1; i > 0; i--) {
+            if (!garbage[i].contains("G")) {
+                ans -= travel[i - 1];
+            } else {
+                break;
+            }
+        }
+        for (int i = n - 1; i > 0; i--) {
+            if (!garbage[i].contains("P")) {
+                ans -= travel[i - 1];
+            } else {
+                break;
+            }
+        }
+        for (int i = n - 1; i > 0; i--) {
+            if (!garbage[i].contains("M")) {
+                ans -= travel[i - 1];
+            } else {
+                break;
+            }
+        }
+        return ans;
+        }
+    }
+
+Runtime: 2 ms, beating 99.33% of leetcode users solutions using java.
+Memory: 60.74 mb, beating 88.61% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Boolean, for loops, and strings.
+
+### Solution 
