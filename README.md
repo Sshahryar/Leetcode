@@ -2791,7 +2791,7 @@ Memory: 60.74 mb, beating 88.61% of leetcode users solutions using java.
 
 Boolean, for loops, and strings.
 
-### Solution Nov 21, 2023 (Java, leetcode) 1814. Count Nice Pairs in an Array (Medium)3
+### Solution Nov 21, 2023 (Java, leetcode) 1814. Count Nice Pairs in an Array (Medium)
 In .LeetcodeDailySolution folder as Nov21,2023.java
 
 #### Prompt:
@@ -2840,3 +2840,48 @@ Memory: 54.70 mb, beating 63.24% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Arrays, long, for loops, and while loops.
+
+### Solution Nov 22, 2023 (Java, leetcode) 1424. Diagonal Traverse II (Medium)
+In .LeetcodeDailySolution folder as Nov22,2023.java
+
+#### Prompt:
+
+Given a 2D integer array nums, return all elements of nums in diagonal order as shown in the below images.
+
+#### Solution:
+
+    class Solution {
+    public int[] findDiagonalOrder(List<List<Integer>> nums) {
+        Queue<Pair<Integer, Integer>> queue = new LinkedList();
+        queue.offer(new Pair(0, 0));
+        List<Integer> ans = new ArrayList();
+        
+        while (!queue.isEmpty()) {
+            Pair<Integer, Integer> p = queue.poll();
+            int row = p.getKey();
+            int col = p.getValue();
+            ans.add(nums.get(row).get(col));
+            
+            if (col == 0 && row + 1 < nums.size()) {
+                queue.offer(new Pair(row + 1, col));
+            }
+            if (col + 1 < nums.get(row).size()) {
+                queue.offer(new Pair(row, col + 1));
+            }
+        }
+        int[] result = new int[ans.size()];
+        int i = 0;
+        for (int num : ans) {
+            result[i] = num;
+            i++;
+        }
+        return result;
+        }
+    }
+
+Runtime: 28 ms, beating 72% of leetcode users solutions using java.
+Memory: 68.89 mb, beating 63.64% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+List, linkedlist, queue, and Arraylist.
