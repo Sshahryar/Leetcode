@@ -2967,3 +2967,40 @@ Memory: 42.34 mb, beating 99.72% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Lists, booleans, ArrayLists, for loops, if statements, else statements, and Math.
+
+### Solution Nov 24, 2023 (Java, leetcode) 1561. Maximum Number of Coins You Can Get (Medium)
+In .LeetcodeDailySolution folder as Nov24,2023.java
+
+#### Prompt:
+
+There are 3n piles of coins of varying size, you and your friends will take piles of coins as follows:
+
+In each step, you will choose any 3 piles of coins (not necessarily consecutive).
+Of your choice, Alice will pick the pile with the maximum number of coins.
+You will pick the next pile with the maximum number of coins.
+Your friend Bob will pick the last pile.
+Repeat until there are no more piles of coins.
+Given an array of integers piles where piles[i] is the number of coins in the ith pile.
+
+Return the maximum number of coins that you can have.
+
+#### Solution:
+
+    class Solution {
+    public int maxCoins(int[] piles) {
+        int ans = 0; int n = piles.length;
+        Arrays.sort(piles);
+
+        for (int i = n / 3; i < n; i += 2) {
+            ans += piles[i];
+        }
+        return ans;
+        }
+    }
+
+Runtime: 27 ms, beating 98.94% leetcode users solutions using java.
+Memory: 54.45 mb, beating 72.08% leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Arrays and for loop.
