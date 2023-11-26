@@ -3004,3 +3004,52 @@ Memory: 54.45 mb, beating 72.08% leetcode users solutions using java.
 #### Concepts Applied:
 
 Arrays and for loop.
+
+### Solution Nov 25, 2023 (Java, leetcode) 1685. Sum of Absolute Differences in a Sorted Array (Medium)
+In .LeetcodeDailySolution folder as Nov25,2023.java
+
+#### Prompt:
+
+You are given an integer array nums sorted in non-decreasing order.
+
+Build and return an integer array result with the same length as nums such that result[i] is equal to the summation of absolute differences between nums[i] and all the other elements in the array.
+
+In other words, result[i] is equal to sum(|nums[i]-nums[j]|) where 0 <= j < nums.length and j != i (0-indexed).
+
+#### Solution:
+
+    class Solution {
+    public int[] getSumAbsoluteDifferences(int[] nums) {
+        int n = nums.length;
+        int[] prefix = new int[n];
+
+        prefix[0] = nums[0];
+
+        for (int i = 1; i < n; i++) {
+            prefix[i] = prefix[i - 1] + nums[i];
+        }
+        
+        int[] ans = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            int leftSum = prefix[i] - nums[i];
+            int rightSum = prefix[n - 1] - prefix[i];
+            
+            int leftCount = i;
+            int rightCount = n - 1 - i;
+            
+            int leftTotal = leftCount * nums[i] - leftSum;
+            int rightTotal = rightSum - rightCount * nums[i];
+            
+            ans[i] = leftTotal + rightTotal;
+        }
+        return ans;
+        }
+    }
+
+Runtime: 4 ms, beating 62.31% of leetcode users solutions using java.
+Memory: 57.61 mb, beating 68.89% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Arrays, for loops, and prefix sums.
