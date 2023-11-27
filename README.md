@@ -3053,3 +3053,49 @@ Memory: 57.61 mb, beating 68.89% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Arrays, for loops, and prefix sums.
+
+### Solution Nov 26, 2023 (Java, leetcode) 1727. Largest Submatrix With Rearrangements (Medium)
+In .LeetcodeDailySolution folder as Nov26,2023.java
+
+#### Prompt:
+
+You are given a binary matrix matrix of size m x n, and you are allowed to rearrange the columns of the matrix in any order.
+
+Return the area of the largest submatrix within matrix where every element of the submatrix is 1 after reordering the columns optimally.
+
+#### Solution:
+
+    class Solution {
+    public int largestSubmatrix(int[][] matrix) {
+        int row = matrix.length;
+        int col = matrix[0].length;
+
+        for (int i = 1; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (matrix[i][j] == 1) {
+                    matrix[i][j] += matrix[i - 1][j];
+                }
+            }
+        }
+
+        int res = 0;
+        for (int i = 0; i < row; i++) {
+            Arrays.sort(matrix[i]);
+
+            for (int j = 0; j < col; j++) {
+                int height = matrix[i][j];
+                int width = col - j;
+                res = Math.max(res, height * width);
+            }
+        }
+
+        return res;        
+        }
+    }
+
+Runtime: 8 ms, beating 100% of leetcode users solutions using java.
+Memory: 67.44 mb, beating 56.32% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Matrix, for loops, and Math.
