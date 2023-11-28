@@ -3099,3 +3099,64 @@ Memory: 67.44 mb, beating 56.32% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Matrix, for loops, and Math.
+
+### Solution Nov 27, 2023 (Java, leetcode) 935. Knight Dealer (Medium)
+In .LeetcodeDailySolution folder as Nov27,2023.java
+
+#### Prompt:
+
+The chess knight has a unique movement, it may move two squares vertically and one square horizontally, or two squares horizontally and one square vertically (with both forming the shape of an L). The possible movements of chess knight are shown in this diagaram:
+
+A chess knight can move as indicated in the chess diagram below:
+
+![image](https://github.com/Sshahryar/Leetcode/assets/123003299/9f5adc8f-5fb5-4f5b-a3bb-bd91026b6958)
+
+We have a chess knight and a phone pad as shown below, the knight can only stand on a numeric cell (i.e. blue cell).
+
+![image](https://github.com/Sshahryar/Leetcode/assets/123003299/9f358451-bcd4-481a-aefe-0b60f9d69667)
+
+Given an integer n, return how many distinct phone numbers of length n we can dial.
+
+You are allowed to place the knight on any numeric cell initially and then you should perform n - 1 jumps to dial a number of length n. All jumps should be valid knight jumps.
+
+As the answer may be very large, return the answer modulo 109 + 7.
+
+#### Solution:
+
+    class Solution {
+    static final int MOD = 1_000_000_007;
+    public int knightDialer(int n) {
+        long[] curPos = new long[10];
+
+        Arrays.fill(curPos, 1);
+
+        for (int jump = 2; jump <= n; jump++) {
+            long[] newPos = new long[10];
+
+            newPos[0] = (curPos[6] + curPos[4]) % MOD;
+            newPos[1] = (curPos[6] + curPos[8]) % MOD;
+            newPos[2] = (curPos[7] + curPos[9]) % MOD;
+            newPos[3] = (curPos[4] + curPos[8]) % MOD;
+            newPos[4] = (curPos[0] + curPos[3] + curPos[9]) % MOD;
+            newPos[5] = 0;  
+            newPos[6] = (curPos[0] + curPos[1] + curPos[7]) % MOD;
+            newPos[7] = (curPos[2] + curPos[6]) % MOD;
+            newPos[8] = (curPos[1] + curPos[3]) % MOD;
+            newPos[9] = (curPos[2] + curPos[4]) % MOD;
+
+            curPos = newPos;
+        }
+        long totalCount = 0;
+        for (int i = 0; i < 10; i++) {
+            totalCount = (totalCount + curPos[i]) % MOD;
+        }
+        return (int) totalCount;
+        }
+    }
+
+Runtime: 20 ms, beating 83.37% of leetcode users solutions using java.
+Memory: 43.23 mb, beating 69.42% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Long, arrays, pos, and for loop.
