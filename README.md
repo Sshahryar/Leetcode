@@ -3160,3 +3160,45 @@ Memory: 43.23 mb, beating 69.42% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Long, arrays, pos, and for loop.
+
+### Solution Nov 28, 2023 (Java, leetcode) 2147. Number of Ways to Divide a Long Corrdior (Hard)
+In .LeetcodeDailySolution folder as Nov28,2023.jaca
+
+#### Prompt:
+
+Along a long library corridor, there is a line of seats and decorative plants. You are given a 0-indexed string corridor of length n consisting of letters 'S' and 'P' where each 'S' represents a seat and each 'P' represents a plant.
+
+One room divider has already been installed to the left of index 0, and another to the right of index n - 1. Additional room dividers can be installed. For each position between indices i - 1 and i (1 <= i <= n - 1), at most one divider can be installed.
+
+Divide the corridor into non-overlapping sections, where each section has exactly two seats with any number of plants. There may be multiple ways to perform the division. Two ways are different if there is a position with a room divider installed in the first way but not in the second way.
+
+Return the number of ways to divide the corridor. Since the answer may be very large, return it modulo 109 + 7. If there is no way, return 0.
+
+#### Solution:
+
+    class Solution {
+    public int numberOfWays(String corridor) {
+        int x = 1;
+        int y = 0; 
+        int z = 0;
+        int mod = (int)1e9 + 7;
+        
+        for (int i = 0; i < corridor.length(); ++i)
+            if (corridor.charAt(i) == 'S') {
+                x = (x + z) % mod;
+                z = y; 
+                y = x;
+                x = 0;
+            } else {
+                x = (x + z) % mod;
+            }
+        return z;
+        }
+    }
+
+Runtime: 21 ms, beating 97.30% of leetcode users solutions using java.
+Memory: 44.83 mb, beating 70.27% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+charAt, strings, for loop, if statement, and else statement.
