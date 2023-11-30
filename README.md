@@ -3202,3 +3202,36 @@ Memory: 44.83 mb, beating 70.27% of leetcode users solutions using java.
 #### Concepts Applied:
 
 charAt, strings, for loop, if statement, and else statement.
+
+#### Solution Nov 30, 2023 (Java, leetcode) 1611. Minimum One Bit Operations to Make Integers Zero (Hard) 
+In .LeetcodeDailySolution folder as Nov30,2023.java
+
+#### Prompt:
+
+Given an integer n, you must transform it into 0 using the following operations any number of times:
+
+Change the rightmost (0th) bit in the binary representation of n.
+Change the ith bit in the binary representation of n if the (i-1)th bit is set to 1 and the (i-2)th through 0th bits are set to 0.
+Return the minimum number of operations to transform n into 0.
+
+#### Solution:
+
+    class Solution {
+        public int minimumOneBitOperations(int n) {
+        int sign = 1, res = 0;
+
+        while (n > 0) {
+            res += n ^ (n - 1) * sign;
+            n &= n - 1;
+            sign = -sign;
+        }
+        return Math.abs(res);
+        }
+    }
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using java.
+Memory: 39.27 mb, beating 56.86% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Math, recursion, and while loop.
