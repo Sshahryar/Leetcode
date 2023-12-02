@@ -3235,3 +3235,36 @@ Memory: 39.27 mb, beating 56.86% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Math, recursion, and while loop.
+
+### Solution Dec 1, 2023 (Java, leetcode) 1662. Check If Two String Arrays are Equivalent (Easy)
+In .LeetcodeDailySolution folder as Dec1,2023.java
+
+#### Prompt:
+
+Given two string arrays word1 and word2, return true if the two arrays represent the same string, and false otherwise.
+
+A string is represented by an array if the array elements concatenated in order forms the string.
+
+#### Solution:
+
+    class Solution {
+    public boolean arrayStringsAreEqual(String[] word1, String[] word2) {
+
+        StringBuilder sb1 = new StringBuilder();
+
+        for ( String str : word1 ) sb1.append(str);
+        StringBuilder sb2 = new StringBuilder();
+
+        for ( String str : word2 ) sb2.append(str);
+        
+        return (sb1.toString().equals(sb2.toString()));
+        
+        }
+    }
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using java.
+Memory: 40.35 mb, beating 55.19% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Strings, stringbuilder, boolean, and for loop.
