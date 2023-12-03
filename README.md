@@ -3268,3 +3268,55 @@ Memory: 40.35 mb, beating 55.19% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Strings, stringbuilder, boolean, and for loop.
+
+### Solution Dec 2, 2023 (Java, leetcode) 1160. Find Words That Can Be Formed by Characters (Easy)
+In .LeetcodeDailySolution folder as Dec2,2023.java
+
+#### Prompt:
+
+You are given an array of strings words and a string chars.
+
+A string is good if it can be formed by characters from chars (each character can only be used once).
+
+Return the sum of lengths of all good strings in words.
+
+#### Solution:
+
+    class Solution {
+    public int countCharacters(String[] words, String chars) {
+        int[] counts = new int[26];
+
+        for(int i=0;i<chars.length();i++){
+            counts[chars.charAt(i)-'a']++;
+        }
+        
+        int res =0 ;
+
+        for(String s : words)
+        {
+            if(canForm(s,counts))
+                res+=s.length();
+        }
+        return res;
+    }
+
+    boolean canForm(String word, int[] counts){
+        int[] c = new int[26];
+
+        for(int i =0;i<word.length();i++)
+        {
+            int x = word.charAt(i)-'a';
+            c[x]++;
+            if(c[x] > counts[x])
+                return false;
+        }
+        return true;
+        }
+    }
+
+Runtime: 2 ms, beating 100% of leetcode users solutions using java.
+Memory: 44.00 mb, beating 79.77% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Strings, chars, charAt, for loops, and boolean.
