@@ -3402,3 +3402,30 @@ Memory: 40.70 mb, beating 82.25% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Char, charAt, for loop, index, and if statement.
+
+### Solution Dec 5, 2023 (Java, leetcode) 1688. Count of Matches in Tournament (Easy)
+In .LeetcodeDailySolution folder as Dec5,2023.java
+
+#### Prompt:
+
+You are given an integer n, the number of teams in a tournament that has strange rules:
+
+If the current number of teams is even, each team gets paired with another team. A total of n / 2 matches are played, and n / 2 teams advance to the next round.
+If the current number of teams is odd, one team randomly advances in the tournament, and the rest gets paired. A total of (n - 1) / 2 matches are played, and (n - 1) / 2 + 1 teams advance to the next round.
+Return the number of matches played in the tournament until a winner is decided.
+
+#### Solution:
+
+    class Solution {
+    public int numberOfMatches(int n) {
+        
+        return n - 1;
+        }
+    }
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using java.
+Memory: 39.16 mb, beating 61.47% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+If after each match one team needs to be eliminated, n-1 satisfies all conditions. 
