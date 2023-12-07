@@ -3429,3 +3429,34 @@ Memory: 39.16 mb, beating 61.47% of leetcode users solutions using java.
 #### Concepts Applied:
 
 If after each match one team needs to be eliminated, n-1 satisfies all conditions. 
+
+### Solution Dec 6, 2023 (Java, leetcode) 1716. Calculate Money in Leetcode Bank (Easy)
+In .LeetcodeDailySolution folder as Dec6,2023.java
+
+#### Prompt:
+
+Hercy wants to save money for his first car. He puts money in the Leetcode bank every day.
+
+He starts by putting in $1 on Monday, the first day. Every day from Tuesday to Sunday, he will put in $1 more than the day before. On every subsequent Monday, he will put in $1 more than the previous Monday.
+Given n, return the total amount of money he will have in the Leetcode bank at the end of the nth day.
+
+#### Solution:
+
+    class Solution {
+    public int totalMoney(int n) {
+        int total = 0;
+
+        for (int day = 0; day < n; day++) {
+            total += (day / 7 + 1) + (day % 7);
+        }
+
+        return total;        
+        }
+    }
+
+Runtime: 1 ms, beating 60.52% of leetcode users solutions using java.
+Memory: 39.10 mb, beating 67.38% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+For loop and simple calculations.
