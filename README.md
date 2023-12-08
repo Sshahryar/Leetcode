@@ -3460,3 +3460,33 @@ Memory: 39.10 mb, beating 67.38% of leetcode users solutions using java.
 #### Concepts Applied:
 
 For loop and simple calculations.
+
+### Solution Dec 7, 2023 (Java, leetcode) 1903. Largest Odd Number in String (Easy)
+In .LeetcodeDailySolution folder as Dec7,2023.java
+
+#### Prompt:
+
+You are given a string num, representing a large integer. Return the largest-valued odd integer (as a string) that is a non-empty substring of num, or an empty string "" if no odd integer exists.
+
+A substring is a contiguous sequence of characters within a string.
+
+#### Solution:
+
+    class Solution {
+    public String largestOddNumber(String num) {
+
+        for(int i=num.length()-1; i>=0; i--){
+            if((num.charAt(i)-'0')%2==1)  
+            return num.substring(0,i+1);
+        }
+        return "";
+        }
+    }
+
+Runtime: 1 ms, beating 100% of leetcode users solutions using java.
+Memory: 44.19 mb, beating 94% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Strings, for loop, if statement, charAt, and substring.
+
