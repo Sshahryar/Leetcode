@@ -3490,3 +3490,46 @@ Memory: 44.19 mb, beating 94% of leetcode users solutions using java.
 
 Strings, for loop, if statement, charAt, and substring.
 
+### Solution Dec 8, 2023 (Java, leetcode) 606. Construct String from Binary Tree (Easy)
+In .LeetcodeDailySolution folder as Dec8,2023.java
+
+#### Prompt:
+
+Given the root of a binary tree, construct a string consisting of parenthesis and integers from a binary tree with the preorder traversal way, and return it.
+
+Omit all the empty parenthesis pairs that do not affect the one-to-one mapping relationship between the string and the original binary tree.
+
+#### Solution:
+
+    class Solution {
+    public String tree2str(TreeNode t) {
+        StringBuilder res = new StringBuilder();
+        dfs(t, res);
+        return res.toString();
+    }
+    public static void dfs(TreeNode t, StringBuilder res) {
+        if (t == null)
+            return;
+
+        res.append(String.valueOf(t.val));
+        if (t.left == null && t.right == null)
+            return;
+
+        res.append('(');
+        dfs(t.left, res);
+        res.append(')');
+        
+        if (t.right != null) {
+            res.append('(');
+            dfs(t.right, res);
+            res.append(')');
+            }
+        }
+    }
+
+Runtime: 1 ms, beating 100% of leetcode users solutions using java.
+Memory: 43.30 mb, beating 86.73% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+StringBuilder, strings, dfs, and if statements.
