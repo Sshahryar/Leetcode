@@ -3563,3 +3563,38 @@ Memory: 40.30 mb, beating 92.99% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Lists, ArrayList, inorderTraversal, and TreeNode.
+
+### Solution Dec 10, 2023 (Java, leetcode) 867. Transpose Matrix (Easy)
+In .LeetcodeDailySolution folder as Dec10,2023.java
+
+#### Prompt:
+
+Given a 2D integer array matrix, return the transpose of matrix.
+
+The transpose of a matrix is the matrix flipped over its main diagonal, switching the matrix's row and column indices.
+
+![image](https://github.com/Sshahryar/Leetcode/assets/123003299/05c43a56-2bf7-4781-95a2-c061ad8608cd)
+
+#### Solution:
+
+    class Solution {
+    public int[][] transpose(int[][] matrix) {
+        int row=matrix.length;
+        int col=matrix[0].length;
+        int arr[][]=new int[col][row];
+    
+        for(int i=0;i<col;i++){
+            for(int j=0;j<row;j++){
+            arr[i][j]=matrix[j][i];
+            }
+        }
+        return arr;
+        }
+    }   
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using java.
+Memory: 43.88 mb, beating 97.49% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Matrix, row, col, arr, and for loop. 
