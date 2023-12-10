@@ -3533,3 +3533,33 @@ Memory: 43.30 mb, beating 86.73% of leetcode users solutions using java.
 #### Concepts Applied:
 
 StringBuilder, strings, dfs, and if statements.
+
+### Solution Dec 9, 2023 (Java, leetcode) 94. Binary Tree Inorder Traversal (Easy)
+In .LeetcodeDailySolution folder as Dec9,2023.java
+
+#### Prompt:
+
+Given the root of a binary tree, return the inorder traversal of its nodes' values.
+
+#### Solution:
+
+    class Solution {
+    List<Integer> ans = new ArrayList<>();
+        public List<Integer> inorderTraversal(TreeNode root) {
+
+        if (root == null) return Collections.emptyList();
+
+        inorderTraversal(root.left);
+        ans.add(root.val);
+        inorderTraversal(root.right);
+
+        return ans;
+        }
+    }
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using java.
+Memory: 40.30 mb, beating 92.99% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Lists, ArrayList, inorderTraversal, and TreeNode.
