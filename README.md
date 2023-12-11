@@ -3598,3 +3598,36 @@ Memory: 43.88 mb, beating 97.49% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Matrix, row, col, arr, and for loop. 
+
+### Solution Dec 11, 2023 (Java, leetcode) 1287. Element Appearing More Than 25% In Sorted Array (Easy)
+In .LeetcodeDailySolution folder as Dec11,2023.java
+
+#### Prompt:
+
+Given an integer array sorted in non-decreasing order, there is exactly one integer in the array that occurs more than 25% of the time, return that integer.
+
+#### Solution:
+
+    class Solution {
+    public int findSpecialInteger(int[] arr) {
+        int size = arr.length;
+        int qtr = size / 4;
+        int cnt = 1;
+        int p = arr[0];
+
+        for (int i = 1 ; i < arr.length ; i++) {
+            if ( p == arr[i]) cnt++;
+            else cnt = 1;
+            if (cnt > qtr) return arr[i];
+            p = arr[i];
+        }
+        return p;
+        }
+    }
+
+Runtime: 1 ms, beating 64.27% of leetcode users solutions using java.
+Memory: 43.13 mb, beating 72.62% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+arr, for loop, else statement, and if statement.
