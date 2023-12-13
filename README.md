@@ -3631,3 +3631,36 @@ Memory: 43.13 mb, beating 72.62% of leetcode users solutions using java.
 #### Concepts Applied:
 
 arr, for loop, else statement, and if statement.
+
+### Solution Dec 11, 2023 (Java, leetcode) 1464. Maximum Product of Two Elements in an Array (Easy)
+In .LeetcodeDailySolution folder as Dec11,2023.java
+
+#### Prompt:
+
+Given the array of integers nums, you will choose two different indices i and j of that array. Return the maximum value of (nums[i]-1)*(nums[j]-1).
+
+#### Solution:
+
+    class Solution {
+    public int maxProduct(int[] nums) {
+        int firstMax = 0;
+        int secondMax = 0;
+
+        for (int num : nums) {
+            if (num > firstMax) {
+                secondMax = firstMax;
+                firstMax = num;
+            } else {
+                secondMax = Math.max(secondMax, num);
+            }
+        }
+        return (firstMax - 1) * (secondMax - 1);        
+        }
+    }
+
+Runtime: 1 ms, beating 78.60% of leetcode users solutions using java.
+Memory: 41.46 mb, beating 71.33% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+For loop, if statement, else statement, and Math.
