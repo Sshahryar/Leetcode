@@ -3632,8 +3632,8 @@ Memory: 43.13 mb, beating 72.62% of leetcode users solutions using java.
 
 arr, for loop, else statement, and if statement.
 
-### Solution Dec 11, 2023 (Java, leetcode) 1464. Maximum Product of Two Elements in an Array (Easy)
-In .LeetcodeDailySolution folder as Dec11,2023.java
+### Solution Dec 12, 2023 (Java, leetcode) 1464. Maximum Product of Two Elements in an Array (Easy)
+In .LeetcodeDailySolution folder as Dec12,2023.java
 
 #### Prompt:
 
