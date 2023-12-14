@@ -3664,3 +3664,50 @@ Memory: 41.46 mb, beating 71.33% of leetcode users solutions using java.
 #### Concepts Applied:
 
 For loop, if statement, else statement, and Math.
+
+### Solution Dec 13, 2023 (Java, leetcode) 1582. Special Positions in a Binary Matrix (Easy)
+In .LeetcodeDailySolution folder as Dec13,2023.java
+
+#### Prompt:
+
+Given an m x n binary matrix mat, return the number of special positions in mat.
+
+A position (i, j) is called special if mat[i][j] == 1 and all other elements in row i and column j are 0 (rows and columns are 0-indexed).
+
+#### Solution:
+
+    class Solution {
+    public int numSpecial(int[][] mat) {
+        int m = mat.length;
+        int n = mat[0].length;
+        int[] rowCount = new int[m];
+        int[] colCount = new int[n];
+        
+        for (int row = 0; row < m; row++) {
+            for (int col = 0; col < n; col++) {
+                if (mat[row][col] == 1) {
+                    rowCount[row]++;
+                    colCount[col]++;
+                }
+            }
+        }
+        int ans = 0;
+        for (int row = 0; row < m; row++) {
+            for (int col = 0; col < n; col++) {
+                if (mat[row][col] == 1) {
+                    if (rowCount[row] == 1 && colCount[col] == 1) {
+                        ans++;
+                    }
+                }
+            }
+        }
+        return ans;
+        }
+    }
+
+Runtime: 2 ms, beating 89.24% of leetcode users solutions using java.
+Memory: 43.70 mb, beating 75.07% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Matrix, row, col, for loops, and if statements.
