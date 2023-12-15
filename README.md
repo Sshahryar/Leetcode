@@ -3711,3 +3711,51 @@ Memory: 43.70 mb, beating 75.07% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Matrix, row, col, for loops, and if statements.
+
+### Solution Dec 14, 2023 (Java, leetcode) 2482. Difference Between Ones and Zeros in Row and Column (Medium)
+In .LeetcodeDailySolution folder as Dec14,2023.java
+
+#### Prompt:
+
+You are given a 0-indexed m x n binary matrix grid.
+
+A 0-indexed m x n difference matrix diff is created with the following procedure:
+
+Let the number of ones in the ith row be onesRowi.
+Let the number of ones in the jth column be onesColj.
+Let the number of zeros in the ith row be zerosRowi.
+Let the number of zeros in the jth column be zerosColj.
+diff[i][j] = onesRowi + onesColj - zerosRowi - zerosColj
+Return the difference matrix diff.
+
+#### Solution:
+
+    class Solution {
+    public int[][] onesMinusZeros(int[][] grid) {
+        int row = grid.length; 
+        int col = grid[0].length;
+        int[][] diff = new int[row][col];
+        int[] r = new int[row]; 
+        int[] c = new int[col]; 
+
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                r[i] += grid[i][j]; 
+                c[j] += grid[i][j];
+            }
+        }
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                diff[i][j] = 2 * (r[i] + c[j]) - row - col;
+            }
+        }
+        return diff; 
+        }
+    }
+
+Runtime: 9 ms, beating 70.09% of leetcode users solutions using java.
+Memory: 71.60 mb, beating 64.84% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Matrix, row, col, grid, and for loops.
