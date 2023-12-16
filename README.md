@@ -3759,3 +3759,38 @@ Memory: 71.60 mb, beating 64.84% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Matrix, row, col, grid, and for loops.
+
+### Solution Dec 15, 2023 (Java, leetcode) 1436. Destination City (Easy)
+In .LeetcodeDailySolution folder as Dec15,2023.java
+
+#### Prompt:
+
+You are given the array paths, where paths[i] = [cityAi, cityBi] means there exists a direct path going from cityAi to cityBi. Return the destination city, that is, the city without any path outgoing to another city.
+
+It is guaranteed that the graph of paths forms a line without any loop, therefore, there will be exactly one destination city.
+
+#### Solution:
+
+    class Solution {
+    public String destCity(List<List<String>> paths) {
+        Set<String> cities = new HashSet<>(); 
+        for (List<String> path : paths) {
+            cities.add(path.get(0)); 
+        }
+        
+        for (List<String> path : paths) {
+            String dest = path.get(1); 
+            if (!cities.contains(dest)) {
+                return dest; 
+            }
+        }
+        return "";
+        }
+    }
+
+Runtime: 2 ms, beating 79.16% of leetcode users solutions using java.
+Memory: 42.93 mb, beating 60.20% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+List, Set, HashSet, for loops, and if statement.
