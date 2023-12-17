@@ -3794,3 +3794,41 @@ Memory: 42.93 mb, beating 60.20% of leetcode users solutions using java.
 #### Concepts Applied:
 
 List, Set, HashSet, for loops, and if statement.
+
+### Solution Dec 16, 2023 (Java, leetcode) 241. Valid Anagram (Easy)
+In .LeetcodeDailySolution folder Dec16,2023.java
+
+#### Prompt:
+
+Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+
+An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+
+#### Solution:
+
+    class Solution {
+    public boolean isAnagram(String s, String t) {
+        int[] count = new int[26];
+
+        if (s.length() != t.length()) {
+            return false;
+        }
+        for (int i = 0; i < s.length(); i++) {
+            count[s.charAt(i) - 'a'] += 1;
+        }
+        for (int i = 0; i < t.length(); i++) {
+            if (count[t.charAt(i) - 'a'] == 0) {
+                return false;
+            }
+            count[t.charAt(i) - 'a'] -= 1;
+        }
+        return true;        
+        }
+    }
+
+Runtime: 4 ms, beating 73.09% of leetcode users solutions using java.
+Memory: 42.18 mb, beating 78.86% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Boolean, strings, if statements, for loops, and charAt.
