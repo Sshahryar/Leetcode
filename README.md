@@ -3908,3 +3908,47 @@ Memory: 68.66 mb, beating 95.40% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Maps, overriding, strings, HashMaps, if statement, for loops, and while loop.
+
+### Solution Dec 18, 2023 (Java, leetcode) 1913. Maximum Product Difference Between Two Pairs (Easy)
+In .LeetcodeDailySolution folder as Dec18,2023.java
+
+#### Prompt:
+
+The product difference between two pairs (a, b) and (c, d) is defined as (a * b) - (c * d).
+
+For example, the product difference between (5, 6) and (2, 7) is (5 * 6) - (2 * 7) = 16.
+Given an integer array nums, choose four distinct indices w, x, y, and z such that the product difference between pairs (nums[w], nums[x]) and (nums[y], nums[z]) is maximized.
+
+Return the maximum such product difference.
+
+#### Solution:
+
+    class Solution {
+    public int maxProductDifference(int[] nums) {
+        int firstBig = 0, secondBig = 0;
+        int firstSmall = Integer.MAX_VALUE, secondSmall = Integer.MAX_VALUE;
+
+        for (int n : nums) {
+            if (n < firstSmall) {
+                secondSmall = firstSmall;
+                firstSmall = n;
+            } else if (n < secondSmall) {
+                secondSmall = n;
+            }
+            if (n > firstBig) {
+                secondBig = firstBig;
+                firstBig = n;
+            } else if (n > secondBig) {
+                secondBig = n;
+            }
+        }
+        return firstBig * secondBig - firstSmall * secondSmall;        
+        }
+    }
+
+Runtime: 2 ms, beating 97.52% of leetcode users solutions using java.
+Memory: 44.11 mb, beating 55.36% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+For loops, if statements, else-if statements, and integer pairs.
