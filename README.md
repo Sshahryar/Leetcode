@@ -3952,3 +3952,47 @@ Memory: 44.11 mb, beating 55.36% of leetcode users solutions using java.
 #### Concepts Applied:
 
 For loops, if statements, else-if statements, and integer pairs.
+
+### Solution Dec 19, 2023 (Java, leetcode) 661. Image Smoother 
+In .LeetcodeDailySolution folder as Dec19,2023.java
+
+#### Prompt:
+
+An image smoother is a filter of the size 3 x 3 that can be applied to each cell of an image by rounding down the average of the cell and the eight surrounding cells (i.e., the average of the nine cells in the blue smoother). If one or more of the surrounding cells of a cell is not present, we do not consider it in the average (i.e., the average of the four cells in the red smoother).
+
+![image](https://github.com/Sshahryar/Leetcode/assets/123003299/80c006ea-91de-46dc-abc7-2d79623dd15f)
+
+Given an m x n integer matrix img representing the grayscale of an image, return the image after applying the smoother on each cell of it.
+
+#### Solution:
+
+    class Solution {
+    public int[][] imageSmoother(int[][] img) {
+        int rows = img.length;
+        int cols = img[0].length;
+        int[][] result = new int[rows][cols];
+
+        for (int i = 0; i < rows; ++i) {
+            for (int j = 0; j < cols; ++j) {
+                int totalSum = 0;
+                int count = 0;
+
+                for (int x = Math.max(0, i-1); x < Math.min(rows, i+2); ++x) {
+                    for (int y = Math.max(0, j-1); y < Math.min(cols, j+2); ++y) {
+                        totalSum += img[x][y];
+                        count += 1;
+                    }
+                }
+                result[i][j] = totalSum / count;
+            }
+        }
+        return result;
+        }
+    }
+
+Runtime: 6 ms, beating 80% of leetcode users solutions using java.
+Memory: 44.46 mb, beating 71.94% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Matrix, rows, cols, for loops, and Math.
