@@ -3996,3 +3996,35 @@ Memory: 44.46 mb, beating 71.94% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Matrix, rows, cols, for loops, and Math.
+
+### Solution Dec 20, 2023 (Java, leetcode) 2706. Buy Two Chocolates (Easy)
+In .LeetcodeDailySolution folder as Dec20,2023.java
+
+#### Prompt:
+
+You are given an integer array prices representing the prices of various chocolates in a store. You are also given a single integer money, which represents your initial amount of money.
+
+You must buy exactly two chocolates in such a way that you still have some non-negative leftover money. You would like to minimize the sum of the prices of the two chocolates you buy.
+
+Return the amount of money you will have leftover after buying the two chocolates. If there is no way for you to buy two chocolates without ending up in debt, return money. Note that the leftover must be non-negative.
+
+#### Solution:
+
+    class Solution {
+    public int buyChoco(int[] prices, int money) {
+        Arrays.sort(prices);
+        int minCost = prices[0] + prices[1];
+
+        if (minCost <= money) {
+            return money - minCost;
+        }
+        return money;
+        }
+    }
+
+Runtime: 2 ms, beating 79% of leetcode users solutions using java.
+Memory: 44.49 mb, beating 5.58% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Arrays, sorting, and if statement.
