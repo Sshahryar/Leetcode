@@ -4070,3 +4070,42 @@ Memory: 72.73 mb, beating 5.41% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Arrays, sorting, for loops, and if statement.
+
+### Solution Dec 22, 2023 (Java, leetcode) 1422. Maximum Score After Splitting a String (Easy)
+In .LeetcodeDailySolution folder as Dec22,2023.java
+
+#### Prompt:
+
+Given a string s of zeros and ones, return the maximum score after splitting the string into two non-empty substrings (i.e. left substring and right substring).
+
+The score after splitting a string is the number of zeros in the left substring plus the number of ones in the right substring.
+
+#### Solution:
+
+    class Solution {
+    public int maxScore(String s) {
+        int left = -1;
+        int zeros = 0;
+        int ones = 0;
+
+        for (int i = 0; i < s.length() - 1; i++) {
+            if (s.charAt(i) == '0') {
+                zeros++;
+            } else {
+                ones++;
+            }
+            left = Math.max(left, zeros - ones);
+        }
+        if (s.charAt(s.length() - 1) == '1') {
+            ones += 1;
+        }
+        return left + ones;       
+        }
+    }
+
+Runtime: 1 ms, beating 97.83% of leetcode users solutions using java.
+Memory: 41.36 mb, beating 34.35% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+For loops, charAt, strings, Math, else statement, and if statements. 
