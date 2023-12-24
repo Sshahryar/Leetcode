@@ -4159,3 +4159,37 @@ Memory: 42.31 mb, beating 5.29% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Map, HashMap, Set, HashSet, Pairs, for loop, and if statement. 
+
+### Solution Dec 24, 2023 (Java, leetcode) 1758. Minimum Charges To Make Alternating Binary String (Easy)
+In .LeetcodeDailySolution folder as Dec24,2023.java
+
+#### Prompt:
+
+You are given a string s consisting only of the characters '0' and '1'. In one operation, you can change any '0' to '1' or vice versa.
+
+The string is called alternating if no two adjacent characters are equal. For example, the string "010" is alternating, while the string "0100" is not.
+
+Return the minimum number of operations needed to make s alternating.
+
+#### Solution:
+
+    public class Solution {
+    public int minOperations(String s) {
+        int n = s.length(), count = 0;
+
+        if (n == 1) return 0;
+        
+        for (int i = 0; i < n; i++) {
+            if (i % 2 == 0 && s.charAt(i) == '1') count++;
+            if (i % 2 == 1 && s.charAt(i) == '0') count++;
+        }
+        return Math.min(count, n - count); 
+        }
+    }
+
+Runtime: 3 ms, beating 91.88% of leetcode users solutions using java.
+Memory: 42.29 mb, beating 10.06% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+If statements, for loop, charAt, strings, and Math.
