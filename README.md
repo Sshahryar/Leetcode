@@ -4193,3 +4193,52 @@ Memory: 42.29 mb, beating 10.06% of leetcode users solutions using java.
 #### Concepts Applied:
 
 If statements, for loop, charAt, strings, and Math.
+
+### Solution Dec 25, 2023 (Java, leetcode) 91. Decode Ways (Medium)
+In .LeetcodeDailySolution folder as Dec25,2023.java 
+
+#### Prompt:
+
+A message containing letters from A-Z can be encoded into numbers using the following mapping:
+
+'A' -> "1"
+'B' -> "2"
+...
+'Z' -> "26"
+To decode an encoded message, all the digits must be grouped then mapped back into letters using the reverse of the mapping above (there may be multiple ways). For example, "11106" can be mapped into:
+
+"AAJF" with the grouping (1 1 10 6)
+"KJF" with the grouping (11 10 6)
+Note that the grouping (1 11 06) is invalid because "06" cannot be mapped into 'F' since "6" is different from "06".
+
+Given a string s containing only digits, return the number of ways to decode it.
+
+The test cases are generated so that the answer fits in a 32-bit integer.
+
+#### Solution:
+
+    class Solution {
+    public int numDecodings(String s) {
+        int n=s.length();
+        int[] dp=new int[n+1];
+
+        dp[n]=1 ;
+
+        for(int i = n-1 ; i >= 0 ; i--)
+            if(s.charAt(i)!='0') {
+
+                dp[i] = dp[i+1] ;
+                
+                if(i < n-1 && (s.charAt(i)=='1' || s.charAt(i)=='2' && s.charAt(i+1)<'7')) 
+				    dp[i]+=dp[i+2];
+            }
+        return dp[0];   
+        }
+    }
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using java.
+Memory: 41.78 mb, beating 10.62% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Dynamic programming, for loop, if statements, and charAt.
