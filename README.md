@@ -4242,3 +4242,49 @@ Memory: 41.78 mb, beating 10.62% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Dynamic programming, for loop, if statements, and charAt.
+
+### Solution Dec 26, 2023 (Java, leetcode) 1155. Number of Dice Rolls With Target Sum (Medium)
+In .LeetcodeDailySolution folder as Dec26,2023.java
+
+#### Prompt:
+
+You have n dice, and each die has k faces numbered from 1 to k.
+
+Given three integers n, k, and target, return the number of possible ways (out of the kn total ways) to roll the dice, so the sum of the face-up numbers equals target. Since the answer may be too large, return it modulo 109 + 7.
+
+#### Solution:
+
+    class Solution {
+    public int numRollsToTarget(int d, int f, int target) {
+        final int mod = 1000000007;
+
+        int[] dp1 = new int[target + 1];  
+        int[] dp2 = new int[target + 1];  
+
+        dp1[0] = 1;
+
+        for (int i = 1; i <= d; ++i) {
+
+            int prev = dp1[0];  
+
+            for (int j = 1; j <= target; ++j) {
+                dp2[j] = prev; 
+                prev = (int) ((prev + dp1[j]) % mod);
+
+                if (j >= f) prev = (int) ((prev - dp1[j - f] + mod) % mod);
+            }
+            int[] temp = dp1;
+            dp1 = dp2;
+            dp2 = temp;
+            dp2[0] = 0;
+        }
+        return dp1[target];
+    	}
+    }
+
+Runtime: 5 ms, beating 94.68% of leetcode users solutions using java.
+Memory: 40.54 mb, beating 78.19% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Modulo, dynamic programming, for loops, and if statements.
