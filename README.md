@@ -4323,3 +4323,60 @@ Memory: 60.46 mb, beating 21.50% of leetcode users solutions using java.
 #### Concepts Applied:
 
 For loop, if statement, charAt, and Math.
+
+### Solution Dec 28, 2023 (Java, leetcode) 1531. String Compression II (Hard)
+In .LeetcodeDailySolution folder as Dec28,2023.java
+
+#### Prompt:
+
+Run-length encoding is a string compression method that works by replacing consecutive identical characters (repeated 2 or more times) with the concatenation of the character and the number marking the count of the characters (length of the run). For example, to compress the string "aabccc" we replace "aa" by "a2" and replace "ccc" by "c3". Thus the compressed string becomes "a2bc3".
+
+Notice that in this problem, we are not adding '1' after single characters.
+
+Given a string s and an integer k. You need to delete at most k characters from s such that the run-length encoded version of s has minimum length.
+
+Find the minimum length of the run-length encoded version of s after deleting at most k characters.
+
+#### Solution:
+
+    class Solution {
+    private int[][] memo = new int[101][101];
+    private int recursion(String s, int i, int K) {
+        int n = s.length();
+        int k = K;
+
+        if (n - i <= k) {
+            return 0;
+        }
+        if (memo[i][k] != -1) {
+            return memo[i][k];
+        }
+        int ans = k > 0 ? recursion(s, i + 1, k - 1) : 101;
+        int c = 1;
+        
+        for (int j = i + 1; j <= n; j++) {
+
+            ans = Math.min(ans, 1 + ((c > 99) ? 3 : (c > 9) ? 2 : (c > 1) ? 1 : 0) + 		recursion(s, j, k));
+
+            if (j < n && s.charAt(i) == s.charAt(j)) {
+                c++;
+            } else if (--k < 0) {
+                break;
+            }
+        }
+        return memo[i][K] = ans;
+    }
+    public int getLengthOfOptimalCompression(String s, int k) {
+        for (int[] row : memo) {
+            Arrays.fill(row, -1);
+        }
+        return recursion(s, 0, k);
+      }
+    }
+
+Runtime: 42 ms, beating 73.33% of leetcode users solutions using java.
+Memory: 42.29 mb, beating 51.11% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Recursion, Math, charAt, if statements, for loops, else if statement, and Arrays.
