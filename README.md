@@ -4288,3 +4288,38 @@ Memory: 40.54 mb, beating 78.19% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Modulo, dynamic programming, for loops, and if statements.
+
+### Solution Dec 27, 2023 (Java, leetcode) 1578. Minimum Time to Make Rope Colorful (Medium)
+In .LeetcodeDailySolution folder as Dec27,2023.java
+
+#### Prompt:
+
+Alice has n balloons arranged on a rope. You are given a 0-indexed string colors where colors[i] is the color of the ith balloon.
+
+Alice wants the rope to be colorful. She does not want two consecutive balloons to be of the same color, so she asks Bob for help. Bob can remove some balloons from the rope to make it colorful. You are given a 0-indexed integer array neededTime where neededTime[i] is the time (in seconds) that Bob needs to remove the ith balloon from the rope.
+
+Return the minimum time Bob needs to make the rope colorful.
+
+#### Solution:
+
+    class Solution {
+    public int minCost(String colors, int[] neededTime) {
+        int time = 0;
+        int n = colors.length();
+
+        for (int i = 1; i < n; i++) {
+            if (colors.charAt(i) == colors.charAt(i - 1)) {
+                time += Math.min(neededTime[i], neededTime[i - 1]);
+                neededTime[i] = Math.max(neededTime[i], neededTime[i - 1]);
+           }
+        }      
+        return time;
+   	}
+    }
+
+Runtime: 7 ms, beating 89.50% of leetcode users solutions using java.
+Memory: 60.46 mb, beating 21.50% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+For loop, if statement, charAt, and Math.
