@@ -4173,7 +4173,7 @@ Return the minimum number of operations needed to make s alternating.
 
 #### Solution:
 
-    public class Solution {
+    class Solution {
     public int minOperations(String s) {
         int n = s.length(), count = 0;
 
