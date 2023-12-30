@@ -4380,3 +4380,56 @@ Memory: 42.29 mb, beating 51.11% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Recursion, Math, charAt, if statements, for loops, else if statement, and Arrays.
+
+### Solution Dec 29, 2023 (Java, leetcode) 1335. Minimum Difficulty of a Job Schedule (Hard)
+In .LeetcodeDailySolution folder as Dec29,2023.java
+
+#### Prompt:
+
+You want to schedule a list of jobs in d days. Jobs are dependent (i.e To work on the ith job, you have to finish all the jobs j where 0 <= j < i).
+
+You have to finish at least one task every day. The difficulty of a job schedule is the sum of difficulties of each day of the d days. The difficulty of a day is the maximum difficulty of a job done on that day.
+
+You are given an integer array jobDifficulty and an integer d. The difficulty of the ith job is jobDifficulty[i].
+
+Return the minimum difficulty of a job schedule. If you cannot find a schedule for the jobs return -1.
+
+#### Solution:
+
+    class Solution {
+    public int minDifficulty(int[] jobDifficulty, int d){
+        int jobs = jobDifficulty.length;
+        
+        if (jobs < d)
+            return -1;
+
+        int[][] dp = new int[d][jobs];
+
+        dp[0][0] = jobDifficulty[0];
+        
+        for (int i = 1; i < jobs; i++)
+            dp[0][i] = Math.max(dp[0][i - 1], jobDifficulty[i]);
+
+        
+        for (int days = 1; days < d; days++) {
+
+            for (int i = days; i < jobs; i++) {
+                int localMax = jobDifficulty[i];
+                dp[days][i] = Integer.MAX_VALUE; 
+                
+                for (int j = i; j >= days; j--) {
+                    localMax = Math.max(localMax, jobDifficulty[j]);
+                    dp[days][i] = Math.min(dp[days][i], dp[days - 1][j - 1] + localMax);
+                }
+            }
+        }
+        return dp[d - 1][jobs - 1];
+      }
+    }
+
+Runtime: 12 ms, beating 30.93% of leetcode users solutions using java.
+Memory: 41.31 mb, beating 18.97% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Dynamic programming, Math, for loops, and if statement.
