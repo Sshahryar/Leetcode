@@ -4433,3 +4433,43 @@ Memory: 41.31 mb, beating 18.97% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Dynamic programming, Math, for loops, and if statement.
+
+### Solution Dec 30, 2023 (Java, leetcode) 1897. Redistribute Characters to Make All Strings Equal (Easy)
+In .LeetcodeDailySolution folder as Dec30,2023.java
+
+#### Prompt:
+
+You are given an array of strings words (0-indexed).
+
+In one operation, pick two distinct indices i and j, where words[i] is a non-empty string, and move any character from words[i] to any position in words[j].
+
+Return true if you can make every string in words equal using any number of operations, and false otherwise.
+
+#### Solution:
+
+    class Solution {
+    public boolean makeEqual(String[] words) {
+        int[] counts = new int[26];
+
+        for (String word : words) {
+            for (char c : word.toCharArray()) {
+                counts[c - 'a']++;
+            }
+        }
+        int n = words.length;
+
+        for (int val : counts) {
+            if (val % n != 0) {
+                return false;
+            }
+        }
+        return true;
+      }
+    }
+
+Runtime: 3 ms, beating 58.96% of leetcode users solutions using java.
+Memory: 44.12 mb, beating 6.64% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Boolean, for loops, CharArray, and if statement.
