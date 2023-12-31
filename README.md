@@ -3203,7 +3203,40 @@ Memory: 44.83 mb, beating 70.27% of leetcode users solutions using java.
 
 charAt, strings, for loop, if statement, and else statement.
 
-#### Solution Nov 30, 2023 (Java, leetcode) 1611. Minimum One Bit Operations to Make Integers Zero (Hard) 
+### Solution Nov 29, 2023 (Java, leetcode) 191. Number of 1 Bits (Easy)
+In .LeetcodeDailySolution folder as Nov29,2023.java
+
+#### Prompt:
+
+Write a function that takes the binary representation of an unsigned integer and returns the number of '1' bits it has (also known as the Hamming weight).
+
+Note:
+
+Note that in some languages, such as Java, there is no unsigned integer type. In this case, the input will be given as a signed integer type. It should not affect your implementation, as the integer's internal binary representation is the same, whether it is signed or unsigned.
+In Java, the compiler represents the signed integers using 2's complement notation. Therefore, in Example 3, the input represents the signed integer. -3.
+
+#### Solution:
+
+    class Solution {
+    public int hammingWeight(int n) {
+        int count = 0;
+
+        while (n != 0) {
+            n = n & (n - 1);
+            count++;
+        }
+        return count;
+      }
+    }
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using java.
+Memory: 40.80 mb, beating 6.93% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+While loop, and Brian Kernighan's Algorithm.
+
+### Solution Nov 30, 2023 (Java, leetcode) 1611. Minimum One Bit Operations to Make Integers Zero (Hard) 
 In .LeetcodeDailySolution folder as Nov30,2023.java
 
 #### Prompt:
