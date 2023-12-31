@@ -4506,3 +4506,37 @@ Memory: 44.12 mb, beating 6.64% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Boolean, for loops, CharArray, and if statement.
+
+### Solution Dec 31, 2023 (Java, leetcode) 1624. Largest Substring Between Two Equal Points (Easy)
+In .LeetcodeDailySolution folder as Dec31,2023.java
+
+#### Prompt:
+
+Given a string s, return the length of the longest substring between two equal characters, excluding the two characters. If there is no such substring return -1.
+
+A substring is a contiguous sequence of characters within a string.
+
+#### Solution:
+
+    class Solution {
+    public int maxLengthBetweenEqualCharacters(String s) {
+    int maxDistance = -1;
+    
+    for (int i = 0; i < s.length() - 1; i++) {
+        for (int j = s.length() - 1; j > i; j--) {
+            if (s.charAt(i) == s.charAt(j)) {
+                maxDistance = Math.max(maxDistance, j - i - 1);
+                break;
+            }
+        }
+    }
+ 	return maxDistance;
+      }
+    }
+
+Runtime: 4 ms, beating 32.42% of leetcode users solutions using java.
+Memory: 41.35 mb, beating 13.97% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+For loops, if statement, charAt, and Math.
