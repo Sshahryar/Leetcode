@@ -4540,3 +4540,35 @@ Memory: 41.35 mb, beating 13.97% of leetcode users solutions using java.
 #### Concepts Applied:
 
 For loops, if statement, charAt, and Math.
+
+### Solution Jan 1, 2024 (Java, leetcode) 455. Assign Cookies (Easy)
+In .LeetcodeDailySolution folder as Jan1,2024.java
+
+#### Prompt:
+
+Assume you are an awesome parent and want to give your children some cookies. But, you should give each child at most one cookie.
+
+Each child i has a greed factor g[i], which is the minimum size of a cookie that the child will be content with; and each cookie j has a size s[j]. If s[j] >= g[i], we can assign the cookie j to the child i, and the child i will be content. Your goal is to maximize the number of your content children and output the maximum number.
+
+#### Solution:
+
+    class Solution {
+    public int findContentChildren(int[] g, int[] s) {
+        Arrays.sort(g);
+        Arrays.sort(s);
+
+        int i = 0;
+
+        for(int j=0;i<g.length && j<s.length;j++)
+	        if(g[i]<=s[j]) i++;
+            
+        return i;
+      }
+    }
+
+Runtime: 8 ms, beating 98.87% of leetcode users solutions using java.
+Memory: 44.91 mb, beating 28.82% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Arrays, sorting, and for loop.
