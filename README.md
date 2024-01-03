@@ -4614,3 +4614,52 @@ Memory: 45.13 mb, beating 10.26% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Arrays, sorting, List, ArrayList, matrix, for loop, if statements, and else statement.
+
+### Solution Jan 3, 2024 (Java, leetcode) 2125. Number of Laser Beams in a Bank (Medium)
+In .LeetcodeDailySolution folder as Jan3,2024.java
+
+#### Prompt:
+
+Anti-theft security devices are activated inside a bank. You are given a 0-indexed binary string array bank representing the floor plan of the bank, which is an m x n 2D matrix. bank[i] represents the ith row, consisting of '0's and '1's. '0' means the cell is empty, while'1' means the cell has a security device.
+
+There is one laser beam between any two security devices if both conditions are met:
+
+The two devices are located on two different rows: r1 and r2, where r1 < r2.
+For each row i where r1 < i < r2, there are no security devices in the ith row.
+Laser beams are independent, i.e., one beam does not interfere nor join with another.
+
+Return the total number of laser beams in the bank.
+
+#### Solution: 
+
+    class Solution {
+    public int numberOfBeams(String[] bank) {
+
+        if (bank.length < 2) {
+            return 0;
+        }
+        int solution = 0;
+        int beaconsInPrevRow = 0;
+        int beaconsInCurrentRow = 0;
+
+        for (String row : bank) {
+            beaconsInCurrentRow = 0;
+
+            for (char c : row.toCharArray()) {
+                if (c == '1') {
+                    beaconsInCurrentRow++;
+                }
+            }
+            solution += beaconsInCurrentRow * beaconsInPrevRow;
+            beaconsInPrevRow = beaconsInCurrentRow == 0 ? beaconsInPrevRow : beaconsInCurrentRow;
+        }
+        return solution;
+      }
+    }
+
+Runtime: 11 ms, beating 91.49% of leetcode users solutions using java.
+Memory: 44.89 mb, beating 33.27% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+If statements, for loops, strings, matrix, and charArray.
