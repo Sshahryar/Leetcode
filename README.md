@@ -4572,3 +4572,45 @@ Memory: 44.91 mb, beating 28.82% of leetcode users solutions using java.
 #### Concepts Applied:
 
 Arrays, sorting, and for loop.
+
+### Solution Jan 2, 2024 (Java, leetcode) 2610. Convert an Array Into a 2D Array (Medium)
+In .LeetcodeDailySolution folder as Jan2,2024.java
+
+#### Prompt:
+
+You are given an integer array nums. You need to create a 2D array from nums satisfying the following conditions:
+
+The 2D array should contain only the elements of the array nums.
+Each row in the 2D array contains distinct integers.
+The number of rows in the 2D array should be minimal.
+Return the resulting array. If there are multiple answers, return any of them.
+
+Note that the 2D array can have a different number of elements on each row.
+
+#### Solution:
+
+    class Solution {
+    public List<List<Integer>> findMatrix(int[] nums) {
+    int n = nums.length;
+
+    Arrays.sort(nums);
+
+    List<List<Integer>> ans = new ArrayList<>();
+    int k = 0;
+
+    for(int i = 0; i < n; i++){
+        if(ans.size() <= k) ans.add(new ArrayList<>());
+        ans.get(k).add(nums[i]);
+        if(i+1 < n && nums[i] != nums[i+1])  k=0;
+        else k++;
+        }
+    return ans;
+      }
+    }
+
+Runtime: 4 ms, beating 55.24% of leetcode users solution using java.
+Memory: 45.13 mb, beating 10.26% of leetcode users solutions using java.
+
+#### Concepts Applied:
+
+Arrays, sorting, List, ArrayList, matrix, for loop, if statements, and else statement.
