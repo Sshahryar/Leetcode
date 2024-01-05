@@ -4702,3 +4702,40 @@ Memory: 85.06 mb, beating 89.98% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays (vector), unordered map, for loops, and if statement.
+
+### Jan 5, 2024 (C++, leetcode) 300. Longest Increasing Subsequence (Medium)
+In .LeetcodeDailySolution folder as Jan5,2024.cpp
+
+#### Prompt:
+
+Given an integer array nums, return the length of the longest strictly increasing 
+subsequence.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int lengthOfLIS(std::vector<int>& nums) {
+        if (nums.empty()) {
+            return 0;
+        }
+        int n = nums.size();
+        std::vector<int> dp(n, 1);
+
+        for (int i = 1; i < n; ++i) {
+            for (int j = 0; j < i; ++j) {
+                if (nums[i] > nums[j]) {
+                    dp[i] = std::max(dp[i], dp[j] + 1);
+                }
+            }
+        }
+        return *std::max_element(dp.begin(), dp.end());
+      }
+    };
+
+Runtime: 243 ms, beating 52.49% of leetcode users solutions C++.
+Memory: 10.87 mb, beating 62.25% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Integer array, if statements, dynamic programming, and for loops.
