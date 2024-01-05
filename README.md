@@ -4663,3 +4663,42 @@ Memory: 44.89 mb, beating 33.27% of leetcode users solutions using java.
 #### Concepts Applied:
 
 If statements, for loops, strings, matrix, and charArray.
+
+## Made a switch to C++ for all future solutions
+
+### Solution Jan 4, 2024 (C++, leetcode) 2870. Minimum Number of Operations to Make Array Empty (Medium)
+In .LeetcodeDailySolution folder as Jan4,2024.cpp
+
+#### Prompt:
+
+You are given a 0-indexed array nums consisting of positive integers.
+
+There are two types of operations that you can apply on the array any number of times:
+
+Choose two elements with equal values and delete them from the array.
+Choose three elements with equal values and delete them from the array.
+Return the minimum number of operations required to make the array empty, or -1 if it is not possible.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int minOperations(vector<int>& nums) {
+        int ans = 0;
+
+        unordered_map<int, int> freq;
+        for(auto n: nums) freq[n]++;
+        for(auto [k,f]: freq){
+            if(f == 1) return -1;
+            ans += f/3 + (f%3 + 1)/2;
+        }
+        return ans;
+      }
+    };
+
+Runtime: 122 ms, beating 56.03% of leetcode users solutions using C++.
+Memory: 85.06 mb, beating 89.98% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays (vector), unordered map, for loops, and if statement.
