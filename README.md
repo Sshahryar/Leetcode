@@ -4703,7 +4703,7 @@ Memory: 85.06 mb, beating 89.98% of leetcode users solutions using C++.
 
 Arrays (vector), unordered map, for loops, and if statement.
 
-### Jan 5, 2024 (C++, leetcode) 300. Longest Increasing Subsequence (Medium)
+### Solution Jan 5, 2024 (C++, leetcode) 300. Longest Increasing Subsequence (Medium)
 In .LeetcodeDailySolution folder as Jan5,2024.cpp
 
 #### Prompt:
