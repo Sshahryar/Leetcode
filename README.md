@@ -4834,3 +4834,34 @@ Memory: 109.88 mb, beating 73.33% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Vector, unordered map, for loops, if statements, and dynamic programming.
+
+### Solution Jan 8, 2024 (C++, leetcode) 938. Range Sum of BST (Easy)
+In .LeetcodeDailySolution folder as Jan8,2024.cpp
+
+#### Prompt:
+
+Given the root node of a binary search tree and two integers low and high, return the sum of values of all nodes with a value in the inclusive range [low, high].
+
+#### Solution:
+
+    class Solution {
+    public:
+    int rangeSumBST(TreeNode* root, int low, int high) {
+
+        if (!root) {
+            return 0;
+        }
+        int currentVal = (root->val >= low && root->val <= high) ? root->val : 0;
+        int leftSum = rangeSumBST(root->left, low, high);
+        int rightSum = rangeSumBST(root->right, low, high);
+
+        return currentVal + leftSum + rightSum;
+      }
+    };
+
+Runtime: 92 ms, beating 79.17% of leetcode users solutions using C++.
+Memory: 64.95 mb, beating 51.83% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Binary search tree, tree, binary tree, and depth-first-search.
