@@ -4865,3 +4865,52 @@ Memory: 64.95 mb, beating 51.83% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Binary search tree, tree, binary tree, and depth-first-search.
+
+### Solution Jan 9, 2024 (C++, leetcode) 872. Leaf-Similar Trees (Easy)
+In .LeetcodeDailySolution folder as Jan9,2024.cpp
+
+#### Prompt:
+
+Consider all the leaves of a binary tree, from left to right order, the values of those leaves form a leaf value sequence.
+
+![image](https://github.com/Sshahryar/Leetcode/assets/123003299/44e59039-7152-4bac-a956-623595860368)
+
+For example, in the given tree above, the leaf value sequence is (6, 7, 4, 9, 8).
+
+Two binary trees are considered leaf-similar if their leaf value sequence is the same.
+
+Return true if and only if the two given trees with head nodes root1 and root2 are leaf-similar.
+
+#### Solution:
+
+    class Solution {
+    public:
+    bool leafSimilar(TreeNode* root1, TreeNode* root2) {
+
+        function<void(TreeNode*, vector<int>&)> collectLeafValues =
+            [&](TreeNode* root, vector<int>& leafValues) {
+
+                if (!root) {
+                    return;
+                }
+                if (!root->left && !root->right) {
+                    leafValues.push_back(root->val);
+                }
+                collectLeafValues(root->left, leafValues);
+                collectLeafValues(root->right, leafValues);
+            };
+        vector<int> leafValues1, leafValues2;
+
+        collectLeafValues(root1, leafValues1);
+        collectLeafValues(root2, leafValues2);
+
+        return leafValues1 == leafValues2;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 13.91 mb, beating 8.99% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Tree, Depth-First-Search, and binary tree.
