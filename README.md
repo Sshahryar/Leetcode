@@ -4914,3 +4914,51 @@ Memory: 13.91 mb, beating 8.99% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Tree, Depth-First-Search, and binary tree.
+
+### Solution Jan 10, 2024 (C++, leetcode) 2385. Amount of Time for Binary Tree to Be Infected (Medium)
+In .LeetcodeDailySolution folder as Jan10,2024.cpp
+
+#### Prompt:
+
+You are given the root of a binary tree with unique values, and an integer start. At minute 0, an infection starts from the node with value start.
+
+Each minute, a node becomes infected if:
+
+The node is currently uninfected.
+The node is adjacent to an infected node.
+Return the number of minutes needed for the entire tree to be infected.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int result;
+    int amountOfTime(TreeNode* root, int start) {
+        DFS(root, start);
+        return result;
+    }
+    int DFS(TreeNode* node, int start){
+        if(node == NULL) return 0;
+
+        int leftDepth = DFS(node->left, start);
+        int rightDepth = DFS(node->right, start);
+
+        if(node->val == start){
+            result = std::max(leftDepth, rightDepth);
+            return -1;
+        }
+        else if(leftDepth >= 0 && rightDepth >= 0)
+            return std::max(leftDepth, rightDepth)+1;
+        
+        result = std::max(result, std::abs(leftDepth - rightDepth));
+        
+        return std::min(leftDepth, rightDepth) - 1;
+      }
+    };
+
+Runtime: 136 ms, beating 93.33% of leetcode users solutions using C++.
+Memory: 90.57 mb, beating 99.40% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Tree, Depth-First-Search, Breadth-First-Search, and binary tree.
