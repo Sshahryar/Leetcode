@@ -4962,3 +4962,47 @@ Memory: 90.57 mb, beating 99.40% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Tree, Depth-First-Search, Breadth-First-Search, and binary tree.
+
+### Solution Jan 11, 2024 (C++, leetcode) 1026. Maximum Difference Between Node and Ancestor (Medium)
+In .LeetcodeDailySolution folder as Jan11,2024.cpp
+
+#### Prompt:
+
+Given the root of a binary tree, find the maximum value v for which there exist different nodes a and b where v = |a.val - b.val| and a is an ancestor of b.
+
+A node a is an ancestor of b if either: any child of a is equal to b or any child of a is an ancestor of b.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int maxAncestorDiff(TreeNode* root) {
+        if (!root)
+            return 0;
+
+        int minVal = root->val, maxVal = root->val;
+
+        differ(root, minVal, maxVal);
+
+        return diff;
+    }
+    public:
+    int diff = 0;
+    void differ(TreeNode* root, int minVal, int maxVal) {
+        if (!root)
+            return;
+
+        diff = max(diff, max(abs(minVal - root->val), abs(maxVal - root->val)));
+        minVal = min(minVal, root->val);
+        maxVal = max(maxVal, root->val);
+        differ(root->left, minVal, maxVal);
+        differ(root->right, minVal, maxVal);
+      }
+    };
+
+Runtime: 3 ms, beating 85.85% of leetcode users solutions using C++.
+Memory: 10.07 mb, beating 79.90% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Tree, Depth-First Search, binary tree, and recursion.
