@@ -5006,3 +5006,42 @@ Memory: 10.07 mb, beating 79.90% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Tree, Depth-First Search, binary tree, and recursion.
+
+### Solution Jan 12, 2024 (C++, leetcode) 1704. Determine in String Halves Are Alike (Easy)
+In .LeetcodeDailySolution folder as Jan12,2024.cpp
+
+#### Prompt:
+
+You are given a string s of even length. Split this string into two halves of equal lengths, and let a be the first half and b be the second half.
+
+Two strings are alike if they have the same number of vowels ('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'). Notice that s contains uppercase and lowercase letters.
+
+Return true if a and b are alike. Otherwise, return false.
+
+#### Solution:
+
+    class Solution {
+    public:
+    bool vow(char c){
+        c=tolower(c);
+
+        return (c=='a'||c=='e'||c=='i'||c=='o'||c=='u');
+    }
+    bool halvesAreAlike(string s) {
+
+        int x=0,n=s.size();
+        
+        for(int i=0;i<n/2;i++){
+            if(vow(s[i])) x++;
+            if(vow(s[n-i-1])) x--;
+        }
+        return x==0;
+      }
+    };
+
+Runtime: 2 ms, beating 64.10% of leetcode users solutions using C++.
+Memory: 6.98 mb, beating 73.08% of leetcode ysers solutions using C++.
+
+#### Concepts Applied:
+
+Bool, char, unordered set, for loop, and if statement.
