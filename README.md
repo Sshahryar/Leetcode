@@ -5045,3 +5045,41 @@ Memory: 6.98 mb, beating 73.08% of leetcode ysers solutions using C++.
 #### Concepts Applied:
 
 Bool, char, unordered set, for loop, and if statement.
+
+### Solution Jan 13, 2024 (C++, leetcode) 1347. Minimum Number of Steps to Make Two Strings Anagram (Medium)
+In .LeetcodeDailySolution folder as Jan13,2024.cpp
+
+#### Prompt:
+
+You are given two strings of the same length s and t. In one step you can choose any character of t and replace it with another character.
+
+Return the minimum number of steps to make t an anagram of s.
+
+An Anagram of a string is a string that contains the same characters with a different (or the same) ordering.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int minSteps(string s, string t) {
+
+        vector<int> m1(26, 0), m2(26, 0);
+
+        for(auto c : s) m1[c-'a']++;
+        for(auto c : t) m2[c-'a']++;
+
+        int ans = 0;
+        
+        for(int i = 0;i < 26;i++){
+            if(m1[i] > m2[i]) ans += m1[i] - m2[i]; 
+        }
+        return ans;
+      }
+    };
+
+Runtime: 50 ms, beating 73.78% of leetcode users solutions using C++.
+Memory: 16.86 mb, beating 82.35% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Strings, counting, vector, for loop, and if statement. 
