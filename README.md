@@ -5083,3 +5083,61 @@ Memory: 16.86 mb, beating 82.35% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Strings, counting, vector, for loop, and if statement. 
+
+### Solution Jan 14, 2024 (C++, leetcode) 1657. Determine if Two Strings Are Close (Medium)
+In .LeetcodeDailySolution folder as Jan14,2024.cpp
+
+#### Prompt:
+
+Two strings are considered close if you can attain one from the other using the following operations:
+
+Operation 1: Swap any two existing characters.
+For example, abcde -> aecdb
+Operation 2: Transform every occurrence of one existing character into another existing character, and do the same with the other character.
+For example, aacabb -> bbcbaa (all a's turn into b's, and all b's turn into a's)
+You can use the operations on either string as many times as necessary.
+
+Given two strings, word1 and word2, return true if word1 and word2 are close, and false otherwise.
+
+#### Solution:
+
+    class Solution {
+    public:
+    bool closeStrings(std::string word1, std::string word2) {
+        std::array<int, 26> charCount1 = {}; 
+        std::array<int, 26> charCount2 = {}; 
+
+        for (char c : word1) {
+            ++charCount1[c - 'a'];
+        }
+        for (char c : word2) {
+            ++charCount2[c - 'a'];
+        }
+        for (int i = 0; i < 26; ++i) {
+
+            bool charPresentWord1 = charCount1[i] > 0;
+            bool charPresentWord2 = charCount2[i] > 0;
+            
+            if ((charPresentWord1 && !charPresentWord2) || (!charPresentWord1 && charPresentWord2)) {
+                return false;
+
+            }
+        }
+        std::sort(charCount1.begin(), charCount1.end());
+        std::sort(charCount2.begin(), charCount2.end());
+
+        for (int i = 0; i < 26; ++i) {
+            if (charCount1[i] != charCount2[i]) {
+                return false;
+            }
+        }
+        return true;
+      }
+    };
+
+Runtime: 58 ms, beating 97.53% of leetcode users solutions using C++.
+Memory: 20.70 mb, beating 99.17% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Strings, arrays, counting, sorting, for loops, and if statements.
