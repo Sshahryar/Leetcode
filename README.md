@@ -5189,3 +5189,43 @@ Memory: 162.93 mb, beating 86.78% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Sets, vectors, for loops, and if statements.
+
+### Solution Jan 16, 2024 (C++, leetcode) 380. Insert Delete GetRandom O(1) (Medium)
+In .LeetcodeDailySolution folder as Jan16,2024.cpp
+
+#### Prompt:
+
+Implement the RandomizedSet class:
+
+RandomizedSet() Initializes the RandomizedSet object.
+bool insert(int val) Inserts an item val into the set if not present. Returns true if the item was not present, false otherwise.
+bool remove(int val) Removes an item val from the set if present. Returns true if the item was present, false otherwise.
+int getRandom() Returns a random element from the current set of elements (it's guaranteed that at least one element exists when this method is called). Each element must have the same probability of being returned.
+You must implement the functions of the class such that each function works in average O(1) time complexity.
+
+#### Solution:
+
+    class RandomizedSet {
+    unordered_set<int> s;
+    public:
+    RandomizedSet() {
+    }
+    bool insert(int val) {
+        auto a = s.insert(val);
+        return a.second;
+    }
+    bool remove(int val) {
+        auto b = s.erase(val);
+        return b;
+    }
+    int getRandom() {
+        return *next(s.begin(),rand()%s.size());
+	}
+    };
+
+Runtime: 192 ms, beating 33.78% of leetcode users solutions using C++.
+Memory: 97.20 mb, beating 90.76% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Unordered set, bools, and randomization.
