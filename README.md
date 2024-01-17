@@ -5229,3 +5229,34 @@ Memory: 97.20 mb, beating 90.76% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Unordered set, bools, and randomization.
+
+### Solution Jan 17, 2024 (C++, leetcode) 1207. Unique Number of Occurences (Easy)
+In .LeetcodeDailySolution folder as Jan17,2024.cpp
+
+#### Prompt:
+
+Given an array of integers arr, return true if the number of occurrences of each value in the array is unique or false otherwise.
+
+#### Solution:
+
+    class Solution {
+    public:
+    bool uniqueOccurrences(vector<int>& arr) {
+
+        map<int, int> mp;
+
+        for(auto i : arr) mp[i]++;
+        set<int> s;
+
+        for(auto [n, f] :mp) s.insert(f);
+
+        return mp.size() == s.size();
+      }
+    };
+
+Runtime: 2 ms, beating 65.75% of leetcode users solutions using C++.
+Memory: 8.68 mb, beating 41.35% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, hashing, set, for loops, and comparison.
