@@ -5260,3 +5260,37 @@ Memory: 8.68 mb, beating 41.35% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, hashing, set, for loops, and comparison.
+
+### Solution Jan 18, 2024 (C++, leetcode) 70. Climbing Stairs (Easy)
+In .LeetcodeDailySolution folder as Jan18,2024.cpp
+
+#### Prompt:
+
+You are climbing a staircase. It takes n steps to reach the top.
+
+Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+
+#### Solution:
+
+    class Solution {
+    public:
+    int climbStairs(int n) {
+
+        long long int prv1 = 1;
+        long long int prv2 = 1;
+
+        for(int i = 0; i < n; i++){
+            long long int tmp = prv1;
+            prv1 = prv1 + prv2;
+            prv2 = tmp;
+        }
+        return prv2;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 6.34 mb, beating 71.74% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Simple counting of steps.
