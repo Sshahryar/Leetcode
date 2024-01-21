@@ -5342,3 +5342,46 @@ Memory: 13.08 mb, beating 5.08% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Dynamic programming, matrix, arrays, for loops, and if statements.
+
+### Solution Jan 20, 2024 (C++, leetcode) 907. Sum of Subarray Minimums (Medium)
+In .LeetcodeDailySolution folder as Jan20,2024.cpp
+
+#### Prompt:
+
+Given an array of integers arr, find the sum of min(b), where b ranges over every (contiguous) subarray of arr. Since the answer may be large, return the answer modulo 109 + 7.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int sumSubarrayMins(vector<int>& arr) {
+        const int MOD = 1000000007;
+        stack<int> st;
+        long sumOfMinimums = 0;
+
+        for (int i = 0; i <= arr.size(); i++) {
+            while (!st.empty() && (i == arr.size() || arr[st.top()] >= arr[i])) {
+                int mid = st.top();
+
+                st.pop();
+                
+                int leftBoundary = st.empty() ? -1 : st.top();
+                int rightBoundary = i;
+
+                long count = (mid - leftBoundary) * (rightBoundary - mid) % MOD;
+
+                sumOfMinimums += (count * arr[mid]) % MOD;
+                sumOfMinimums %= MOD;
+            }
+            st.push(i);
+        }
+        return static_cast<int>(sumOfMinimums);
+      }
+    };
+
+Runtime: 55 ms, beating 97.94% of leetcode users solutions using C++.
+Memory: 41.76 mb, beating 80.15% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, subarray, modulo, stacks, for loop, and while loop. 
