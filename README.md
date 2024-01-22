@@ -5385,3 +5385,36 @@ Memory: 41.76 mb, beating 80.15% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, subarray, modulo, stacks, for loop, and while loop. 
+
+### Solution Jan 21, 2024 (C++, leetcode) 198. House Robber (Medium)
+In .LeetcodeDailySolution folder as Jan21,2024.cpp
+
+#### Prompt:
+
+You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security systems connected and it will automatically contact the police if two adjacent houses were broken into on the same night.
+
+Given an integer array nums representing the amount of money of each house, return the maximum amount of money you can rob tonight without alerting the police.
+
+#### Solution:
+
+    class Solution {
+    public: 
+    int rob(vector<int>& nums) {
+        int n = nums.size(), pre = 0, cur = 0;
+
+        for (int i = 0; i < n; i++) {
+            int temp = max(pre + nums[i], cur);
+            
+            pre = cur;
+            cur = temp;
+        }
+        return cur;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 8.99 mb, beating 5.08% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, for loop, (dynamic programming with variables).
