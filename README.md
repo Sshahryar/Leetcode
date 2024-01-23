@@ -5418,3 +5418,47 @@ Memory: 8.99 mb, beating 5.08% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, for loop, (dynamic programming with variables).
+
+### Solution Jan 22, 2024 (C++, leetcode) 645. Set Mismatch (Easy)
+In .LeetcodeDailySolution folder as Jan22,2024.cpp
+
+#### Prompt:
+
+You have a set of integers s, which originally contains all the numbers from 1 to n. Unfortunately, due to some error, one of the numbers in s got duplicated to another number in the set, which results in repetition of one number and loss of another number.
+
+You are given an integer array nums representing the data status of this set after the error.
+
+Find the number that occurs twice and the number that is missing and return them in the form of an array.
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<int> findErrorNums(vector<int>& nums) {
+        int n = nums.size();
+        int sum = (n * (n + 1))/2;
+        long long sqr_sum = 0;
+
+        for(int i = 1; i <= n; i++) sqr_sum += i * i;
+        int arr_sum = 0;
+        long long arr_sqr_sum = 0;
+
+        for(int i = 0; i < n; i++){
+            arr_sum += nums[i];
+            arr_sqr_sum += (nums[i] * nums[i]);
+        }
+        int sum_diff = arr_sum - sum;
+        int sqr_sum_diff = arr_sqr_sum - sqr_sum;
+        int missing = (sqr_sum_diff - (sum_diff * sum_diff)) / (2 * sum_diff);
+        int duplicate = sum_diff + (missing);
+
+        return {duplicate , missing};
+      }
+    };
+
+Runtime: 18 ms, beating 92.06% of leetcode users solutions using C++.
+Memory: 23.90 mb, beating 36.42% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+For loops, and mathematics.
