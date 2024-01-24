@@ -5508,3 +5508,40 @@ Memory: 10.40 mb, beating 78.50% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Bit manipulation, array, for loops, if statement, and dynamic programming.
+
+### Solution Jan 24, 2024 (C++, leetcode) 1457. Pseudo-Palindromic Paths in a Binary Tree (Medium)
+In .LeetcodeDailySolution folder as Jan24,2024.cpp
+
+#### Prompt:
+
+Given a binary tree where node values are digits from 1 to 9. A path in the binary tree is said to be pseudo-palindromic if at least one permutation of the node values in the path is a palindrome.
+
+Return the number of pseudo-palindromic paths going from the root node to leaf nodes.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int pseudoPalindromicPaths(TreeNode* root) {
+        return countPseudoPalindromicPaths(root, 0);
+    }
+    private:
+    int countPseudoPalindromicPaths(TreeNode* node, int path) {
+        if (!node) {
+            return 0;
+        }
+        path ^= (1 << node->val);
+
+        if (!node->left && !node->right) {
+            return (path & (path - 1)) == 0 ? 1 : 0;
+        }
+        return countPseudoPalindromicPaths(node->left, path) + countPseudoPalindromicPaths(node->right, path);
+      }
+    };
+
+Runtime: 247 ms, beating 88.57% of leetcode users solutions using C++.
+Memory: 176.94 mb, beating 99.43% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Recursion, depth-first search, bit manipulation, tree, binary tree, and if statements.
