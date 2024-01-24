@@ -5462,3 +5462,49 @@ Memory: 23.90 mb, beating 36.42% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 For loops, and mathematics.
+
+### Solution Jan 23, 2024 (C++, leetcode) 1239. Maximum Length of a Conactenated String with Unique Characters (Medium)
+In .LeetcodeDailySolution folder as Jan23,2024.cpp
+
+#### Prompt:
+
+You are given an array of strings arr. A string s is formed by the concatenation of a subsequence of arr that has unique characters.
+
+Return the maximum possible length of s.
+
+A subsequence is an array that can be derived from another array by deleting some or no elements without changing the order of the remaining elements.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int maxLength(vector<string>& arr) {
+        vector<int> dp = {0};
+        int res = 0;
+        
+        for (const string& s : arr) {
+            int a = 0, dup = 0;
+            for (char c : s) {
+                dup |= a & (1 << (c - 'a'));
+                a |= 1 << (c - 'a');
+            }
+            if (dup > 0)
+                continue;
+            for (int i = dp.size() - 1; i >= 0; i--) {
+                if ((dp[i] & a) > 0)
+                    continue;
+
+                dp.push_back(dp[i] | a);
+                res = max(res, __builtin_popcount(dp[i] | a));
+            }
+        }
+        return res;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 10.40 mb, beating 78.50% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Bit manipulation, array, for loops, if statement, and dynamic programming.
