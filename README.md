@@ -5545,3 +5545,50 @@ Memory: 176.94 mb, beating 99.43% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Recursion, depth-first search, bit manipulation, tree, binary tree, and if statements.
+
+### Solution Jan 25, 2024 (C++, leetcode) 1143. Longest Common Subsequence (Medium)
+In .LeetcodeDailySolution folder as Jan25,2024.cpp
+
+#### Prompt:
+
+Given two strings text1 and text2, return the length of their longest common subsequence. If there is no common subsequence, return 0.
+
+A subsequence of a string is a new string generated from the original string with some characters (can be none) deleted without changing the relative order of the remaining characters.
+
+For example, "ace" is a subsequence of "abcde".
+A common subsequence of two strings is a subsequence that is common to both strings.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int longestCommonSubsequence(string text1, string text2) {
+        if (text1.length() < text2.length()) {
+            return LCS(text1, text2);
+        }
+        return LCS(text2, text1);
+    }
+    int LCS(string s1, string s2) {
+        vector<vector<int>> M(2, vector<int>(s1.length() + 1, 0));
+
+        for (int i = 1; i <= s2.length(); i++) {
+            M[i % 2][0] = 0;
+            for (int j = 1; j <= s1.length(); j++) {
+                if (s1[j - 1] == s2[i - 1]) {
+                    M[i % 2][j] = M[(i - 1) % 2][j - 1] + 1;
+                } else {
+                    M[i % 2][j] = max(M[(i - 1) % 2][j - 1],
+                                max(M[(i - 1) % 2][j], M[i % 2][j - 1]));
+                }
+            }
+        }
+        return M[s2.length() % 2][s1.length()];
+      }
+    };
+
+Runtime: 19 ms, beating 92.26% of leetcode users solutions using C++.
+Memory: 7.70 mb, beating 88.11% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, for loops, dynamic programming, if statements, and else statements.
