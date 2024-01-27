@@ -5633,3 +5633,42 @@ Memory: 10.36 mb, beating 24.21% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Modulo, recursion, memoization, array, dynamic programming, and if statements.
+
+### Solution Jan 27, 2024 (C++, leetcode) 629. K Inverse Pairs Array (Hard)
+In .LeetcodeDailySolution folder as Jan27,2024.cpp
+
+#### Prompt:
+
+For an integer array nums, an inverse pair is a pair of integers [i, j] where 0 <= i < j < nums.length and nums[i] > nums[j].
+
+Given two integers n and k, return the number of different arrays consist of numbers from 1 to n such that there are exactly k inverse pairs. Since the answer can be huge, return it modulo 109 + 7.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int kInversePairs(int n, int k) {
+        int MOD = 1000000007;
+
+        vector<int> dp(k + 1);
+
+        dp[0] = 1;
+        
+        for (int i = 2; i <= n; i++) {
+            for (int j = 1; j <= k; j++) {
+                dp[j] = (dp[j] + dp[j - 1]) % MOD;
+            }
+            for (int j = k; j >= i; j--) {
+                dp[j] = (dp[j] - dp[j - i] + MOD) % MOD;
+            }
+        }
+        return dp[k];
+      }
+    };
+
+Runtime: 6 ms, beating 87.57% of leetcode users solutions using C++.
+Memory: 7.43 mb, beating 89.73% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Modulo, array, dynamic programming, and for loops.
