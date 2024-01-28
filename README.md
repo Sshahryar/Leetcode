@@ -5672,3 +5672,52 @@ Memory: 7.43 mb, beating 89.73% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Modulo, array, dynamic programming, and for loops.
+
+### Solution Jan 28, 2024 (C++, leetcode) 1074. Number of Submatrices That Sum to Target (Hard)
+In .LeetcodeDailySolution folder as Jan28,2024.cpp
+
+#### Prompt:
+
+Given a matrix and a target, return the number of non-empty submatrices that sum to target.
+
+A submatrix x1, y1, x2, y2 is the set of all cells matrix[x][y] with x1 <= x <= x2 and y1 <= y <= y2.
+
+Two submatrices (x1, y1, x2, y2) and (x1', y1', x2', y2') are different if they have some coordinate that is different: for example, if x1 != x1'.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int numSubmatrixSumTarget(vector<vector<int>>& matrix, int target) {
+        int m = matrix.size(), n = matrix[0].size(), res = 0;
+
+        for (int l = 0; l < n; ++l) {
+            int sums[105] = {0};
+
+            for (int r = l; r < n; ++r) {
+                for (int i = 0; i < m; ++i) {
+                    sums[i] += matrix[i][r];
+                }
+                for (int i = 0; i < m; ++i) {
+                    int sum = 0;
+
+                    for (int j = i; j < m; ++j) {
+                        sum += sums[j];
+
+                        if (sum == target) {
+                            ++res;
+                        }
+                    }
+                }
+            }
+        }
+        return res;
+      }
+    };
+
+Runtime: 102 ms, beating 100% of leetcode users solutions using C++.
+Memory: 11.46 mb, beating 87.16% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, matrices, for loops, and if statement.
