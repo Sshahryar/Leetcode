@@ -5794,3 +5794,67 @@ Memory: 8.25 mb, beating 16.98% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Stacks, queues, while loops, if statements, and else statements.
+
+### Solution Jan 30, 2024 (C++, leetcode) 150. Evaluate Reverse Polish Notation (Medium)
+In .LeetcodeDailySolution folder as Jan30,2024.cpp
+
+#### Prompt:
+
+You are given an array of strings tokens that represents an arithmetic expression in a Reverse Polish Notation.
+
+Evaluate the expression. Return an integer that represents the value of the expression.
+
+Note that:
+
+The valid operators are '+', '-', '*', and '/'.
+Each operand may be an integer or another expression.
+The division between two integers always truncates toward zero.
+There will not be any division by zero.
+The input represents a valid arithmetic expression in a reverse polish notation.
+The answer and all the intermediate calculations can be represented in a 32-bit integer.
+
+#### Solution:
+
+    #include <bits/stdc++.h>
+
+    class Solution {
+    public:
+    int evalRPN(vector<string>& tokens) {
+        stack<int> numbers;
+
+        for (const string& token : tokens) {
+            if (token.size() > 1 || isdigit(token[0])) {
+                numbers.push(stoi(token));
+            } else { 
+                int operand2 = numbers.top();
+                numbers.pop();
+
+                int operand1 = numbers.top();
+                numbers.pop();
+
+                switch (token[0]) {
+                    case '+': 
+                        numbers.push(operand1 + operand2);
+                        break;
+                    case '-': 
+                        numbers.push(operand1 - operand2);
+                        break;
+                    case '*': 
+                        numbers.push(operand1 * operand2);
+                        break;
+                    case '/': 
+                        numbers.push(operand1 / operand2);
+                        break;
+                }                
+            }
+        }
+        return numbers.top();
+      }
+    };
+
+Runtime: 8 ms, beating 70.52% of leetcode users solutions using C++.
+Memory: 15.44 mb, beating 10.51% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Stacks, for loop, if statement, else statement, switch, and mathematical operations.
