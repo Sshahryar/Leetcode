@@ -2107,6 +2107,45 @@ Memory: 56.40 mb, beating 69.18% of leetcode users solutions using java.
 
 Arrays, for loops, and if statements. 
 
+### Solution Nov 6, 2023 (Java, leetcode) 1845. Seat Reservation Manager (Medium)
+In .LeetcodeDailySolution folder as Nov6,2023.java
+
+#### Prompt: 
+
+Design a system that manages the reservation state of n seats that are numbered from 1 to n.
+
+Implement the SeatManager class:
+
+SeatManager(int n) Initializes a SeatManager object that will manage n seats numbered from 1 to n. All seats are initially available.
+int reserve() Fetches the smallest-numbered unreserved seat, reserves it, and returns its number.
+void unreserve(int seatNumber) Unreserves the seat with the given seatNumber.
+
+#### Solution:
+
+    class SeatManager {
+    private PriorityQueue<Integer> queue;
+
+    public SeatManager(int n) {
+        queue = new PriorityQueue<>();
+        for (int i = 1; i <= n; i++) {
+            queue.offer(i);
+        }
+    }
+    public int reserve() {
+        return (!queue.isEmpty())? queue.poll() : -1;
+    }
+    public void unreserve(int seatNumber) {
+        queue.offer(seatNumber);
+      }
+    }
+
+Runtime: 88 ms, beating 50.38% of leetcode users solutions using Java.
+Memory: 89.30 mb, beating 34.40% of leetcode users solutions using Java.
+
+#### Concepts Applied:
+
+Queues and for loop.
+
 ### Solution Nov 7, 2023 (Java, leetcode) 1921. Eliminate Maximum Number of Monsters (Medium)
 In .LeetcodeDailySolution folder as Nov7,2023.java
 
