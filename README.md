@@ -5858,3 +5858,36 @@ Memory: 15.44 mb, beating 10.51% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Stacks, for loop, if statement, else statement, switch, and mathematical operations.
+
+### Solution Jan 31, 2024 (C++, leetcode) 739. Daily Temperatures (Medium)
+In .LeetcodeDailySolution folder as Jan31,2024.cpp
+
+#### Prompt:
+
+Given an array of integers temperatures represents the daily temperatures, return an array answer such that answer[i] is the number of days you have to wait after the ith day to get a warmer temperature. If there is no future day for which this is possible, keep answer[i] == 0 instead.
+
+#### Solution:
+
+    class Solution {
+    public:
+    std::vector<int> dailyTemperatures(std::vector<int>& temps) {
+        std::vector<int> results(temps.size());
+        std::stack<int> stack;
+
+        for (int i = 0; i < temps.size(); i++) {
+            while (!stack.empty() && temps[stack.top()] < temps[i]) {
+                results[stack.top()] = i - stack.top();
+                stack.pop();
+            }
+            stack.push(i);
+        }
+        return results;
+      }
+    };
+
+Runtime: 133 ms, beating 72.67% of leetcode users solutions using C++.
+Memory: 105.44 mb, beating 25.93% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, stacks, for loop, and while loop.
