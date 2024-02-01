@@ -5930,3 +5930,40 @@ Memory: 105.44 mb, beating 25.93% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, stacks, for loop, and while loop.
+
+### Solution Feb 1, 2024 (C++, leetcode) 2966. Divide Array Into Arrays With Max Difference (Medium)
+In .LeetcodeDailySolution folder as Feb1,2024.cpp
+
+#### Prompt:
+
+You are given an integer array nums of size n and a positive integer k.
+
+Divide the array into one or more arrays of size 3 satisfying the following conditions:
+
+Each element of nums should be in exactly one array.
+The difference between any two elements in one array is less than or equal to k.
+Return a 2D array containing all the arrays. If it is impossible to satisfy the conditions, return an empty array. And if there are multiple answers, return any of them.
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<vector<int>> divideArray(vector<int>& nums, int k) {
+        vector<vector<int>> res;
+
+        sort(nums.begin(), nums.end());
+        
+        for(int i = 2; i < nums.size(); i += 3){
+            if(nums[i] - nums[i - 2] > k) return {};
+            res.push_back({nums[i-2], nums[i-1], nums[i]});
+        }
+        return res;
+      }
+    };
+
+Runtime: 132 ms, beating 98.28% of leetcode users solutions using C++.
+Memory: 119.69 mb, beating 39.01% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, sorting, for loop, and if statement. 
