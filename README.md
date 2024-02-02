@@ -5967,3 +5967,45 @@ Memory: 119.69 mb, beating 39.01% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, sorting, for loop, and if statement. 
+
+### Solution Feb 2, 2024 (C++, leetcode) 1291. Sequential Digits (Medium)
+In .LeetcodeDailySolution folder as Feb2,2024.cpp
+
+#### Prompt:
+
+An integer has sequential digits if and only if each digit in the number is one more than the previous digit.
+
+Return a sorted list of all the integers in the range [low, high] inclusive that have sequential digits.
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<int> result;
+    void solve(int low , int high,int i , int ans){
+    
+    if(ans >= low && ans <= high){
+        result.push_back(ans);
+    }
+    if(ans > high || i>9){
+        return;
+    }
+    solve(low,high,i+1, ans*10+i);
+    }
+    vector<int> sequentialDigits(int low, int high) {
+        
+        for(int i =1 ;i<10;i++){
+            solve(low,high,i,0); 
+        }
+        sort(result.begin(),result.end());
+
+        return result;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 7.62 mb, beating 8.68% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, if statements, for loop, and sorting.
