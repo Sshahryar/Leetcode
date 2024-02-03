@@ -6009,3 +6009,46 @@ Memory: 7.62 mb, beating 8.68% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, if statements, for loop, and sorting.
+
+### Solution Feb 3, 2024 (C++, leetcode) 1043. Partition Array for Maximum Sum (Medium)
+In .LeetcodeDailySolution folder as Feb3,2024.cpp
+
+#### Prompt:
+
+Given an integer array arr, partition the array into (contiguous) subarrays of length at most k. After partitioning, each subarray has their values changed to become the maximum value of that subarray.
+
+Return the largest sum of the given array after partitioning. Test cases are generated so that the answer fits in a 32-bit integer.
+
+#### Solution:
+
+    #include <bits/stdc++.h>
+
+    class Solution {
+    public:
+    int maxSumAfterPartitioning(std::vector<int>& arr, int k) {
+        int n = arr.size();
+
+        std::vector<int> dp(n + 1, 0);
+
+        for (int i = 0; i < n; i++) {
+            int curMax = 0, curSum = 0;
+
+            for (int j = i; j >= std::max(0, i - k + 1); j--) {
+                curMax = std::max(curMax, arr[j]);
+
+                int cur = curMax * (i - j + 1) + dp[j];
+
+                curSum = std::max(curSum, cur);
+            }
+           dp[i + 1] = curSum;
+        }
+        return dp[n];
+      }
+    };
+
+Runtime: 6 ms, beating 94.83% of leetcode users solutions using C++.
+Memory: 10.93 mb, beating 15.42% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, dynamic programming, and for loops.
