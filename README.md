@@ -6052,3 +6052,54 @@ Memory: 10.93 mb, beating 15.42% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, dynamic programming, and for loops.
+
+### Solution Feb 4, 2024 (C++, leetcode) 76. Minimum Window Substring (Hard)
+In .LeetcodeDailySolution folder as Feb4,2024.cpp
+
+#### Prompt:
+
+Given two strings s and t of lengths m and n respectively, return the minimum window substring of s such that every character in t (including duplicates) is included in the window. 
+If there is no such substring, return the empty string "".
+
+The testcases will be generated such that the answer is unique.
+
+#### Solution:
+
+    class Solution {
+    public:
+    std::string minWindow(std::string s, std::string t) {
+
+        if (s.empty() || t.empty() || s.length() < t.length()) {
+            return "";
+        }
+        std::vector<int> map(128, 0);
+        int count = t.length();
+        int start = 0, end = 0, minLen = INT_MAX, startIndex = 0;
+
+        for (char c : t) {
+            map[c]++;
+        }
+        while (end < s.length()) {
+            if (map[s[end++]]-- > 0) {
+                count--;
+            }
+            while (count == 0) {
+                if (end - start < minLen) {
+                    startIndex = start;
+                    minLen = end - start;
+                }
+                if (map[s[start++]]++ == 0) {
+                    count++;
+                }
+            }
+        }
+        return minLen == INT_MAX ? "" : s.substr(startIndex, minLen);
+      }
+    };
+
+Runtime: 4 ms, beating 91.16% of leetcode users solutions using C++.
+Memory: 9.28 mb, beating 22.77% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, sliding window, if statements, for loop, and while loops. 
