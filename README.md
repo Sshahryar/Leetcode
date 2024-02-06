@@ -1,4 +1,4 @@
-# Leetcode
+ # Leetcode
 
 Repository of my Leetcode journey, starting September 23, 2023. 
 
@@ -6103,3 +6103,47 @@ Memory: 9.28 mb, beating 22.77% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, sliding window, if statements, for loop, and while loops. 
+
+### Solution Feb 5, 2024 (C++, leetcode) 387. First Unique Character in a String (Easy)
+In .LeetcodeDailySolution folder as Feb5,2024.cpp
+
+#### Prompt:
+
+Given a string s, find the first non-repeating character in it and return its index. If it does not exist, return -1.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int firstUniqChar(string& s) {
+        int position[26] = {0};
+
+        for(int i = 1; i<=s.size(); i++){
+            char c = s[i-1]-'a';
+
+            if(position[c] == 0){
+                position[c] = -i;
+            }
+            else{
+                position[c] = i; 
+            }
+        }
+        int minPosition = INT_MAX;
+
+        for(int i=0;i<26;i++){
+            if(position[i] < 0)
+                minPosition = min(minPosition, -position[i]);
+        }
+        return minPosition == INT_MAX ? -1 : minPosition - 1;
+      }
+    };
+	auto init = [](){ 
+ 	   return 'c';
+	}();
+
+Runtime: 14 ms, beating 98.04% of leetcode users solutions using C++.
+Memory: 10.90 mb, beating 96.77% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Strings, for loops, if statements, and else statement.
