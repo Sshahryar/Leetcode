@@ -1,4 +1,4 @@
- # Leetcode
+# Leetcode
 
 Repository of my Leetcode journey, starting September 23, 2023. 
 
@@ -6147,3 +6147,41 @@ Memory: 10.90 mb, beating 96.77% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Strings, for loops, if statements, and else statement.
+
+### Solution Feb 6, 2024 (C++, leetcode) 49. Group Anagrams (Medium)
+In .LeetcodeDailySolution folder as Feb6,2024.cpp
+
+#### Prompt:
+
+Given an array of strings strs, group the anagrams together. You can return the answer in any order.
+
+An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+
+        vector<vector<string>> ans;                 
+
+        unordered_map<string, vector<string>> mp;         
+        
+        for(int i = 0; i < strs.size(); i++) {           
+            string s = strs[i];                         
+            sort(strs[i].begin(), strs[i].end());      
+            mp[strs[i]].push_back(s);                 
+        }
+        for(auto i : mp)                          
+            ans.push_back(i.second);
+        
+        return ans;     
+      }
+    };
+
+Runtime: 23 ms, beating 89.73% of leetcode users solutions using C++.
+Memory: 24.31 mb, beating 26.31% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, strings, unordered map, sorting, and for loops.
