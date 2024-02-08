@@ -6185,3 +6185,49 @@ Memory: 24.31 mb, beating 26.31% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, strings, unordered map, sorting, and for loops.
+
+### Solution Feb 7, 2024 (C++, leetcode) 451. Sort Characters By Frequency (Medium)
+In .LeetcodeDailySolution folder as Feb7,2024.cpp
+
+#### Prompt:
+
+Given a string s, sort it in decreasing order based on the frequency of the characters. The frequency of a character is the number of times it appears in the string.
+
+Return the sorted string. If there are multiple answers, return any of them.
+
+#### Solution:
+
+    #include <bits/stdc++.h>
+
+    class Solution {
+    public:
+    string frequencySort(string s) {
+
+        unordered_map<char, int> charCount;
+
+        for (char c : s) {
+            charCount[c]++;
+        }
+        vector<char> sortedChars;
+
+        for (const auto& entry : charCount) {
+            sortedChars.push_back(entry.first);
+        }
+        sort(sortedChars.begin(), sortedChars.end(), [&](char a, char b) {
+            return charCount[a] > charCount[b];
+        });
+        string result;
+
+        for (char c : sortedChars) {
+            result += string(charCount[c], c);
+        }
+        return result;
+      }
+    };
+
+Runtime: 6 ms, beating 95.18% of leetcode users solutions using C++.
+Memory: 11 mb, beating 15.79% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Unordered map, for loops, char array, sorting, and strings.
