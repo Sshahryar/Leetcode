@@ -6231,3 +6231,41 @@ Memory: 11 mb, beating 15.79% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Unordered map, for loops, char array, sorting, and strings.
+
+### Solution Feb 8, 2024 (C++, leetcode) 279. Perfect Squares (Medium)
+In .LeetcodeDailySolution folder as Feb8,2024.cpp
+
+#### Prompt:
+
+Given an integer n, return the least number of perfect square numbers that sum to n.
+
+A perfect square is an integer that is the square of an integer; in other words, it is the product of some integer with itself. For example, 1, 4, 9, and 16 are perfect squares while 3 and 11 are not.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int numSquares(int n) {
+        vector<int> dp(n + 1, 0);
+        dp[0] = 0;
+        dp[1] = 1;
+
+        for (int i = 2; i <= n; i++) {
+            int minVal = INT_MAX;
+
+            for (int j = 1; j * j <= i; j++) {
+                int remainder = i - j * j;
+                minVal = min(minVal, dp[remainder]);
+            }
+            dp[i] = minVal + 1;
+        }
+        return dp[n];
+      }
+    };
+
+Runtime: 32 ms, beating 94.80% of leetcode users solutions using C++.
+Memory: 10.46 mb, beating 38.77% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Integer array, dynamic programming, for loops, and simple math.
