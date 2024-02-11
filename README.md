@@ -6317,3 +6317,47 @@ Memory: 11.32 mb, beating 32.74% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Integer arrays, sorting, for loops, if statements, and dynamic programming.
+
+### Solution Feb 10, 2024 (C++, leetcode) 647. Palindromic Substrings (Medium)
+In .LeetcodeDailySolution folder as Feb10,2024.cpp
+
+#### Prompt:
+
+Given a string s, return the number of palindromic substrings in it.
+
+A string is a palindrome when it reads the same backward as forward.
+
+A substring is a contiguous sequence of characters within the string.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int countSubstrings(string s) {
+        int n = s.length(), ans = 0;
+        
+        for (int i = 0; i < n; ++i) {
+            int even = palindromeCount(s, i, i + 1);
+            int odd = palindromeCount(s, i, i);
+            ans += even + odd;
+        }
+        return ans;
+    }
+    int palindromeCount(const string& s, int left, int right) {
+        int count = 0;
+
+        while (left >= 0 && right < s.length() && s[left] == s[right]) {
+            --left;
+            ++right;
+            ++count;
+        }
+        return count;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 7.55 mb, beating 69.61% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Strings, for loops, simple math, and while loop.
