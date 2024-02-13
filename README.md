@@ -6426,3 +6426,38 @@ Memory: 12.53 mb, beating 77.18% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Dynamic programming, integer array, matrix, if statements, and for loops.
+
+### Solution Feb 12, 2024 (C++, leetcode) 169. Majority Element (Easy)
+In .LeetcodeDailySolution folder as Feb12,2024.cpp
+
+#### Prompt:
+
+Given an array nums of size n, return the majority element.
+
+The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int majorityElement(vector<int>& nums) {
+        int res = 0;
+        int majority = 0;
+        
+        for (int n : nums) {
+            if (majority == 0) {
+                res = n;
+            }
+            majority += n == res ? 1 : -1;
+        }
+        
+        return res;        
+      }
+    };
+
+Runtime: 9 ms, beating 89.28% of leetcode users solutions using C++. 
+Memory: 21.91 mb, beating 35.07% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Integer array, for loop, and if statement.
