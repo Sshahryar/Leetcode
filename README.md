@@ -6461,3 +6461,47 @@ Memory: 21.91 mb, beating 35.07% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Integer array, for loop, and if statement.
+
+### Solution Feb 13, 2024 (C++, leetcode) 2108. Find First Palindromic String in the Array (Easy)
+In .LeetcodeDailySolution folder as Feb13,2024.cpp
+
+#### Prompt:
+
+Given an array of strings words, return the first palindromic string in the array. If there is no such string, return an empty string "".
+
+A string is palindromic if it reads the same forward and backward.
+
+#### Solution:
+
+    #include <bits/stdc++.h>
+
+    class Solution {
+    public:
+    std::string firstPalindrome(std::vector<std::string>& words) {
+        auto isPalindrome = [](const std::string& s) {
+            int i = 0, j = s.length() - 1;
+
+            while (i <= j) {
+                if (s[i] != s[j]) {
+                    return false;
+                }
+                i++;
+                j--;
+            }
+            return true;
+        };
+        for (const auto& word : words) {
+            if (isPalindrome(word)) {
+                return word;
+            }
+        }
+        return "";
+      }
+    };
+
+Runtime: 40 ms, beating 91.75% of leetcode users solutions using C++.
+Memory: 23.29 mb, beating 62.17% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+String array, while loop, if statements, and for loop.
