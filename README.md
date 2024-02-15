@@ -6505,3 +6505,50 @@ Memory: 23.29 mb, beating 62.17% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 String array, while loop, if statements, and for loop.
+
+### Solution Feb 14, 2024 (C++, leetcode) 2149. Rearrange Array Elements by Sign (Medium)
+In .LeetcodeDailySolution folder as Feb14,2024.cpp
+
+#### Prompt:
+
+You are given a 0-indexed integer array nums of even length consisting of an equal number of positive and negative integers.
+
+You should rearrange the elements of nums such that the modified array follows the given conditions:
+
+Every consecutive pair of integers have opposite signs.
+For all integers with the same sign, the order in which they were present in nums is preserved.
+The rearranged array begins with a positive integer.
+Return the modified array after rearranging the elements to satisfy the aforementioned conditions.
+
+#### Solution:
+
+    #include <bits/stdc++.h>
+
+    class Solution {
+    public:
+    vector<int> rearrangeArray(vector<int>& nums) {
+        int n = nums.size();
+        int posIndex = 0, negIndex = 0;
+        vector<int> result(n);
+
+        for (int i = 0; i < n; ++i) {
+            if (i % 2 == 0) {
+                while (posIndex < n && nums[posIndex] < 0)
+                    ++posIndex;
+                        result[i] = nums[posIndex++];
+            } else {
+                while (negIndex < n && nums[negIndex] >= 0)
+                    ++negIndex;
+                        result[i] = nums[negIndex++];
+            }
+        }
+        return result;
+      }
+    };
+
+Runtime: 149 ms, beating 68.86% of leetcode users solutions using C++.
+Memory: 126.29 mb, beating 60.91% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Integer arrays, for loop, modulo, if statement, while loops, and else statement.
