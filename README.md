@@ -6592,3 +6592,47 @@ Memory: 83.40 mb, beating 35.31% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Integer array, sorting, for loop, and if statement.
+
+### Solution Feb 16, 2024 (C++, leetcode) 1481. Least Number of Unique Integers after K Removals (Medium)
+In .LeetcodeDailySolution folder as Feb16,2024.cpp
+
+#### Prompt:
+
+Given an array of integers arr and an integer k. Find the least number of unique integers after removing exactly k elements.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int findLeastNumOfUniqueInts(vector<int>& arr, int k) {
+        unordered_map<int, int> mp;
+
+        for (int& x : arr) {
+            mp[x]++;
+        }
+        vector<int> freq;
+        for (auto& pair : mp) {
+            freq.push_back(pair.second);
+        }
+        sort(begin(freq), end(freq));
+        
+        int count = 0;
+
+        for (int& f : freq) {
+            if (k >= f) {
+                k -= f;
+                count++;
+            } else {
+                break;
+            }
+        }
+        return freq.size() - count;
+      }
+    };
+
+Runtime: 115 ms, beating 84.61% of leetcode users solutions using C++.
+Memory: 66.06 mb, beating 61.11% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Integer arrays, unordered map, for loops, sorting, if statement, and else statement.
