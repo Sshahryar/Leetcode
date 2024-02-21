@@ -6768,3 +6768,28 @@ Memory: 124.60 mb, beating 13.32% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Long long, integer array, integer set, priority queue, sorting, for loops, while loop, and if statements.
+
+### Solution Feb 19, 2024 (C++, leetcode) Power of Two (Easy)
+In .LeetcodeDailySolution folder as Feb19,2024.cpp
+
+#### Prompt:
+
+Given an integer n, return true if it is a power of two. Otherwise, return false.
+
+An integer n is a power of two, if there exists an integer x such that n == 2x.
+
+#### Solution:
+
+    class Solution {
+    public:
+    bool isPowerOfTwo(int n) {
+        return n > 0 && not (n & n - 1);
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 7.09 mb, beating 73.96% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Boolean and simple return statement.
