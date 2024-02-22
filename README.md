@@ -6793,3 +6793,31 @@ Memory: 7.09 mb, beating 73.96% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Boolean and simple return statement.
+
+### Solution Feb 20, 2024 (C++, leetcode) 268. Missing Number (Easy)
+In .LeetcodeDailySolution folder as Feb20,2024.cpp
+
+#### Prompt:
+
+Given an array nums containing n distinct numbers in the range [0, n], return the only number in the range that is missing from the array.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int missingNumber(vector<int>& nums) {
+        int res = nums.size();
+        
+        for (int i = 0; i < nums.size(); i++) {
+            res += i - nums[i];
+        }
+        return res;        
+      }
+    };
+
+Runtime: 11 ms, beating 82.54% of leetcode users solutions using C++.
+Memory: 20.26 mb, beating 65.57% of leetcode users solution using C++.
+
+#### Concepts Applied:
+
+Integer array, for loop, and indexing.
