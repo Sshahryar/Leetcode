@@ -6821,3 +6821,32 @@ Memory: 20.26 mb, beating 65.57% of leetcode users solution using C++.
 #### Concepts Applied:
 
 Integer array, for loop, and indexing.
+
+### Solution Feb 21, 2024 (C++, leetcode) 201. Bitwise AND of Numbers Range (Medium)
+In .LeetcodeDailySolution folder as Feb21,2024.cpp
+
+#### Prompt:
+
+Given two integers left and right that represent the range [left, right], return the bitwise AND of all numbers in this range, inclusive.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int rangeBitwiseAnd(int left, int right) {
+        int cnt = 0;
+        while (left != right) {
+            left >>= 1;
+            right >>= 1;
+            cnt++;
+        }
+        return (left << cnt);
+      }
+    };
+
+Runtime: 4 ms, beating 79.88% of leetcode users solutions using C++.
+Memory: 8.78 mb, beating 75.72% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+While loop, and bit manipulation.
