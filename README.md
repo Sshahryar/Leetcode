@@ -6893,3 +6893,43 @@ Memory: 64.24 mb, beating 82.51% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Integer arrays, for loops, and if statement.
+
+### Solution Feb 23, 2024 (C++, leetcode) 787. Cheapest Flights Within K Stops (Medium)
+In .LeetcodeDailySolution folder as Feb23,2024.cpp
+
+#### Prompt:
+
+There are n cities connected by some number of flights. You are given an array flights where flights[i] = [fromi, toi, pricei] indicates that there is a flight from city fromi to city toi with cost pricei.
+
+You are also given three integers src, dst, and k, return the cheapest price from src to dst with at most k stops. If there is no such route, return -1.
+
+#### Solution:
+
+    #include <bits/stdc++.h>
+    using namespace std;
+
+    class Solution {
+    public:
+    int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int k) {
+        vector<int> dp(n, numeric_limits<int>::max());
+        dp[src] = 0;
+
+        for (int i = 0; i <= k; i++) {
+            vector<int> temp = dp;
+            for (const auto& flight : flights) {
+                if (dp[flight[0]] != numeric_limits<int>::max()) {
+                    temp[flight[1]] = min(temp[flight[1]], dp[flight[0]] + flight[2]);
+                }
+            }
+            dp = temp;
+        }
+        return dp[dst] == numeric_limits<int>::max() ? -1 : dp[dst];
+      }
+    };
+
+Runtime: 15 ms, beating 73.57% of leetcode users solutions using C++.
+Memory: 15.97 mb, beating 83.49% of leetcode users solutions suing C++.
+
+#### Concepts Applied:
+
+Integer arrays, dynamic programming, for loops, and if statement.
