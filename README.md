@@ -7104,3 +7104,43 @@ Memory: 90.99 mb, beating 82.42% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Union find, if statements, booleans, integer arrays, unordered map, for loops, else statements, and while loops. 
+
+### Solution Feb 26, 2024 (C++, leetcode) 543. Diameter of Binary Tree (Easy)
+In .LeetcodeDailySolution folder as Feb26,2024.cpp
+
+#### Prompt:
+
+Given the root of a binary tree, return the length of the diameter of the tree.
+
+The diameter of a binary tree is the length of the longest path between any two nodes in a tree. This path may or may not pass through the root.
+
+The length of a path between two nodes is represented by the number of edges between them.
+
+#### Solution:
+
+    class Solution {
+    public:
+
+    int helper(TreeNode*root, int&ans) {
+        if (!root) return 0;
+        int l = helper(root->left, ans);
+        int r = helper(root->right, ans);
+
+        ans = max(ans, l+r);
+
+        return 1 + max(l,r);
+      }
+    int diameterOfBinaryTree(TreeNode* root) {
+        if (!root) return 0;
+        int ans = 0;
+        helper(root, ans);
+        return ans;  
+      }
+    };
+
+Runtime: 6 ms, beating 73.56% of leetcode users solutions using C++.
+Memory: 18.94 mb, beating 70.17% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Tree, depth first search, recursion, and if statements.
