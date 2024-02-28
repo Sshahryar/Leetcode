@@ -7144,3 +7144,34 @@ Memory: 18.94 mb, beating 70.17% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Tree, depth first search, recursion, and if statements.
+
+### Solution Feb 28, 2024 (C++, leetcode) 513. Find Bottom Left Tree Value (Medium)
+In .LeetcodeDailySolution folder as Feb28,2024.cpp
+
+#### Prompt:
+
+Given the root of a binary tree, return the leftmost value in the last row of the tree.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int findBottomLeftValue(TreeNode* root) {
+        TreeNode* curr;
+        queue<TreeNode*> Q; Q.push(root);
+
+        while (!Q.empty()) {
+            curr = Q.front(); Q.pop();
+            if (curr->right) Q.push(curr->right);
+            if (curr->left) Q.push(curr->left);
+        }
+        return curr->val;
+      }
+    };
+
+Runtime: 3 ms, beating 98.29% of leetcode users solutions using C++.
+Memory: 20.15 mb, beating 76.07% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Tree, breadth first search, queue, and while loop.
