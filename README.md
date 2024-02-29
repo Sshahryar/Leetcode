@@ -7175,3 +7175,67 @@ Memory: 20.15 mb, beating 76.07% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Tree, breadth first search, queue, and while loop.
+
+### Solution Feb 29, 2024 (C++, leetcode) 1609. Even Odd Tree (Medium)
+In .LeetcodeDailySolution folder as Feb29,2024.cpp
+
+#### Prompt:
+
+A binary tree is named Even-Odd if it meets the following conditions:
+
+The root of the binary tree is at level index 0, its children are at level index 1, their children are at level index 2, etc.
+For every even-indexed level, all nodes at the level have odd integer values in strictly increasing order (from left to right).
+For every odd-indexed level, all nodes at the level have even integer values in strictly decreasing order (from left to right).
+Given the root of a binary tree, return true if the binary tree is Even-Odd, otherwise return false.
+
+#### Solution:
+
+    class Solution {
+    public:
+    bool isEvenOddTree(TreeNode* root) {
+        queue<TreeNode*> q;
+
+        q.push(root);
+
+        int level = 0;
+
+        while(!q.empty()){
+
+            int n = q.size();
+            int t1,t2 = 0;
+
+            if(level%2 == 0) t1 = -1;
+            else t2 = INT_MAX;
+
+            for(int i = 0; i < n; i++){
+                TreeNode* te = q.front();
+                q.pop();
+
+                if(level %2 == 0){
+                    if(te->val %2 == 0) return false;
+                    if(te->val <= t1) return false;
+
+                    t1 = max(t1,te->val);
+                }
+                else{
+                    if(te->val%2 != 0) return false;
+                    if(te->val >= t2) return false;
+
+                    t2 = min(t2,te->val);
+                }
+
+                if(te->left) q.push(te->left);
+                if(te->right) q.push(te->right);
+            }
+            level++;
+        }
+        return true;
+      }
+    };
+
+Runtime: 178 ms, beating 96.14% of leetcode users solutions using C++.
+Memory: 149.22 mb, beating 76.25% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Tree, breadth first search, queues, while loop, for loop, if statements, and else statements.
