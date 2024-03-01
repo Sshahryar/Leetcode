@@ -7239,3 +7239,39 @@ Memory: 149.22 mb, beating 76.25% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Tree, breadth first search, queues, while loop, for loop, if statements, and else statements.
+
+### Solution March 1, 2024 (C++, leetcode) 2864. Maximum Odd Binary Number (Easy)
+In .LeetcodeDailySolution folder as March1,2024.cpp
+
+#### Prompt:
+
+You are given a binary string s that contains at least one '1'.
+
+You have to rearrange the bits in such a way that the resulting binary number is the maximum odd binary number that can be created from this combination.
+
+Return a string representing the maximum odd binary number that can be created from the given combination.
+
+Note that the resulting string can have leading zeros.
+
+#### Solution:
+
+    using namespace std;
+
+    class Solution {
+    public:
+
+    string maximumOddBinaryNumber(string s) {
+           
+        int ones_count = std::count(s.begin(), s.end(), '1');
+        int zeros_count = s.length() - ones_count;
+
+        return string(ones_count - 1, '1') + string(zeros_count, '0') + "1";
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 9.09 mb, beating 19.34% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Strings and counting.
