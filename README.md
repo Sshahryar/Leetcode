@@ -7105,6 +7105,32 @@ Memory: 90.99 mb, beating 82.42% of leetcode users solutions using C++.
 
 Union find, if statements, booleans, integer arrays, unordered map, for loops, else statements, and while loops. 
 
+### Solution Feb 26, 2024 (C++, leetcode) 100. Same Tree (Easy)
+In .LeetcodeDailySolution folder as Feb26,2024.cpp
+
+#### Prompt:
+
+Given the roots of two binary trees p and q, write a function to check if they are the same or not.
+
+Two binary trees are considered the same if they are structurally identical, and the nodes have the same value.
+
+#### Solution:
+
+    class Solution {
+    public:
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        
+        return p==q || p && q && p->val==q->val && isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 11.69 mb, beating 44.38% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Boolean, recursion, and comparisons.
+
 ### Solution Feb 27, 2024 (C++, leetcode) 543. Diameter of Binary Tree (Easy)
 In .LeetcodeDailySolution folder as Feb27,2024.cpp
 
