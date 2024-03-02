@@ -7301,3 +7301,36 @@ Memory: 9.09 mb, beating 19.34% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Strings and counting.
+
+### Solution March 2, 2024 (C++, leetcode) 977. Squares of a Sorted Array (Easy)
+In .LeetcodeDailySolution folder as March2,2024.cpp
+
+#### Prompt:
+
+Given an integer array nums sorted in non-decreasing order, return an array of the squares of each number sorted in non-decreasing order.
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<int> sortedSquares(vector<int>& nums) {
+        int n = nums.size(), l = 0, r = n - 1;
+
+        vector<int> ans(n);
+
+        int x[2]={nums[r]*nums[r], nums[l]*nums[l] }, z;
+        
+        for(int i=n-1; i>=0; i--){           
+            z=(x[1]>x[0])?nums[min(++l, n-1)]:nums[max(--r, 0)];
+            ans[i]=exchange(x[x[1]>x[0]], z*z);
+        }
+        return ans;
+      }
+    };
+
+Runtime: 16 ms, beating 91.11% of leetcode users solutions using C++.
+Memory: 28.48 mb, beating 47.83% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Integer arrays, two pointers, and for loop.
