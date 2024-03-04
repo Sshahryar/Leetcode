@@ -1,4 +1,4 @@
-# Leetcode
+``# Leetcode
 
 Repository of my Leetcode journey, starting September 23, 2023. 
 
@@ -7334,3 +7334,52 @@ Memory: 28.48 mb, beating 47.83% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Integer arrays, two pointers, and for loop.
+
+### Solution March 3, 2024 (C++, leetcode) 19. Remove Nth Node From End of List (Medium)
+In .LeetcodeDailySolution folder as March3,2024.cpp
+
+#### Prompt:
+
+Given the head of a linked list, remove the nth node from the end of the list and return its head.
+
+#### Solution:
+
+    class Solution {
+    public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+
+    ListNode *temp,*prev;
+
+    int node=0,count=1;
+
+    temp=head;
+
+    while(temp){
+        temp=temp->next;
+        node++;
+    }
+    if(node-n==0){
+        head=head->next;
+        return head;
+    }
+    temp=head;
+
+    while(count!=node-n+1){
+        prev=temp;
+        temp=temp->next;
+        count++;
+    }
+    prev->next=temp->next;
+
+    temp->next=NULL;
+    
+    return head;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 13.32 mb, beating 14.73% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Tree, ListNode, while loops, and if statement.
