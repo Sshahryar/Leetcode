@@ -7434,3 +7434,44 @@ Memory: 13.12 mb, beating 24.03% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Integer arrays, if statements, sorting, two pointers, while loops, and else statement. 
+
+### Solution March 5, 2024 (C++, leetcode) 1750. Minimum Length of String After Deleting Similar Ends (Medium)
+In .LeetcodeDailySolution folder as March5,2024.cpp
+
+#### Prompt:
+
+Given a string s consisting only of characters 'a', 'b', and 'c'. You are asked to apply the following algorithm on the string any number of times:
+
+Pick a non-empty prefix from the string s where all the characters in the prefix are equal.
+Pick a non-empty suffix from the string s where all the characters in this suffix are equal.
+The prefix and the suffix should not intersect at any index.
+The characters from the prefix and suffix must be the same.
+Delete both the prefix and the suffix.
+Return the minimum length of s after performing the above operation any number of times (possibly zero times).\
+
+#### Solution:
+
+    class Solution {
+    public:
+    int minimumLength(string s) {
+
+        int l = 0, r = s.length() - 1;
+
+        while( l < r && s[l] == s[r]){
+
+            char ch = s[l];
+
+            while( l <= r && s[l] == ch) l++;
+            
+            while(l <= r && s[r] == ch) r--;
+        }
+         return r-l+1;
+      }
+    };
+
+Runtime: 19 ms, beating 96.94% of leetcode users solutions using C++.
+Memory: 14.03 mb, beating 13.27% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+String, two pointers, char, and while loops.
