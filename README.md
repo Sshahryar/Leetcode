@@ -1,4 +1,4 @@
-``# Leetcode
+# Leetcode
 
 Repository of my Leetcode journey, starting September 23, 2023. 
 
