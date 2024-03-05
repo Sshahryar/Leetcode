@@ -7383,3 +7383,54 @@ Memory: 13.32 mb, beating 14.73% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Tree, ListNode, while loops, and if statement.
+
+### Solution March 3, 2024 (C++, leetcode) 948. Bag of Tokens (Medium)
+In .LeetcodeDailySolution folder as March3,2024.cpp
+
+#### Prompt:
+
+You start with an initial power of power, an initial score of 0, and a bag of tokens given as an integer array tokens, where each tokens[i] donates the value of tokeni.
+
+Your goal is to maximize the total score by strategically playing these tokens. In one move, you can play an unplayed token in one of the two ways (but not both for the same token):
+
+Face-up: If your current power is at least tokens[i], you may play tokeni, losing tokens[i] power and gaining 1 score.
+Face-down: If your current score is at least 1, you may play tokeni, gaining tokens[i] power and losing 1 score.
+Return the maximum possible score you can achieve after playing any number of tokens.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int bagOfTokensScore(vector<int>& tokens, int power) {
+
+        if (tokens.empty()) return 0;
+
+        sort(begin(tokens),end(tokens));
+
+        if(power<tokens[0]) return 0;
+
+        int l=0, r=tokens.size()-1;
+        int score=0;
+
+        while(l<=r){
+            while (l<=r && power>=tokens[l]){
+               power-=tokens[l];
+               l++;
+               score++;
+            }
+            if (l<r && score>0) { 
+                power+= tokens[r--];
+                score--;
+            }
+            else break;
+        }
+        return score; 
+      }
+    };
+
+Runtime: 4 ms, beating 75.27% of leetcode users solutions using C++.
+Memory: 13.12 mb, beating 24.03% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Integer arrays, if statements, sorting, two pointers, while loops, and else statement. 
