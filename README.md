@@ -7475,3 +7475,43 @@ Memory: 14.03 mb, beating 13.27% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 String, two pointers, char, and while loops.
+
+### Solution March 6, 2024 (C++, leetcode) 141. Linked List Cycle (Easy)
+In .LeetcodeDailySolution folder as March6,2024.cpp
+
+#### Prompt:
+
+Given head, the head of a linked list, determine if the linked list has a cycle in it.
+
+There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the next pointer. Internally, pos is used to denote the index of the node that tail's next pointer is connected to. Note that pos is not passed as a parameter.
+
+Return true if there is a cycle in the linked list. Otherwise, return false.
+
+#### Solution:
+
+    class Solution {
+    public:
+    bool hasCycle(ListNode *head) {
+
+        ListNode *fast = head;
+        ListNode *slow = head; 
+
+        while (fast != NULL && fast->next != NULL) { 
+
+            fast = fast->next->next; 
+            slow = slow->next;
+            
+            if (fast == slow) { 
+                return true;
+            }
+        }
+        return false; 
+      }
+    };
+
+Runtime: 7 ms, beating 85.70% of leetcode users solutions using C++.
+Memory: 10.52 mb, beating 54.74% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Boolean, linked list, while loop, and if statement.
