@@ -7515,3 +7515,35 @@ Memory: 10.52 mb, beating 54.74% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Boolean, linked list, while loop, and if statement.
+
+### Solution March 7, 2024 (C++, leetcode) 876. Middle of the Linked List (Easy)
+In .LeetcodeDailySolution folder as March7,2024.cpp
+
+#### Prompt:
+
+Given the head of a singly linked list, return the middle node of the linked list.
+
+If there are two middle nodes, return the second middle node.
+
+#### Solution:
+
+    class Solution {
+    public:
+    ListNode* middleNode(ListNode* head) {
+
+        ListNode *fast=head, *slow=head;
+
+        while(fast->next&& fast->next->next){
+            fast=fast->next->next;
+            slow=slow->next;
+        }
+       return (fast->next) ? slow->next:slow;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 8.53 mb, beating 67.77% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Linked list, while loop, and two pointers.
