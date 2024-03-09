@@ -7547,3 +7547,45 @@ Memory: 8.53 mb, beating 67.77% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Linked list, while loop, and two pointers.
+
+### Solution March 8, 2024 (C++, leetcode) 3005. Count Elements With Maximum Frequency (Easy)
+In .LeetcodeDailySolution folder as March8,2024.cpp
+
+#### Prompt:
+
+You are given an array nums consisting of positive integers.
+
+Return the total frequencies of elements in nums such that those elements all have the maximum frequency.
+
+The frequency of an element is the number of occurrences of that element in the array.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int maxFrequencyElements(vector<int>& a) {
+
+        vector<int> frequency(101, 0);
+
+        int maxFreq = 0, ans = 0;
+
+        for (int num : a) {
+            frequency[num]++;
+            maxFreq = max(maxFreq, frequency[num]);
+        }
+
+        for (int i = 1; i <= 100; i++) {
+            if (frequency[i] == maxFreq) {
+                ans += frequency[i];
+            }
+        }
+        return ans;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 22.08 mb, beating 14.45% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Integer arrays, for loops, and indexing.
