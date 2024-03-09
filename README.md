@@ -7589,3 +7589,36 @@ Memory: 22.08 mb, beating 14.45% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Integer arrays, for loops, and indexing.
+
+### Solution March 9, 2024 (C++, leetcode) 2540. Minimum Common Value (Easy)
+In .LeetcodeDailySolution folder as March9,2024.cpp
+
+#### Prompt:
+
+Given two integer arrays nums1 and nums2, sorted in non-decreasing order, return the minimum integer common to both arrays. If there is no common integer amongst nums1 and nums2, return -1.
+
+Note that an integer is said to be common to nums1 and nums2 if both arrays have at least one occurrence of that integer.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int getCommon(vector<int>& nums1, vector<int>& nums2) {
+   
+        int i = 0, j = 0;
+
+        while(i < nums1.size() && j < nums2.size()){
+            if(nums1[i] == nums2[j]) return nums1[i];
+            else if(nums1[i] < nums2[j]) i++;
+            else j++;
+        }
+        return -1;
+      }
+    };
+
+Runtime: 60 ms, beating 92.48% of leetcode users solutions using C++.
+Memory: 52.98 mb, beating 51.69% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Integer arrays, comparison, while loop, if statement, else if statement, and else statement.
