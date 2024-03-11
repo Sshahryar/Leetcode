@@ -7671,3 +7671,46 @@ Memory: 12.33 mb, beating 75.61% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Integer arrays, sorting, two pointers, while loop, if statement, else if statement, and else statement.
+
+### Solution March 11, 2024 (C++, leetcode) 791. Custom Sort String (Medium) 
+In .LeetcodeDailySolution folder as March11,2024.cpp
+
+#### Prompt:
+
+You are given two strings order and s. All the characters of order are unique and were sorted in some custom order previously.
+
+Permute the characters of s so that they match the order that order was sorted. More specifically, if a character x occurs before a character y in order, then x should occur before y in the permuted string.
+
+Return any permutation of s that satisfies this property.
+
+#### Solution:
+
+    class Solution {
+    public:
+    string customSortString(string order, string s) {
+
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+
+        vector<int> freq(26,0);
+
+
+        string ans="";
+        
+        for(char ch:s) freq[ch - 'a'] ++; 
+        for(char ch:order){
+            ans.append(freq[ch - 'a'], ch); 
+            freq[ch - 'a'] = 0; 
+        }
+        for( int i = 0; i < 26; i++) ans.append(freq[i], i + 'a');
+
+        return ans;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 7.42 mb, beating 67.41% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Strings, integer array, for loops, char, and frequency, 
