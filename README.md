@@ -7714,3 +7714,52 @@ Memory: 7.42 mb, beating 67.41% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Strings, integer array, for loops, char, and frequency, 
+
+### Solution March 12, 2024 (C++, leetcode) 1171. Remove Zero Sum Consecutive Nodes from Linked List (Medium)
+In .LeetcodeDailySolution folder as March12,2024.cpp
+
+#### Prompt:
+
+Given the head of a linked list, we repeatedly delete consecutive sequences of nodes that sum to 0 until there are no such sequences.
+
+After doing so, return the head of the final linked list. You may return any such answer.
+
+#### Solution:
+
+    class Solution {
+    public:
+
+    ListNode* removeZeroSumSublists(ListNode* head) {
+
+        ListNode node = ListNode(0, head);
+
+        ListNode* ptr =& node;
+
+        int prefix = 1000000;
+
+        static ListNode* mp[2000001] = {NULL};
+
+        for( ; ptr; ptr = ptr ->  next){
+
+            prefix += (ptr -> val);
+            
+            mp[prefix] = ptr;
+        }
+        prefix = 1000000, ptr =& node;
+
+        for( ; ptr; ptr=ptr->next){
+
+            prefix += (ptr -> val);
+
+            ptr -> next = mp[prefix] -> next;
+        }
+        return node.next;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 13.72 mb, beating 60.28% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Strongly linked list, native array, and for loops.
