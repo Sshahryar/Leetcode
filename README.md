@@ -7763,3 +7763,38 @@ Memory: 13.72 mb, beating 60.28% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Strongly linked list, native array, and for loops.
+
+### Solution March 13, 2024 (C++, leetcode) 2485. Find the Pivot Integer (Easy)
+In .LeetcodeDailySolution folder as March13,2024.cpp
+
+#### Prompt:
+
+Given a positive integer n, find the pivot integer x such that:
+
+The sum of all elements between 1 and x inclusively equals the sum of all elements between x and n inclusively.
+Return the pivot integer x. If no such integer exists, return -1. It is guaranteed that there will be at most one pivot index for the given input.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int pivotInteger(int n) {
+      int ls = (n * (n + 1)) /2, rs = 0;
+
+      while(ls > rs){
+        rs += n;
+        
+        if(rs == ls) return n;
+        ls -= n;
+        n--;
+      }
+      return -1;
+      }
+    };
+
+Runtime: 3 ms, beating 51.39% of leetcode users solutions using C++.
+Memory: 7.08 mb, beating 87.40% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Prefix sum, while loop, and if statement.
