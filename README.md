@@ -7798,3 +7798,49 @@ Memory: 7.08 mb, beating 87.40% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Prefix sum, while loop, and if statement.
+
+### Solution March 14, 2024 (C++, leetcode) 930. Binary Subarrays With Sum (Medium)
+In .LeetcodeDailySolution folder as March14,2024.cpp
+
+#### Prompt:
+
+Given a binary array nums and an integer goal, return the number of non-empty subarrays with a sum goal.
+
+A subarray is a contiguous part of the array.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int numSubarraysWithSum(vector<int>& nums, int goal) {
+
+        int i = 0, j = 0, sum = 0, count = 0, freq = 0;
+
+        while (i < nums.size()) {
+            sum += nums[i];
+            
+            if (nums[i] == 1) {
+                freq = 0;
+            }
+            if (sum > goal) {
+                sum -= nums[j];
+                j++;
+            }
+            while (j <= i && sum == goal) {
+                sum -= nums[j];
+                j++;
+                freq++;
+            }
+            count += freq;
+            i++;
+        }
+        return count;
+      }
+    };
+
+Runtime: 12 ms, beating 98.67% of leetcode users solutions using C++.
+Memory: 30.98 mb, beating 94.65% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Integer arrays, sliding window, while loops, and if statements.
