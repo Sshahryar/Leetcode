@@ -7844,3 +7844,54 @@ Memory: 30.98 mb, beating 94.65% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Integer arrays, sliding window, while loops, and if statements.
+
+### Solution March 15, 2024 (C++, leetcode) 238. Product of Array Except Self (Medium)
+In .LeetcodeDailySolution folder as March15,2024.cpp
+
+#### Prompt:
+
+Given an integer array nums, return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i].
+
+The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
+
+You must write an algorithm that runs in O(n) time and without using the division operation.
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+
+        int n = nums.size();
+    
+        vector<int> right(n);
+        vector<int> res(n);
+        
+        int prod = 1;
+
+        for(int i = n - 1; i >= 0; i--) {
+            prod *= nums[i];
+            right[i] = prod;
+        }
+        prod = 1;
+
+        for(int i = 0; i < n - 1; i++) {
+
+            int lp = prod;
+            int rp = right[i + 1];
+
+            res[i] = rp * lp;
+            prod *= nums[i]; 
+        }
+        res[n - 1] = prod;
+        
+        return res;
+      }
+    };
+
+Runtime: 10 ms, beating 92.63% of leetcode users solutions using C++.
+Memory: 26.75 mb, beating 49.51% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Integer arrays, prefix sum, and for loops.
