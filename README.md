@@ -7942,3 +7942,59 @@ Memory: 87.62 mb, beating 76.06% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Integer array, unordered map, map, for loops, if statements, and else statements.
+
+### Solution March 17, 2024 (C++, leetcode) 57. Insert Interval (Medium)
+In .LeetcodeDailySolution folder as March17,2024.cpp
+
+#### Prompt:
+
+You are given an array of non-overlapping intervals intervals where intervals[i] = [starti, endi] represent the start and the end of the ith interval and intervals is sorted in ascending order by starti. You are also given an interval newInterval = [start, end] that represents the start and end of another interval.
+
+Insert newInterval into intervals such that intervals is still sorted in ascending order by starti and intervals still does not have any overlapping intervals (merge overlapping intervals if necessary).
+
+Return intervals after the insertion.
+
+Note that you don't need to modify intervals in-place. You can make a new array and return it.
+
+#### Solution:
+
+    using namespace std;
+
+    class Solution {
+    public:
+    vector<vector<int>> insert(vector<vector<int>>& intervals, const vector<int>& newInterval) {
+        vector<vector<int>> result;
+        result.reserve(intervals.size() + 1);
+
+        int i = 0;
+
+        while (i < intervals.size() && intervals[i][1] < newInterval[0]) {
+            result.push_back(intervals[i]);
+            i++;
+        }
+
+        vector<int> modifiedInterval = newInterval;
+
+        while (i < intervals.size() && intervals[i][0] <= modifiedInterval[1]) {
+            modifiedInterval[0] = min(modifiedInterval[0], intervals[i][0]);
+            modifiedInterval[1] = max(modifiedInterval[1], intervals[i][1]);
+            i++;
+        }
+
+        result.push_back(modifiedInterval);
+
+        while (i < intervals.size()) {
+            result.push_back(intervals[i]);
+            i++;
+        }
+
+        return result;
+      }
+    };
+
+Runtime: 4 ms, beating 96.48% of leetcode users solutions using C++.
+Memory: 20.36 mb, beating 82.99% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Integer arrays, intervals, and while loops.
