@@ -7895,3 +7895,50 @@ Memory: 26.75 mb, beating 49.51% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Integer arrays, prefix sum, and for loops.
+
+### Solution March 16, 2024 (C++, leetcode) 525. Contiguous Array (Medium)
+In .LeetcodeDailySolution folder as March16,2024.cpp
+
+#### Prompt:
+
+Given a binary array nums, return the maximum length of a contiguous subarray with an equal number of 0 and 1.
+
+#### Solution:
+
+    #include <bits/stdc++.h>
+    using namespace std;
+
+    class Solution {
+    public:
+    int findMaxLength(vector<int>& nums) {
+
+        unordered_map<int, int> map;
+        int count = 0;
+        int ans = 0;
+        map[0] = -1;
+
+        for(int i = 0; i < nums.size(); i++) {
+
+            if(nums[i] == 1) {
+                count++;
+
+            } else {
+                count--;
+            }
+            if(map.find(count) != map.end()) {
+                ans = max(ans, i - map[count]);
+    
+            } else {
+                map[count] = i;
+            }
+        }
+        return ans;
+      }
+    };
+
+Runtime: 79 ms, beating 80.61% of leetcode users solutions using C++.
+Memory: 87.62 mb, beating 76.06% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Integer array, unordered map, map, for loops, if statements, and else statements.
