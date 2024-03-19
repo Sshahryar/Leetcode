@@ -7998,3 +7998,51 @@ Memory: 20.36 mb, beating 82.99% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Integer arrays, intervals, and while loops.
+
+### Solution March 18, 2024 (C++, leetcode) 452. Minimum Number of Arrows to Burst Balloons (Medium)
+In .LeetcodeDailySolution folder as March18,2024.cpp
+
+#### Prompt:
+
+There are some spherical balloons taped onto a flat wall that represents the XY-plane. The balloons are represented as a 2D integer array points where points[i] = [xstart, xend] denotes a balloon whose horizontal diameter stretches between xstart and xend. You do not know the exact y-coordinates of the balloons.
+
+Arrows can be shot up directly vertically (in the positive y-direction) from different points along the x-axis. A balloon with xstart and xend is burst by an arrow shot at x if xstart <= x <= xend. There is no limit to the number of arrows that can be shot. A shot arrow keeps traveling up infinitely, bursting any balloons in its path.
+
+Given the array points, return the minimum number of arrows that must be shot to burst all balloons.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int findMinArrowShots(vector<vector<int>>& points) {
+
+        sort(points.begin(), points.end(), [](vector<int> &v1,vector<int> &v2){
+        
+        if(v1[0] == v2[0]){
+                return v1[1] < v2[1];
+            }
+            return v1[0] < v2[0];
+        });
+       int count = 0;  
+       int prevlast = points[0][1];
+          
+       for(int i = 1; i < points.size(); i++){
+           if(prevlast >= points[i][0]){
+               if(prevlast > points[i][1]){
+                   prevlast = points[i][1];
+               }
+           } else {
+               prevlast = points[i][1];
+               count++;
+           }
+       }
+       return count+1;
+      }
+    };
+
+Runtime: 234 ms, beating 94.59% of leetcode users solutions using C++.
+Memory: 93.22 mb, beating 62.22% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Integer arrays, sorting, if statements, for loop, and else statement.
