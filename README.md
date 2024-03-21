@@ -8085,3 +8085,54 @@ Memory: 37.87 mb, beating 94.90% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Char array, frequencies, sorting, greedy, and for loop. 
+
+### Solution March 20, 2024 (C++, leetcode) 1669. Merge In Between Linked Lists (Medium)
+In .LeetcodeDailySolution folder as March20,2024.cpp
+
+#### Prompt:
+
+You are given two linked lists: list1 and list2 of sizes n and m respectively.
+
+Remove list1's nodes from the ath node to the bth node, and put list2 in their place.
+
+The blue edges and nodes in the following figure indicate the result:
+
+Build the result list and return its head.
+
+#### Solution:
+
+    class Solution {
+    public:
+    ListNode* mergeInBetween(ListNode* list1, int a, int b, ListNode* list2) {
+
+        ListNode *temp1 = list2, *head = list1, *pos = list2, *end = list1;
+
+        while(list2 -> next){
+            list2 = list2 -> next;
+        }
+        int i = 0, j = 0;
+
+        while(list1 || i == a && j == b){
+            if(i == a - 1){
+                pos = list1;
+        }
+        if(j == b){
+            end = list1;
+        }
+        i++;
+        j++;
+        list1 = list1 -> next;
+        }
+        pos -> next = temp1;
+        list2 -> next = end -> next;
+
+        return head;
+      }
+    };
+
+Runtime: 171 ms, beating 81.65% of leetcode users solutions using C++.
+Memory: 98.11 mb, beating 13.45% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Linked list, while loops, and if statements.
