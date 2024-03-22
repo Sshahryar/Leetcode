@@ -8136,3 +8136,37 @@ Memory: 98.11 mb, beating 13.45% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Linked list, while loops, and if statements.
+
+### Solution March 21, 2024 (C++, leetcode) 206. Reverse Linked List (Easy)
+In .LeetcodeDailySolution folder as March21,2024.cpp
+
+#### Prompt:
+
+Given the head of a singly linked list, reverse the list, and return the reversed list.
+
+#### Solution:
+
+    class Solution {
+    public:
+    ListNode* reverseList(ListNode* head) {
+
+        ListNode *prev = nullptr;
+        ListNode *current = head;
+        ListNode *next = nullptr;
+        
+        while (current != nullptr) {
+            next = current -> next; 
+            current -> next = prev; 
+            prev = current;
+            current = next;
+        }        
+        return prev;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 11.39 mb, beating 99.73% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Linked list, three pointers, and while loop.
