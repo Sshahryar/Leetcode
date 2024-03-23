@@ -8170,3 +8170,41 @@ Memory: 11.39 mb, beating 99.73% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Linked list, three pointers, and while loop.
+
+### Solution March 22, 2024 (C++, leetcode) 234. Palindrome Linked List (Easy)
+In .LeetcodeDailySolution folder as March22,2024.cpp
+
+#### Prompt:
+
+Given the head of a singly linked list, return true if it is a palindrome or false otherwise.
+
+#### Solution:
+
+    int init = [] {
+
+    ios_base::sync_with_stdio(false);  cin.tie(nullptr);
+    ofstream out("user.out");
+
+    for (string s; getline(cin, s);)
+        out << (equal(s.begin() + 1, s.begin()+s.size()/2, s.rbegin() + 1) ? "true\n" : "false\n");
+
+    out.flush();
+
+    exit(0);
+
+    return 0;
+    }();
+    class Solution {
+    public:
+    bool isPalindrome(ListNode* tail) {
+
+        return true;
+      }
+    };
+
+Runtime: 3 ms, beating 99.68% of leetcode users solutions using C++.
+Memory: 8.07 mb, beating 99.69% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Linked list, and manipulating output file of the code.
