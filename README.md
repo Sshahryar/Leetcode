@@ -8208,3 +8208,62 @@ Memory: 8.07 mb, beating 99.69% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Linked list, and manipulating output file of the code.
+
+### Solution March 23, 2024 (C++, leetcode) 143. Reorder List (Medium)
+In .LeetcodeDailySolution folder as March23,2024.cpp
+
+#### Prompt:
+
+You are given the head of a singly linked-list. The list can be represented as:
+
+L0 → L1 → … → Ln - 1 → Ln
+Reorder the list to be on the following form:
+
+L0 → Ln → L1 → Ln - 1 → L2 → Ln - 2 → …
+You may not modify the values in the list's nodes. Only nodes themselves may be changed.
+
+#### Solution:
+
+    class Solution {
+    public:
+    void reorderList(ListNode* head) {
+
+        if (!head) return;
+        
+        ListNode *tmp = head, *half = head, *prev = NULL;
+
+        while (tmp->next && tmp->next->next) {
+
+            tmp = tmp -> next -> next;
+            half = half -> next;
+        }
+        if (tmp->next) half = half->next;
+        
+        while (half) {
+
+            tmp = half -> next;
+            half -> next = prev;
+            prev = half;
+            half = tmp;
+        }
+        half = prev;
+        
+        while (head && half) {
+
+            tmp = head -> next;
+            prev = half -> next;
+            head -> next = half;
+            half -> next = tmp;
+            head = tmp;
+            half = prev;
+        }        
+        if (head && head -> next) head -> next -> next = NULL;
+      }
+    };
+
+Runtime: 23 ms, beating 69.83% of leetcode users solutions using C++.
+Memory: 21.05 mb, beating 99.47% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Linked list, two pointers, if statements, and while loops.
