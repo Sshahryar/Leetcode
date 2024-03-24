@@ -8267,3 +8267,37 @@ Memory: 21.05 mb, beating 99.47% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Linked list, two pointers, if statements, and while loops.
+
+### Solution March 24, 2024 (C++, leetcode) 287. Find the Duplicate Number (Medium)
+In .LeetcodeDailySolution folder as March24,2024.cpp
+
+#### Prompt:
+
+Given an array of integers nums containing n + 1 integers where each integer is in the range [1, n] inclusive.
+
+There is only one repeated number in nums, return this repeated number.
+
+You must solve the problem without modifying the array nums and uses only constant extra space.
+
+#### Solution:
+
+    using namespace std;
+
+    class Solution {
+    public:
+    int findDuplicate(vector<int>& nums) {
+    
+        while(nums[0] != nums[nums[0]]){
+
+        swap(nums[0], nums[nums[0]]);
+    }
+    return nums[0];
+      }
+    };
+
+Runtime: 58 ms, beating 98.11% of leetcode users solutions using C++.
+Memory: 63.68 mb, beating 56.88% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Integer array, while loop, and swap.
