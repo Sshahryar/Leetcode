@@ -8301,3 +8301,41 @@ Memory: 63.68 mb, beating 56.88% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Integer array, while loop, and swap.
+
+### Solution March 25, 2024 (C++, leetcode) 442. Find All Duplicates in an Array (Medium) 
+In .LeetcodeDailySolution folder as March25,2024.cpp
+
+#### Prompt:
+
+Given an integer array nums of length n where all the integers of nums are in the range [1, n] and each integer appears once or twice, return an array of all the integers that appears twice.
+
+You must write an algorithm that runs in O(n) time and uses only constant extra space.
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<int> findDuplicates(vector<int>& v) {
+
+        int n = v.size();
+
+        vector<int> ans;
+
+        for(int i = 0; i < n; i++) {
+
+            if(v[abs(v[i]) - 1] < 0) {
+                ans.push_back(abs(v[i]));
+                continue;
+            }
+            v[abs(v[i]) - 1] *=-1;
+        }
+        return ans;
+      }
+    };
+
+Runtime: 34 ms, beating 89.48% of leetcode users solutions using C++.
+Memory: 35.79 mb, beating 98.04% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Integer array, for loop, and if statement.
