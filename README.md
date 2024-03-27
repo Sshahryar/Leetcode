@@ -8339,3 +8339,44 @@ Memory: 35.79 mb, beating 98.04% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Integer array, for loop, and if statement.
+
+### Solution March 26, 2024 (C++, leetcode) 41. First Missing Positive (Hard)
+In .LeetcodeDailySolution folder as March26,2024.cpp
+
+#### Prompt:
+
+Given an unsorted integer array nums. Return the smallest positive integer that is not present in nums.
+
+You must implement an algorithm that runs in O(n) time and uses O(1) auxiliary space.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int firstMissingPositive(vector<int>& nums) {
+
+        int n = nums.size();
+        int i = 0;
+
+        while (i < n) {
+            if (nums[i] > 0 && nums[i] <= n && nums[i] != nums[nums[i] - 1]) {
+                swap(nums[i], nums[nums[i] - 1]);
+            } else {
+                i++;
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            if (nums[i] != i + 1) {
+                return i + 1;
+            }
+        }
+        return n + 1;
+      }
+    };
+
+Runtime: 43 ms, beating 62.52% of leetcode users solutions using C++.
+Memory: 43.47 mb, beating 95.87% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Integer array, cyclic sort, while loop, if statements, else statement, and for loop.
