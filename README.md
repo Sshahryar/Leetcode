@@ -8380,3 +8380,47 @@ Memory: 43.47 mb, beating 95.87% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Integer array, cyclic sort, while loop, if statements, else statement, and for loop.
+
+### Solution March 27, 2024 (C++, leetcode) 713. Subarray Project Less Than K (Medium)
+In .LeetcodeDailySolution folder as March27,2024.cpp
+
+#### Prompt:
+
+Given an array of integers nums and an integer k, return the number of contiguous subarrays where the product of all the elements in the subarray is strictly less than k.
+
+#### Solution:
+
+    class Solution {
+    public:
+    static int numSubarrayProductLessThanK(vector<int>& nums, int k) {
+
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+
+        if (k <= 1) return 0; 
+
+        unsigned prod = 1;
+
+        int n = nums.size(), r = 0, cnt = 0;
+
+        for(int l = 0; l < n; l++) {
+
+            while (r < n && prod < k) 
+                prod *= nums[r++];
+                cnt += (r - l); 
+            if (prod >= k)
+                cnt--; 
+            prod /= nums[l];
+        }
+        return cnt;
+        return 'c';
+      }
+    };
+
+Runtime: 39 ms, beating 99.02% of leetcode users solutions using C++.
+Memory: 63.68 mb, beating 57.39% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Sliding window, if statements, for loop, and while loop.
