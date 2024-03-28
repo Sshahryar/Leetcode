@@ -8424,3 +8424,50 @@ Memory: 63.68 mb, beating 57.39% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Sliding window, if statements, for loop, and while loop.
+
+### Solution March 28, 2024 (C++, leetcode) 2958. Length of Longest Subarray With at Most K Frequency (Medium)
+In .LeetcodeDailySolution folder as March28,2024.cpp
+
+#### Prompt:
+
+You are given an integer array nums and an integer k.
+
+The frequency of an element x is the number of times it occurs in an array.
+
+An array is called good if the frequency of each element in this array is less than or equal to k.
+
+Return the length of the longest good subarray of nums.
+
+A subarray is a contiguous non-empty sequence of elements within an array.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int maxSubarrayLength(vector<int>& nums, int k) {
+
+        int left = 0 , right = 0, ans = 0;
+
+        unordered_map<int, int> map;
+
+        while(left < nums.size() && right < nums.size()) {
+
+            map[nums[right]]++;
+
+            while(map[nums[right]] > k) {
+                map[nums[left]]--;
+                left++;
+            }
+            ans = max(ans, right - left + 1);
+            right++;
+        }
+        return ans;
+      }
+    };
+
+Runtime: 208 ms, beating 65.29% of leetcode users solutions using C++.
+Memory: 148.41 mb, beating 56.77% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Two pointers, unordered map, sliding window technique, and while loops. 
