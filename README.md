@@ -8518,3 +8518,51 @@ Memory: 120.04 mb, beating 61.72% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Sliding window, subarray, and while loops. 
+
+### Solution March 30, 2024 (C++, leetcode) 992. Subarrays with K Different Integers (Hard)
+In .LeetcodeDailySolution folder as March30,2024.cpp
+
+#### Prompt:
+
+Given an integer array nums and an integer k, return the number of good subarrays of nums.
+
+A good array is an array where the number of different integers in that array is exactly k.
+
+For example, [1,2,3,1,2] has 3 different integers: 1, 2, and 3.
+A subarray is a contiguous part of an array.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int countSubarraysWithAtMostKDistinct(vector<int>& nums, int k){
+
+        int n = nums.size();
+        unordered_map<int, int> mp;
+        int i = 0, j = 0;
+        int c = 0;
+        
+        while(j < n){
+            mp[nums[j]]++;
+            
+            while(i <= j && mp.size() > k){
+                if(--mp[nums[i]] == 0) mp.erase(nums[i]);
+                i++;
+            }
+            c += (j - i + 1);
+            j++;
+        }
+        return c;
+    }
+    int subarraysWithKDistinct(vector<int>& nums, int k) {
+
+        return countSubarraysWithAtMostKDistinct(nums, k) - countSubarraysWithAtMostKDistinct(nums, k - 1);
+      }
+    };
+
+Runtime: 103 ms, beating 70.64% of leetcode users solutions using C++.
+Memory: 49.80 mb, beating 56.74% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Integer array, unordered map, sliding window, while loops, and if statement.
