@@ -8471,3 +8471,50 @@ Memory: 148.41 mb, beating 56.77% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Two pointers, unordered map, sliding window technique, and while loops. 
+
+### Solution March 29, 2024 (C++, leetcode) 2962. Count Subarrays Where Max Element Appears at Least K Times (Medium)
+In .LeetcodeDailySolution folder as March29,2024.cpp
+
+#### Prompt:
+
+You are given an integer array nums and a positive integer k.
+
+Return the number of subarrays where the maximum element of nums appears at least k times in that subarray.
+
+A subarray is a contiguous sequence of elements within an array.
+
+#### Solution:
+
+    class Solution {
+    public:
+    long long countSubarrays(vector<int>& nums, int k) {
+
+        int n = nums.size();
+        int maxe =* max_element(nums.begin(), nums.end());
+        long long ans = 0;
+        
+        int count = 0; 
+        int i = 0, j = 0;
+
+        while(j < n) {
+
+            count += (nums[j] == maxe);
+            
+            while(i <= j && count >= k) {
+
+                ans += (n - j);
+                count -= (nums[i] == maxe); 
+                i++;
+            }
+            j++;
+        }
+        return ans;
+      }
+    };
+
+Runtime: 127 ms, beating 72.46% of leetcode users solutions using C++.
+Memory: 120.04 mb, beating 61.72% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Sliding window, subarray, and while loops. 
