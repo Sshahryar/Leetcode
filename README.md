@@ -8566,3 +8566,55 @@ Memory: 49.80 mb, beating 56.74% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Integer array, unordered map, sliding window, while loops, and if statement.
+
+### Solution March 31, 2024 (C++, leetcode) 2444. Count Subarrays With Fixed Bounds (Hard)
+In .LeetcodeDailySolution folder as March31,2024.cpp
+
+#### Prompt:
+
+You are given an integer array nums and two integers minK and maxK.
+
+A fixed-bound subarray of nums is a subarray that satisfies the following conditions:
+
+The minimum value in the subarray is equal to minK.
+The maximum value in the subarray is equal to maxK.
+Return the number of fixed-bound subarrays.
+
+A subarray is a contiguous part of an array.
+
+#### Solution:
+
+    class Solution {
+    public:
+    long long countSubarrays(vector<int>& nums, int minK, int maxK) {
+
+        int n = nums.size();
+        long long result = 0;
+        int minKIndex = -1;  
+        int maxKIndex = -1;  
+        int culpritIndex = -1; 
+
+        for (int i = 0; i < n; i++) {
+            if (nums[i] < minK || nums[i] > maxK) {
+                culpritIndex = i;  
+            }
+            if (nums[i] == minK) {
+                minKIndex = i;     
+            }
+            if (nums[i] == maxK) {
+                maxKIndex = i;     
+            }
+            long long smaller = min(minKIndex, maxKIndex);  
+            long long temp = smaller - culpritIndex;        
+            result += temp <= 0 ? 0 : temp;          
+        }
+        return result;
+      }
+    };
+
+Runtime: 88 ms, beating 63.40% of leetcode users solutions using C++.
+Memory: 82.60 mb, beating 54.90% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Integer arrays, two pointers, indexing, for loops, and if statements.
