@@ -8618,3 +8618,41 @@ Memory: 82.60 mb, beating 54.90% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Integer arrays, two pointers, indexing, for loops, and if statements.
+
+### Solution April 1, 2024 (C++, leetcode) 58. Length of Last Word (Easy)
+In .LeetcodeDailySolution folder as April1,2024.cpp
+
+#### Prompt:
+
+Given a string s consisting of words and spaces, return the length of the last word in the string.
+
+A word is a maximal substringconsisting of non-space characters only.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int lengthOfLastWord(string s) {
+
+        int length = 0;
+        bool counting = false;
+        
+        for (int i = s.length() - 1; i >= 0; i--) {
+            if (s[i] != ' ') {
+                counting = true;
+                length++;
+            }
+            else if (counting) {
+                break;
+            }
+        }
+        return length;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 7.48 mb, beating 99.31% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+String, boolean, for loop, if statement, and else-if statement.
