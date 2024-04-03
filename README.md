@@ -8657,8 +8657,8 @@ Memory: 7.48 mb, beating 99.31% of leetcode users solutions using C++.
 
 String, boolean, for loop, if statement, and else-if statement.
 
-### Solution Apr 2, 2024 (C++, leetcode) 205. Isomorphic Strings (Easy)
-In .LeetcodeDailySolution folder as Apr2,2024.cpp
+### Solution Apriil 2, 2024 (C++, leetcode) 205. Isomorphic Strings (Easy)
+In .LeetcodeDailySolution folder as April2,2024.cpp
 
 #### Prompt:
 
@@ -8699,3 +8699,57 @@ Memory: 7.99 mb, beating 98.91% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Strings, integer arrays, hash table, if statements, and for loop.
+
+### Solution April 3, 2024 (C++, leetcode) 79. Word Search (Medium)
+In .LeetcodeDailySolution folder as April3,2024.cpp
+
+#### Prompt:
+
+Given an m x n grid of characters board and a string word, return true if word exists in the grid.
+
+The word can be constructed from letters of sequentially adjacent cells, where adjacent cells are horizontally or vertically neighboring. The same letter cell may not be used more than once.
+
+#### Solution:
+
+    class Solution {
+    public:
+    bool exist(vector<vector<char>>& board, string word) {
+
+        int m = board.size();
+        int n = board[0].size();
+        
+        function<bool(int, int, int)> backtrack = [&](int i, int j, int k) {
+
+            if (k == word.length()) {
+                return true;
+            }
+            if (i < 0 || i >= m || j < 0 || j >= n || board[i][j] != word[k]) {
+                return false;
+            }
+            char temp = board[i][j];
+            board[i][j] = '\0';
+            
+            if (backtrack(i + 1, j, k + 1) || backtrack(i - 1, j, k + 1) || 
+                backtrack(i, j + 1, k + 1) || backtrack(i, j - 1, k + 1)) {
+                return true;
+            }
+            board[i][j] = temp; 
+            return false;
+        };
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                if (backtrack(i, j, 0)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+      }
+    };
+
+Runtime: 779 ms, beating 48.98% of leetcode users solutions using C++.
+Memory: 10.47 mb, beating 70.64% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Boolean, recursion (recursive function: backtrack), if statements, chars, and for loops, 
