@@ -8798,3 +8798,51 @@ Memory: 7.27 mb, beating 96.47% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 String, transform, and char.
+
+### Solution April 5, 2024 (C++, leetcode) 1544. Make The String Great (Easy)
+In .LeetcodeDailySolution folder as April5,2024.cpp
+
+#### Prompt:
+
+Given a string s of lower and upper case English letters.
+
+A good string is a string which doesn't have two adjacent characters s[i] and s[i + 1] where:
+
+0 <= i <= s.length - 2
+s[i] is a lower-case letter and s[i + 1] is the same letter but in upper-case or vice-versa.
+To make the string good, you can choose two adjacent characters that make the string bad and remove them. You can keep doing this until the string becomes good.
+
+Return the string after making it good. The answer is guaranteed to be unique under the given constraints.
+
+Notice that an empty string is also good.
+
+#### Solution:
+
+    class Solution {
+    public:
+    string makeGood(string s) {
+
+        int endPosition = 0; 
+        char charArray[s.size()]; 
+        
+        for (int i = 0; i < s.size(); ++i) {
+            charArray[i] = s[i];
+        }
+        for (int currentPosition = 0; currentPosition < s.size(); currentPosition++) {
+            if (endPosition > 0 && abs(charArray[currentPosition] - charArray[endPosition - 1]) == 32)
+                endPosition--;
+            else {
+                charArray[endPosition] = charArray[currentPosition];
+                endPosition++;
+            }
+        }
+        return string(charArray, charArray + endPosition);
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 7.47 mb, beating 98.66% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Strings, two pointers, charArray, for loops, if statement, and else statement.
