@@ -8910,6 +8910,53 @@ Memory: 12.96 mb, beating 50.73% of leetcode users solutions using C++.
 
 Strings, stack, for loop, if statements, else statements, else-if statement, while loop, and char.
 
+### Solution April 7, 2024 (C++, leetcode) 678. Valid Parenthesis String (Medium)
+In .LeetcodeDailySolution folder as April7,2024.cpp
+
+#### Prompt:
+
+Given a string s containing only three types of characters: '(', ')' and '*', return true if s is valid.
+
+The following rules define a valid string:
+
+Any left parenthesis '(' must have a corresponding right parenthesis ')'.
+Any right parenthesis ')' must have a corresponding left parenthesis '('.
+Left parenthesis '(' must go before the corresponding right parenthesis ')'.
+'*' could be treated as a single right parenthesis ')' or a single left parenthesis '(' or an empty string "".
+
+#### Solution:
+
+    class Solution {
+    public:
+    bool checkValidString(string s) {
+        int leftMin = 0, leftMax = 0;
+
+        for (char c : s) {
+            if (c == '(') {
+                leftMin++;
+                leftMax++;
+            } else if (c == ')') {
+                leftMin--;
+                leftMax--;
+            } else {
+                leftMin--;
+                leftMax++;
+            }
+            if (leftMax < 0) return false;
+            if (leftMin < 0) leftMin = 0;
+        }
+        
+        return leftMin == 0;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 7.16 mb, beating 92.43% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+String, greedy, for loop, if statements, else-if statement, and else statement.
+
 ### Solution April 8, 2024 (C++, leetcode) 1700. Number of Students Unable to Eat Lunch (Easy)
 In .LeetcodeDailySolution folder as April8,2024.cpp
 
