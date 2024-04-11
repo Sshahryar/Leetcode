@@ -9085,3 +9085,51 @@ Memory: 10.96 mb, beating 34.06% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Integer arrays, deque, simulation, for loops, sorting, and if statements.
+
+### Solution April 11, 2024 (C++, leetcode) 402. Remove K Digits (Medium)
+In .LeetcodeDailySolution folder as April11,2024.cpp
+
+#### Prompt:
+
+Given string num representing a non-negative integer num, and an integer k, return the smallest possible integer after removing k digits from num.
+
+#### Solution:
+
+    class Solution {
+    public:
+    string removeKdigits(string num, int k) {
+        stack<char> numStack;
+        
+        for (char digit : num) {
+            while (k > 0 && !numStack.empty() && digit < numStack.top()) {
+                numStack.pop();
+                k--;
+            }
+            if(numStack.empty() && digit=='0')
+                continue;
+            numStack.push(digit);
+        }        
+        while (k > 0 && !numStack.empty()) {
+            numStack.pop();
+            k--;
+        }
+        string temp = "";
+
+        while (!numStack.empty()) {
+            temp.push_back(numStack.top());
+            numStack.pop();
+        }
+        reverse(temp.begin(), temp.end());
+
+        if (temp.size() == 0)
+            temp.push_back('0');
+        return temp;
+      }
+    };
+
+Runtime: 7 ms, beating 90.50% of leetcode users solutions using C++.
+Memory: 9.94 mb, beating 60.42% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+String, monotonic stack, for loop, while loops, if statements, and reverse. 
