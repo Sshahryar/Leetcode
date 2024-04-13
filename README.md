@@ -9133,3 +9133,41 @@ Memory: 9.94 mb, beating 60.42% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 String, monotonic stack, for loop, while loops, if statements, and reverse. 
+
+### Solution April 12, 2024 (C++, leetcode) 42. Trapping Rain Water (Hard)
+In .LeetcodeDailySolution folder as April12,2024.cpp
+
+#### Prompt:
+
+Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int trap(vector<int>& height) {
+
+        int i = 0, left_max = height[0], sum = 0;
+        int j = height.size() - 1, right_max = height[j];
+
+        while (i < j) {
+            if (left_max <= right_max) {
+                sum += (left_max - height[i]);
+                i++;
+                left_max = max(left_max, height[i]);
+            } else {
+                sum += (right_max - height[j]);
+                j--;
+                right_max = max(right_max, height[j]);
+            }
+        }
+        return sum;
+      }
+    };
+
+Runtime: 11 ms, beating 54.15% of leetcode users solutions using C++.
+Memory: 22.17 mb, beating 95.62% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Integer array, two pointers, while loop, if statement, and else statement.
