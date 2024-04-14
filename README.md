@@ -9171,3 +9171,75 @@ Memory: 22.17 mb, beating 95.62% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Integer array, two pointers, while loop, if statement, and else statement.
+
+### Solution April 13, 2024 (C++, leetcode) 85. Maximal Rectangle (Hard)
+In .LeetcodeDailySolution folder as April13,2024.cpp
+
+#### Prompt:
+
+Given a rows x cols binary matrix filled with 0's and 1's, find the largest rectangle containing only 1's and return its area.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int largestRectangleArea(vector<int>& heights, int n) {
+
+        if (n == 0)
+            return 0;
+
+        vector<int> l(n), r(n);
+        r[n - 1] = n;
+        l[0] = -1;
+
+        for (int i = 1; i < n; i++) {
+
+            int p = i - 1;
+
+            while (p >= 0 && heights[p] >= heights[i])
+                p = l[p];
+                
+            l[i] = p;
+        }
+        int maxA = heights[n - 1] * (r[n - 1] - l[n - 1] - 1);
+
+        for (int i = n - 2; i >= 0; i--) {
+
+            int p = i + 1;
+
+            while (p < n && heights[p] >= heights[i])
+                p = r[p];
+
+            r[i] = p;
+
+            maxA = max(maxA, heights[i] * (r[i] - l[i] - 1));
+        }
+        return maxA;
+    }
+    int maximalRectangle(vector<vector<char>>& matrix) {
+
+        const unsigned short row = matrix.size();
+        const unsigned short col = matrix[0].size();
+
+        if (row == 1 && col == 1)
+            return matrix[0][0] == '1';
+
+        vector<int> h(col);
+        int maxArea = 0;
+
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                h[j] = (matrix[i][j] == '0') ? 0 : h[j] + 1;
+            }
+            maxArea = max(maxArea, largestRectangleArea(h, col));
+        }
+        return maxArea;
+      }
+    };
+
+Runtime: 23 ms, beating 95.04% of leetcode users solutions using C++.
+Memory: 17.56 mb, beating 66.98% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Integer arrays, if statements, for loops, while loops, dynamic programming, and matrix.
