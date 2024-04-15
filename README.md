@@ -9282,3 +9282,46 @@ Memory: 14.70 mb, beating 81.75% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Tree, if statements, recursion, and else statement.
+
+### Solution April 15, 2024 (C++, leetcode) 129. Sum Root to Leaf Numbers (Medium) 
+In .LeetcodeDailySolution folder as April15,2024.cpp
+
+#### Prompt:
+
+You are given the root of a binary tree containing digits from 0 to 9 only.
+
+Each root-to-leaf path in the tree represents a number.
+
+For example, the root-to-leaf path 1 -> 2 -> 3 represents the number 123.
+Return the total sum of all root-to-leaf numbers. Test cases are generated so that the answer will fit in a 32-bit integer.
+
+A leaf node is a node with no children.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int sumNumbers(TreeNode* root) {
+
+        int ans = 0;
+        
+        function<void(TreeNode*, int)> dfs = [&](TreeNode* node, int path) {
+            if (!node) return;
+            if (!node->left && !node->right) {
+                ans += path * 10 + node->val;
+                return;
+            }
+            dfs(node->left, path * 10 + node->val);
+            dfs(node->right, path * 10 + node->val);
+        };
+        dfs(root, 0);
+        return ans;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 11.10 mb, beating 31.40% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Tree, depth first search, and if statements.
