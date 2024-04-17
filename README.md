@@ -9325,3 +9325,50 @@ Memory: 11.10 mb, beating 31.40% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Tree, depth first search, and if statements.
+
+### Solution April 16, 2024 (C++, leetcode) 623. Add One Row to Tree (Medium)
+In .LeetcodeDailySolution folder as April16,2024.cpp
+
+#### Prompt:
+
+Given the root of a binary tree and two integers val and depth, add a row of nodes with value val at the given depth depth.
+
+Note that the root node is at depth 1.
+
+The adding rule is:
+
+Given the integer depth, for each not null tree node cur at the depth depth - 1, create two tree nodes with value val as cur's left subtree root and right subtree root.
+cur's original left subtree should be the left subtree of the new left subtree root.
+cur's original right subtree should be the right subtree of the new right subtree root.
+If depth == 1 that means there is no depth depth - 1 at all, then create a tree node with value val as the new root of the whole original tree, and the original tree is the new root's left subtree.
+
+#### Solution:
+
+    class Solution {
+    public:
+    TreeNode* addOneRow(TreeNode* root, int val, int depth, bool isLeft=1) {
+
+    if (!root) return root;
+    switch(depth){
+        case 1:
+            if (isLeft) return new TreeNode(val, root, NULL);
+            else return new TreeNode(val, NULL, root);
+        break;
+        case 2:
+            root->left=new TreeNode(val, root->left, NULL);
+            root->right=new TreeNode(val, NULL, root->right);
+        break;
+        default:
+            root->left=addOneRow(root->left, val, depth-1);
+            root->right=addOneRow(root->right, val, depth-1, 0);
+    }
+    return root;
+      }
+    };
+
+Runtime: 7 ms, beating 95.54% of leetcode users solutions using C++.
+Memory: 24.20 mb, beating 95.92% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Tree, recursive breadth-first search, if statement, switch, and break.
