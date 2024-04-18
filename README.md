@@ -9372,3 +9372,52 @@ Memory: 24.20 mb, beating 95.92% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Tree, recursive breadth-first search, if statement, switch, and break.
+
+### Solution April 17, 2024 (C++, leetcode) 988. Smallest String Starting From Leaf (Medium)
+In .LeetcodeDailySolution folder as April17,2024.cpp
+
+#### Prompt:
+
+You are given the root of a binary tree where each node has a value in the range [0, 25] representing the letters 'a' to 'z'.
+
+Return the lexicographically smallest string that starts at a leaf of this tree and ends at the root.
+
+As a reminder, any shorter prefix of a string is lexicographically smaller.
+
+For example, "ab" is lexicographically smaller than "aba".
+A leaf of a node is a node that has no children.
+
+#### Solution:
+
+    class Solution {
+    private:
+
+    string res = "~"; 
+
+    void dfs(TreeNode* root, string str) {
+
+        if(root == nullptr){
+            return;
+        }
+        str = char('a' + root->val) + str;
+
+        if(root->left == nullptr && root->right == nullptr){
+            res = min(res, str);       
+        }
+        dfs(root->left, str);
+        dfs(root->right, str);
+    }
+    public:
+    string smallestFromLeaf(TreeNode* root) {
+        dfs(root, "");
+        
+        return res;
+      }
+    };
+
+Runtime: 4 ms, beating 90.65% of leetcode users solutions using C++.
+Memory: 20.40 mb, beating 50.79% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+String, tree, if statements, and depth-first search.
