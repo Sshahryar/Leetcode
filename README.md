@@ -9421,3 +9421,50 @@ Memory: 20.40 mb, beating 50.79% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 String, tree, if statements, and depth-first search.
+
+### Solution April 18, 2024 (C++, leetcode) 463. Island Perimeter (Easy)
+In .LeetcodeDailySolution folder as April18,2024.cpp
+
+#### Prompt:
+
+You are given row x col grid representing a map where grid[i][j] = 1 represents land and grid[i][j] = 0 represents water.
+
+Grid cells are connected horizontally/vertically (not diagonally). The grid is completely surrounded by water, and there is exactly one island (i.e., one or more connected land cells).
+
+The island doesn't have "lakes", meaning the water inside isn't connected to the water around the island. One cell is a square with side length 1. The grid is rectangular, width and height don't exceed 100. Determine the perimeter of the island.
+
+#### Solution:
+
+    class Solution {
+    private:
+    inline int getCellPerimeter(int x, int y, vector<vector<int>>& grid) {
+        int cellPerimiter = 4;
+
+        if (x > 0 && grid[x-1][y] == 1) cellPerimiter -= 2;
+        if (y > 0 && grid[x][y-1] == 1) cellPerimiter -= 2;
+
+        return cellPerimiter;
+    }
+
+    public:
+    int islandPerimeter(vector<vector<int>>& grid) {
+        int islandPerimeter = 0;
+
+        for (int i = 0; i < grid.size(); ++i) {
+            for (int j = 0; j < grid[0].size(); ++j) {
+                if (grid[i][j] == 1) {
+                    islandPerimeter += getCellPerimeter(i, j, grid); 
+                }
+            }
+        }
+
+        return islandPerimeter;
+      }
+    };
+
+Runtime: 68 ms, beating 75.91% of leetcode users solutions using C++.
+Memory: 100.79 mb, beating 76.51% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+If statements, grid, and for loops.
