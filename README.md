@@ -9468,3 +9468,52 @@ Memory: 100.79 mb, beating 76.51% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 If statements, grid, and for loops.
+
+### Solution April 19, 2024 (C++, leetcode) 200. Number of Islands (Medium)
+In .LeetcodeDailySolution folder as April19,2024.cpp
+
+#### Prompt:
+
+Given an m x n 2D binary grid grid which represents a map of '1's (land) and '0's (water), return the number of islands.
+
+An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int numIslands(vector<vector<char>>& grid) {
+        if(grid.empty() || grid[0].empty())
+            return 0;
+        
+        int rows = grid.size();
+        int cols = grid[0].size();
+        int islands = 0;
+        
+        function<void(int, int)> dfs = [&](int row, int col) {
+            if(row < 0 || col < 0 || row >= rows || col >= cols || grid[row][col] != '1')
+                return;
+            grid[row][col] = '0';
+            dfs(row - 1, col);
+            dfs(row + 1, col);
+            dfs(row, col - 1);
+            dfs(row, col + 1);
+        };
+        for(int row = 0; row < rows; row++) {
+            for(int col = 0; col < cols; col++) {
+                if(grid[row][col] == '1') {
+                    dfs(row, col);
+                    islands++;
+                }
+            }
+        }
+        return islands;
+      }
+    };
+
+Runtime: 26 ms, beating 77.04% of leetcode users solutions using C++.
+Memory: 16.74 mb, beating 48.78% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+2D Grid, depth-first search, if statemnts, and for loops.
