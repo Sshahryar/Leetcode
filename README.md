@@ -9517,3 +9517,62 @@ Memory: 16.74 mb, beating 48.78% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 2D Grid, depth-first search, if statemnts, and for loops.
+
+### Solution April 20, 2024 (C++, leetcode) 1992. Find All Groups of Farmland (Medium)
+In .LeetcodeDailySolution folder as April20,2024.cpp
+
+#### Prompt:
+
+You are given a 0-indexed m x n binary matrix land where a 0 represents a hectare of forested land and a 1 represents a hectare of farmland.
+
+To keep the land organized, there are designated rectangular areas of hectares that consist entirely of farmland. These rectangular areas are called groups. No two groups are adjacent, meaning farmland in one group is not four-directionally adjacent to another farmland in a different group.
+
+land can be represented by a coordinate system where the top left corner of land is (0, 0) and the bottom right corner of land is (m-1, n-1). Find the coordinates of the top left and bottom right corner of each group of farmland. A group of farmland with a top left corner at (r1, c1) and a bottom right corner at (r2, c2) is represented by the 4-length array [r1, c1, r2, c2].
+
+Return a 2D array containing the 4-length arrays described above for each group of farmland in land. If there are no groups of farmland, return an empty array. You may return the answer in any order.
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<vector<int>> findFarmland(vector<vector<int>>& land) {
+
+        vector<vector<int>> result;
+        int m = land.size();
+        int n = land[0].size();
+        
+        auto findFarmlandCoordinates = [&](int row, int col) {
+
+            vector<int> coordinates = {row, col};
+            int r = row, c = col;
+            
+            while (r < m && land[r][col] == 1) r++;
+            while (c < n && land[row][c] == 1) c++;
+            
+            coordinates.push_back(r - 1);
+            coordinates.push_back(c - 1);
+            
+            for (int i = row; i <= r - 1; i++) {
+                for (int j = col; j <= c - 1; j++) {
+                    land[i][j] = 0;
+                }
+            }
+            return coordinates;
+        };
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (land[i][j] == 1) {
+                    result.push_back(findFarmlandCoordinates(i, j));
+                }
+            }
+        }
+        return result;
+      }
+    };
+
+Runtime: 117 ms, beating 50.16% of leetcode users solutions using C++.
+Memory: 63.36 mb, beating 77.02% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Integer arrays, 2D matrix, while loops, for loops, and if statements. 
