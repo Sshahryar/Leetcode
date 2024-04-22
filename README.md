@@ -9620,3 +9620,69 @@ Memory: 118.75 mb, beating 100% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Boolean, depth-first search, if statements, integer arrays, while loop, and for loop. 
+
+### Solution April 22, 2024 (C++, leetcode) 752. Open the Lock (Medium)
+In .LeetcodeDailySolution folder as April22,2024.cpp
+
+#### Prompt:
+
+You have a lock in front of you with 4 circular wheels. Each wheel has 10 slots: '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'. The wheels can rotate freely and wrap around: for example we can turn '9' to be '0', or '0' to be '9'. Each move consists of turning one wheel one slot.
+
+The lock initially starts at '0000', a string representing the state of the 4 wheels.
+
+You are given a list of deadends dead ends, meaning if the lock displays any of these codes, the wheels of the lock will stop turning and you will be unable to open it.
+
+Given a target representing the value of the wheels that will unlock the lock, return the minimum total number of turns required to open the lock, or -1 if it is impossible.
+
+#### Solution:
+
+    class Solution {
+    public:
+    static int openLock(vector<string>& deadends, const string& target) {
+
+        bitset<10000> seen = 0;
+
+        for(string& s: deadends){
+            seen[stoi(s)] = 1;
+        }
+
+        if (seen[0]) return -1;
+
+        queue<pair<short, short>> q;
+        q.emplace(0, 0);
+        seen[0] = 1;
+        short z = stoi(target);
+        const short dec[4] = {1, 10, 100,1000};
+        const char move[2][10] = {
+            {1,2,3,4,5,6,7,8,9,0},
+            {9,0,1,2,3,4,5,6,7,8}
+        };
+        while(!q.empty()){
+
+            auto [turn, s] = q.front(); q.pop();
+
+            if (s == z) return turn;
+            short digit, t = s;
+
+            for(short d = 0; d < 4; d++){
+                digit = t % 10, t /= 10;
+                for(short i: {0, 1}){
+                    short dnext = move[i][digit];
+                    short x = s + (dnext - digit) * dec[d];
+                    if (!seen[x]) {
+                        q.emplace(turn + 1, x);
+                        seen[x] = 1;
+                    }
+                }
+            }
+        }
+        return -1;
+      }
+    };
+
+Runtime: 17 ms, beating 98.71% of leetcode users solutions using C++.
+Memory: 13.64 mb, beating 99.60% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+String arrays, bitset, for loops, if statements, queue, pair, and while loop.
