@@ -9686,3 +9686,70 @@ Memory: 13.64 mb, beating 99.60% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 String arrays, bitset, for loops, if statements, queue, pair, and while loop.
+
+### Solution April 23, 2024 (C++, leetcode) 310. Minimum Height Trees (Medium)
+In .LeetcodeDailySolution folder as April23,2024.cpp
+
+#### Prompt:
+
+A tree is an undirected graph in which any two vertices are connected by exactly one path. In other words, any connected graph without simple cycles is a tree.
+
+Given a tree of n nodes labelled from 0 to n - 1, and an array of n - 1 edges where edges[i] = [ai, bi] indicates that there is an undirected edge between the two nodes ai and bi in the tree, you can choose any node of the tree as the root. When you select a node x as the root, the result tree has height h. Among all possible rooted trees, those with minimum height (i.e. min(h))  are called minimum height trees (MHTs).
+
+Return a list of all MHTs' root labels. You can return the answer in any order.
+
+The height of a rooted tree is the number of edges on the longest downward path between the root and a leaf.
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<int> findMinHeightTrees(int n, vector<vector<int>>& edges) {
+        if (n == 1) return {0};
+    
+        vector<list<int>> adjacency_list(n);
+        vector<int> degree(n, 0);
+
+        for (auto& edge : edges) {
+            int u = edge[0], v = edge[1];
+            adjacency_list[u].push_back(v);
+            adjacency_list[v].push_back(u);
+            degree[u]++;
+            degree[v]++;
+        }
+        queue<int> leaves;
+
+        for (int i = 0; i < n; ++i) {
+            if (degree[i] == 1) leaves.push(i);
+        }
+        int remainingNodes = n;
+
+        while (remainingNodes > 2) {
+            int leavesCount = leaves.size();
+            remainingNodes -= leavesCount;
+            for (int i = 0; i < leavesCount; ++i) {
+                int leaf = leaves.front();
+                leaves.pop();
+                for (int neighbor : adjacency_list[leaf]) {
+                    if (--degree[neighbor] == 1) {
+                        leaves.push(neighbor);
+                    }
+                }
+            }
+        }
+        vector<int> result;
+        
+        while (!leaves.empty()) {
+            result.push_back(leaves.front());
+            leaves.pop();
+        }
+        return result;
+      }
+    };
+
+Runtime: 101 ms, beating 82.73% of leetcode users solutions using C++.
+Memory: 60.04 mb, beating 52.56% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Integer arrays, breadth-first search, if statements, list, for loops, queue, and while loops. 
