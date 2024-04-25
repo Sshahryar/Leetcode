@@ -9753,3 +9753,41 @@ Memory: 60.04 mb, beating 52.56% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Integer arrays, breadth-first search, if statements, list, for loops, queue, and while loops. 
+
+### Solution April 24, 2024 (C++, leetcode) 1137. N-th Tribonacci Number (Easy)
+In .LeetcodeDailySolution folder as April24,2024.cpp
+
+#### Prompt:
+
+The Tribonacci sequence Tn is defined as follows: 
+
+T0 = 0, T1 = 1, T2 = 1, and Tn+3 = Tn + Tn+1 + Tn+2 for n >= 0.
+
+Given n, return the value of Tn.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int tribonacci(int n) {
+         
+        if (n == 0) return 0;
+
+        else if (n <= 2) return 1;
+
+        tuple<int, int, int> t = {0, 1, 1};
+         
+        for(int i = 3; i <= n; i++){
+            auto [x, y, z] = t;
+            t = {y, z, x + y + z};
+        }            
+        return get<2>(t);
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 7.06 mb, beating 81.43% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+If statement, else-if statement, tuple, and for loop.
