@@ -9791,3 +9791,46 @@ Memory: 7.06 mb, beating 81.43% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 If statement, else-if statement, tuple, and for loop.
+
+### Solution April 25, 2024 (C++, leetcode) 2370. Longest Ideal Subsequence (Medium)
+In .LeetcodeDailySolution folder as April25,2024.cpp
+
+#### Prompt:
+
+You are given a string s consisting of lowercase letters and an integer k. We call a string t ideal if the following conditions are satisfied:
+
+t is a subsequence of the string s.
+The absolute difference in the alphabet order of every two adjacent letters in t is less than or equal to k.
+Return the length of the longest ideal string.
+
+A subsequence is a string that can be derived from another string by deleting some or no characters without changing the order of the remaining characters.
+
+Note that the alphabet order is not cyclic. For example, the absolute difference in the alphabet order of 'a' and 'z' is 25, not 1.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int longestIdealString(string& s, int k) {
+
+        int seq[26] = {0};
+        int ans = 0;
+
+        for(char c: s){
+            int i = c-'a';
+            int j0 = max(0, i - k),  j1 = min(i + k, 25);
+
+            for(int j = j0; j <= j1; j++)
+                seq[i] = max(seq[i], seq[j]);
+            seq[i]++;
+        }
+        return *max_element(seq, seq + 26);   
+      }
+    };
+
+Runtime: 41 ms, beating 83.26% of leetcode users solutions using C++.
+Memory: 10.36 mb, beating 100% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+String, dynamic programming, and for loops.
