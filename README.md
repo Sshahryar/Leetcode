@@ -9834,3 +9834,51 @@ Memory: 10.36 mb, beating 100% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 String, dynamic programming, and for loops.
+
+### Solution April 26, 2024 (C++, leetcode) 1289. Minimum Falling Path Sum II (Hard)
+In .LeetcodeDailySolution folder as April26,2024.cpp
+
+#### Prompt:
+
+Given an n x n integer matrix grid, return the minimum sum of a falling path with non-zero shifts.
+
+A falling path with non-zero shifts is a choice of exactly one element from each row of grid such that no two elements chosen in adjacent rows are in the same column.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int minFallingPathSum(vector<vector<int>>& grid) {
+
+        int n = grid.size();
+        int m = grid[0].size();
+        vector<vector<int>> dp(n, vector<int>(m, 0));
+
+        for (int j = 0; j < m; ++j) {
+            dp[n - 1][j] = grid[n - 1][j];
+        }
+        for (int i = n - 2; i >= 0; --i) {
+            for (int j = 0; j < m; ++j) {
+
+                int minNextRow = INT_MAX;
+
+                for (int k = 0; k < m; ++k) {
+                    if (k != j) {
+                        minNextRow = min(minNextRow, dp[i + 1][k]);
+                    }
+                }
+                dp[i][j] = grid[i][j] + minNextRow;
+            }
+        }
+        int ans = *min_element(dp[0].begin(), dp[0].end());
+
+        return ans;
+      }
+    };
+
+Runtime: 127 ms, beating 68.68% of leetcode users solutions using C++.
+Memory: 18.09 mb, beating 67.90% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Grid, dynamic programming, recursion, for loops, and if statement. 
