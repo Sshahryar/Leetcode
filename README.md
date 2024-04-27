@@ -9882,3 +9882,60 @@ Memory: 18.09 mb, beating 67.90% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Grid, dynamic programming, recursion, for loops, and if statement. 
+
+### Solution April 27, 2024 (C++, leetcode) 514. Freedom Trail (Hard)
+In .LeetcodeDailySolution folder as April27,2024.cpp
+
+#### Prompt:
+
+In the video game Fallout 4, the quest "Road to Freedom" requires players to reach a metal dial called the "Freedom Trail Ring" and use the dial to spell a specific keyword to open the door.
+
+Given a string ring that represents the code engraved on the outer ring and another string key that represents the keyword that needs to be spelled, return the minimum number of steps to spell all the characters in the keyword.
+
+Initially, the first character of the ring is aligned at the "12:00" direction. You should spell all the characters in key one by one by rotating ring clockwise or anticlockwise to make each character of the string key aligned at the "12:00" direction and then by pressing the center button.
+
+At the stage of rotating the ring to spell the key character key[i]:
+
+You can rotate the ring clockwise or anticlockwise by one place, which counts as one step. The final purpose of the rotation is to align one of ring's characters at the "12:00" direction, where this character must equal key[i].
+If the character key[i] has been aligned at the "12:00" direction, press the center button to spell, which also counts as one step. After the pressing, you could begin to spell the next character in the key (next stage). Otherwise, you have finished all the spelling.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int findRotateSteps(string ring, string key) {
+
+        if (ring.empty() || key.empty()) {
+            return 0;
+        }
+        unordered_map<char, vector<int>> ringMap;
+        
+        for (int i = 0; i < ring.size(); i++) {
+            ringMap[ring[i]].push_back(i);
+        }
+        vector<int> dp(ring.size(), INT_MAX);
+
+        for (int i : ringMap[key[0]]) {
+            dp[i] = min(i, (int)ring.size() - i) + 1;
+        }
+        for (int i = 1; i < key.size(); i++) {
+
+            vector<int> new_dp(ring.size(), INT_MAX);
+
+            for (int j : ringMap[key[i]]) {
+                for (int k : ringMap[key[i - 1]]) {
+                    new_dp[j] = min(new_dp[j], dp[k] + min(abs(j - k), (int)ring.size() - abs(j - k)) + 1);
+                }
+            }
+            dp = move(new_dp);
+        }
+        return *min_element(dp.begin(), dp.end());
+      }
+    };
+
+Runtime: 11 ms, beating 78.30% of leetcode users solutions using C++.
+Memory: 15.80 mb, beating 47.64% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Dynamic programming, hash maps, if statements, and for loops.
