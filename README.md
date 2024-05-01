@@ -10063,3 +10063,53 @@ Memory: 91.30 mb, beating 55.11% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Integer arrays, bit manipulation, for loop, while loop, and if statement.
+
+### Solution April 30, 2024 (C++, leetcode) 1915. Number of Wonderful Substrings (Medium)
+In .LeetcodeDailySolution folder as April30,2024.cpp
+
+#### Prompt:
+
+A wonderful string is a string where at most one letter appears an odd number of times.
+
+For example, "ccjjc" and "abab" are wonderful, but "ab" is not.
+Given a string word that consists of the first ten lowercase English letters ('a' through 'j'), return the number of wonderful non-empty substrings in word. If the same substring appears multiple times in word, then count each occurrence separately.
+
+A substring is a contiguous sequence of characters in a string.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int get(char c) {
+        
+        return c - 'a';
+    }
+
+    long long wonderfulSubstrings(string word) {
+
+        vector<long long> cnt(1024, 0);
+        cnt[0] = 1;
+        int curState = 0;
+        long long res = 0;
+
+        for (char c : word) {
+            
+            curState ^= 1 << get(c);
+            res += cnt[curState];
+
+            for (char odd = 'a'; odd <= 'j'; odd++) {
+                int oddState = curState ^ (1 << get(odd));
+                res += cnt[oddState];
+            }
+            cnt[curState]++;
+        }
+        return res;
+      }
+    };
+
+Runtime: 48 ms, beating 83.23% of leetcode users solutions using C++.
+Memory: 16.61 mb, beating 61.08% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+String, substring, prefix string, and for loops.
