@@ -10113,3 +10113,35 @@ Memory: 16.61 mb, beating 61.08% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 String, substring, prefix string, and for loops.
+
+### Solution May 1, 2024 (C++, leetcode) 2000. Reverse Prefix of Word (Easy)
+In .LeetcodeDailySolution folder as May1,2024.cpp
+
+#### Prompt:
+
+Given a 0-indexed string word and a character ch, reverse the segment of word that starts at index 0 and ends at the index of the first occurrence of ch (inclusive). If the character ch does not exist in word, do nothing.
+
+For example, if word = "abcdefd" and ch = "d", then you should reverse the segment that starts at 0 and ends at 3 (inclusive). The resulting string will be "dcbaefd".
+Return the resulting string.
+
+#### Solution:
+
+    class Solution {
+    public:
+    string reversePrefix(string word, char ch) {
+        int ind = word.find(ch);
+
+        if(ind != string::npos){
+            reverse(word.begin(), word.begin() + ind + 1);
+        }
+
+        return word;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 7.45 mb, beating 65.41% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+String, find, if statement, and reverse.
