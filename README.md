@@ -10145,3 +10145,37 @@ Memory: 7.45 mb, beating 65.41% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 String, find, if statement, and reverse.
+
+### Solution May 2, 2024 (C++, leetcode) 2441. Largest Positive Integer With Its Negative (Easy)
+In .LeetcodeDailySolution folder as May2,2024.cpp
+
+#### Prompt:
+
+Given an integer array nums that does not contain any zeros, find the largest positive integer k such that -k also exists in the array.
+
+Return the positive integer k. If there is no such integer, return -1.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int findMaxK(vector<int>& nums) {
+
+        sort(nums.begin(), nums.end(), [](int & lhs, int & rhs){
+            return abs(lhs)<abs(rhs);});
+
+        for (int i = nums.size() - 1; i > 0; i--) {
+            if (nums[i] + nums[i - 1] == 0) {
+                return abs(nums[i]);
+            }
+        }
+        return -1;
+      }
+    };
+
+Runtime: 11 ms, beating 94.06% of leetcode users solutions using C++.
+Memory: 22.76 mb, beating 79.58% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Sorting, absolute value function, for loop, and if statement.
