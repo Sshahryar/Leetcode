@@ -10375,3 +10375,46 @@ Memory: 159.88 mb, beating 81.03% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Linked list, pointers, while loops, if statement, and else-if statement.
+
+### Solution May 7, 2024 (C++, leetcode) 2816. Double a Number Represented as a Linked List (Medium)
+In .LeetcodeDailySolution folder as May7,2024.cpp
+
+#### Prompt:
+
+You are given the head of a non-empty linked list representing a non-negative integer without leading zeroes.
+
+Return the head of the linked list after doubling it.
+
+#### Solution:
+
+    class Solution {
+    public:
+    ListNode* doubleIt(ListNode* head) {
+
+        int carry = twice(head);
+
+        if (carry > 0) {
+            head = new ListNode(carry, head);
+        }
+        return head;
+    }
+    private:
+    int twice(ListNode* head) {
+
+        if (head == nullptr) {
+            return 0;
+        }
+ 
+        int doubledValue = head -> val * 2 + twice(head -> next);
+        head -> val = doubledValue % 10;
+        
+        return doubledValue / 10;
+      }
+    };
+
+Runtime: 154 ms, beating 95.20% of leetcode users solutions using C++.
+Memory: 121.09 mb, beating 50.42% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Linked list, recursion, and if statements.
