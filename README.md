@@ -10321,3 +10321,57 @@ Memory: 11.27 mb, beating 84.03% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Linked list and while loop.
+
+### Solution May 6, 2024 (C++, leetcode) 2487. Remove Nodes From Linked List (Medium)
+In .LeetcodeDailySolution folder as May6,2024.cpp
+
+#### Prompt:
+
+You are given the head of a linked list.
+
+Remove every node which has a node with a greater value anywhere to the right side of it.
+
+Return the head of the modified linked list.
+
+#### Solution:
+
+    class Solution {
+    public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode* prev = nullptr;
+        ListNode* current = head;
+
+        while (current != nullptr) {
+            ListNode* nextNode = current -> next;
+            current -> next = prev;
+            prev = current;
+            current = nextNode;
+        }
+        return prev;
+    }
+    ListNode* removeNodes(ListNode* head) {
+
+        ListNode* reversedHead = reverseList(head);
+        ListNode* current = reversedHead;
+        int maxValue = INT_MIN;
+        ListNode* prev = nullptr;
+
+        while (current != nullptr) {
+            if (current -> val < maxValue) {
+                prev -> next = current -> next;
+            } else {
+                maxValue = current -> val;
+                prev = current;
+            }
+            current = current -> next;
+        }
+        return reverseList(reversedHead);
+      }
+    };
+
+Runtime: 242 ms, beating 95.59% of leetcode users solutions using C++.
+Memory: 159.88 mb, beating 81.03% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Linked list, pointers, while loops, if statement, and else-if statement.
