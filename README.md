@@ -10418,3 +10418,69 @@ Memory: 121.09 mb, beating 50.42% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Linked list, recursion, and if statements.
+
+### Solution May 8, 2024 (C++, leetcode) 506. Relative Ranks (Easy)
+In .LeetcodeDailySolution folder as May8,2024.cpp
+
+#### Prompt:
+
+You are given an integer array score of size n, where score[i] is the score of the ith athlete in a competition. All the scores are guaranteed to be unique.
+
+The athletes are placed based on their scores, where the 1st place athlete has the highest score, the 2nd place athlete has the 2nd highest score, and so on. The placement of each athlete determines their rank:
+
+The 1st place athlete's rank is "Gold Medal".
+The 2nd place athlete's rank is "Silver Medal".
+The 3rd place athlete's rank is "Bronze Medal".
+For the 4th place to the nth place athlete, their rank is their placement number (i.e., the xth place athlete's rank is "x").
+Return an array answer of size n where answer[i] is the rank of the ith athlete.
+
+#### Solution:
+
+    class Solution {
+    private:
+    int findMax(vector<int>& score) {
+
+        int maxScore = 0;
+
+        for (int s : score) {
+            if (s > maxScore) {
+                maxScore = s;
+            }
+        }
+        return maxScore;
+    }
+    public:
+    vector<string> findRelativeRanks(vector<int>& score) {
+
+        int N = score.size();
+        int M = findMax(score);
+        vector<int> scoreToIndex(M + 1, 0);
+
+        for (int i = 0; i < N; i++) {
+            scoreToIndex[score[i]] = i + 1;
+        }
+        const vector<string> MEDALS = {"Gold Medal", "Silver Medal", "Bronze Medal"};
+        vector<string> rank(N);
+        int place = 1;
+        
+        for (int i = M; i >= 0; i--) {
+            if (scoreToIndex[i] != 0) {
+                int originalIndex = scoreToIndex[i] - 1;
+                if (place < 4) {
+                    rank[originalIndex] = MEDALS[place - 1];
+                } else {
+                    rank[originalIndex] = to_string(place);
+                }
+                place++;
+            }
+        }
+        return rank;
+      }
+    };
+
+Runtime: 3 ms, beating 96.77% of leetcode users solutions using C++.
+Memory: 14.38 mb, beating 59.41% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Maximum, mapping, arrays, for loops, if statements, and else statement.
