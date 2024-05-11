@@ -10586,3 +10586,62 @@ Memory: 10.71 mb, beating 88.27% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Binary search, fractions, while loop, for loop, if statements, else-if statement, and else statement.
+
+### Solution May 11, 2024 (C++, leetcode) 857. Minimum Cost to Hire K Workers (Hard)
+In .LeetcodeDailySolution folder as May11,2024.cpp
+
+#### Prompt:
+
+There are n workers. You are given two integer arrays quality and wage where quality[i] is the quality of the ith worker and wage[i] is the minimum wage expectation for the ith worker.
+
+We want to hire exactly k workers to form a paid group. To hire a group of k workers, we must pay them according to the following rules:
+
+Every worker in the paid group must be paid at least their minimum wage expectation.
+In the group, each worker's pay must be directly proportional to their quality. This means if a worker’s quality is double that of another worker in the group, then they must be paid twice as much as the other worker.
+Given the integer k, return the least amount of money needed to form a paid group satisfying the above conditions. Answers within 10-5 of the actual answer will be accepted.
+
+#### Solution:
+
+    class Solution {
+    public:
+    double mincostToHireWorkers(vector<int>& quality, vector<int>& wage, int k) {
+
+        int n = quality.size();
+        double minCost = DBL_MAX; 
+        double qualityTillNow = 0;
+        vector<pair<double, int>> wageQualityRatio;
+
+        for (int i = 0; i < n; ++i) {
+            
+            wageQualityRatio.emplace_back(
+                static_cast<double>(wage[i]) / quality[i], quality[i]);
+        }
+        sort(wageQualityRatio.begin(), wageQualityRatio.end());
+        priority_queue<int> highQualityWorkers;
+
+        for (int i = 0; i < n; ++i) {
+            
+            double ratio = wageQualityRatio[i].first;
+            int qua = wageQualityRatio[i].second;
+
+            qualityTillNow += qua;
+            highQualityWorkers.push(qua);
+
+            if (highQualityWorkers.size() > k) {
+                qualityTillNow -= highQualityWorkers.top();
+                highQualityWorkers.pop();
+            }
+            if (highQualityWorkers.size() == k) {
+                minCost = min(minCost, qualityTillNow * ratio);
+            }
+        }
+        return minCost;
+      }
+    };
+
+Runtime: 25 ms, beating 69.47% of leetcode users solutions using C++.
+Memory: 26.28 mb, beating 75.07% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, sorting, for loops, if statements, and max-heap (priority queue).
