@@ -10523,3 +10523,66 @@ Memory: 107.19 mb, beating 59.71% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Sorting, and for loop.
+
+### Solution May 10, 2024 (C++, leetcode) 786. K-th Smallest Prime Fraction (Medium)
+In .LeetcodeDailySolution folder as May10,2024.cpp
+
+#### Prompt:
+
+You are given a sorted integer array arr containing 1 and prime numbers, where all the integers of arr are unique. You are also given an integer k.
+
+For every i and j where 0 <= i < j < arr.length, we consider the fraction arr[i] / arr[j].
+
+Return the kth smallest fraction considered. Return your answer as an array of integers of size 2, where answer[0] == arr[i] and answer[1] == arr[j].
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<int> kthSmallestPrimeFraction(vector<int>& arr, int k) {
+
+        int n = arr.size();
+        double left = 0, right = 1.0;
+        
+        while (left < right){
+            double mid = (left + right) / 2;
+            
+            double maxFraction = 0.0;
+            int totalSmallerFractions = 0, numeratorIdx = 0, denominatorIdx = 0;
+            int j = 1;
+            
+            for (int i = 0; i < n - 1; i++){
+                while (j < n && arr[i] >= mid * arr[j]){
+                    j++;
+                }
+
+                totalSmallerFractions += (n - j);
+                
+                if (j == n) break;
+                
+                double fraction = static_cast<double>(arr[i]) / arr[j];
+                
+                if (fraction > maxFraction) {
+                  numeratorIdx = i;
+                  denominatorIdx = j;
+                  maxFraction = fraction;
+                }
+            }
+            if (totalSmallerFractions == k) {
+                return {arr[numeratorIdx], arr[denominatorIdx]};
+            } else if (totalSmallerFractions > k) {
+                right = mid; 
+            } else {
+                left = mid; 
+            }
+        }
+        return {}; 
+      }
+    };
+
+Runtime: 7 ms, beating 90.58% of leetcode users solutions using C++.
+Memory: 10.71 mb, beating 88.27% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Binary search, fractions, while loop, for loop, if statements, else-if statement, and else statement.
