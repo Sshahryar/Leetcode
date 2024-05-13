@@ -10693,3 +10693,48 @@ Memory: 13.56 mb, beating 52.48% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Sliding window, grid, for loops, and array.
+
+### Solution May 13, 2024 (C++, leetcode) 861. Score After Flipping Matrix (Medium) 
+In .LeetcodeDailySolution folder as May13,2024.cpp
+
+#### Prompt:
+
+You are given an m x n binary matrix grid.
+
+A move consists of choosing any row or column and toggling each value in that row or column (i.e., changing all 0's to 1's, and all 1's to 0's).
+
+Every row of the matrix is interpreted as a binary number, and the score of the matrix is the sum of these numbers.
+
+Return the highest possible score after making any number of moves (including zero moves).
+
+#### Solution:
+
+    class Solution {
+    public:
+    int matrixScore(vector<vector<int>>& grid) {
+
+        int n = grid.size(), m = grid[0].size();
+        int res = (1 << (m - 1)) * n;
+
+        for(int j = 1; j < m; ++j) {
+
+            int val = 1 << (m - 1 - j);
+            int set = 0;
+
+            for(int i = 0; i < n; ++i) {
+                if(grid[i][j] == grid[i][0]) {
+                    set++;
+                }
+            }
+            res += max(set, n - set) * val;
+        }
+        return res;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 10.05 mb, beating 94.41% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, matrix, grid, and for loops.
