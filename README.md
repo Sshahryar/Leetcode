@@ -10956,3 +10956,48 @@ Memory: 17.31 mb, beating 64.62% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Depth-first search, recursion, helper function, if statement, and else-if statements.
+
+### Solution May 18, 2024 (C++, leetcode) 979. Distribute Coins in Binary Tree (Medium)
+In .LeetcodeDailySolution folder as May18,2024.cpp
+
+#### Prompt:
+
+You are given the root of a binary tree with n nodes where each node in the tree has node.val coins. There are n coins in total throughout the whole tree.
+
+In one move, we may choose two adjacent nodes and move one coin from one node to another. A move may be from parent to child, or from child to parent.
+
+Return the minimum number of moves required to make every node have exactly one coin.
+
+#### Solution:
+
+    class Solution {
+    public:
+
+    int ans;
+
+    int distributeCoins(TreeNode* root) {
+
+        ans = 0;
+        countSteps(root);
+
+        return ans;
+    }
+    int countSteps(TreeNode* root) {
+
+        if (root == nullptr)
+            return 0;
+
+        int leftCoins = countSteps(root -> left);
+        int rightCoins = countSteps(root -> right);
+        ans += abs(leftCoins) + abs(rightCoins);
+
+        return (root -> val - 1) + leftCoins + rightCoins;
+      }
+    };
+
+Runtime: 3 ms, beating 80.19% of leetcode users solutions using C++.
+Memory: 15.47 mb, beating 88.89% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Tree, depth-first search, if statement, and absolute value.
