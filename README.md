@@ -11001,3 +11001,60 @@ Memory: 15.47 mb, beating 88.89% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Tree, depth-first search, if statement, and absolute value.
+
+### Solution May 19, 2024 (C++, leetcode) 3068. Find the Maximum Sum of Node Values (Hard)
+In .LeetcodeDailySolution folder as May19,2024.cpp
+
+#### Prompt:
+
+There exists an undirected tree with n nodes numbered 0 to n - 1. You are given a 0-indexed 2D integer array edges of length n - 1, where edges[i] = [ui, vi] indicates that there is an edge between nodes ui and vi in the tree. You are also given a positive integer k, and a 0-indexed array of non-negative integers nums of length n, where nums[i] represents the value of the node numbered i.
+
+Alice wants the sum of values of tree nodes to be maximum, for which Alice can perform the following operation any number of times (including zero) on the tree:
+
+Choose any edge [u, v] connecting the nodes u and v, and update their values as follows:
+nums[u] = nums[u] XOR k
+nums[v] = nums[v] XOR k
+Return the maximum possible sum of the values Alice can achieve by performing the operation any number of times.
+
+#### Solution:
+
+    class Solution {
+    public:
+    long long maximumValueSum(std::vector<int>& nums, int k, std::vector<std::vector<int>>& edges) {
+
+        long long sum = 0;
+        long long minExtra = 1000000;
+        int count = 0;
+
+        for (int val : nums) {
+
+            if ((val ^ k) > val) {
+
+                sum += (val ^ k);
+                minExtra = min(minExtra, static_cast<long long>((val ^ k) - val));
+                count++;
+                
+            } else {
+
+                sum += val;
+                minExtra = min(minExtra, static_cast<long long>(val - (val ^ k)));
+            }
+        }
+
+        if (count % 2 == 0) {
+
+            return sum;
+
+        } else {
+
+            return sum - minExtra;
+        }
+      }
+    };
+
+Runtime: 171 ms, beating 91.22% of leetcode users solutions using C++.
+Memory: 125.56 mb, beating 89.41% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, for loop, if statements, and else statements. 
