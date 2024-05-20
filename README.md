@@ -11058,3 +11058,46 @@ Memory: 125.56 mb, beating 89.41% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, for loop, if statements, and else statements. 
+
+### Solution May 20, 2024 (C++, leetcode) 1863. Sum of All Subset Xor Totals (Easy)
+In .LeetcodeDailySolution folder as May20,2024.cpp
+
+#### Prompt: 
+
+The XOR total of an array is defined as the bitwise XOR of all its elements, or 0 if the array is empty.
+
+For example, the XOR total of the array [2,5,6] is 2 XOR 5 XOR 6 = 1.
+Given an array nums, return the sum of all XOR totals for every subset of nums. 
+
+Note: Subsets with the same elements should be counted multiple times.
+
+An array a is a subset of an array b if a can be obtained from b by deleting some (possibly zero) elements of b.
+
+#### Solution:
+
+class Solution {
+public:
+    int subsetXORSum(vector<int>& nums) {
+
+        return dfs(nums, 0, 0);
+    }
+    
+private:
+    int dfs(vector<int>& nums, int index, int currentXor) {
+
+        if (index == nums.size()) {
+            return currentXor;
+        }
+        int include = dfs(nums, index + 1, currentXor ^ nums[index]);
+
+        int exclude = dfs(nums, index + 1, currentXor);
+        
+        return include + exclude;
+    }
+};
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 8.23 mb, beating 88.34& of leetcode users solutions using C++.
+
+#### Concepts Applied: 
+
