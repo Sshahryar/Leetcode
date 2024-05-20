@@ -11097,7 +11097,8 @@ private:
 };
 
 Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
-Memory: 8.23 mb, beating 88.34& of leetcode users solutions using C++.
+Memory: 8.23 mb, beating 88.34% of leetcode users solutions using C++.
 
 #### Concepts Applied: 
 
+Arrays, depth-first search, recursion, and if statement.
