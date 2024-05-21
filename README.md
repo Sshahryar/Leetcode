@@ -11059,7 +11059,7 @@ Memory: 125.56 mb, beating 89.41% of leetcode users solutions using C++.
 
 Arrays, for loop, if statements, and else statements. 
 
-### Solution May 20, 2024 (C++, leetcode) 1863. Sum of All Subset Xor Totals (Easy)
+### Solution May 20, 2024 (C++, leetcode) 1863. Sum of All Subset XOR Totals (Easy)
 In .LeetcodeDailySolution folder as May20,2024.cpp
 
 #### Prompt: 
@@ -11075,14 +11075,14 @@ An array a is a subset of an array b if a can be obtained from b by deleting som
 
 #### Solution:
 
-class Solution {
-public:
+    class Solution {
+    public:
     int subsetXORSum(vector<int>& nums) {
 
         return dfs(nums, 0, 0);
     }
     
-private:
+    private:
     int dfs(vector<int>& nums, int index, int currentXor) {
 
         if (index == nums.size()) {
@@ -11093,8 +11093,8 @@ private:
         int exclude = dfs(nums, index + 1, currentXor);
         
         return include + exclude;
-    }
-};
+      }
+    };
 
 Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
 Memory: 8.23 mb, beating 88.34% of leetcode users solutions using C++.
