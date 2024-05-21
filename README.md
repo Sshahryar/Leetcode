@@ -11102,3 +11102,49 @@ Memory: 8.23 mb, beating 88.34% of leetcode users solutions using C++.
 #### Concepts Applied: 
 
 Arrays, depth-first search, recursion, and if statement.
+
+### Solution May 21, 2024 (C++, leetcode) 78. Subsets (Medium)
+In .LeetcodeDailySolution folder as May21,2024.cpp
+
+#### Prompt:
+
+Given an integer array nums of unique elements, return all possible subsets (the power set).
+The solution set must not contain duplicate subsets. Return the solution in any order.
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<vector<int>> subsets(vector<int>& nums) {
+
+        vector<vector<int>> result;
+        vector<int> curr;
+
+        function<void(int)> explore = [&](int index) {
+
+            if (index == nums.size()) {
+
+                result.push_back(curr);
+                
+                return;
+            }
+
+            curr.push_back(nums[index]);
+            explore(index + 1);
+            curr.pop_back(); 
+            explore(index + 1);
+
+        };
+
+        explore(0);
+
+        return result;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 11.03 mb, beating 38.49% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Depth-first search, recursion, and if statement.
