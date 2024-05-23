@@ -11148,3 +11148,58 @@ Memory: 11.03 mb, beating 38.49% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Depth-first search, recursion, and if statement.
+
+### Solution May 22, 2024 (C++, leetcode) 131. Palindorme Partitioning (Medium)
+In .LeetcodeDailySolution folder as May22,2024.cpp
+
+#### Prompt:
+
+Given a string s, partition s such that every substring of the partition is a palindrome. 
+Return all possible palindrome partitioning of s.
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<vector<string>> partition(string s) {
+
+        vector<vector<string>> result;
+        vector<string> path;
+        backtrack(s, 0, path, result);
+        
+        return result;
+    }
+    private:
+    void backtrack(const string& s, int start, vector<string>& path, vector<vector<string>>& result) {
+
+        if (start == s.length()) {
+            result.push_back(path);
+            return;
+        }
+        for (int end = start + 1; end <= s.length(); ++end) {
+
+            if (isPalindrome(s, start, end - 1)) {
+
+                path.push_back(s.substr(start, end - start));
+                backtrack(s, end, path, result);
+                path.pop_back();
+            }
+        }
+    }
+    bool isPalindrome(const string& s, int left, int right) {
+
+        while (left < right) {
+            if (s[left++] != s[right--]) {
+                return false;
+            }
+        }
+        return true;
+      }
+    };
+
+Runtime: 66 ms, beating 93.77% of leetcode users solutions using C++.
+Memory: 52.78 mb, beating 84.94% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Recursive backtracking, palindromic check, for loop, if statements, and while loop.
