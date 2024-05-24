@@ -11203,3 +11203,57 @@ Memory: 52.78 mb, beating 84.94% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Recursive backtracking, palindromic check, for loop, if statements, and while loop.
+
+### Solution May 23, 2024 (C++, leetcode) 2597. The Number of Beautiful Subsets (Medium)
+In .LeetcodeDailySolution folder as May23,2024.cpp
+
+#### Prompt:
+
+You are given an array nums of positive integers and a positive integer k.
+
+A subset of nums is beautiful if it does not contain two integers with an absolute difference equal to k.
+
+Return the number of non-empty beautiful subsets of the array nums.
+
+A subset of nums is an array that can be obtained by deleting some (possibly none) elements from nums. Two subsets are different if and only if the chosen indices to delete are different.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int beautifulSubsets(vector<int>& A, int k) {
+
+        unordered_map<int, int> count;
+
+        for (int a : A) {
+            count[a]++;
+        }
+
+        function<pair<int, int>(int)> dp = [&](int a) {
+
+            if (count.count(a - k)) {
+                auto [dp0, dp1] = dp(a - k);
+                return make_pair(dp0 + dp1, dp0 * ((1 << count[a]) - 1));
+            } else {
+                return make_pair(1, (1 << count[a]) - 1);
+            }
+        };
+
+        int result = 1;
+
+        for (auto [a, freq] : count) {
+            if (!count.count(a + k)) {
+                auto [dp0, dp1] = dp(a);
+                result *= dp0 + dp1;
+            }
+        }
+        return result - 1;
+      }
+    };
+
+Runtime: 12 ms, beating 90.63% of leetcode users solutions using C++.
+Memory: 37.62 mb, beating 70.88% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Unordered map, for loops, pair, dynamic programming, if statements, and else statement.
