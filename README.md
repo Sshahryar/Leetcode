@@ -11324,3 +11324,62 @@ Memory: 19.54 mb, beating 52.62% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Unordered maps, recursion, for loops, if statements, and else statement.
+
+### Solution May 25, 2024 (C++, leetcode) 140. Word Break II (Hard)
+In .LeetcodeDailySolution folder as May25,2024.cpp
+
+#### Prompt:
+
+Given a string s and a dictionary of strings wordDict, add spaces in s to construct a sentence where each word is a valid dictionary word. Return all such possible sentences in any order.
+
+Note that the same word in the dictionary may be reused multiple times in the segmentation.
+
+#### Solution:
+
+    class Solution {
+    public:
+    unordered_map<string, vector<string>> dp;
+
+    vector<string> dfs(string s, vector<string>& wordDict) {
+
+        if (dp.count(s) > 0) {
+            return dp[s];
+        }
+
+        vector<string> ans;
+
+        if (s.empty()) {
+
+            ans.push_back("");
+            return ans;
+        }
+
+        for (string& w : wordDict) {
+
+            int sz = w.size();
+
+            if (s.substr(0, sz) == w) {
+
+                vector<string> rest = dfs(s.substr(sz), wordDict);
+
+                for (string& r : rest) {
+
+                    ans.push_back(w + (r.empty() ? "" : " ") + r);
+                }
+            }
+        }
+        return dp[s] = ans;
+        ;
+    }
+    vector<string> wordBreak(string s, vector<string>& wordDict) {
+
+        return dfs(s, wordDict);
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 9.30 mb, beating 37.40% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, dynamic programming, substring, if statements, and for loops.
