@@ -11383,3 +11383,52 @@ Memory: 9.30 mb, beating 37.40% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, dynamic programming, substring, if statements, and for loops.
+
+### Solution May 26, 2024 (C++, leetcode) 552. Student Attendance Record II (Hard)
+In .LeetcodeDailySolution folder as May26,2024.cpp
+
+#### Prompt:
+
+An attendance record for a student can be represented as a string where each character signifies whether the student was absent, late, or present on that day. The record only contains the following three characters:
+
+'A': Absent.
+'L': Late.
+'P': Present.
+Any student is eligible for an attendance award if they meet both of the following criteria:
+
+The student was absent ('A') for strictly fewer than 2 days total.
+The student was never late ('L') for 3 or more consecutive days.
+Given an integer n, return the number of possible attendance records of length n that make a student eligible for an attendance award. The answer may be very large, so return it modulo 109 + 7.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int checkRecord(int n) {
+        
+        long int dp[6] = {1, 0 , 0 , 0 , 0 , 0}; 
+        long int tmp[6];
+        const long long mod = 1e9 + 7;
+
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < 6; j++) tmp[j] = dp[j];
+        
+            dp[0] = (tmp[0] + tmp[1] + tmp[2]) % mod;
+            dp[1] = (tmp[0]) % mod;
+            dp[2] = (tmp[1]) % mod;
+            dp[3] = (tmp[0] + tmp[1] + tmp[2] + tmp[3] + tmp[4] +tmp[5]) % mod;
+            dp[4] = (tmp[3]) % mod;
+            dp[5] = (tmp[4]) % mod;
+        }
+        
+        return (dp[0] + dp[1] + dp[2] + dp[3] + dp[4] + dp[5]) % mod;
+        
+      }
+    };
+
+Runtime: 16 ms, beating 94.92% of leetcode users solutions using C++.
+Memory: 7.06 mb, beating 98.00% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+For loops, dynamic programming, and modulo.
