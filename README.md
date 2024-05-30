@@ -11527,3 +11527,45 @@ Memory: 8.87 mb, beating 37.06% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 For loop, while loop, and sliding window technique.
+
+### Solution May 29, 2024 (C++, leetcode) 1404. Number of Steps to Reduce a Number in Binary Representation to One (Medium)
+In .LeetcodeDailySolution folder as May29,2024.cpp
+
+#### Prompt:
+
+Given the binary representation of an integer as a string s, return the number of steps to reduce it to 1 under the following rules:
+
+If the current number is even, you have to divide it by 2.
+
+If the current number is odd, you have to add 1 to it.
+
+It is guaranteed that you can always reach one for all test cases.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int numSteps(string s) {
+
+        int n = s.length();
+        int ans = n - 1;
+        int carry = 0;
+
+        for (int i = n - 1; i > 0; i--) {
+
+            if (s[i] - '0' + carry == 1) {
+
+                ans++;
+                carry = 1;
+            }
+        }
+        return ans + carry;
+      }
+    };
+
+Runtime: 3 ms, beating 51.78% of leetcode users solutions using C++.
+Memory: 7.31 mb, beating 94.16% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Binary string, and for loop.
