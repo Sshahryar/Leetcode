@@ -11661,3 +11661,36 @@ Memory: 12.18 mb, beating 98.72% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Bit manipulation, for loops, if statement, and else statement.
+
+### Solution June 1, 2024 (C++, leetcode) 3110. Score of a String (Easy)
+In .LeetcodeDailySolution folder as June1,2024.cpp
+
+#### Prompt:
+
+You are given a string s. The score of a string is defined as the sum of the absolute difference between the ASCII values of adjacent characters.
+
+Return the score of s.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int scoreOfString(string s) {
+        
+        int score = 0;
+
+        size_t len = s.length();
+
+        for (size_t i = 0; i < len - 1; i++) {
+            score += abs(s[i] - s[i + 1]);
+        }
+        return score;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 7.62 mb, beating 97.63% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+ASCII values, for loop, and absolute value.
