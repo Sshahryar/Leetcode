@@ -11618,3 +11618,46 @@ Memory: 9.10 mb, beating 50.11% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Bitwise operations, array, for loops, and if statement.
+
+### Solution May 31, 2024 (C++, leetcode) 260. Single Number III (Medium)
+In .LeetcodeDailySolution folder as May31,2024.cpp
+
+#### Prompt:
+
+Given an integer array nums, in which exactly two elements appear only once and all the other elements appear exactly twice. Find the two elements that appear only once. You can return the answer in any order.
+
+You must write an algorithm that runs in linear runtime complexity and uses only constant extra space.
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<int> singleNumber(vector<int>& nums) {
+
+        int xorAll = 0;
+
+        for (int num : nums) {
+            xorAll ^= num;
+        }
+
+        int setBit = xorAll & -(unsigned int)xorAll;
+
+        int a = 0, b = 0;
+
+        for (int num : nums) {
+            if (num & setBit) {
+                a ^= num;
+            } else {
+                b ^= num;
+            }
+        }
+        return {a, b};
+      }
+    };
+
+Runtime: 5 ms, beating 79.17% of leetcode users solutions using C++.
+Memory: 12.18 mb, beating 98.72% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Bit manipulation, for loops, if statement, and else statement.
