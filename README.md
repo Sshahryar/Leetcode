@@ -11694,3 +11694,38 @@ Memory: 7.62 mb, beating 97.63% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 ASCII values, for loop, and absolute value.
+
+### Solution June 2, 2024 (C++, leetcode) 344. Reverse String (Easy)
+In .LeetcodeDailySolution folder as June2,2024.cpp
+
+#### Prompt:
+
+Write a function that reverses a string. The input string is given as an array of characters s.
+
+You must do this by modifying the input array in-place with O(1) extra memory.
+
+#### Solution:
+
+    class Solution {
+    public:
+    void reverseString(vector<char>& s) {
+        
+        reverse(s, 0, s.size() - 1);
+    }
+ 
+    private:
+    void reverse(vector<char>& s, int left, int right) {
+
+        if (left >= right) return;
+
+        swap(s[left], s[right]);
+        reverse(s, left + 1, right - 1);
+      }
+    };
+
+Runtime: 7 ms, beating 99.29% of leetcode users solutions using C++.
+Memory: 26.92 mb, beating 60.05% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Recursion, reverse function, swap function, and if statement.
