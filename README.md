@@ -11729,3 +11729,37 @@ Memory: 26.92 mb, beating 60.05% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Recursion, reverse function, swap function, and if statement.
+
+### Solution June 3, 2024 (C++, leetcode) 2486. Append Characters to String to Make Subsequence (Medium)
+In .LeetcodeDailySolution folder as June3,2024.cpp
+
+#### Prompt:
+
+You are given two strings s and t consisting of only lowercase English letters.
+
+Return the minimum number of characters that need to be appended to the end of s so that t becomes a subsequence of s.
+
+A subsequence is a string that can be derived from another string by deleting some or no characters without changing the order of the remaining characters.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int appendCharacters(string s, string t) {
+
+        int i = 0; 
+        
+        for (const char c : s)
+            if (c == t[i])
+                if (++i == t.length())
+                    return 0;
+        return t.length() - i;
+      }
+    };
+
+Runtime: 15 ms, beating 87.48% of leetcode users solutions using C++.
+Memory: 11.87 mb, beating 83.19% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Strings, two pointers, and greedy algorithm.
