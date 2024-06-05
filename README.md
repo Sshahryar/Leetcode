@@ -11763,3 +11763,66 @@ Memory: 11.87 mb, beating 83.19% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Strings, two pointers, and greedy algorithm.
+
+### Solution June 4, 2024 (C++, leetcode) 409. Longest Palindrome (Easy)
+In .LeetcodeDailySolution folder as June4,2024.cpp
+
+#### Prompt:
+
+Given a string s which consists of lowercase or uppercase letters, return the length of the longest palindrome that can be built with those letters.
+
+Letters are case sensitive, for example, "Aa" is not considered a palindrome.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int longestPalindrome(std::string s) {
+
+        vector<int> lowerCase(26, 0);
+        vector<int> upperCase(26, 0);
+
+        for(int i = 0; i < s.length(); i++) {
+            char c = s[i];
+            if(c - 'a' >= 0)
+                lowerCase[c - 'a']++;
+            else
+                upperCase[c - 'A']++;
+        }
+        int ans = 0;
+        bool isFirstOdd = false;
+
+        for(int i = 0; i < 26; i++) {
+            if(lowerCase[i] % 2 == 0) {
+                ans += lowerCase[i];
+            } else {
+                if(!isFirstOdd) {
+                    ans += lowerCase[i];
+                    isFirstOdd = true;
+                } else {
+                    ans += lowerCase[i] - 1;
+                }
+            }
+        }
+        for(int i = 0; i < 26; i++) {
+            if(upperCase[i] % 2 == 0) {
+                ans += upperCase[i];
+            } else {
+                if(!isFirstOdd) {
+                    ans += upperCase[i];
+                    isFirstOdd = true;
+                } else {
+                    ans += upperCase[i] - 1;
+                }
+            }
+        }
+        return ans;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 7.95 mb, beating 67.77% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Integer arrays, for loops, if statements, and else statements.
