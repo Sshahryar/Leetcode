@@ -11826,3 +11826,60 @@ Memory: 7.95 mb, beating 67.77% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Integer arrays, for loops, if statements, and else statements.
+
+### Solution June 5, 2024 (C++, leetcode) 1002. Find Common Characters (Easy)
+In .LeetcodeDailySolution folder as June5,2024.cpp
+
+#### Prompt:
+
+Given a string array words, return an array of all characters that show up in all strings within the words (including duplicates). You may return the answer in any order.
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<string> commonChars(vector<string>& words) {
+
+        vector<int> last = count(words[0]);
+
+        for (int i = 1; i < words.size(); i++) {
+            last = intersection(last, count(words[i]));
+        }
+        vector<string> result;
+
+        for (int i = 0; i < 26; i++) {
+            while (last[i] > 0) {
+                result.push_back(string(1, 'a' + i));
+                last[i]--;
+            }
+        }
+        return result;
+    }
+    
+    private:
+    vector<int> count(const string& str) {
+
+        vector<int> frequency(26, 0);
+
+        for (char c : str) {
+            frequency[c - 'a']++;
+        }
+        return frequency;
+    }
+    vector<int> intersection(const vector<int>& a, const vector<int>& b) {
+
+        vector<int> t(26, 0);
+        
+        for (int i = 0; i < 26; i++) {
+            t[i] = min(a[i], b[i]);
+        }
+        return t;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 12.21 mb, beating 28.61% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, frequency, for loops, and while loop.
