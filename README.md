@@ -11876,6 +11876,7 @@ Given a string array words, return an array of all characters that show up in al
         return t;
       }
     };
+    
 
 Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
 Memory: 12.21 mb, beating 28.61% of leetcode users solutions using C++.
@@ -11883,3 +11884,57 @@ Memory: 12.21 mb, beating 28.61% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, frequency, for loops, and while loop.
+
+### Solution June 6, 2024 (C++, leetcode) 846. Hand of Straights (Medium)
+In .LeetcodeDailySolution folder as June6,2024.cpp
+
+#### Prompt:
+
+Alice has some number of cards and she wants to rearrange the cards into groups so that each group is of size groupSize, and consists of groupSize consecutive cards.
+
+Given an integer array hand where hand[i] is the value written on the ith card and an integer groupSize, return true if she can rearrange the cards, or false otherwise.
+
+#### Solution:
+
+    class Solution {
+    public:
+    bool findSuccessors(vector<int>& hand, int groupSize, int i, int n) {
+
+        int next = hand[i] + 1;
+        hand[i] = -1; 
+        int count = 1;
+        i += 1;
+
+        while (i < n && count < groupSize) {
+            if (hand[i] == next) {
+                next = hand[i] + 1;
+                hand[i] = -1;
+                count++;
+            }
+            i++;
+        }
+        return count == groupSize;
+    }
+    bool isNStraightHand(vector<int>& hand, int groupSize) {
+
+        int n = hand.size();
+
+        if (n % groupSize != 0) return false;
+
+        sort(hand.begin(), hand.end());
+        
+        for (int i = 0; i < n; i++) {
+            if (hand[i] >= 0) {
+                if (!findSuccessors(hand, groupSize, i, n)) return false;
+            }
+        }
+        return true;
+      }
+    };
+
+Runtime: 31 ms, beating 98.37% of leetcode users solutions using C++.
+Memory: 23.02 mb, beating 99.41% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Sorting, while loop, if statements, and for loop.
