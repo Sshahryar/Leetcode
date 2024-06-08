@@ -12005,3 +12005,50 @@ Memory: 76.37 mb, beating 50.71% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Trie, depth-first search, hashing, string, arrays, for loops, while loop, and if statements.
+
+### Solution June 8, 2024 (C++, leetcode) 523. Continuous Subarray Sum (Medium)
+In .LeetcodeDailySolution folder as June8,2024.cpp
+
+#### Prompt:
+
+Given an integer array nums and an integer k, return true if nums has a good subarray or false otherwise.
+
+A good subarray is a subarray where:
+
+its length is at least two, and
+the sum of the elements of the subarray is a multiple of k.
+Note that:
+
+A subarray is a contiguous part of the array.
+An integer x is a multiple of k if there exists an integer n such that x = n * k. 0 is always a multiple of k.
+
+#### Solution:
+
+       class Solution {
+       public:
+       bool checkSubarraySum(vector<int>& nums, int k) {
+
+        unordered_map<int, int> mp;
+        mp[0] = -1;
+        int sum = 0;
+
+        for (int i = 0; i < nums.size(); i++) {
+
+            sum += nums[i];
+
+            if (mp.find(sum % k) != mp.end()) {
+                if (i - mp[sum % k] >= 2)
+                    return true;
+            } else
+                mp[sum % k] = i;
+        }
+        return false;
+      }
+    };
+
+Runtime: 170 ms, beating 80.91% of leetcode users solutions using C++.
+Memory: 134.65 mb, beating 59.63% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, hashing, modulo, prefix sum, and sliding window technique.
