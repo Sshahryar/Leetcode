@@ -12052,3 +12052,41 @@ Memory: 134.65 mb, beating 59.63% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, hashing, modulo, prefix sum, and sliding window technique.
+
+### Solution June 9, 2024 (C++, leetcode) 974. Subarray Sums Divisible by K (Medium)
+In .LeetcodeDailySolution folder as June9,2024.cpp
+
+#### Prompt:
+
+Given an integer array nums and an integer k, return the number of non-empty subarrays that have a sum divisible by k.
+
+A subarray is a contiguous part of an array.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int subarraysDivByK(vector<int>& nums, int k) {
+
+        int count = 0;
+        int prefixSum = 0;
+        unordered_map<int, int> prefixMap;
+        prefixMap[0] = 1; 
+
+        for (int num : nums) {
+
+            prefixSum += num;
+            int mod = ((prefixSum % k) + k) % k;
+            count += prefixMap[mod]++;
+            
+        }
+        return count; 
+      }
+    };
+
+Runtime: 27 ms, beating 94.15% of leetcode users solutions using C++.
+Memory: 35.19 mb, beating 44.61% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, hashing, prefix sum, modulo, and for loop.
