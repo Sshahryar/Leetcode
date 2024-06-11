@@ -12090,3 +12090,43 @@ Memory: 35.19 mb, beating 44.61% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, hashing, prefix sum, modulo, and for loop.
+
+### Solution June 10, 2024 (C++, leetcode) 1051. Height Checker (Easy)
+In .LeetcodeDailySolution folder as June10,2024.cpp
+
+#### Prompt:
+
+A school is trying to take an annual photo of all the students. The students are asked to stand in a single file line in non-decreasing order by height. Let this ordering be represented by the integer array expected where expected[i] is the expected height of the ith student in line.
+
+You are given an integer array heights representing the current order that the students are standing in. Each heights[i] is the height of the ith student in line (0-indexed).
+
+Return the number of indices where heights[i] != expected[i].
+
+#### Solution:
+
+    class Solution {
+    public:
+    static int heightChecker(vector<int>& heights) {
+
+        const int n = heights.size();
+
+        for (int i = 0; i < n; i++) 
+
+            heights[i] = (heights[i] << 8) + i;
+            sort(heights.begin(), heights.end());
+
+            int ans = 0;
+            
+                for (int i = 0; i < n; i++) {
+                    ans += (heights[(heights[i] & 255)] >> 8 != heights[i] >> 8);
+        }
+        return ans;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 10.07 mb, beating 78.66% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Bit manipulation, array, for loops, and sorting.
