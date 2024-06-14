@@ -12179,3 +12179,43 @@ Memory: 9.35 mb, beating 91.41% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Integer arrays, counting sort, for loops, and while loops.
+
+### Solution June 13, 2024 (C++, leetcode) 2037. Minimum Number of Moves to Seat Everyone (Easy)
+In .LeetcodeDailySolution folder as June13,2024.cpp
+
+#### Prompt:
+
+There are n seats and n students in a room. You are given an array seats of length n, where seats[i] is the position of the ith seat. You are also given the array students of length n, where students[j] is the position of the jth student.
+
+You may perform the following move any number of times:
+
+Increase or decrease the position of the ith student by 1 (i.e., moving the ith student from position x to x + 1 or x - 1)
+Return the minimum number of moves required to move each student to a seat such that no two students are in the same seat.
+
+Note that there may be multiple seats or students in the same position at the beginning.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int minMovesToSeat(vector<int>& seats, vector<int>& students) {
+
+        sort(seats.begin(), seats.end());
+        sort(students.begin(), students.end());
+
+        int ans = 0;
+
+        for(int i = 0; i < seats.size(); i++) {
+
+            ans += abs(seats[i] - students[i]);
+        }
+        return ans;
+      }
+    };
+
+Runtime: 4 ms, beating 74.67% of leetcode users solutions using C++.
+Memory: 20.82 mb, beating 85.02% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Sorting, for loop, and absolute value.
