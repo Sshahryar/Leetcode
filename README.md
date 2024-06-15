@@ -12219,3 +12219,40 @@ Memory: 20.82 mb, beating 85.02% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Sorting, for loop, and absolute value.
+
+### Solution June 14, 2024 (C++, leetcode) 945. Minimum Increment to Make Array Unique (Medium)
+In .LeetcodeDailySolution folder as June14,2024.cpp
+
+#### Prompt:
+
+You are given an integer array nums. In one move, you can pick an index i where 0 <= i < nums.length and increment nums[i] by 1.
+
+Return the minimum number of moves to make every value in nums unique.
+
+The test cases are generated so that the answer fits in a 32-bit integer.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int minIncrementForUnique(vector<int>& nums) {
+
+        sort(nums.begin(), nums.end());
+        int ans = 0;
+        
+        for (int i = 1; i < nums.size(); i++) {
+            if (nums[i] <= nums[i - 1]) {
+                ans += nums[i - 1] - nums[i] + 1;
+                nums[i] = nums[i - 1] + 1;
+            }
+        }
+        return ans;
+      }
+    };
+
+Runtime: 112 ms, beating 80.92% of leetcode users solutions using C++.
+Memory: 69.19 mb, beating 50.76% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Sorting, traversing, for loop, and if statement.
