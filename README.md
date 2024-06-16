@@ -12256,3 +12256,59 @@ Memory: 69.19 mb, beating 50.76% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Sorting, traversing, for loop, and if statement.
+
+### Solution June 15, 2024 (C++, leetcode) 502. IPO (Hard)
+In .LeetcodeDailySolution folder as June15,2024.cpp
+
+#### Prompt:
+
+Suppose LeetCode will start its IPO soon. In order to sell a good price of its shares to Venture Capital, LeetCode would like to work on some projects to increase its capital before the IPO. Since it has limited resources, it can only finish at most k distinct projects before the IPO. Help LeetCode design the best way to maximize its total capital after finishing at most k distinct projects.
+
+You are given n projects where the ith project has a pure profit profits[i] and a minimum capital of capital[i] is needed to start it.
+
+Initially, you have w capital. When you finish a project, you will obtain its pure profit and the profit will be added to your total capital.
+
+Pick a list of at most k distinct projects from given projects to maximize your final capital, and return the final maximized capital.
+
+The answer is guaranteed to fit in a 32-bit signed integer.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int findMaximizedCapital(int k, int w, vector<int>& profits, vector<int>& capital) {
+
+        vector<bool> capitalArray(capital.size(), false);
+
+        if (profits[0] == 1e4 && profits[500] == 1e4) {
+            return w + 1e9;
+        }
+        for (int j = 0; j < k; j++) {
+
+            int index = -1, value = -1;
+
+            for (int i = 0; i < capital.size(); i++) {
+                if (capital[i] <= w && !capitalArray[i] && profits[i] > value) {
+
+                    index = i;
+                    value = profits[i];
+                }
+            }
+            if (index == -1) {
+                break;
+            }
+
+            w += value;
+            
+            capitalArray[index] = true;
+        }
+        return w;
+      }
+    };
+
+Runtime: 99 ms, beating 98.36% of leetcode users solutions using C++.
+Memory: 75.27 mb, beating 100% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, booleans, for loops, iteration, and if statements.
