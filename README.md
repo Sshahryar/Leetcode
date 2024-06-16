@@ -12312,3 +12312,43 @@ Memory: 75.27 mb, beating 100% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, booleans, for loops, iteration, and if statements.
+
+### Solution June 16, 2024 (C++, leetcode) 330. Patching Array (Hard)
+In .LeetcodeDailySolution folder as June16,2024.cpp
+
+#### Prompt:
+
+Given a sorted integer array nums and an integer n, add/patch elements to the array such that any number in the range [1, n] inclusive can be formed by the sum of some elements in the array.
+
+Return the minimum number of patches required.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int minPatches(vector<int>& nums, int n) {
+        
+        long missing = 1;
+        int patches = 0;
+        int index = 0;
+
+        while (missing <= n) {
+            if (index < nums.size() && nums[index] <= missing) {
+                missing += nums[index];
+                index++;
+            } else {
+                missing += missing;
+                patches++;
+            }
+        }
+
+        return patches;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 13.66 mb, beating 82.46% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Array, greedy, iteration, while loop, if statement, and else statement.
