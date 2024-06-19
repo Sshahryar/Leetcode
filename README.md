@@ -12352,3 +12352,59 @@ Memory: 13.66 mb, beating 82.46% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Array, greedy, iteration, while loop, if statement, and else statement.
+
+### Solution June 18, 2024 (C++, leetcode) 826. Most Profit Assigning Work (Medium)
+In .LeetcodeDailySolution folder as June18,2024.cpp
+
+#### Prompt:
+
+You have n jobs and m workers. You are given three arrays: difficulty, profit, and worker where:
+
+difficulty[i] and profit[i] are the difficulty and the profit of the ith job, and
+worker[j] is the ability of jth worker (i.e., the jth worker can only complete a job with difficulty at most worker[j]).
+Every worker can be assigned at most one job, but one job can be completed multiple times.
+
+For example, if three workers attempt the same job that pays $1, then the total profit will be $3. If a worker cannot complete any job, their profit is $0.
+Return the maximum profit we can achieve after assigning the workers to the jobs.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int maxProfitAssignment(vector<int>& difficulty, vector<int>& profit,
+                            vector<int>& worker) {
+
+        int maxDifficulty = *max_element(difficulty.begin(), difficulty.end());
+
+        vector<int> maxProfitUpToDifficulty(maxDifficulty + 1, 0);
+
+        for (int i = 0; i < difficulty.size(); ++i) {
+            maxProfitUpToDifficulty[difficulty[i]] =
+                max(maxProfitUpToDifficulty[difficulty[i]], profit[i]);
+        }
+
+        for (int i = 1; i <= maxDifficulty; ++i) {
+            maxProfitUpToDifficulty[i] =
+                max(maxProfitUpToDifficulty[i], maxProfitUpToDifficulty[i - 1]);
+        }
+
+        int totalProfit = 0;
+
+        for (int ability : worker) {
+            if (ability > maxDifficulty) {
+                totalProfit += maxProfitUpToDifficulty[maxDifficulty];
+            } else {
+                totalProfit += maxProfitUpToDifficulty[ability];
+            }
+        }
+
+        return totalProfit;
+      }
+    };
+
+Runtime: 38 ms, beating 94.25% of leetcode users solutions using C++.
+Memory: 47.79 mb, beating 18.34% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, maximum, iteration, for loops, if statement, and else statement.
