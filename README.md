@@ -12408,3 +12408,58 @@ Memory: 47.79 mb, beating 18.34% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, maximum, iteration, for loops, if statement, and else statement.
+
+### Solution June 19, 2024 (C++, leetcode) 1482. Minimum Number of Days to Make m Banquets (Medium)
+In .LeetcodeDailySolution folder as June19,2024.cpp
+
+#### Prompt:
+
+You are given an integer array bloomDay, an integer m and an integer k.
+
+You want to make m bouquets. To make a bouquet, you need to use k adjacent flowers from the garden.
+
+The garden consists of n flowers, the ith flower will bloom in the bloomDay[i] and then can be used in exactly one bouquet.
+
+Return the minimum number of days you need to wait to be able to make m bouquets from the garden. If it is impossible to make m bouquets return -1.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int minDays(vector<int>& b, int m, int k) {
+
+        int l = 0, h = 1e9, ans = -1, i, j;
+
+        while (l <= h) {
+            int mid = (l + h) / 2, cnt = 0, j = 0;
+
+            for (i = 0; i < b.size(); i++) {
+                if (b[i] <= mid) {
+                    j++;
+
+                } else {
+                    j = 0;
+                }
+                if (j == k) {
+                    j = 0;
+                    cnt++;
+                }
+            }
+            if (cnt >= m) {
+                ans = mid;
+                h = mid - 1;
+            } else {
+                l = mid + 1;
+            }
+        }
+
+        return ans;
+      }
+    };
+
+Runtime: 113 ms, beating 55.45% of leetcode users solutions using C++.
+Memory: 68.86 mb, beating 92.98% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, and binary search.
