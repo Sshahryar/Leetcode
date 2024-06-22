@@ -12578,3 +12578,41 @@ Memory: 34.21 mb, beating 82.09% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 For loops, if statement, else-if statement, and sliding window technique.
+
+### Solution June 22, 2024 (C++, leetcode) 1248. Count Number of Nice Subarrays (Medium)
+In .LeetcodeDailySolution folder as June22,2024.cpp
+
+#### Prompt:
+
+Given an array of integers nums and an integer k. A continuous subarray is called nice if there are k odd numbers on it.
+
+Return the number of nice sub-arrays.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int numberOfSubarrays(vector<int>& nums, int k) {
+
+        int n = nums.size();
+        vector<int> cnt(n + 1, 0);
+        cnt[0] = 1;
+        int ans = 0, t = 0;
+
+        for (int v : nums) {   
+            t += v & 1;
+            if (t - k >= 0) {
+                ans += cnt[t - k];
+            }
+            cnt[t]++;
+        }
+        return ans;
+      }
+    };
+
+Runtime: 84, ms beating 91.73% of leetcode users solutions using C++.
+Memory: 73.13 mb, beating 27.45% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, for loop, iteration, and if statement.	
