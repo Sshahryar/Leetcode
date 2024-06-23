@@ -12616,3 +12616,58 @@ Memory: 73.13 mb, beating 27.45% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, for loop, iteration, and if statement.	
+
+### Solution June 23, 2024 (C++, leetcode) 1438. Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit (Medium)
+In .LeetcodeDailySolution folder as June23,2024.cpp
+
+#### Prompt:
+
+Given an array of integers nums and an integer limit, return the size of the longest non-empty subarray such that the absolute difference between any two elements of this subarray is less than or equal to limit.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int longestSubarray(vector<int>& nums, int limit) {
+
+        deque<int> increase;
+        deque<int> decrease;
+        int max_len = 0;
+        int left = 0;
+
+        for (int right = 0; right < nums.size(); ++right) {
+
+            while (!increase.empty() && nums[right] < increase.back()) {
+                increase.pop_back();
+            }
+
+            increase.push_back(nums[right]);
+
+            while (!decrease.empty() && nums[right] > decrease.back()) {
+                decrease.pop_back();
+            }
+
+            decrease.push_back(nums[right]);
+
+            while (decrease.front() - increase.front() > limit) {
+                if (nums[left] == decrease.front()) {
+                    decrease.pop_front();
+                }
+                if (nums[left] == increase.front()) {
+                    increase.pop_front();
+                }
+                ++left;
+            }
+
+            max_len = max(max_len, right - left + 1);
+        }
+        return max_len;
+      }
+    };
+
+Runtime: 50 ms, beating 98.14% of leetcode users solutions using C++.
+Memory: 54.50 mb, beating 81.10% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Deques, sliding window technique, min, max, for loop, while loops, and if statements.
