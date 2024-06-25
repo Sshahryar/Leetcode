@@ -12723,3 +12723,48 @@ Memory: 113.25 mb, beating 22.34% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, iteration, for loop, and if statements.
+
+### Solution June 25, 2024 (C++, leetcode) 1038. Binary Search Tree to Greater Sum Tree (Medium)
+In .LeetcodeDailySolution folder as June25,2024.cpp
+
+#### Prompt:
+
+Given the root of a Binary Search Tree (BST), convert it to a Greater Tree such that every key of the original BST is changed to the original key plus the sum of all keys greater than the original key in BST.
+
+As a reminder, a binary search tree is a tree that satisfies these constraints:
+
+The left subtree of a node contains only nodes with keys less than the node's key.
+The right subtree of a node contains only nodes with keys greater than the node's key.
+Both the left and right subtrees must also be binary search trees.
+
+#### Solution:
+
+    class Solution {
+    private:
+    int sum = 0;
+
+    void traverse(TreeNode* root) {
+
+        if (root) {
+
+            traverse(root -> right);
+            sum += root -> val;
+            root -> val = sum;
+            traverse(root -> left);
+        }
+    }
+
+    public:
+    TreeNode* bstToGst(TreeNode* root) {
+
+        traverse(root);
+        return root;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 9.95 mb, beating 96.10% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Binary search tree, recursion, and if statement.
