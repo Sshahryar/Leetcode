@@ -12768,3 +12768,57 @@ Memory: 9.95 mb, beating 96.10% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Binary search tree, recursion, and if statement.
+
+### Solution June 26, 2024 (C++, leetcode) 1382. Balance a Binary Search Tree (Medium)
+In .LeetcodeDailySolution folder as June26,2024.cpp
+
+#### Prompt:
+
+Given the root of a binary search tree, return a balanced binary search tree with the same node values. If there is more than one answer, return any of them.
+
+A binary search tree is balanced if the depth of the two subtrees of every node never differs by more than 1.
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<int> a;
+
+    void inorder(TreeNode* root) {
+
+        if (root) {
+
+            inorder(root -> left);
+            a.push_back(root -> val);
+            inorder(root -> right);
+        }
+    }
+
+    TreeNode* buildTree(int s, int e) {
+
+        if (s > e)
+            return NULL;
+
+        int mid = (s + e) / 2;
+
+        TreeNode* root = new TreeNode(a[mid]);
+
+        root -> left = buildTree(s, mid - 1);
+        root -> right = buildTree(mid + 1, e);
+
+        return root;
+    }
+    TreeNode* balanceBST(TreeNode* root) {
+
+        inorder(root);
+        
+        return buildTree(0, a.size() - 1);
+      }
+    };
+
+Runtime: 85 ms, beating 70.08% of leetcode users solutions using C++.
+Memory: 62.43 mb, beating 76.72% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Binary search tree, array, traversal, recursion, and binary search.
