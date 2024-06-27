@@ -12822,3 +12822,43 @@ Memory: 62.43 mb, beating 76.72% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Binary search tree, array, traversal, recursion, and binary search.
+
+### Solution June 27, 2024 (C++, leetcode) 1791. Find Center of Star Graph (Easy)
+In .LeetcodeDailySolution folder as June27,2024.cpp
+
+#### Prompt:
+
+There is an undirected star graph consisting of n nodes labeled from 1 to n. A star graph is a graph where there is one center node and exactly n - 1 edges that connect the center node with every other node.
+
+You are given a 2D integer array edges where each edges[i] = [ui, vi] indicates that there is an edge between the nodes ui and vi. Return the center of the given star graph.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int findCenter(vector<vector<int>>& edges) {
+
+        bitset<100000> visited = 0;
+
+        for (auto& e : edges) {
+
+            int v = e[0], w = e[1];
+
+            if (visited[v])
+                return v;
+
+            if (visited[w])
+                return w;
+
+            visited[v] = visited[w] = 1;
+        }
+        return -1;
+      }
+    };
+
+Runtime: 115 ms, beating 96.97% of leetcode users solutions using C++.
+Memory: 71.73 mb, beating 40.94% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Array, bitset, for loop, and if statements.
