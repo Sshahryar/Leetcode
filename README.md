@@ -13080,3 +13080,37 @@ Memory: 142.51 mb, beating 80.04% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Union find, array, for loops, if statement, and else-if statement.
+
+### Solution July 1, 2024 (C++, leetcode) 1550. Three Consecutive Odds (Easy)
+In .LeetcodeDailySolution folder as July1,2024.cpp
+
+#### Prompt:
+
+Given an integer array arr, return true if there are three consecutive odd numbers in the array. Otherwise, return false.
+
+#### Solution:
+
+    class Solution {
+    public:
+    bool threeConsecutiveOdds(vector<int>& arr) {
+
+        int count = 0;
+
+        for (int num : arr) {
+
+            count = num % 2 != 0 ? count + 1 : 0;
+            
+            if (count == 3) {
+                return true;
+            }
+        }
+        return false;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 10.62 mb, beating 8.28% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Array, iteration, modulo, for loop, and if statement.
