@@ -13114,3 +13114,51 @@ Memory: 10.62 mb, beating 8.28% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Array, iteration, modulo, for loop, and if statement.
+
+### Solution July 2, 2024 (C++, leetcode) 350. Intersection of Two Arrays II (Easy)
+In .LeetcodeDailySolution folder as July2,2024.cpp
+
+#### Prompt:
+
+Given two integer arrays nums1 and nums2, return an array of their intersection. Each element in the result must appear as many times as it shows in both arrays and you may return the result in any order.
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
+
+        sort(nums1.begin(), nums1.end());
+        sort(nums2.begin(), nums2.end());
+        
+        int i = 0, j = 0;
+
+        vector<int> result;
+        
+        while (i < nums1.size() && j < nums2.size()) {
+
+            if (nums1[i] < nums2[j]) {
+                i++;
+
+            } else if (nums1[i] > nums2[j]) {
+                j++;
+
+            } else {
+
+                result.push_back(nums1[i]);
+                i++;
+                j++;
+                
+            }
+        }
+        
+        return result;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 12.46 mb, beating 91.15% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Sorting, two pointers, while loop, if statement, else-if statement, and else statement.
