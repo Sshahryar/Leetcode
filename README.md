@@ -13162,3 +13162,52 @@ Memory: 12.46 mb, beating 91.15% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Sorting, two pointers, while loop, if statement, else-if statement, and else statement.
+
+### Solution July 3, 2024 (C++, leetcode) 1509. Minimum Difference Between Largest and Smallest Value in Three Moves (Medium)
+In .LeetcodeDailySolution folder as July3,2024.cpp
+
+#### Prompt:
+
+You are given an integer array nums.
+
+In one move, you can choose one element of nums and change it to any value.
+
+Return the minimum difference between the largest and smallest value of nums after performing at most three moves.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int minDifference(vector<int>& n) {
+
+        if (n.size() <= 4) {
+            return 0;
+        }
+
+        int ans = INT_MAX;
+
+        sort(n.begin(), n.end());
+
+        int w = -1, size = n.size() - 2;
+
+        for (int i = 0; i <= 3; i++) {
+
+            int nxtmin = n[w + 1];
+
+            int prevmax = n[size + w - 1];
+
+            ans = min(ans, prevmax - nxtmin);
+
+            w++;
+        }
+
+        return ans;
+      }
+    };
+
+Runtime: 69 ms, beating 55.06% of leetcode users solutions using C++.
+Memory: 38.66 mb, beating 79.26% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Array, if statement, max, min, sorting, and for loop.
