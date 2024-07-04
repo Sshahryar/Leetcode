@@ -13211,3 +13211,51 @@ Memory: 38.66 mb, beating 79.26% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Array, if statement, max, min, sorting, and for loop.
+
+### Solution July 4, 2024 (C++, leetcode) 2181. Merge Nodes in Between Zeros (Medium)
+In .LeetcodeDailySolution folder as July4,2024.cpp
+
+#### Prompt:
+
+You are given the head of a linked list, which contains a series of integers separated by 0's. The beginning and end of the linked list will have Node.val == 0.
+
+For every two consecutive 0's, merge all the nodes lying in between them into a single node whose value is the sum of all the merged nodes. The modified list should not contain any 0's.
+
+Return the head of the modified linked list.
+
+#### Solution:
+
+    class Solution {
+    public:
+    ListNode* mergeNodes(ListNode* head) {
+
+        ListNode* modify = head -> next; 
+        ListNode* nextSum = modify;
+
+        while (nextSum != nullptr) {
+
+            int sum = 0;
+
+            while (nextSum -> val != 0) {
+                sum += nextSum -> val;
+                nextSum = nextSum -> next;
+            }
+
+
+            modify -> val = sum;
+            nextSum = nextSum -> next;
+            modify -> next = nextSum;
+            modify = modify -> next;
+
+        }
+
+        return head -> next;
+      }
+    };
+
+Runtime: 381 ms, beating 97.83% of leetcode users solutions using C++.
+Memory: 256.60 mb, beating 76.60% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Linked list, pointers, traversal, and while loops.
