@@ -13331,3 +13331,33 @@ Memory: 115.75 mb, beating 79.36% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Linked list, array, pointers, while loop, if statements, and else statement.
+
+### Solution July 6, 2024 (C++, leetcode) 2582. Pass the Pillow (Easy)
+In .LeetcodeDailySolution folder as July6,2024.cpp
+
+#### Prompt:
+
+There are n people standing in a line labeled from 1 to n. The first person in the line is holding a pillow initially. Every second, the person holding the pillow passes it to the next person standing in the line. Once the pillow reaches the end of the line, the direction changes, and people continue passing the pillow in the opposite direction.
+
+For example, once the pillow reaches the nth person they pass it to the n - 1th person, then to the n - 2th person and so on.
+Given the two positive integers n and time, return the index of the person holding the pillow after time seconds.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int passThePillow(int n, int time) {
+
+        int chunks = time / (n - 1);
+        
+
+        return chunks % 2 == 0 ? (time % (n - 1) + 1) : (n - time % (n - 1));
+      }
+    };
+
+Runtime: 2 ms, beating 54.30% of leetcode users solution using C++.
+Memory: 6.99 mb, beating 96.56% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Math.
