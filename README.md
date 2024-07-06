@@ -13259,3 +13259,75 @@ Memory: 256.60 mb, beating 76.60% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Linked list, pointers, traversal, and while loops.
+
+### Solution July 5, 2024 (C++, leetcode) 2058. Find the Minimum and Maximum Number of Nodes Between Critical Points (Medium)
+In .LeetcodeDailySolution folder as July5,2024.cpp
+
+#### Prompt:
+
+A critical point in a linked list is defined as either a local maxima or a local minima.
+
+A node is a local maxima if the current node has a value strictly greater than the previous node and the next node.
+
+A node is a local minima if the current node has a value strictly smaller than the previous node and the next node.
+
+Note that a node can only be a local maxima/minima if there exists both a previous node and a next node.
+
+Given a linked list head, return an array of length 2 containing [minDistance, maxDistance] where minDistance is the minimum distance between any two distinct critical points and maxDistance is the maximum distance between any two distinct critical points. If there are fewer than two critical points, return [-1, -1].
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<int> nodesBetweenCriticalPoints(ListNode* head) {
+
+        vector<int> result = {-1, -1};
+
+        int minDistance = INT_MAX;
+
+        ListNode* previousNode = head;
+        ListNode* currentNode = head->next;
+
+        int currentIndex = 1;
+        int previousCriticalIndex = 0;
+        int firstCriticalIndex = 0;
+
+        while (currentNode->next != nullptr) {
+
+            if ((currentNode->val < previousNode->val &&
+                 currentNode->val < currentNode->next->val) ||
+                (currentNode->val > previousNode->val &&
+                 currentNode->val > currentNode->next->val)) {
+
+                if (previousCriticalIndex == 0) {
+                    previousCriticalIndex = currentIndex;
+                    firstCriticalIndex = currentIndex;
+                } else {
+
+                    minDistance = min(minDistance, currentIndex - previousCriticalIndex);
+                    previousCriticalIndex = currentIndex;
+                }
+            }
+
+            currentIndex++;
+            previousNode = currentNode;
+            currentNode = currentNode->next;
+        }
+
+
+        if (minDistance != INT_MAX) {
+            
+            int maxDistance = previousCriticalIndex - firstCriticalIndex;
+            result = {minDistance, maxDistance};
+        }
+
+        return result;
+      }
+    };
+
+Runtime: 150 ms, beating 92.01% of leetcode users solutions using C++.
+Memory: 115.75 mb, beating 79.36% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Linked list, array, pointers, while loop, if statements, and else statement.
