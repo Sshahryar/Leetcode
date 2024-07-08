@@ -13361,3 +13361,39 @@ Memory: 6.99 mb, beating 96.56% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Math.
+
+### Solution July 7, 2024 (C++, leetcode) 1518. Water Bottles (Easy)
+In .LeetcodeDailySolution folder as July7,2024.cpp
+
+#### Prompt:
+
+There are numBottles water bottles that are initially full of water. You can exchange numExchange empty water bottles from the market with one full water bottle.
+
+The operation of drinking a full water bottle turns it into an empty bottle.
+
+Given the two integers numBottles and numExchange, return the maximum number of water bottles you can drink.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int numWaterBottles(int numBottles, int numExchange) {
+
+        int totalBottles = numBottles;
+
+        while (numBottles >= numExchange) {
+            
+            totalBottles += numBottles / numExchange;
+            numBottles = (numBottles / numExchange) + (numBottles % numExchange);
+        }
+
+        return totalBottles;
+      }
+    };
+
+Runtime: 2 ms, beating 54.02% of leetcode users solutions using C++.
+Memory: 7.02 mb, beating 72.67% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+While loop and math.
