@@ -13397,3 +13397,53 @@ Memory: 7.02 mb, beating 72.67% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 While loop and math.
+
+### Solution July 8, 2024 (C++, leetcode) 1823. Find the Winner of the Circular Game (Medium)
+In .LeetcodeDailySolution folder as July8,2024.cpp
+
+#### Prompt:
+
+There are n friends that are playing a game. The friends are sitting in a circle and are numbered from 1 to n in clockwise order. More formally, moving clockwise from the ith friend brings you to the (i+1)th friend for 1 <= i < n, and moving clockwise from the nth friend brings you to the 1st friend.
+
+The rules of the game are as follows:
+
+Start at the 1st friend.
+Count the next k friends in the clockwise direction including the friend you started at. The counting wraps around the circle and may count some friends more than once.
+The last friend you counted leaves the circle and loses the game.
+If there is still more than one friend in the circle, go back to step 2 starting from the friend immediately clockwise of the friend who just lost and repeat.
+Else, the last friend in the circle wins the game.
+Given the number of friends, n, and an integer k, return the winner of the game.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int findTheWinner(int n, int k) {
+        
+        vector<int> circle;
+        
+        for (int i = 1; i <= n; ++i) {
+            circle.push_back(i);
+        
+        }
+        int cur_ind = 0;
+
+        while (circle.size() > 1) {
+            
+            int next_to_remove = (cur_ind + k - 1) % circle.size();
+            
+            circle.erase(circle.begin() + next_to_remove);
+            
+            cur_ind = next_to_remove;
+        }
+
+        return circle[0];
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 7.38 mb, beating 53.81% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Array, for loop, and while loop.
