@@ -13493,8 +13493,8 @@ Memory: 86.55 mb, beating 10.58% of leetcode users solutions using C++.
 
 Arrays, for loop, and math.
 
-### Solution July 11, 2024 (C++, leetcode) 1598. Crawler Log Folder (Easy)
-In .LeetcodeDailySolution folder as July11,2024.cpp
+### Solution July 10, 2024 (C++, leetcode) 1598. Crawler Log Folder (Easy)
+In .LeetcodeDailySolution folder as July10,2024.cpp
 
 #### Prompt:
 
