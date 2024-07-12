@@ -13542,3 +13542,65 @@ Memory: 14.11 mb, beating 17.15% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Counter, for loop, if statement, and else-if statement.
+
+### Solution July 11, 2024 (C++, leetcode) 1190. Reverse Substrings Between Each Pair of Parentheses (Medium)
+In .LeetcodeDailySolution folder as July11,2024.cpp
+
+#### Prompt:
+
+You are given a string s that consists of lower case English letters and brackets.
+
+Reverse the strings in each pair of matching parentheses, starting from the innermost one.
+
+Your result should not contain any brackets.
+
+#### Solution:
+
+    class Solution {
+    public:
+
+    int i = 0;
+
+    string reverseParentheses(string s) {
+
+        return helper(s);
+    }
+
+    string helper(string& s) {
+
+        string result;
+
+        while (i < s.length()) {
+
+            if (s[i] == ')') {
+
+                i++;
+
+                reverse(result.begin(), result.end());
+
+                return result;
+
+            } else if (s[i] == '(') {
+
+                i++;
+                string st = helper(s);
+                result += st;
+
+            } else {
+
+                result += s[i];
+                i++;
+
+            }
+        }
+
+        return result;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 8.43 mb, beating 21.06% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Counter, strings, reverse function, while loop, if statement, else-if statement, and else statement.
