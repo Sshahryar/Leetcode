@@ -13492,3 +13492,53 @@ Memory: 86.55 mb, beating 10.58% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, for loop, and math.
+
+### Solution July 11, 2024 (C++, leetcode) 1598. Crawler Log Folder (Easy)
+In .LeetcodeDailySolution folder as July11,2024.cpp
+
+#### Prompt:
+
+The Leetcode file system keeps a log each time some user performs a change folder operation.
+
+The operations are described below:
+
+"../" : Move to the parent folder of the current folder. (If you are already in the main folder, remain in the same folder).
+"./" : Remain in the same folder.
+"x/" : Move to the child folder named x (This folder is guaranteed to always exist).
+You are given a list of strings logs where logs[i] is the operation performed by the user at the ith step.
+
+The file system starts in the main folder, then the operations in logs are performed.
+
+Return the minimum number of operations needed to go back to the main folder after the change folder operations.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int minOperations(vector<string>& logs) {
+
+        int res = 0;
+
+        for (const string& log : logs) {
+
+            if (log == "../") {
+
+                if (res > 0) {
+                    res--;
+                }
+
+            } else if (log != "./") {
+                res++;
+            }
+        }
+
+        return res;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 14.11 mb, beating 17.15% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Counter, for loop, if statement, and else-if statement.
