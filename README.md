@@ -13604,3 +13604,75 @@ Memory: 8.43 mb, beating 21.06% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Counter, strings, reverse function, while loop, if statement, else-if statement, and else statement.
+
+### Solution July 12, 2024 (C++, leetcode) 1717. Maximum Score From Removing Substrings (Medium)
+In .LeetcodeDailySolution folder as July12,2024.cpp 
+
+#### Prompt:
+
+You are given a string s and two integers x and y. You can perform two types of operations any number of times.
+
+Remove substring "ab" and gain x points.
+For example, when removing "ab" from "cabxbae" it becomes "cxbae".
+Remove substring "ba" and gain y points.
+For example, when removing "ba" from "cabxbae" it becomes "cabxe".
+Return the maximum points you can gain after applying the above operations on s.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int maximumGain(string s, int x, int y) {
+
+        int aCount = 0;
+        int bCount = 0;
+        int lesser = min(x, y);
+        int result = 0;
+
+        for (char c : s) {
+
+            if (c > 'b') {
+
+                result += min(aCount, bCount) * lesser;
+                aCount = 0;
+                bCount = 0;
+
+            } else if (c == 'a') {
+                
+                if (x < y && bCount > 0) {
+
+                    bCount--;
+                    result += y;
+
+                } else {
+
+                    aCount++;
+
+                }
+            } else {
+
+                if (x > y && aCount > 0) {
+
+                    aCount--;
+                    result += x;
+                    
+                } else {
+
+                    bCount++;
+
+                }
+            }
+        }
+
+        result += min(aCount, bCount) * lesser;
+        
+        return result;
+      }
+    };
+
+Runtime: 46 ms, beating 99.21% of leetcode users solutions using C++.
+Memory: 18.04 mb, beating 81.35% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+String, counters, for loop, if statements, else-if statement, else statements, and min function.
