@@ -13902,3 +13902,76 @@ Memory: 10.32 mb, beating 16.81% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 String, stack, iteration, while loops, if statements, else-if statement, else statement, for loops, and sorting.
+
+### Solution July 15, 2024 (C++, leetcode) 2196. Create Binary Tree From Descriptions (Medium)
+In .LeetcodeDailySolution folder as July15,2024.cpp
+
+#### Prompt:
+
+You are given a 2D integer array descriptions where descriptions[i] = [parenti, childi, isLefti] indicates that parenti is the parent of childi in a binary tree of unique values. Furthermore,
+
+If isLefti == 1, then childi is the left child of parenti.
+If isLefti == 0, then childi is the right child of parenti.
+Construct the binary tree described by descriptions and return its root.
+
+The test cases will be generated such that the binary tree is valid.
+
+
+#### Solution:
+
+    class Solution {
+    public:
+    static TreeNode* createBinaryTree(vector<vector<int>>& descriptions) {
+
+        int root = -1, n = descriptions.size();
+
+        unordered_map<int, int> parent;
+        unordered_map<int, TreeNode*> node;
+        
+        parent.reserve(n);
+        node.reserve(n);
+
+        for (auto& d : descriptions) {
+
+            int x = d[0], y = d[1], l = d[2];
+
+            if (node.count(x) == 0) {
+
+                node[x] = new TreeNode(x);
+
+                if (parent.count(x) == 0)
+
+                    root = x;
+
+            }
+
+            if (node.count(y) == 0) {
+
+                node[y] = new TreeNode(y);
+            }
+
+            parent[y] = x;
+
+            if (l)
+
+                node[x]->left = node[y];
+
+            else
+
+                node[x]->right = node[y];
+        }
+
+        while (parent.count(root))
+
+            root = parent[root];
+
+        return node[root];
+      }
+    };
+
+Runtime: 658 ms, beating 84.28% of leetcode users solutions using C++.
+Memory: 268.64 mb, beating 88.86% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Hash map, arrays, for loop, if statements, else statement, and while loop.
