@@ -13975,3 +13975,59 @@ Memory: 268.64 mb, beating 88.86% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Hash map, arrays, for loop, if statements, else statement, and while loop.
+
+### Solution July 16, 2024 (C++, leetcode) 2096. Step-By-Step Directions From a Binary Tree Node to Another (Medium)
+In .LeetcodeDailySolution folder as July16,2024.cpp
+
+#### Prompt:
+
+You are given the root of a binary tree with n nodes. Each node is uniquely assigned a value from 1 to n. You are also given an integer startValue representing the value of the start node s, and a different integer destValue representing the value of the destination node t.
+
+Find the shortest path starting from node s and ending at node t. Generate step-by-step directions of such path as a string consisting of only the uppercase letters 'L', 'R', and 'U'. Each letter indicates a specific direction:
+
+'L' means to go from a node to its left child node.
+'R' means to go from a node to its right child node.
+'U' means to go from a node to its parent node.
+Return the step-by-step directions of the shortest path from node s to node t.
+
+#### Solution:
+
+    class Solution {
+    bool path(TreeNode* root, int v, string& p) {
+
+        if (root->val == v)
+            return true;
+
+        if (root->left && path(root->left, v, p))
+            p.push_back('L');
+
+        else if (root->right && path(root->right, v, p))
+            p.push_back('R');
+
+        return !p.empty();
+    }
+
+    public:
+    string getDirections(TreeNode* root, int startValue, int destValue) {
+
+        string s, d;
+
+        path(root, startValue, s);
+        path(root, destValue, d);
+
+        while (!s.empty() && !d.empty() && s.back() == d.back()) {
+
+            s.pop_back();
+            d.pop_back();
+        }
+
+        return string(s.size(), 'U') + string(rbegin(d), rend(d));
+      }
+    };
+
+Runtime: 146 ms, beating 79.69% of leetcode users solutions using C++.
+Memory: 116.16 mb, beating 91.15% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+String, binary tree, if statements, else if statement, and while loop.
