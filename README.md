@@ -14031,3 +14031,56 @@ Memory: 116.16 mb, beating 91.15% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 String, binary tree, if statements, else if statement, and while loop.
+
+### Solution July 17, 2024 (C++, leetcode) 1110. Delete Nodes And Return Forest (Medium)
+In .LeetcodeDailySolution folder as July17,2024.cpp
+
+#### Prompt:
+
+Given the root of a binary tree, each node in the tree has a distinct value.
+
+After deleting all nodes with a value in to_delete, we are left with a forest (a disjoint union of trees).
+
+Return the roots of the trees in the remaining forest. You may return the result in any order.
+
+#### Solution:
+
+    class Solution {
+    private:
+    bool set[1001] = {};
+
+    void dfs(TreeNode*& root, bool flag, vector<TreeNode*>& res) {
+
+        if (root == nullptr)
+            return;
+
+        dfs(root->left, set[root->val], res);
+        dfs(root->right, set[root->val], res);
+
+        if (!set[root->val] && flag)
+            res.push_back(root);
+
+        if (set[root->val])
+            root = nullptr;
+    }
+
+    public:
+    vector<TreeNode*> delNodes(TreeNode* root, vector<int>& to_delete) {
+
+        vector<TreeNode*> res;
+
+        for (int num : to_delete)
+            set[num] = true;
+
+        dfs(root, true, res);
+
+        return res;
+      }
+    };
+
+Runtime: 16 ms, beating 56.71% of leetcode users solutions using C++.
+Memory: 27.04 mb, beating 26.39% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Set, recursion, depth-first search, if statements, and for loop.
