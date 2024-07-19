@@ -14084,3 +14084,68 @@ Memory: 27.04 mb, beating 26.39% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Set, recursion, depth-first search, if statements, and for loop.
+
+### Solution July 18, 2024 (C++, leetcode) 1530. Number of Good Leaf Nodes Pairs (Medium)
+In .LeetcodeDailySolution folder as July18,2024.cpp
+
+#### Prompt:
+
+You are given the root of a binary tree and an integer distance. A pair of two different leaf nodes of a binary tree is said to be good if the length of the shortest path between them is less than or equal to distance.
+
+Return the number of good leaf node pairs in the tree.
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<int> recur(TreeNode* root, int distance, int& cnt) {
+
+        if (!root)
+            return {0};
+
+        if (!root->left && !root->right)
+            return {1};
+
+        vector<int> left = recur(root->left, distance, cnt);
+        vector<int> right = recur(root->right, distance, cnt);
+
+        for (int x : left) {
+            for (int y : right) {
+                if (x > 0 && y > 0) {
+                    if (x + y <= distance)
+                        cnt++;
+                }
+            }
+        }
+
+        vector<int> ans;
+        for (int x : left) {
+            if (x > 0 && x < distance) {
+                ans.push_back(x + 1);
+            }
+        }
+
+        for (int x : right) {
+            if (x > 0 && x < distance) {
+                ans.push_back(x + 1);
+            }
+        }
+
+        return ans;
+    }
+
+    int countPairs(TreeNode* root, int distance) {
+
+        int cnt = 0;
+        recur(root, distance, cnt);
+
+        return cnt;
+      }
+    };
+
+Runtime: 44 ms, 71.63% of leetcode users solutions using C++.
+Memory: 34.68 mb, beating 53.25% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Iteration, arrays, for loops, if statements, recursion, and depth-first search.
