@@ -14149,3 +14149,53 @@ Memory: 34.68 mb, beating 53.25% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Iteration, arrays, for loops, if statements, recursion, and depth-first search.
+
+### Solution July 19, 2024 (C++, leetcode) 1380. Lucky Numbers in a Matrix (Easy)
+In .LeetcodeDailySolution folder as July19,2024.cpp
+
+#### Prompt:
+
+Given an m x n matrix of distinct numbers, return all lucky numbers in the matrix in any order.
+
+A lucky number is an element of the matrix such that it is the minimum element in its row and maximum in its column.
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<int> luckyNumbers(vector<vector<int>>& matrix) {
+
+        if (matrix.empty() || matrix[0].empty())
+            return {};
+
+        int m = matrix.size(), n = matrix[0].size();
+
+        vector<int> rowMin(m, INT_MAX);
+        vector<int> colMax(n, INT_MIN);
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                rowMin[i] = min(rowMin[i], matrix[i][j]);
+                colMax[j] = max(colMax[j], matrix[i][j]);
+            }
+        }
+
+        vector<int> result;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (matrix[i][j] == rowMin[i] && matrix[i][j] == colMax[j]) {
+                    result.push_back(matrix[i][j]);
+                }
+            }
+        }
+
+        return result;
+      }
+    };
+
+Runtime: 16 ms, beating 56.54% of leetcode users solutions using C++.
+Memory: 14.58 mb, beating 12.55% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Matrix, arrays, for loops, and if statements.
