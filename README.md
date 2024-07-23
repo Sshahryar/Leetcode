@@ -14252,3 +14252,44 @@ Memory: 36.17 mb, beating 12.19% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Matrix, arrays, iteration, while loop, and if statements.
+
+### Solution July 22, 2024 (C++, leetcode) 2418. Sort the People (Easy)
+In .LeetcodeDailySolution folder as July22,2024.cpp
+
+#### Prompt:
+
+You are given an array of strings names, and an array heights that consists of distinct positive integers. Both arrays are of length n.
+
+For each index i, names[i] and heights[i] denote the name and height of the ith person.
+
+Return names sorted in descending order by the people's heights.
+
+#### Solution:
+
+    class Solution {
+    public:
+    static vector<string> sortPeople(vector<string>& names,
+                                     vector<int>& heights) {
+  
+        const int n = names.size();
+
+        for (int i = 0; i < n; i++)
+            heights[i] = (heights[i] << 10) + i;
+
+        sort(heights.begin(), heights.end(), greater<>());
+
+        vector<string> ans(n);
+
+        for (int i = 0; i < n; i++)
+            ans[i] = names[heights[i] & 1023];
+            
+        return ans;
+      }
+    };
+
+Runtime: 19 ms, beating 95.15% of leetcode users solutions using C++.
+Memory: 22.50 mb, beating 87.90% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+String, arrays, for loop, and sorting.
