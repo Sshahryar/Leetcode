@@ -14293,3 +14293,48 @@ Memory: 22.50 mb, beating 87.90% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 String, arrays, for loop, and sorting.
+
+### Solution July 25, 2024 (C++, leetcode) 912. Sort an Array (Medium)
+In .LeetcodeDailySolution folder as July25,2024.cpp
+
+#### Prompt:
+
+Given an array of integers nums, sort the array in ascending order and return it.
+
+You must solve the problem without using any built-in functions in O(nlog(n)) time complexity and with the smallest space complexity possible.
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<int> sortArray(vector<int>& nums) {
+
+        vector<int> counting(2 * 50000 + 1, 0);
+
+        for (int num : nums) {
+            counting[num + 50000]++;
+        }
+
+        int write_ind = 0;
+
+        for (int number_ind = 0; number_ind < counting.size(); ++number_ind) {
+
+            int freq = counting[number_ind];
+
+            while (freq != 0) {
+                nums[write_ind] = number_ind - 50000;
+                write_ind++;
+                freq--;
+            }
+        }
+
+        return nums;
+      }
+    };
+
+Runtime: 84 ms, beating 90.23% of leetcode users solutions using C++.
+Memory: 78.77 mb, beating 49.24% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+ 
+Counting sort, arrays, for loops, and while loop.
