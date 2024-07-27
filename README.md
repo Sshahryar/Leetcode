@@ -14338,3 +14338,72 @@ Memory: 78.77 mb, beating 49.24% of leetcode users solutions using C++.
 #### Concepts Applied:
  
 Counting sort, arrays, for loops, and while loop.
+
+### Solution July 26, 2024 (C++, leetcode) 1334. Find the City With the Smallest Number of Neighbors at a Threshold Distance (Medium)
+In .LeetcodeDailySolution folder as July26,2024.cpp
+
+#### Prompt:
+
+There are n cities numbered from 0 to n-1. Given the array edges where edges[i] = [fromi, toi, weighti] represents a bidirectional and weighted edge between cities fromi and toi, and given the integer distanceThreshold.
+
+Return the city with the smallest number of cities that are reachable through some path and whose distance is at most distanceThreshold, If there are multiple such cities, return the city with the greatest number.
+
+Notice that the distance of a path connecting cities i and j is equal to the sum of the edges' weights along that path.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int findTheCity(int n, vector<vector<int>>& edges, int distanceThreshold) {
+
+        vector<vector<int>> dist(n, vector<int>(n, numeric_limits<int>::max()));
+        
+        for (int i = 0; i < n; ++i) {
+            dist[i][i] = 0;
+        }
+        
+        for (const auto& edge : edges) {
+            int u = edge[0], v = edge[1], w = edge[2];
+            dist[u][v] = w;
+            dist[v][u] = w;
+        }
+        
+        for (int k = 0; k < n; ++k) {
+            for (int i = 0; i < n; ++i) {
+                for (int j = 0; j < n; ++j) {
+                    if (dist[i][k] != numeric_limits<int>::max() && dist[k][j] != numeric_limits<int>::max()) {
+                        dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j]);
+                    }
+                }
+            }
+        }
+
+        int minReachableCities = numeric_limits<int>::max();
+        int bestCity = -1;
+        
+        for (int i = 0; i < n; ++i) {
+
+            int reachableCities = 0;
+            
+            for (int j = 0; j < n; ++j) {
+                if (dist[i][j] <= distanceThreshold) {
+                    reachableCities++;
+                }
+            }
+            
+            if (reachableCities <= minReachableCities) {
+                minReachableCities = reachableCities;
+                bestCity = i;
+            }
+        }
+        
+        return bestCity;
+      }
+    };
+
+Runtime: 26 ms, beating 61.72% of leetcode users solutions using C++.
+Memory: 15.55 mb, beating 75.72% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Shortest path, arrays, max, for loops, and if statements.
