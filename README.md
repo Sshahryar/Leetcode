@@ -14478,3 +14478,79 @@ Memory: 94.19 mb, beating 91.67% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Strings, arrays, shortest path, for loops, and if statements.
+
+### Solution July 28, 2024 (C++, leetcode) 2045. Second Minimum Time to Reach Destination (Hard)
+In .LeetcodeDailySolution folder as July28,2024.cpp
+
+#### Prompt:
+
+A city is represented as a bi-directional connected graph with n vertices where each vertex is labeled from 1 to n (inclusive). The edges in the graph are represented as a 2D integer array edges, where each edges[i] = [ui, vi] denotes a bi-directional edge between vertex ui and vertex vi. Every vertex pair is connected by at most one edge, and no vertex has an edge to itself. The time taken to traverse any edge is time minutes.
+
+Each vertex has a traffic signal which changes its color from green to red and vice versa every change minutes. All signals change at the same time. You can enter a vertex at any time, but can leave a vertex only when the signal is green. You cannot wait at a vertex if the signal is green.
+
+The second minimum value is defined as the smallest value strictly larger than the minimum value.
+
+For example the second minimum value of [2, 3, 4] is 3, and the second minimum value of [2, 2, 4] is 4.
+Given n, edges, time, and change, return the second minimum time it will take to go from vertex 1 to vertex n.
+
+Notes:
+
+You can go through any vertex any number of times, including 1 and n.
+You can assume that when the journey starts, all signals have just turned green.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int secondMinimum(int n, vector<vector<int>>& edges, int time, int change) {
+
+        unordered_map<int, list<int>> g;
+
+        for (const auto& e : edges) {
+            int u = e[0], v = e[1];
+            g[u].push_back(v);
+            g[v].push_back(u);
+        }
+
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> q;
+
+        q.push({0, 1}); 
+
+        vector<int> uniqueVisit(n + 1, 0);
+        vector<int> dis(n + 1, -1); 
+
+        while (!q.empty()) {
+
+            auto [t, node] = q.top();
+            q.pop(); 
+
+            if (dis[node] == t || uniqueVisit[node] >= 2) {
+                continue; 
+            }
+
+            uniqueVisit[node]++;
+            dis[node] = t;
+
+            if (node == n && uniqueVisit[node] == 2) {
+                return dis[node];
+            }
+
+            if ((t / change) % 2 != 0) {
+                t = (t / change + 1) * change;
+            }
+
+            for (int nei : g[node]) {
+                q.push({t + time, nei});
+            }
+        }
+
+        return -1;
+      }
+    };
+
+Runtime: 804 ms, beating 5.83% of leetcode users solutions using C++.
+Memory: 242.49 mb, beating 5.83% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Shortest path, unordered map, for loops, priority queue, arrays, while loop, and if statements.
