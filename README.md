@@ -14554,3 +14554,50 @@ Memory: 242.49 mb, beating 5.83% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Shortest path, unordered map, for loops, priority queue, arrays, while loop, and if statements.
+
+### Solution July 29, 2024 (C++, leetcode) 1395. Count Number of Teams (Medium)
+In .LeetcodeDailySolution folder as July29,2024.cpp
+
+#### Prompt:
+
+There are n soldiers standing in a line. Each soldier is assigned a unique rating value.
+
+You have to form a team of 3 soldiers amongst them under the following rules:
+
+Choose 3 soldiers with index (i, j, k) with rating (rating[i], rating[j], rating[k]).
+A team is valid if: (rating[i] < rating[j] < rating[k]) or (rating[i] > rating[j] > rating[k]) where (0 <= i < j < k < n).
+Return the number of teams you can form given the conditions. (soldiers can be part of multiple teams).
+
+#### Solution:
+
+    class Solution {
+    public:
+    static int numTeams(vector<int>& rating) {
+
+        const int n = rating.size();
+
+        int cnt = 0;
+
+        for (int i = 1; i < n - 1; i++) {
+
+            int L[2] = {0}, R[2] = {0};
+
+            for (int j = 0; j < i; j++)
+                L[rating[j] < rating[i]]++;
+
+            for (int k = i + 1; k < n; k++)
+                R[rating[k] < rating[i]]++;
+
+            cnt += L[0] * R[1] + L[1] * R[0];
+        }
+
+        return cnt;
+      }
+    };
+
+Runtime: 29 ms, beating 64.86% of leetcode users solutions using C++.
+Memory: 11.61 mb, beating 72.06% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Array, nested for loop, and counting.
