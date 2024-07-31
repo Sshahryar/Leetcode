@@ -14601,3 +14601,44 @@ Memory: 11.61 mb, beating 72.06% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Array, nested for loop, and counting.
+
+### Solution July 30, 2024 (C++, leetcode) 1653. Minimum Deletions to Make String Balanced (Medium)
+In .LeetcodeDailySolution folder as July30,2024.cpp
+
+#### Prompt:
+
+You are given a string s consisting only of characters 'a' and 'b'​​​​.
+
+You can delete any number of characters in s to make s balanced. s is balanced if there is no pair of indices (i,j) such that i < j and s[i] = 'b' and s[j]= 'a'.
+
+Return the minimum number of deletions needed to make s balanced.
+
+#### Solution:
+
+    class Solution {
+    public:
+    static int minimumDeletions(string& s) {
+
+        const int n = s.size();
+
+        int cntA = 0, ans = 0;
+
+        for (int i = n - 1; i >= 0; i--) {
+
+            if (s[i] == 'a')
+                cntA++;
+
+            else
+                ans = min(ans + 1, cntA);
+        }
+
+        return ans;
+      }
+    };
+
+Runtime: 75 ms, beating 79.61% of leetcode users solutions using C++.
+Memory: 19.94 mb, beating 98.61% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Iteration, dynamic programming, for loop, if statement, and else statement.
