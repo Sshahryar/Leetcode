@@ -14700,3 +14700,42 @@ Memory: 10.80 mb, beating 74.85% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, dynamic programming, for loops, and if statement. 
+
+### Solution Aug 1, 2024 (C++, leetcode) 2678. Number of Senior Citizens (Easy)
+In .LeetcodeDailySolution folder as Aug1,2024.cpp
+
+#### Prompt:
+
+You are given a 0-indexed array of strings details. Each element of details provides information about a given passenger compressed into a string of length 15. The system is such that:
+
+The first ten characters consist of the phone number of passengers.
+The next character denotes the gender of the person.
+The following two characters are used to indicate the age of the person.
+The last two characters determine the seat allotted to that person.
+Return the number of passengers who are strictly more than 60 years old.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int countSeniors(vector<string>& details) {
+
+        int ans = 0;
+
+        for (int i = 0; i < details.size(); i++) {
+
+            int age = (details[i][11] - '0') * 10 + (details[i][12] - '0');
+
+            if (age > 60)
+                ans++;
+        }
+        return ans;
+      }
+    };
+
+Runtime: 4 ms, beating 82.84% of leetcode users solutions using C++.
+Memory: 17.49 mb, beating 33.89% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+ASCII, string, for loop, and if statement.
