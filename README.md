@@ -14642,3 +14642,61 @@ Memory: 19.94 mb, beating 98.61% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Iteration, dynamic programming, for loop, if statement, and else statement.
+
+### Solution July 31, 2024 (C++, leetcode) 1105. Filling Bookcase Shelves (Medium)
+In .LeetcodeDailySolution folder as July31,2024.cpp
+
+#### Prompt:
+
+You are given an array books where books[i] = [thicknessi, heighti] indicates the thickness and height of the ith book. You are also given an integer shelfWidth.
+
+We want to place these books in order onto bookcase shelves that have a total width shelfWidth.
+
+We choose some of the books to place on this shelf such that the sum of their thickness is less than or equal to shelfWidth, then build another level of the shelf of the bookcase so that the total height of the bookcase has increased by the maximum height of the books we just put down. We repeat this process until there are no more books to place.
+
+Note that at each step of the above process, the order of the books we place is the same order as the given sequence of books.
+
+For example, if we have an ordered list of 5 books, we might place the first and second book onto the first shelf, the third book on the second shelf, and the fourth and fifth book on the last shelf.
+Return the minimum possible height that the total bookshelf can be after placing shelves in this manner.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int minHeightShelves(vector<vector<int>>& books, int shelfWidth) {
+
+        int n = books.size();
+        int f[n + 1];
+
+        f[0] = 0;
+
+        for (int i = 1; i <= n; ++i) {
+
+            int w = books[i - 1][0], h = books[i - 1][1];
+
+            f[i] = f[i - 1] + h;
+
+            for (int j = i - 1; j > 0; --j) {
+
+                w += books[j - 1][0];
+
+                if (w > shelfWidth) {
+                    break;
+                }
+
+                h = max(h, books[j - 1][1]);
+                f[i] = min(f[i], f[j - 1] + h);
+
+            }
+        }
+        
+        return f[n];
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 10.80 mb, beating 74.85% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, dynamic programming, for loops, and if statement. 
