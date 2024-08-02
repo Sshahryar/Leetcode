@@ -14739,3 +14739,43 @@ Memory: 17.49 mb, beating 33.89% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 ASCII, string, for loop, and if statement.
+
+### Solution Aug 2, 2024 (C++, leetcode) 2134. Minimum Swaps to Group All 1's Together II (Medium)
+In .LeetcodeDailySolution folder as Aug2,2024.cpp
+
+#### Prompt:
+
+A swap is defined as taking two distinct positions in an array and swapping the values in them.
+
+A circular array is defined as an array where we consider the first element and the last element to be adjacent.
+
+Given a binary circular array nums, return the minimum number of swaps required to group all 1's present in the array together at any location.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int minSwaps(vector<int>& nums) {
+
+        int k = accumulate(nums.begin(), nums.end(), 0);
+        int n = nums.size();
+        int cnt = accumulate(nums.begin(), nums.begin() + k, 0);
+        int mx = cnt;
+
+        for (int i = k; i < n + k; ++i) {
+
+            cnt += nums[i % n] - nums[(i - k + n) % n];
+            mx = max(mx, cnt);
+
+        }
+        
+        return k - mx;
+      }
+    };
+
+Runtime: 63 ms, beating 80.27% of leetcode users solutions using C++.
+Memory: 83.06 mb, beating 58.03% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, counting, sliding window technique, for loop, and max.
