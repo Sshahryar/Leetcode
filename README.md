@@ -14779,3 +14779,32 @@ Memory: 83.06 mb, beating 58.03% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, counting, sliding window technique, for loop, and max.
+
+### Solution Aug 3, 2024 (C++, leetcode) 1460. Make Two Arrays Equal by Reversing Subarrays (Easy)
+In .LeetcodeDailySolution folder as Aug3,2024.cpp
+
+#### Prompt:
+
+You are given two integer arrays of equal length target and arr. In one step, you can select any non-empty subarray of arr and reverse it. You are allowed to make any number of steps.
+
+Return true if you can make arr equal to target or false otherwise.
+
+#### Solution:
+
+    class Solution {
+    public:
+    bool canBeEqual(vector<int>& target, vector<int>& arr) {
+
+        sort(target.begin(),target.end());
+        sort(arr.begin(),arr.end());
+        
+        return target == arr;
+      }
+    };
+
+Runtime: 7 ms, beating 84.56% of leetcode users solutions using C++.
+Memory: 17.47 mb, beating 58.54% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Sorting and comparing.
