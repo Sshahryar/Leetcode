@@ -14808,3 +14808,51 @@ Memory: 17.47 mb, beating 58.54% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Sorting and comparing.
+
+### Solution Aug 4, 2024 (C++, leetcode) 1508. Range of Sorted Subarray Sums (Medium)
+In .LeetcodeDailySolution folder as Aug4,2024.cpp
+
+#### Prompt:
+
+You are given the array nums consisting of n positive integers. You computed the sum of all non-empty continuous subarrays from the array and then sorted them in non-decreasing order, creating a new array of n * (n + 1) / 2 numbers.
+
+Return the sum of the numbers from index left to index right (indexed from 1), inclusive, in the new array. Since the answer can be a huge number return it modulo 109 + 7.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int rangeSum(vector<int>& nums, int n, int left, int right) {
+
+        const int MOD = 1000000007;
+
+        vector<int> subarraySums;
+        
+        for (int i = 0; i < n; i++) {
+
+            int sum = 0;
+
+            for (int j = i; j < n; j++) {
+                sum += nums[j];
+                subarraySums.push_back(sum);
+            }
+        }
+        
+        sort(subarraySums.begin(), subarraySums.end());
+        
+        long long rangeSum = 0;
+        
+        for (int i = left - 1; i < right; i++) {
+            rangeSum = (rangeSum + subarraySums[i]) % MOD;
+        }
+        
+        return static_cast<int>(rangeSum);
+      }
+    };
+
+Runtime: 89 ms, beating 68.30% of leetcode users solutions using C++.
+Memory: 27.35 mb, beating 22.39% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, for loops, iteration, subarrays, sorting, and modulus.
