@@ -14856,3 +14856,44 @@ Memory: 27.35 mb, beating 22.39% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, for loops, iteration, subarrays, sorting, and modulus.
+
+### Solution Aug 5, 2024 (C++, leetcode) 2053. Kth Distinct String in an Array (Easy)
+In .LeetcodeDailySolution folder as Aug5,2024.cpp
+
+#### Prompt:
+
+A distinct string is a string that is present only once in an array.
+
+Given an array of strings arr, and an integer k, return the kth distinct string present in arr. If there are fewer than k distinct strings, return an empty string "".
+
+Note that the strings are considered in the order in which they appear in the array.
+
+#### Solution:
+
+    class Solution {
+    public:
+    string kthDistinct(vector<string>& arr, int k) {
+
+        unordered_map<string, int> counter;
+
+        for (auto& v : arr)
+            ++counter[v];
+
+        for (auto& v : arr) {
+            if (counter[v] == 1) {
+                --k;
+                if (k == 0)
+                    return v;
+            }
+        }
+
+        return "";
+      }
+    };
+
+Runtime: 7 ms, beating 98.16% of leetcode users solutions using C++.
+Memory: 18.45 mb, beating 63.70% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Unordered map, arrays, hashing, for loops, and if statements.
