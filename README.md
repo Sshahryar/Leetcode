@@ -15032,3 +15032,55 @@ Memory: 12.42 mb, beating 19.58% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Map, strings, if statements, for loop, and math.
+
+### Solution Aug 8, 2024 (C++, leetcode) 885. Spiral Matrix III (Medium)
+In .LeetcodeDailySolution folder as Aug8,2024.cpp
+
+#### Prompt:
+
+You start at the cell (rStart, cStart) of an rows x cols grid facing east. The northwest corner is at the first row and column in the grid, and the southeast corner is at the last row and column.
+
+You will walk in a clockwise spiral shape to visit every position in this grid. Whenever you move outside the grid's boundary, we continue our walk outside the grid (but may return to the grid boundary later.). Eventually, we reach all rows * cols spaces of the grid.
+
+Return an array of coordinates representing the positions of the grid in the order you visited them.
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<vector<int>> spiralMatrixIII(int rows, int cols, int rStart, int cStart) {
+
+        vector<vector<int>> directions = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}}; 
+        vector<vector<int>> result = {{rStart, cStart}};
+
+        int steps = 0, d = 0;
+        
+        while (result.size() < rows * cols) {
+
+            if (d == 0 || d == 2) steps++;
+            
+            for (int i = 0; i < steps; i++) {
+                
+                rStart += directions[d][0];
+                cStart += directions[d][1];
+                
+                if (rStart >= 0 && rStart < rows && cStart >= 0 && cStart < cols) {
+                    result.push_back({rStart, cStart});
+                }
+                
+                if (result.size() == rows * cols) return result;
+            }
+            
+            d = (d + 1) % 4;
+        }
+        
+        return result;
+      }
+    };
+
+Runtime: 3 ms, beating 98.91% of leetcode users solutions using C++.
+Memory: 14.03 mb, beating 9.14% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Matrix, grid, while loop, if statements, and for loop.
