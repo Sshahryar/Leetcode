@@ -15216,3 +15216,93 @@ Memory: 15.65 mb, beating 26.69% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Depth-first search, matrix, grid, strings, arrays, for loops, and if statements.
+
+### Solution Aug 11, 2024 (C++, leetcode) 1568. Minimum Number of Days to Disconnect Island (Hard)
+In .LeetcodeDailySolution folder as Aug11,2024.cpp
+
+#### Prompt:
+
+You are given an m x n binary grid grid where 1 represents land and 0 represents water. An island is a maximal 4-directionally (horizontal or vertical) connected group of 1's.
+
+The grid is said to be connected if we have exactly one island, otherwise is said disconnected.
+
+In one day, we are allowed to change any single land cell (1) into a water cell (0).
+
+Return the minimum number of days to disconnect the grid.
+
+#### Solution:
+
+    class Solution {
+    public:
+    void dfs(int i, int j, vector<vector<int>>& visited, int m, int n,
+             vector<vector<int>>& grid) {
+
+        if (i < 0 || i >= m || j < 0 || j >= n || visited[i][j] == 1 ||
+            grid[i][j] == 0) {
+
+            return;
+        }
+
+        visited[i][j] = 1;
+
+        dfs(i + 1, j, visited, m, n, grid);
+        dfs(i - 1, j, visited, m, n, grid);
+        dfs(i, j + 1, visited, m, n, grid);
+        dfs(i, j - 1, visited, m, n, grid);
+    }
+
+    int islandcount(vector<vector<int>>& grid) {
+
+        int m = grid.size();
+        int n = grid[0].size();
+
+        vector<vector<int>> visited(m, vector<int>(n, 0));
+        int islands = 0;
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == 1 && visited[i][j] == 0) {
+                    dfs(i, j, visited, m, n, grid);
+                    islands++;
+                }
+            }
+        }
+
+        return islands;
+    }
+
+    int minDays(vector<vector<int>>& grid) {
+        int m = grid.size();
+        int n = grid[0].size();
+
+        int islands = islandcount(grid);
+
+        if (islands > 1 || islands == 0) {
+            return 0;
+        }
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == 1) {
+                    grid[i][j] = 0;
+                    islands = islandcount(grid);
+
+                    if (islands > 1 || islands == 0) {
+                        return 1;
+                    }
+
+                    grid[i][j] = 1;
+                }
+            }
+        }
+
+        return 2;
+      }
+    };
+
+Runtime: 63 ms, beating 67.86% of leetcode users solutions using C++.
+Memory: 25.50 mb, beating 43.96% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Depth-firt search, matrix, binary grid, if statements, and for loops.
