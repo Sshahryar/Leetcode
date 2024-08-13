@@ -15305,4 +15305,50 @@ Memory: 25.50 mb, beating 43.96% of leetcode users solutions using C++.
 
 #### Concepts Applied:
 
-Depth-firt search, matrix, binary grid, if statements, and for loops.
+Depth-first search, matrix, binary grid, if statements, and for loops.
+
+### Solution Aug 12, 2024 (C++, leetcode) 703. Kth Largest Element in a Stream (Easy)
+In .LeetcodeDailySolution folder as Aug12,2024.cpp
+
+#### Prompt:
+
+Design a class to find the kth largest element in a stream. Note that it is the kth largest element in the sorted order, not the kth distinct element.
+
+Implement KthLargest class:
+
+KthLargest(int k, int[] nums) Initializes the object with the integer k and the stream of integers nums.
+int add(int val) Appends the integer val to the stream and returns the element representing the kth largest element in the stream.
+
+#### Solution:
+
+    class KthLargest {
+    public:
+
+    int k;
+    priority_queue<int, vector<int>, greater<int>> pq;
+
+    KthLargest(int k, vector<int>& nums) : k(k) {
+
+        for (int x : nums) {
+            pq.push(x);
+
+            if (pq.size() > k)
+                pq.pop();
+        }
+    }
+    int add(int val) {
+        pq.push(val);
+
+        if (pq.size() > k)
+            pq.pop();
+
+        return pq.top();
+      }
+    };
+
+Runtime: 25 ms, beating 67.33% of leetcode users solutions using C++.
+Memory: 24.74 mb, beating 40.40% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Priority queue, arrays, for loop, and if statements.
