@@ -15352,3 +15352,57 @@ Memory: 24.74 mb, beating 40.40% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Priority queue, arrays, for loop, and if statements.
+
+### Solution Aug 13, 2024 (C++, leetcode) 40. Combination Sum II (Medium)
+In .LeetcodeDailySolution folder as Aug13,2024.cpp
+
+#### Prompt:
+
+Given a collection of candidate numbers (candidates) and a target number (target), find all unique combinations in candidates where the candidate numbers sum to target.
+
+Each number in candidates may only be used once in the combination.
+
+Note: The solution set must not contain duplicate combinations.
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+
+        sort(candidates.begin(), candidates.end());
+
+        vector<vector<int>> ans;
+        vector<int> ds;
+
+        findCombination(0, target, candidates, ans, ds);
+
+        return ans;
+    }
+    void findCombination(int ind, int target, vector<int>& arr,
+                         vector<vector<int>>& ans, vector<int>& ds) {
+
+        if (target == 0) {
+            ans.push_back(ds);
+            return;
+        }
+
+        for (int i = ind; i < arr.size(); i++) {
+            if (i > ind && arr[i] == arr[i - 1])
+                continue;
+            if (arr[i] > target)
+                break;
+                
+            ds.push_back(arr[i]);
+            findCombination(i + 1, target - arr[i], arr, ans, ds);
+            ds.pop_back();
+        }
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 12.80 mb, beating 66.93% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Backtracking, sorting, arrays, combinations, for loop, and if statements.
