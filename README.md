@@ -15406,3 +15406,59 @@ Memory: 12.80 mb, beating 66.93% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Backtracking, sorting, arrays, combinations, for loop, and if statements.
+
+### Solution Aug 14, 2024 (C++, leetcode) 719. Find K-th Smallest Pair Distance (Hard)
+In .LeetcodeDailySolution folder as Aug14,2024.cpp
+
+#### Prompt:
+
+The distance of a pair of integers a and b is defined as the absolute difference between a and b.
+
+Given an integer array nums and an integer k, return the kth smallest distance among all the pairs nums[i] and nums[j] where 0 <= i < j < nums.length.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int smallestDistancePair(vector<int>& nums, int k) {
+
+        sort(nums.begin(), nums.end());
+        
+        int n = nums.size();
+        int low = 0, high = nums[n - 1] - nums[0];
+
+        auto count_pairs = [&](int max_distance) {
+
+            int count = 0, j = 0;
+
+            for (int i = 0; i < n; ++i) {
+                
+                while (j < n && nums[j] - nums[i] <= max_distance)
+                    ++j;
+
+                count += j - i - 1;
+            }
+
+            return count;
+        };
+
+        while (low < high) {
+
+            int mid = low + (high - low) / 2;
+
+            if (count_pairs(mid) < k)
+                low = mid + 1;
+            else
+                high = mid;
+        }
+
+        return low;
+      }
+    };
+
+Runtime: 7 ms, beating 83.74% of leetcode users solutions using C++.
+Memory: 12.94 mb, beating 26.29% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Binary search, two-pointers, arrays, sorting, for loop, while loops, if statement, and else statement.
