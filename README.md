@@ -15462,3 +15462,54 @@ Memory: 12.94 mb, beating 26.29% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Binary search, two-pointers, arrays, sorting, for loop, while loops, if statement, and else statement.
+
+### Solution Aug 15, 2024 (C++, leetcode) 860. Lemonade Change (Easy)
+In .LeetcodeDailySolution folder as Aug15,2024.cpp
+
+#### Prompt:
+
+At a lemonade stand, each lemonade costs $5. Customers are standing in a queue to buy from you and order one at a time (in the order specified by bills). Each customer will only buy one lemonade and pay with either a $5, $10, or $20 bill. You must provide the correct change to each customer so that the net transaction is that the customer pays $5.
+
+Note that you do not have any change in hand at first.
+
+Given an integer array bills where bills[i] is the bill the ith customer pays, return true if you can provide every customer with the correct change, or false otherwise.
+
+#### Solution:
+
+    class Solution {
+    public:
+    bool lemonadeChange(vector<int>& bills) {
+
+        int c5 = 0, c10 = 0;
+
+        for (auto bill : bills) {
+
+            if (bill == 5)
+                c5++;
+
+            else if (bill == 10 && c5 >= 1) {
+                c10++;
+                c5--;
+
+            } else if (bill == 20 && c10 >= 1 && c5 >= 1) {
+                c10--;
+                c5--;
+
+            } else if (bill == 20 && c5 >= 3) {
+                c5 -= 3;
+
+            } else
+
+                return false;
+        }
+        
+        return true;
+      }
+    };
+
+Runtime: 68 ms, beating 74.03% of leetcode users solutions using C++.
+Memory: 85.91 mb, beating 50.86% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Array, for loop, simple if-else-else if statement.
