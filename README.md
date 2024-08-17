@@ -15513,3 +15513,44 @@ Memory: 85.91 mb, beating 50.86% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Array, for loop, simple if-else-else if statement.
+
+### Solution Aug 16, 2024 (C++, leetcode) 624. Maximum Distance in Arrays (Medium)
+In .LeetcodeDailySolution folder as Aug16,2024.cpp
+
+#### Prompt:
+
+You are given m arrays, where each array is sorted in ascending order.
+
+You can pick up two integers from two different arrays (each array picks one) and calculate the distance. We define the distance between two integers a and b to be their absolute difference |a - b|.
+
+Return the maximum distance.
+
+#### Solution:
+
+    class Solution {
+    public:
+    static int maxDistance(vector<vector<int>>& arrays) {
+
+        int xMin = 1e5, xMax = -1e5;
+        int diff = 0;
+        int m = arrays.size();
+
+        for (auto& arr : arrays) {
+
+            int a0 = arr[0], aN = arr.back();
+            
+            diff = max({diff, aN - xMin, xMax - a0});
+            xMin = min(a0, xMin);
+            xMax = max(aN, xMax);
+        }
+        
+        return diff;
+      }
+    };
+
+Runtime: 222 ms, beating 81.13% of leetcode users solutions using C++.
+Memory: 107.88 mb, beating 57.08% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, greedy, 1 pass, for loop, max, and min.
