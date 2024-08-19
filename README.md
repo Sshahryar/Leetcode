@@ -15620,3 +15620,52 @@ Memory: 129.20 mb, beating 30.24% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Matrix, dynamic programming, two pass, for loops, and max.
+
+### Solution Aug 18, 2024 (C++, leetcode) 264. Ugly Number II (Medium)
+In .LeetcodeDailySolution folder as Aug18,2024.cpp
+
+#### Prompt:
+
+An ugly number is a positive integer whose prime factors are limited to 2, 3, and 5.
+
+Given an integer n, return the nth ugly number.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int nthUglyNumber(int n) {
+
+        vector<int> dp(n);
+        dp[0] = 1;
+
+        int p1 = 0;
+        int p2 = 0;
+        int p3 = 0;
+
+        for (int i = 1; i < n; i++) {
+
+            int twoMul = dp[p1] * 2;
+            int threeMul = dp[p2] * 3;
+            int fiveMul = dp[p3] * 5;
+
+            dp[i] = min(twoMul, min(threeMul, fiveMul));
+
+            if (dp[i] == twoMul)
+                p1++;
+            if (dp[i] == threeMul)
+                p2++;
+            if (dp[i] == fiveMul)
+                p3++;
+        }
+
+        return dp[n - 1];
+      }
+    };
+
+Runtime: 6 ms, beating 56.38% of leetcode users solutions using C++.
+Memory: 9.72 mb, beating 56.70% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, dynamic programming, for loop, and if statements.
