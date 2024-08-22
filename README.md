@@ -15823,3 +15823,39 @@ Memory: 11.28 mb, beating 38.69% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Backtracking, arrays, strings, if statements, dynamic programming, and for loop.
+
+### Solution Aug 22, 2024 (C++, leetcode) 476. Number Complement (Easy)
+In .LeetcodeDailySolution folder as Aug22,2024.cpp
+
+#### Prompt:
+
+The complement of an integer is the integer you get when you flip all the 0's to 1's and all the 1's to 0's in its binary representation.
+
+For example, The integer 5 is "101" in binary and its complement is "010" which is the integer 2.
+Given an integer num, return its complement.
+
+#### Solution:
+
+    class Solution {
+    public:
+    static int findComplement(int num) {
+
+        if (num == 1)
+            return 0;
+
+        int ans = 0;
+
+        for (int b = 0; num; b++, num >>= 1) { 
+            ans += (1 - (num & 1)) << b;       
+        }
+        
+        return ans;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 7.32 mb, beating 65.77% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+If statement, for loop, and bit manipulation.
