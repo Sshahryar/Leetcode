@@ -15768,3 +15768,58 @@ Memory: 12.35 mb, beating 61.31% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Suffix sum, dynamic programming table, arrays, for loops, if statement, and else statement.
+
+### Solution Aug 21, 2024 (C++, leetcode) 664. Strange Printer (Hard)
+In .LeetcodeDailySolution folder as Aug21,2024.cpp
+
+#### Prompt:
+
+There is a strange printer with the following two special properties:
+
+The printer can only print a sequence of the same character each time.
+At each turn, the printer can print new characters starting from and ending at any place and will cover the original existing characters.
+Given a string s, return the minimum number of turns the printer needed to print it.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int strangePrinter(string s) {
+
+        int n = s.length();
+        vector<vector<int>> dp(n, vector<int>(n, -1));
+        return Util(0, n - 1, s, dp);
+    }
+    
+    int Util(int i, int j, const string& s, vector<vector<int>>& dp) {
+
+        if (i > j) {
+            return 0;
+        }
+
+        if (dp[i][j] != -1)
+            return dp[i][j];
+
+        char firstLetter = s[i];
+        int answer = 1 + Util(i + 1, j, s, dp);
+
+        for (int k = i + 1; k <= j; k++) {
+            if (s[k] == firstLetter) {
+
+                int betterAnswer =
+                    Util(i, k - 1, s, dp) + Util(k + 1, j, s, dp);
+
+                answer = min(answer, betterAnswer);
+            }
+        }
+
+        return dp[i][j] = answer;
+      }
+    };
+
+Runtime: 17 ms, beating 67.58% of leetcode users solutions using C++.
+Memory: 11.28 mb, beating 38.69% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Backtracking, arrays, strings, if statements, dynamic programming, and for loop.
