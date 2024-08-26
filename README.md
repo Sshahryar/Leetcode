@@ -15937,3 +15937,44 @@ Memory: 7.87 mb, beating 96.47% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Palindromes, strings, if statements, arrays, for loop, and while loop.
+
+### Solution Aug 26, 2024 (C++, leetcode) 590. N-ary Tree Postorder Traversal (Easy)
+In .LeetcodeDailySolution folder as Aug26,2024.cpp
+
+#### Prompt:
+
+Given the root of an n-ary tree, return the postorder traversal of its nodes' values.
+
+Nary-Tree input serialization is represented in their level order traversal. Each group of children is separated by the null value (See examples)
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<int> postorder(Node* root) {
+
+        if (!root)
+            return {};
+
+        vector<int> res;
+
+        function<void(Node*)> dfs = [&](Node* node) {
+            for (Node* child : node->children) {
+                dfs(child);
+            }
+
+            res.push_back(node->val);
+        };
+
+        dfs(root);
+
+        return res;
+      }
+    };
+
+Runtime: 13 ms, beating 64.20% of leetcode users solutions using C++.
+Memory: 15.28 mb, beating 51.23% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Depth-first search, arrays, and for loop.
