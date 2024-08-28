@@ -15978,3 +15978,59 @@ Memory: 15.28 mb, beating 51.23% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Depth-first search, arrays, and for loop.
+
+### Solution Aug 27, 2024 (C++, leetcode) 1514. Path with Maximum Probability (Medium)
+In .LeetcodeDailySolution folder as Aug27,2024.cpp
+
+#### Prompt:
+
+You are given an undirected weighted graph of n nodes (0-indexed), represented by an edge list where edges[i] = [a, b] is an undirected edge connecting the nodes a and b with a probability of success of traversing that edge succProb[i].
+
+Given two nodes start and end, find the path with the maximum probability of success to go from start to end and return its success probability.
+
+If there is no path from start to end, return 0. Your answer will be accepted if it differs from the correct answer by at most 1e-5.
+
+#### Solution:
+
+    class Solution {
+    public:
+    double maxProbability(int n, vector<vector<int>>& edges,
+                          vector<double>& succProb, int start_node,
+                          int end_node) {
+
+        vector<double> maxProb(n, 0.0);
+        maxProb[start_node] = 1.0;
+
+        for (int i = 0; i < n - 1; ++i) {
+
+            bool updated = false;
+
+            for (int j = 0; j < edges.size(); ++j) {
+
+                int u = edges[j][0];
+                int v = edges[j][1];
+                double prob = succProb[j];
+
+                if (maxProb[u] * prob > maxProb[v]) {
+                    maxProb[v] = maxProb[u] * prob;
+                    updated = true;
+                }
+                if (maxProb[v] * prob > maxProb[u]) {
+                    maxProb[u] = maxProb[v] * prob;
+                    updated = true;
+                }
+            }
+            if (!updated)
+                break;
+        }
+
+        return maxProb[end_node];
+      }
+    };
+
+Runtime: 89 ms, beating 99.25% of leetcode users solutions using C++.
+Memory: 53.52 mb, beating 98.59% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, maximum probability, bellman-ford algorithm, shortest path, for loop, and if statements.
