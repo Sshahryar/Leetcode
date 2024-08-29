@@ -16034,3 +16034,80 @@ Memory: 53.52 mb, beating 98.59% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, maximum probability, bellman-ford algorithm, shortest path, for loop, and if statements.
+
+### Solution Aug 28, 2024 (C++, leetcode) 1905. Count Sub Islands (Medium)
+In .LeetcodeDailySolution folder as Aug28,2024.cpp
+
+#### Prompt:
+
+You are given two m x n binary matrices grid1 and grid2 containing only 0's (representing water) and 1's (representing land). An island is a group of 1's connected 4-directionally (horizontal or vertical). Any cells outside of the grid are considered water cells.
+
+An island in grid2 is considered a sub-island if there is an island in grid1 that contains all the cells that make up this island in grid2.
+
+Return the number of islands in grid2 that are considered sub-islands.
+
+#### Solution:
+
+    class Solution {
+    public:
+
+    int r, c;
+    const int d[5] = {0, 1, 0, -1, 0};
+
+    inline bool outside(int i, int j) {
+        return i < 0 || i >= r || j < 0 || j >= c;
+    }
+
+    bool dfs(int i, int j, int mark, vector<vector<int>>& grid1,
+             vector<vector<int>>& grid2) {
+
+        if (grid1[i][j] != 1)
+            return false;
+
+        grid2[i][j] = mark;
+
+        bool isSub = true;
+
+        for (int a = 0; a < 4; a++) {
+
+            int s = i + d[a], t = j + d[a + 1];
+
+            if (outside(s, t) || grid2[s][t] != 1)
+                continue;
+
+            if (grid1[s][t] != 1)
+                isSub = false;
+
+            if (!dfs(s, t, mark, grid1, grid2))
+                isSub = false;
+        }
+
+        return isSub;
+    }
+
+    int countSubIslands(vector<vector<int>>& grid1,
+                        vector<vector<int>>& grid2) {
+
+        r = grid1.size();
+        c = grid1[0].size();
+        int cnt = 0, mark = 2;
+
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                if (grid2[i][j] == 1) {
+
+                    cnt += dfs(i, j, mark++, grid1, grid2);
+                }
+            }
+        }
+
+        return cnt;
+      }
+    };
+
+Runtime: 212 ms, beating 66.93% of leetcode users solutions using C++.
+Memory: 92.80 mb, beating 89.12% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Matrix, arrays, depth-first search, if statements, for loops, and grid.
