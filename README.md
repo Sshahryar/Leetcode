@@ -16111,3 +16111,58 @@ Memory: 92.80 mb, beating 89.12% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Matrix, arrays, depth-first search, if statements, for loops, and grid.
+
+### Solution Aug 29, 2024 (C++, leetcode) 947. Most Stones Removed with Same Row or Column (Medium)
+In .LeetcodeDailySolution folder as Aug29,2024.cpp
+
+#### Prompt:
+
+On a 2D plane, we place n stones at some integer coordinate points. Each coordinate point may have at most one stone.
+
+A stone can be removed if it shares either the same row or the same column as another stone that has not been removed.
+
+Given an array stones of length n where stones[i] = [xi, yi] represents the location of the ith stone, return the largest possible number of stones that can be removed.
+
+#### Solution:
+
+    class Solution {
+    public:
+    void dfs(int& n, int idx, vector<bool>& visited,
+             vector<vector<int>>& stones) {
+
+        visited[idx] = true;
+
+        for (int i = 0; i < n; i++) {
+            if (!visited[i]) {
+                if (stones[idx][0] == stones[i][0])
+                    dfs(n, i, visited, stones);
+
+                if (stones[idx][1] == stones[i][1])
+                    dfs(n, i, visited, stones);
+            }
+        }
+    }
+    int removeStones(vector<vector<int>>& stones) {
+
+        int n = stones.size();
+        int group = 0;
+
+        vector<bool> visited(n);
+
+        for (int i = 0; i < n; i++) {
+            if (!visited[i]) {
+                dfs(n, i, visited, stones);
+                group += 1;
+            }
+        }
+
+        return n - group;
+      }
+    };
+
+Runtime: 214 ms, beating 5.07% of leetcode users solutions using C++.
+Memory: 18 mb, beating 85.97% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Depth-first search, for loops, if statements, arrays, and grid.
