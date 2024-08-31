@@ -16166,3 +16166,119 @@ Memory: 18 mb, beating 85.97% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Depth-first search, for loops, if statements, arrays, and grid.
+
+### Solution Aug 30, 2024 (C++, leetcode) 2699. Modify Graph Edge Weights (Hard)
+In .LeetcodeDailySolution folder as Aug30,2024.cpp
+
+#### Prompt:
+
+You are given an undirected weighted connected graph containing n nodes labeled from 0 to n - 1, and an integer array edges where edges[i] = [ai, bi, wi] indicates that there is an edge between nodes ai and bi with weight wi.
+
+Some edges have a weight of -1 (wi = -1), while others have a positive weight (wi > 0).
+
+Your task is to modify all edges with a weight of -1 by assigning them positive integer values in the range [1, 2 * 109] so that the shortest distance between the nodes source and destination becomes equal to an integer target. If there are multiple modifications that make the shortest distance between source and destination equal to target, any of them will be considered correct.
+
+Return an array containing all edges (even unmodified ones) in any order if it is possible to make the shortest distance from source to destination equal to target, or an empty array if it's impossible.
+
+Note: You are not allowed to modify the weights of edges with initial positive weights.
+
+#### Solution:
+
+    class Solution {
+    public:
+    using int2 = pair<int, int>;
+
+    int n, m;
+    vector<vector<int2>> adj;
+    vector<int> wild_edges;
+
+    inline void build_graph(vector<vector<int>>& edges) {
+
+        for (int i = 0; i < m; i++) {
+
+            auto& e = edges[i];
+            int u = e[0], v = e[1], w = e[2];
+
+            if (w > 0) {
+                adj[u].emplace_back(w, v);
+                adj[v].emplace_back(w, u);
+            } else {
+                wild_edges.push_back(i);
+            }
+        }
+    }
+    int dijkstra(int src, int des, vector<vector<int2>>& adj) {
+
+        int dist[100];
+        fill(dist, dist + n, INT_MAX);
+        priority_queue<int2, vector<int2>, greater<int2>> pq;
+        pq.emplace(0, src);
+        dist[src] = 0;
+
+        while (!pq.empty()) {
+
+            auto [d0, i] = pq.top();
+            pq.pop();
+
+            if (i == des)
+                return d0;
+
+            for (auto& [d_next, j] : adj[i]) {
+
+                int new_d = d0 + d_next;
+
+                if (new_d < dist[j]) {
+                    dist[j] = new_d;
+                    pq.emplace(new_d, j);
+                }
+            }
+        }
+
+        return INT_MAX;
+    }
+    vector<vector<int>> modifiedGraphEdges(int n, vector<vector<int>>& edges,
+                                           int source, int destination,
+                                           int target) {
+
+        this -> n = n;
+        adj.resize(n);
+        m = edges.size();
+        build_graph(edges);
+        int dist = dijkstra(source, destination, adj);
+
+        if (dist < target)
+            return {};
+
+        for (auto i : wild_edges)
+
+            edges[i][2] = target + 1;
+
+        if (dist == target)
+            return edges;
+
+        for (auto i : wild_edges) {
+
+            auto& new_edge = edges[i];
+            int u = new_edge[0], v = new_edge[1];
+            new_edge[2] = 1;
+            adj[u].emplace_back(1, v);
+            adj[v].emplace_back(1, u);
+            dist = dijkstra(source, destination, adj);
+
+            if (dist <= target) {
+                new_edge[2] += target - dist;
+                
+                return edges;
+            }
+        }
+
+        return {};
+      }
+    };
+
+Runtime: 586 ms, beating 65.18% of leetcode users solutions using C++.
+Memory: 240.66 mb, beating 85.02% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Dijkstra's algorithm, breadth-first search, min heap, arrays, for loops, if statements, while loop, and else statement.
