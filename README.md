@@ -15979,61 +15979,43 @@ Memory: 15.28 mb, beating 51.23% of leetcode users solutions using C++.
 
 Depth-first search, arrays, and for loop.
 
-### Solution Aug 27, 2024 (C++, leetcode) 1514. Path with Maximum Probability (Medium)
+### Solution Aug 27, 2024 (C++, leetcode) 1. Two Sum (Easy)
 In .LeetcodeDailySolution folder as Aug27,2024.cpp
 
 #### Prompt:
 
-You are given an undirected weighted graph of n nodes (0-indexed), represented by an edge list where edges[i] = [a, b] is an undirected edge connecting the nodes a and b with a probability of success of traversing that edge succProb[i].
+Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
 
-Given two nodes start and end, find the path with the maximum probability of success to go from start to end and return its success probability.
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
 
-If there is no path from start to end, return 0. Your answer will be accepted if it differs from the correct answer by at most 1e-5.
+You can return the answer in any order.
 
 #### Solution:
 
     class Solution {
     public:
-    double maxProbability(int n, vector<vector<int>>& edges,
-                          vector<double>& succProb, int start_node,
-                          int end_node) {
+    vector<int> twoSum(vector<int>& nums, int target) {
 
-        vector<double> maxProb(n, 0.0);
-        maxProb[start_node] = 1.0;
+        int n = nums.size();
 
-        for (int i = 0; i < n - 1; ++i) {
-
-            bool updated = false;
-
-            for (int j = 0; j < edges.size(); ++j) {
-
-                int u = edges[j][0];
-                int v = edges[j][1];
-                double prob = succProb[j];
-
-                if (maxProb[u] * prob > maxProb[v]) {
-                    maxProb[v] = maxProb[u] * prob;
-                    updated = true;
-                }
-                if (maxProb[v] * prob > maxProb[u]) {
-                    maxProb[u] = maxProb[v] * prob;
-                    updated = true;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if (nums[i] + nums[j] == target) {
+                    return {i, j};
                 }
             }
-            if (!updated)
-                break;
         }
 
-        return maxProb[end_node];
+        return {};
       }
     };
 
-Runtime: 89 ms, beating 99.25% of leetcode users solutions using C++.
-Memory: 53.52 mb, beating 98.59% of leetcode users solutions using C++.
+Runtime: 49 ms, beating 36.90% of leetcode users solutions using C++.
+Memory: 13 mb, beating 70.65% of leetcode users solutions using C++.
 
 #### Concepts Applied:
 
-Arrays, maximum probability, bellman-ford algorithm, shortest path, for loop, and if statements.
+Arrays, for loops, and if statement.
 
 ### Solution Aug 28, 2024 (C++, leetcode) 1905. Count Sub Islands (Medium)
 In .LeetcodeDailySolution folder as Aug28,2024.cpp
