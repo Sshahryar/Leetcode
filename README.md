@@ -16361,3 +16361,49 @@ Memory: 87.57 mb, beating 97.55% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Vector assign, if statement, arrays, and for loop.
+
+### Solution Sept 2, 2024 (C++, leetcode) 1894. Find the Student that Will Replace the Chalk (Medium)
+In .LeetcodeDailySolution folder as Sept2,2024.cpp
+
+#### Prompt:
+
+There are n students in a class numbered from 0 to n - 1. The teacher will give each student a problem starting with the student number 0, then the student number 1, and so on until the teacher reaches the student number n - 1. After that, the teacher will restart the process, starting with the student number 0 again.
+
+You are given a 0-indexed integer array chalk and an integer k. There are initially k pieces of chalk. When the student number i is given a problem to solve, they will use chalk[i] pieces of chalk to solve that problem. However, if the current number of chalk pieces is strictly less than chalk[i], then the student number i will be asked to replace the chalk.
+
+Return the index of the student that will replace the chalk pieces.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int chalkReplacer(vector<int>& chalk, int initialChalkPieces) {
+
+        long long totalChalkNeeded = 0;
+
+        for (int studentChalkUse : chalk) {
+            totalChalkNeeded += studentChalkUse;
+        }
+        
+        int remainingChalk = initialChalkPieces % totalChalkNeeded;
+        
+        for (int studentIndex = 0; studentIndex < chalk.size(); studentIndex++) {
+
+            if (remainingChalk < chalk[studentIndex]) {
+                
+                return studentIndex;
+            }
+
+            remainingChalk -= chalk[studentIndex];
+        }
+        
+        return 0;
+      }
+    };
+
+Runtime: 90 ms, beating 75.25% of leetcode users solutions using C++.
+Memory: 77.01 mb, beating 53.48% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, for loops, modulo, and if statement.
