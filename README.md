@@ -16320,3 +16320,44 @@ Memory: 53.28 mb, beating 90.01% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, maximum probability, bellman-ford algorithm, shortest path, for loop, and if statements.
+
+### Solution Sept 1, 2024 (C++, leetcode) 2022. Convert 1D Array Into 2D Array (Easy)
+In .LeetcodeDailySolution folder as Sept1,2024.cpp
+
+#### Prompt:
+
+You are given a 0-indexed 1-dimensional (1D) integer array original, and two integers, m and n. You are tasked with creating a 2-dimensional (2D) array with  m rows and n columns using all the elements from original.
+
+The elements from indices 0 to n - 1 (inclusive) of original should form the first row of the constructed 2D array, the elements from indices n to 2 * n - 1 (inclusive) should form the second row of the constructed 2D array, and so on.
+
+Return an m x n 2D array constructed according to the above procedure, or an empty 2D array if it is impossible.
+
+#### Solution:
+
+    class Solution {
+    public:
+    static vector<vector<int>> construct2DArray(vector<int>& original, int m,
+                                                int n) {
+
+        const int sz = original.size();
+
+        if (sz != m * n)
+            return {};
+
+        vector<vector<int>> ans(m);
+
+        for (int i = 0; i < m; i++) {
+            ans[i].assign(original.begin() + i * n,
+                          original.begin() + (i + 1) * n);
+        }
+
+        return ans;
+      }
+    };
+
+Runtime: 76 ms, beating 70.32% of leetcode users solutions using C++.
+Memory: 87.57 mb, beating 97.55% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Vector assign, if statement, arrays, and for loop.
