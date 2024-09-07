@@ -16460,3 +16460,45 @@ Memory: 116.32 mb, beating 69.59% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, total sum, for loops, and if statement.
+
+### Solution Sept 6, 2024 (C++, leetcode) 3217. Delete Nodes From Linked List Present in Array (Medium)
+In .LeetcodeDailySolution folder as Sept6,2024.cpp
+
+#### Prompt:
+
+You are given an array of integers nums and the head of a linked list. Return the head of the modified linked list after removing all nodes from the linked list that have a value that exists in nums.
+
+#### Solution:
+
+    class Solution {
+    public:
+    ListNode* modifiedList(vector<int>& nums, ListNode* head) {
+
+        bitset<100001> hasN = 0;
+
+        for (int x : nums)
+            hasN[x] = 1;
+
+        ListNode dummy(0, head);
+        ListNode *prev = &dummy, *tmp = NULL;
+
+        for (ListNode* curr = head; curr; curr = curr -> next, delete tmp) {
+            if (hasN[curr -> val]) {
+                prev -> next = curr -> next;
+                tmp = curr;
+            } else {
+                prev = prev->next;
+                tmp = NULL;
+            }
+        }
+
+        return dummy.next;
+      }
+    };
+
+Runtime: 357 ms, beating 98.55% of leetcode users solutions using C++.
+Memory: 227.94 mb, beating 96.65% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Bitset, linked list, array, for loop, if statement, and else statement.
