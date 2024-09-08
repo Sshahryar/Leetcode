@@ -16502,3 +16502,65 @@ Memory: 227.94 mb, beating 96.65% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Bitset, linked list, array, for loop, if statement, and else statement.
+
+### Solution Sept 7, 2024 (C++, leetcode) 1367. Linked List in Binary Tree (Medium)
+In .LeetcodeDailySolution folder as Sept7,2024.cpp
+
+#### Prompt:
+
+Given a binary tree root and a linked list with head as the first node. 
+
+Return True if all the elements in the linked list starting from the head correspond to some downward path connected in the binary tree otherwise return False.
+
+In this context downward path means a path that starts at some node and goes downwards.
+
+#### Solution:
+
+    class Solution {
+    private:
+    bool check(ListNode* head, TreeNode* root) {
+
+        if (!root)
+            return false;
+        if (head->val != root->val) {
+            return false;
+        }
+        if (head->next == NULL) {
+            return true;
+        }
+
+        bool left = false;
+        bool right = false;
+
+        if (root->left && head->next && root->left->val == head->next->val) {
+            left = check(head->next, root->left);
+        }
+        if (root->right && head->next && root->right->val == head->next->val) {
+            right = check(head->next, root->right);
+        }
+
+        return left | right;
+    }
+
+    public:
+    bool isSubPath(ListNode* head, TreeNode* root) {
+
+        if (!root) {
+            return false;
+        }
+        if (root->val == head->val) {
+            if (check(head, root)) {
+                return true;
+            }
+        }
+
+        return isSubPath(head, root->left) | isSubPath(head, root->right);
+      }
+    };
+
+Runtime: 20 ms, beating 84.05% of leetcode users solutions using C++.
+Memory: 30.88 mb, beating 36.88% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Recursion, traversal, if statements, linked list, and binary tree.
