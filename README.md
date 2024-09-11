@@ -16628,3 +16628,64 @@ Memory: 130.59 mb, beating 66.17% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Matrix, arrays, traversal, while loop, and for loops.
+
+### Solution Sept 10, 2024 (C++, leetcode) 2807. Insert Greatest Common Divisors in Linked List (Medium)
+In .LeetcodeDailySolution folder as Sept10,2024.cpp
+
+#### Prompt:
+
+Given the head of a linked list head, in which each node contains an integer value.
+
+Between every pair of adjacent nodes, insert a new node with a value equal to the greatest common divisor of them.
+
+Return the linked list after insertion.
+
+The greatest common divisor of two numbers is the largest positive integer that evenly divides both numbers.
+
+#### Solution:
+
+    class Solution {
+    public:
+    ListNode* insertGreatestCommonDivisors(ListNode* head) {
+
+        if (head == nullptr || head->next == nullptr)
+            return head;
+
+        ListNode* node1 = head;
+        ListNode* node2 = head->next;
+
+        while (node2 != nullptr) {
+
+            int gcdValue = calculateGCD(node1->val, node2->val);
+            ListNode* gcdNode = new ListNode(gcdValue);
+
+            node1->next = gcdNode;
+            gcdNode->next = node2;
+
+            node1 = node2;
+            node2 = node2->next;
+        }
+
+        return head;
+    }
+
+    private:
+    int calculateGCD(int a, int b) {
+
+        while (b != 0) {
+
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+        
+        return a;
+      }
+    };
+
+Runtime: 26 ms, beating 97.57% of leetcode users solutions using C++.
+Memory: 35.21 mb, beating 98.83% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Linked list, greatest common diviser, if statement, and while loops.
