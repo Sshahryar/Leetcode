@@ -16689,3 +16689,38 @@ Memory: 35.21 mb, beating 98.83% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Linked list, greatest common diviser, if statement, and while loops.
+
+### Solution Sept 11, 2024 (C++, leetcode) 2220. Minimum Bit Flips to Convert Number (Easy)
+In .LeetcodeDailySolution folder as Sept11,2024.cpp
+
+#### Prompt:
+
+A bit flip of a number x is choosing a bit in the binary representation of x and flipping it from either 0 to 1 or 1 to 0.
+
+For example, for x = 7, the binary representation is 111 and we may choose any bit (including any leading zeros not shown) and flip it. We can flip the first bit from the right to get 110, flip the second bit from the right to get 101, flip the fifth bit from the right (a leading zero) to get 10111, etc.
+Given two integers start and goal, return the minimum number of bit flips to convert start to goal.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int minBitFlips(int start, int goal) {
+        
+        int xorResult = start ^ goal;
+        int ans = 0;
+
+        while (xorResult > 0) {
+            ans += xorResult & 1;
+            xorResult >>= 1;
+        }
+
+        return ans;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 7.63 mb, beating 44.87% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Bitwise, and while loop.
