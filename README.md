@@ -16724,3 +16724,50 @@ Memory: 7.63 mb, beating 44.87% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Bitwise, and while loop.
+
+### Solution Sept 12, 2024 (C++, leetcode) 1684. Count the Number of Consistent Strings (Easy)
+In .LeetcodeDailySolution folder as Sept12,2024.cpp
+
+#### Prompt:
+
+You are given a string allowed consisting of distinct characters and an array of strings words. A string is consistent if all characters in the string appear in the string allowed.
+
+Return the number of consistent strings in the array words.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int countConsistentStrings(string& allowed, vector<string>& words) {
+
+        bitset<26> ASet = 0;
+
+        for (char c : allowed)
+
+            ASet[c - 'a'] = 1;
+        int cnt = 0;
+
+        for (string& w : words) {
+
+            bool consistent = 1;
+
+            for (char c : w) {
+                if (ASet[c - 'a'] == 0) {
+                    consistent = 0;
+                    break;
+                }
+            }
+
+            cnt += consistent;
+        }
+        
+        return cnt;
+      }
+    };
+
+Runtime: 32 ms, beating 96.51% of leetcode users solutions using C++.
+Memory: 33.84 mb, beating 87.08% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Bitset, traversal, for loops, and if statement.
