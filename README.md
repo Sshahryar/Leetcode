@@ -16771,3 +16771,51 @@ Memory: 33.84 mb, beating 87.08% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Bitset, traversal, for loops, and if statement.
+
+### Solution Sept 13, 2024 (C++, leetcode) 1310. XOR Queries of a Subarray (Medium)
+In .LeetcodeDailySolution folder as Sept13,2024.cpp
+
+#### Prompt:
+
+You are given an array arr of positive integers. You are also given the array queries where queries[i] = [lefti, righti].
+
+For each query i compute the XOR of elements from lefti to righti (that is, arr[lefti] XOR arr[lefti + 1] XOR ... XOR arr[righti] ).
+
+Return an array answer where answer[i] is the answer to the ith query.
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<int> xorQueries(vector<int>& arr, vector<vector<int>>& queries) {
+
+        int n = arr.size();
+        vector<int> pre(n);
+        pre[0] = arr[0];
+        
+        for (int i = 1; i < n; ++i) {
+            pre[i] = pre[i - 1] ^ arr[i];
+        }
+        
+        vector<int> res(queries.size());
+        
+        for (int k = 0; k < queries.size(); ++k) {
+            int i = queries[k][0];
+            int j = queries[k][1];
+            if (i == 0) {
+                res[k] = pre[j];
+            } else {
+                res[k] = pre[j] ^ pre[i - 1];
+            }
+        }
+        
+        return res;
+      }
+    };
+
+Runtime: 56 ms, beating 74.42% of leetcode users solutions using C++.
+Memory: 41.67 mb, beating 84% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, XOR, for loops, if statement, and else statement.
