@@ -16819,3 +16819,51 @@ Memory: 41.67 mb, beating 84% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, XOR, for loops, if statement, and else statement.
+
+### Solution Sept 14, 2024 (C++, leetcode) 2419. Longest Subarray With Maximum Bitwise AND (Medium)
+In .LeetcodeDailySolution folder as Sept14,2024.cpp
+
+#### Prompt:
+
+You are given an integer array nums of size n.
+
+Consider a non-empty subarray from nums that has the maximum possible bitwise AND.
+
+In other words, let k be the maximum value of the bitwise AND of any subarray of nums. Then, only subarrays with a bitwise AND equal to k should be considered.
+Return the length of the longest such subarray.
+
+The bitwise AND of an array is the bitwise AND of all the numbers in it.
+
+A subarray is a contiguous sequence of elements within an array.
+
+#### Solution:
+
+    class Solution {
+    public:
+    static int longestSubarray(vector<int>& nums) {
+
+        const int n = nums.size();
+        int m = max_element(nums.begin(), nums.end()) - nums.begin();
+        int maxLen = 0, x = nums[m];
+
+        for (int i = m; i < n; i++) {
+            int len = 0;
+
+            while (i < n && nums[i] == x) {
+                i++;
+                len++;
+            }
+
+            maxLen = max(maxLen, len);
+        }
+
+        return maxLen;
+      }
+    };
+
+Runtime: 99 ms, beating 76.05% of leetcode users solutions using C++.
+Memory: 84.95 mb, beating 34.15% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+One pass, arrays, bitwise, for loop, while loop, and max.
