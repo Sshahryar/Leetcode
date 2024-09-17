@@ -16867,3 +16867,45 @@ Memory: 84.95 mb, beating 34.15% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 One pass, arrays, bitwise, for loop, while loop, and max.
+
+### Solution Sept 16, 2024 (C++, leetcode) 539. Minimum Time Difference (Medium)
+In .LeetcodeDailySolution folder as Sept16,2024.cpp
+
+#### Prompt:
+
+Given a list of 24-hour clock time points in "HH:MM" format, return the minimum minutes difference between any two time-points in the list.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int findMinDifference(vector<string>& timePoints) {
+
+        vector<int> minutes(timePoints.size());
+
+        for (int i = 0; i < timePoints.size(); ++i) {
+            int h = stoi(timePoints[i].substr(0, 2));
+            int m = stoi(timePoints[i].substr(3));
+            minutes[i] = h * 60 + m;
+        }
+
+        sort(minutes.begin(), minutes.end());
+
+        int minDiff = INT_MAX;
+
+        for (int i = 0; i < minutes.size() - 1; ++i) {
+            minDiff = min(minDiff, minutes[i + 1] - minutes[i]);
+        }
+
+        minDiff = min(minDiff, 24 * 60 - minutes.back() + minutes.front());
+
+        return minDiff;
+      }
+    };
+
+Runtime: 12 ms, beating 58.04% of leetcode users solutions using C++.
+Memory: 17.44 mb, beating 88.08% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, strings, substrings, for loops, sorting, and min.
