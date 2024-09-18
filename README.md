@@ -16909,3 +16909,52 @@ Memory: 17.44 mb, beating 88.08% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, strings, substrings, for loops, sorting, and min.
+
+### Solution Sept 17, 2024 (C++, leetcode) 884. Uncommon Words from Two Sentences (Easy)
+In .LeetcodeDailySolution folder as Sept17,2024.cpp
+
+#### Prompt:
+
+A sentence is a string of single-space separated words where each word consists only of lowercase letters.
+
+A word is uncommon if it appears exactly once in one of the sentences, and does not appear in the other sentence.
+
+Given two sentences s1 and s2, return a list of all the uncommon words. You may return the answer in any order.
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<string> uncommonFromSentences(string s1, string s2) {
+
+        string s = s1 + " " + s2;
+        stringstream str(s);
+
+        cout << s1.max_size();
+
+        unordered_map<string, int> um;
+        string tmp;
+
+        while (str >> tmp) {
+            um[tmp]++;
+        }
+
+        vector<string> ans;
+
+        for (auto& val : um) {
+
+            if (val.second == 1) {
+                ans.emplace_back(val.first); 
+             }
+        }
+
+        return ans;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 8.92 mb, beating 44.93% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Strings, unordered map, while loop, array, for loop, and if statement. 
