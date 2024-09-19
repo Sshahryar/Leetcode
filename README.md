@@ -16958,3 +16958,49 @@ Memory: 8.92 mb, beating 44.93% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Strings, unordered map, while loop, array, for loop, and if statement. 
+
+### Solution Sept 18, 2024 (C++, leetcode) 179. Largest Number (Medium)
+In .LeetcodeDailySolution folder as Sept18,2024.cpp
+
+#### Prompt:
+
+Given a list of non-negative integers nums, arrange them such that they form the largest number and return it.
+
+Since the result may be very large, so you need to return a string instead of an integer.
+
+#### Solution:
+
+    class Solution {
+    public:
+    string largestNumber(vector<int>& nums) {
+
+        vector<string> strs;
+
+        for (int num : nums) {
+            strs.push_back(to_string(num));
+        }
+
+        sort(strs.begin(), strs.end(), [](string &a, string &b) {
+            return a + b > b + a;
+        });
+
+        if (strs[0] == "0") {
+            return "0";
+        }
+
+        string ans = "";
+        
+        for (string &s : strs) {
+            ans += s;
+        }
+
+        return ans;
+      }
+    };
+
+Runtime: 7 ms, beating 61.52% of leetcode users solutions using C++.
+Memory: 17.15 mb, beating 55.33% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, strings, sorting, for loops, and if statement.
