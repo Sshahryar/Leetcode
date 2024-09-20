@@ -17004,3 +17004,55 @@ Memory: 17.15 mb, beating 55.33% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, strings, sorting, for loops, and if statement.
+
+### Solution Sept 19, 2024 (C++, leetcode) 241. Different Ways to Add Parentheses (Medium)
+In .LeetcodeDailySolution folder as Sept19,2024.cpp
+
+#### Prompt:
+
+Given a string expression of numbers and operators, return all possible results from computing all the different possible ways to group numbers and operators. You may return the answer in any order.
+
+The test cases are generated such that the output values fit in a 32-bit integer and the number of different results does not exceed 104.
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<int> diffWaysToCompute(string expression) {
+
+        vector<int> res;
+
+        for (int i = 0; i < expression.size(); ++i) {
+
+            char oper = expression[i];
+
+            if (oper == '+' || oper == '-' || oper == '*') {
+
+                vector<int> s1 = diffWaysToCompute(expression.substr(0, i));
+                vector<int> s2 = diffWaysToCompute(expression.substr(i + 1));
+
+                for (int a : s1) {
+                    for (int b : s2) {
+                        if (oper == '+')
+                            res.push_back(a + b);
+                        else if (oper == '-')
+                            res.push_back(a - b);
+                        else if (oper == '*')
+                            res.push_back(a * b);
+                    }
+                }
+            }
+        }
+        if (res.empty())
+            res.push_back(stoi(expression));
+            
+        return res;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 13.90 mb, beating 23.97% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Divide and conquer, strings, arrays, for loops, if statements, and else-if statements.
