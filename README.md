@@ -17056,3 +17056,57 @@ Memory: 13.90 mb, beating 23.97% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Divide and conquer, strings, arrays, for loops, if statements, and else-if statements.
+
+### Solution Sept 20, 2024 (C++, leetcode) 214. Shortest Palindrome (Hard)
+In .LeetcodeDailySolution folder as Sept20,2024.cpp
+
+#### Prompt:
+
+You are given a string s. You can convert s to a palindrome by adding characters in front of it.
+
+Return the shortest palindrome you can find by performing this transformation.
+
+#### Solution:
+
+    class Solution {
+    public:
+    string shortestPalindrome(string s) {
+
+        int count = kmp(string(s.rbegin(), s.rend()), s);
+
+        return string(s.rbegin(), s.rend()).substr(0, s.length() - count) + s;
+    }
+
+    private:
+    int kmp(const string& txt, const string& patt) {
+
+        string newString = patt + '#' + txt;
+        vector<int> pi(newString.length(), 0);
+
+        int i = 1, k = 0;
+
+        while (i < newString.length()) {
+            if (newString[i] == newString[k]) {
+                k++;
+                pi[i] = k;
+                i++;
+            } else {
+                if (k > 0) {
+                    k = pi[k - 1];
+                } else {
+                    pi[i] = 0;
+                    i++;
+                }
+            }   
+        }
+
+        return pi.back();
+      }
+    };
+
+Runtime: 7 ms, beating 64.08% of leetcode users solutions using C++.
+Memory: 11.98 mb, beating 27.29% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+KMP algorithm, strings, arrays, while loop, else statements, and if statement.
