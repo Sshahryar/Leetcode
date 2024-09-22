@@ -17110,3 +17110,47 @@ Memory: 11.98 mb, beating 27.29% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 KMP algorithm, strings, arrays, while loop, else statements, and if statement.
+
+### Solution Sept 21, 2024 (C++, leetcode) 386. Lexicographical Numbers (Medium)
+In .LeetcodeDailySolution folder as Sept21,2024.cpp
+
+#### Prompt:
+
+Given an integer n, return all the numbers in the range [1, n] sorted in lexicographical order.
+
+You must write an algorithm that runs in O(n) time and uses O(1) extra space. 
+
+#### Solution:
+
+    class Solution {
+    public:
+    static vector<int> lexicalOrder(int n) {
+
+        vector<int> ans(n);
+
+        int x = 1;
+
+        for (int i = 0; i < n; i++) {
+
+            ans[i] = x;
+
+            if (x * 10 > n) {
+                if (x == n)
+                    x /= 10;
+                x++;
+                while (x % 10 == 0)
+                    x /= 10;
+            } else
+                x *= 10;
+        }
+
+        return ans;
+      }
+    };
+
+Runtime: 8 ms, beating 72.41% of leetcode users solutions using C++. 
+Memory: 11.86 mb, beating 96.05% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Array, iteration, for loop, if statement, while loop, and else statement.
