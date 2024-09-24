@@ -17154,3 +17154,84 @@ Memory: 11.86 mb, beating 96.05% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Array, iteration, for loop, if statement, while loop, and else statement.
+
+### Solution Sept 23, 2024 (C++, leetcode) 2707. Extra Characters in a String (Medium)
+In .LeetcodeDailySolution folder as Sept23,2024.cpp
+
+#### Prompt:
+
+You are given a 0-indexed string s and a dictionary of words dictionary. You have to break s into one or more non-overlapping substrings such that each substring is present in dictionary. There may be some extra characters in s which are not present in any of the substrings.
+
+Return the minimum number of extra characters left over if you break up s optimally.
+
+#### Solution:
+
+    const int N = 26;
+
+    struct Trie {
+
+    Trie* next[N];
+    bool isEnd = 0;
+
+    Trie() { fill(next, next + N, (Trie*)NULL); }
+
+    ~Trie() {
+        for (int i = 0; i < N; ++i) {
+            if (next[i] != NULL) {
+                delete next[i];
+            }
+        }
+    }
+
+    void insert(string& word) {
+        Trie* Node = this;
+        for (char c : word) {
+            int i = c - 'a';
+            if (Node->next[i] == NULL)
+                Node->next[i] = new Trie();
+            Node = Node->next[i];
+        }
+        Node->isEnd = 1;
+    }
+    void insert(vector<string>& dictionary) {
+        for (auto& word : dictionary)
+            insert(word);
+      }
+    };
+
+    class Solution {
+    public:
+    int minExtraChar(string s, vector<string>& dictionary) {
+
+        Trie trie;
+        trie.insert(dictionary);
+
+        int n = s.size();
+        vector<int> dp(n + 1, 0);
+
+        for (int i = n - 1; i >= 0; i--) {
+
+            dp[i] = dp[i + 1] + 1;
+            Trie* node = &trie;
+
+            for (int j = i; j < n; j++) {
+                if (node->next[s[j] - 'a'] == NULL)
+                    break;
+
+                node = node->next[s[j] - 'a'];
+
+                if (node->isEnd)
+                    dp[i] = min(dp[i], dp[j + 1]);
+            }
+        }
+
+        return dp[0];
+      }
+    };
+
+Runtime: 63 ms, beating 93.53% of leetcode users solutions using C++.
+Memory: 112.20 mb, beating 26.57% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Trie, for loops, if statements, strings, arrays, and dynamic programming.
