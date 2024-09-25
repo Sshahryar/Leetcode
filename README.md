@@ -17235,3 +17235,66 @@ Memory: 112.20 mb, beating 26.57% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Trie, for loops, if statements, strings, arrays, and dynamic programming.
+
+### Solution Sept 24, 2024 (C++, leetcode) 3043. Find the Length of the Longest Common Prefix (Medium)
+In .LeetcodeDailySolution folder as Sept24,2024.cpp
+
+#### Prompt:
+
+You are given two arrays with positive integers arr1 and arr2.
+
+A prefix of a positive integer is an integer formed by one or more of its digits, starting from its leftmost digit. For example, 123 is a prefix of the integer 12345, while 234 is not.
+
+A common prefix of two integers a and b is an integer c, such that c is a prefix of both a and b. For example, 5655359 and 56554 have a common prefix 565 while 1223 and 43456 do not have a common prefix.
+
+You need to find the length of the longest common prefix between all pairs of integers (x, y) such that x belongs to arr1 and y belongs to arr2.
+
+Return the length of the longest common prefix among all pairs. If no common prefix exists among them, return 0.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int longestCommonPrefix(vector<int>& arr1, vector<int>& arr2) {
+
+        unordered_map<string, int> prefixMap;
+
+        for (int num : arr1) {
+
+            string strNum = to_string(num);
+            string prefix = "";
+
+            for (char ch : strNum) {
+                prefix += ch;
+                prefixMap[prefix]++;
+            }
+        }
+
+        int maxLength = 0;
+
+        for (int num : arr2) {
+
+            string strNum = to_string(num);
+            string prefix = "";
+
+            for (char ch : strNum) {
+
+                prefix += ch;
+
+                if (prefixMap.find(prefix) != prefixMap.end()) {
+                    maxLength =
+                        max(maxLength, static_cast<int>(prefix.length()));
+                }
+            }
+        }
+
+        return maxLength;
+      }
+    };
+
+Runtime: 472 ms, beating 33.96% of leetcode users solutions using C++.
+Memory: 170.42 mb, beating 31.53% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, for loops, hashmap, max, and if statement.
