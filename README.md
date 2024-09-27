@@ -17298,3 +17298,55 @@ Memory: 170.42 mb, beating 31.53% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, for loops, hashmap, max, and if statement.
+
+### Solution Sept 26, 2024 (C++, leetcode) 729. My Calendar I (Medium)
+In .LeetcodeDailySolution folder as Sept26,2024.cpp
+
+#### Prompt:
+
+You are implementing a program to use as your calendar. We can add a new event if adding the event will not cause a double booking.
+
+A double booking happens when two events have some non-empty intersection (i.e., some moment is common to both events.).
+
+The event can be represented as a pair of integers start and end that represents a booking on the half-open interval [start, end), the range of real numbers x such that start <= x < end.
+
+Implement the MyCalendar class:
+
+MyCalendar() Initializes the calendar object.
+boolean book(int start, int end) Returns true if the event can be added to the calendar successfully without causing a double booking. Otherwise, return false and do not add the event to the calendar.
+
+#### Solution:
+
+    class MyCalendar {
+
+    map<int, int> intervals; 
+
+    public:
+
+    MyCalendar() {}
+
+    bool book(int start, int end) {
+        auto next = intervals.lower_bound(start); 
+
+        if (next != intervals.end() && next->first < end) {
+
+            return false; 
+        }
+
+        if (next != intervals.begin() && prev(next)->second > start) {
+
+            return false; 
+        }
+
+        intervals[start] = end; 
+
+        return true;
+      }
+    };
+
+Runtime: 48 ms, beating 99.89% of leetcode users solutions using C++.
+Memory: 42.79 mb, beating 58.59% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Binary search, map, and if statements.
