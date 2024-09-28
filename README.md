@@ -17350,3 +17350,74 @@ Memory: 42.79 mb, beating 58.59% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Binary search, map, and if statements.
+
+### Solution Sept 27, 2024 (C++, leetcode) 731. My Calendar II (Medium)
+In .LeetcodeDailySolution folder as Sept27,2024.cpp
+
+#### Prompt:
+
+You are implementing a program to use as your calendar. We can add a new event if adding the event will not cause a triple booking.
+
+A triple booking happens when three events have some non-empty intersection (i.e., some moment is common to all the three events.).
+
+The event can be represented as a pair of integers start and end that represents a booking on the half-open interval [start, end), the range of real numbers x such that start <= x < end.
+
+Implement the MyCalendarTwo class:
+
+MyCalendarTwo() Initializes the calendar object.
+boolean book(int start, int end) Returns true if the event can be added to the calendar successfully without causing a triple booking. Otherwise, return false and do not add the event to the calendar.
+
+#### Solution:
+
+    class MyCalendarTwo {
+    public:
+    vector<pair<int, int>> vp;
+
+    MyCalendarTwo() {}
+
+    bool book(int x, int y) {
+
+        for (auto& val : vp) {
+            int a = val.first, b = val.second;
+
+            if ((x < b) and (y > a)) {
+
+                int new_x = max(a, x);
+                int new_y = min(b, y);
+
+                if (check(new_x, new_y)) {
+
+                    return false;
+                }
+            }
+        }
+
+        vp.push_back({x, y});
+        return true;
+    }
+
+    bool check(int x, int y) {
+        int overlapp_cnt = 0;
+
+        for (int i = 0; i < vp.size(); i++) {
+            int a = vp[i].first, b = vp[i].second;
+
+            if ((x < b) and (y > a)) {
+                overlapp_cnt++;
+                if (overlapp_cnt == 2) {
+                    
+                    return true;
+                }
+            }
+        }
+
+        return false;
+      }
+    };
+
+Runtime: 65 ms, beating 94.42% of leetcode users solutions using C++.
+Memory: 37.60 mb, beating 99.62% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Brute-force, pair, for loops, if statements, max, and min.
