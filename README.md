@@ -17421,3 +17421,123 @@ Memory: 37.60 mb, beating 99.62% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Brute-force, pair, for loops, if statements, max, and min.
+
+### Solution Sept 28, 2024 (C++, leetcode) 641. Design Circular Deque (Medium)
+In .LeetcodeDailySolution folder as Sept28,2024.cpp
+
+#### Prompt:
+
+Design your implementation of the circular double-ended queue (deque).
+
+Implement the MyCircularDeque class:
+
+MyCircularDeque(int k) Initializes the deque with a maximum size of k.
+boolean insertFront() Adds an item at the front of Deque. Returns true if the operation is successful, or false otherwise.
+boolean insertLast() Adds an item at the rear of Deque. Returns true if the operation is successful, or false otherwise.
+boolean deleteFront() Deletes an item from the front of Deque. Returns true if the operation is successful, or false otherwise.
+boolean deleteLast() Deletes an item from the rear of Deque. Returns true if the operation is successful, or false otherwise.
+int getFront() Returns the front item from the Deque. Returns -1 if the deque is empty.
+int getRear() Returns the last item from Deque. Returns -1 if the deque is empty.
+boolean isEmpty() Returns true if the deque is empty, or false otherwise.
+boolean isFull() Returns true if the deque is full, or false otherwise.
+
+#### Solution:
+
+    class MyCircularDeque {
+    public:
+    vector<int> v;
+    int front, back, sizee, capacity;
+
+    MyCircularDeque(int k) {
+        v = vector<int>(k, -1);
+        front = 0;
+        back = 0;
+        sizee = 0;
+        capacity = k;
+    }
+
+    bool insertFront(int value) {
+        if (isFull()) {
+            return false;
+        }
+        if (front == 0) {
+            front = capacity - 1;
+        } else {
+            front--;
+        }
+        v[front] = value;
+        sizee++;
+        return true;
+    }
+
+    bool insertLast(int value) {
+        if (isFull()) {
+            return false;
+        }
+        v[back] = value;
+        if (back == capacity - 1) {
+            back = 0;
+        } else {
+            back++;
+        }
+        sizee++;
+        return true;
+    }
+
+    bool deleteFront() {
+        if (isEmpty()) {
+            return false;
+        }
+        v[front] = -1;
+        if (front == capacity - 1) {
+            front = 0;
+        } else {
+            front++;
+        }
+        sizee--;
+        return true;
+    }
+
+    bool deleteLast() {
+        if (isEmpty()) {
+            return false;
+        }
+        if (back == 0) {
+            back = capacity - 1;
+        } else {
+            back--;
+        }
+        v[back] = -1;
+        sizee--;
+        return true;
+    }
+
+    int getFront() {
+        if (isEmpty()) {
+            return -1;
+        }
+        return v[front];
+    }
+
+    int getRear() {
+        if (isEmpty()) {
+            return -1;
+        }
+        if (back == 0) {
+            return v[capacity - 1];
+        } else {
+            return v[back - 1];
+        }
+    }
+
+    bool isEmpty() { return (sizee == 0); }
+
+    bool isFull() { return (sizee == capacity); }
+    };
+ 
+Runtime: 16 ms, beating 87.88% of leetcode users solutions using C++.
+Memory: 22.72 mb, beating 48.31% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Deque, arrays, if statements, and else statements.
