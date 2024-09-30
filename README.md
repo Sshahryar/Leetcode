@@ -17541,3 +17541,61 @@ Memory: 22.72 mb, beating 48.31% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Deque, arrays, if statements, and else statements.
+
+### Solution Sept 29, 2024 (C++, leetcode) 432. All O`one Data Structure (Hard)
+In .LeetcodeDailySolution folder as Sept29,2024.cpp
+
+#### Prompt:
+
+Design a data structure to store the strings' count with the ability to return the strings with minimum and maximum counts.
+
+Implement the AllOne class:
+
+AllOne() Initializes the object of the data structure.
+inc(String key) Increments the count of the string key by 1. If key does not exist in the data structure, insert it with count 1.
+dec(String key) Decrements the count of the string key by 1. If the count of key is 0 after the decrement, remove it from the data structure. It is guaranteed that key exists in the data structure before the decrement.
+getMaxKey() Returns one of the keys with the maximal count. If no element exists, return an empty string "".
+getMinKey() Returns one of the keys with the minimum count. If no element exists, return an empty string "".
+Note that each function must run in O(1) average time complexity.
+
+#### Solution:
+
+    class AllOne {
+    unordered_map<string, int> count;
+    map<int, unordered_set<string>> freq;
+
+    public:
+    AllOne() {}
+    void inc(string key) {
+        int cnt = count[key]++;
+        if (cnt > 0)
+            freq[cnt].erase(key);
+        freq[cnt + 1].insert(key);
+        if (freq[cnt].empty())
+            freq.erase(cnt);
+    }
+    void dec(string key) {
+        int cnt = count[key]--;
+        if (cnt > 0)
+            freq[cnt].erase(key);
+        if (cnt == 1)
+            count.erase(key);
+        else
+            freq[cnt - 1].insert(key);
+        if (freq[cnt].empty())
+            freq.erase(cnt);
+    }
+    string getMaxKey() {
+        return freq.empty() ? "" : *(freq.rbegin()->second.begin());
+    }
+    string getMinKey() {
+        return freq.empty() ? "" : *(freq.begin()->second.begin());
+      }
+    };
+
+Runtime: 98 ms, beating 54.21% of leetcode users solutions using C++.
+Memory: 63.85 mb, beating 11.65% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Unordered map, map, strings, if statements, and else statement.
