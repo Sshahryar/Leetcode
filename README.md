@@ -17599,3 +17599,60 @@ Memory: 63.85 mb, beating 11.65% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Unordered map, map, strings, if statements, and else statement.
+
+### Solution Sept 30, 2024 (C++, leetcode) 1381. Design a Stack With Increment Operation (Medium)
+In .LeetcodeDailySolution folder as Sept30,2024.cpp
+
+#### Prompt:
+
+Design a stack that supports increment operations on its elements.
+
+Implement the CustomStack class:
+
+CustomStack(int maxSize) Initializes the object with maxSize which is the maximum number of elements in the stack.
+void push(int x) Adds x to the top of the stack if the stack has not reached the maxSize.
+int pop() Pops and returns the top of the stack or -1 if the stack is empty.
+void inc(int k, int val) Increments the bottom k elements of the stack by val. If there are less than k elements in the stack, increment all the elements in the stack.
+
+#### Solution:
+
+    class CustomStack {
+    public:
+    int n;
+    stack<int> stack;
+    vector<int> inc;
+
+    CustomStack(int n) { this->n = n; }
+
+    void push(int x) {
+        if (stack.size() < n) {
+            stack.push(x);
+            inc.push_back(0);
+        }
+    }
+
+    int pop() {
+        if (stack.empty())
+            return -1;
+        if (inc.size() > 1)
+            inc[inc.size() - 2] += inc.back();
+        int res = stack.top() + inc.back();
+        stack.pop();
+        inc.pop_back();
+        return res;
+    }
+
+    void increment(int k, int val) {
+        if (!stack.empty()) {
+            int idx = min(k, (int)inc.size()) - 1;
+            inc[idx] += val;
+        }
+      }
+    };
+
+Runtime: 21 ms, beating 90.19% of leetcode users solutions using C++.
+Memory: 26.07 mb, beating 29.97% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Stack, inc, arrays, and if statements.
