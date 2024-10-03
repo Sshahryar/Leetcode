@@ -17709,3 +17709,47 @@ Memory: 64.34 mb, beating 88.55% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, frequency, for loops, and if statements.
+
+### Solution Oct 2, 2024 (C++, leetcode) 1331. Rank Transform of an Array (Easy)
+In .LeetcodeDailySolution folder as Oct2,2024.cpp
+
+#### Prompt:
+
+Given an array of integers arr, replace each element with its rank.
+
+The rank represents how large the element is. The rank has the following rules:
+
+Rank is an integer starting from 1.
+The larger the element, the larger the rank. If two elements are equal, their rank must be the same.
+Rank should be as small as possible.
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<int> arrayRankTransform(vector<int>& arr) {
+        
+        unordered_map<int, int> valueToRank;  
+        vector<int> sortedUniqueNumbers = arr; 
+        
+        sort(sortedUniqueNumbers.begin(), sortedUniqueNumbers.end());
+        sortedUniqueNumbers.erase(unique(sortedUniqueNumbers.begin(), sortedUniqueNumbers.end()), sortedUniqueNumbers.end());
+        
+        for (int i = 0; i < sortedUniqueNumbers.size(); i++) {
+            valueToRank[sortedUniqueNumbers[i]] = i + 1;
+        }
+
+        for (int i = 0; i < arr.size(); i++) {
+            arr[i] = valueToRank[arr[i]];
+        }
+
+        return arr;  
+      }
+    };
+
+Runtime: 57 ms, beating 85.28% of leetcode users solutions using C++.
+Memory: 43.16 mb, beating 59.88% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, unordered map, sorting, and for loops.
