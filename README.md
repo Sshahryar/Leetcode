@@ -17810,3 +17810,46 @@ Memory: 70.36 mb, beating 85.49% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Total sum, arrays, subarrays, prefix sum, unordered map, min, for loops, and if statements.
+
+### Solution Oct 4, 2024 (C++, leetcode) 2491. Divide Players Into Teams of Equal Skill (Medium)
+In .LeetcodeDailySolution folder as Oct4,2024.cpp
+
+#### Prompt:
+
+You are given a positive integer array skill of even length n where skill[i] denotes the skill of the ith player. Divide the players into n / 2 teams of size 2 such that the total skill of each team is equal.
+
+The chemistry of a team is equal to the product of the skills of the players on that team.
+
+Return the sum of the chemistry of all the teams, or return -1 if there is no way to divide the players into teams such that the total skill of each team is equal.
+
+#### Solution:
+
+    class Solution {
+    public:
+    long long dividePlayers(vector<int>& skill) {
+
+        sort(skill.begin(), skill.end());
+        
+        int n = skill.size();
+        int totalSkill = skill[0] + skill[n - 1]; 
+        long long chemistrySum = 0;
+
+        for (int i = 0; i < n / 2; i++) {
+
+            if (skill[i] + skill[n - i - 1] != totalSkill) {
+                return -1; 
+            }
+
+            chemistrySum += (long long)skill[i] * skill[n - i - 1];
+        }
+
+        return chemistrySum; 
+      }
+    };
+
+Runtime: 50 ms, beating 96.77% of leetcode users solutions using C++.
+Memory: 56.31 mb, beating 84.01% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, sorting, two pointers, for loop, and if statement.
