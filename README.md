@@ -17897,3 +17897,51 @@ Memory: 8.80 mb, beating 80.32% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Frequencies, sliding window technique, arrays, strings, if statements, and for loops.
+
+### Solution Oct 7, 2024 (C++, leetcode) 2696. Minimum String Length After Removing Substrings (Easy)
+In .LeetcodeDailySolution folder as Oct7,2024.cpp
+
+#### Prompt:
+
+You are given a string s consisting only of uppercase English letters.
+
+You can apply some operations to this string where, in one operation, you can remove any occurrence of one of the substrings "AB" or "CD" from s.
+
+Return the minimum possible length of the resulting string that you can obtain.
+
+Note that the string concatenates after removing the substring and could produce new "AB" or "CD" substrings.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int minLength(string s) {
+        stack<char> stack;
+
+        for (int i = 0; i < s.length(); i++) {
+            char cur_char = s[i];
+
+            if (stack.empty()) {
+                stack.push(cur_char);
+                continue;
+            }
+
+            if (cur_char == 'B' && stack.top() == 'A') {
+                stack.pop();
+            } else if (cur_char == 'D' && stack.top() == 'C') {
+                stack.pop();
+            } else {
+                stack.push(cur_char);
+            }
+        }
+
+        return stack.size();
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 11.54 mb, beating 62.71% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Strings, stack, for loop, if statements, else if statement, and else statement.
