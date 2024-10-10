@@ -17992,3 +17992,45 @@ Memory: 32.76 mb, beating 53.29% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 String, counter, for loop, if statement, and else-if statement.
+
+### Solution Oct 9, 2024 (C++, leetcode) 921. Minimum Add to Make Parentheses Valid (Medium)
+In .LeetcodeDailySolution folder as Oct9,2024.cpp
+
+#### Prompt:
+
+A parentheses string is valid if and only if:
+
+It is the empty string,
+It can be written as AB (A concatenated with B), where A and B are valid strings, or
+It can be written as (A), where A is a valid string.
+You are given a parentheses string s. In one move, you can insert a parenthesis at any position of the string.
+
+For example, if s = "()))", you can insert an opening parenthesis to be "(()))" or a closing parenthesis to be "())))".
+Return the minimum number of moves required to make s valid.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int minAddToMakeValid(string s) {
+        int open = 0, close = 0;
+        for (auto c : s) {
+            if (c == '(') {
+                open++;
+            } else {
+                if (open > 0)
+                    open--;
+                else
+                    close++;
+            }
+        }
+        return open + close;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 7.82 mb, beating 54.88% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+String, for loop, if statements, and else statements.
