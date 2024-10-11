@@ -18034,3 +18034,46 @@ Memory: 7.82 mb, beating 54.88% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 String, for loop, if statements, and else statements.
+
+### Solution Oct 10, 2024 (C++, leetcode) 962. Maximum Width Ramp (Medium)
+In .LeetcodeDailySolution folder as Oct10,2024.cpp
+
+#### Prompt:
+
+A ramp in an integer array nums is a pair (i, j) for which i < j and nums[i] <= nums[j]. The width of such a ramp is j - i.
+
+Given an integer array nums, return the maximum width of a ramp in nums. If there is no ramp in nums, return 0.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int maxWidthRamp(vector<int>& nums) {
+
+        stack<int> monoStack;
+        int n = nums.size();
+        int result = 0;
+
+        for (int i = 0; i < n; ++i) {
+            if (monoStack.empty() || nums[monoStack.top()] > nums[i]) {
+                monoStack.push(i);
+            }
+        }
+        
+        for (int j = n - 1; j >= 0; --j) {
+            while (!monoStack.empty() && nums[j] >= nums[monoStack.top()]) {
+                result = max(result, j - monoStack.top());
+                monoStack.pop();
+            }
+        }
+
+        return result;
+      }
+    };
+
+Runtime: 55 ms, beating 42.31% of leetcode users solutions using C++.
+Memory: 47.08 mb, beating 25.09% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Monotonic stack, array, traversal, for loops, if statement, while loop, and max. 
