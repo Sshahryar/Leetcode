@@ -18191,3 +18191,60 @@ Memory: 96.88 mb, beating 67.96% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Sorting, arrays, two pointers, for loops, if statement, and else statement.
+
+### Solution Oct 13, 2024 (C++, leetcode) 632. Smallest Range Covering Elements from K Lists (Hard)
+In .LeetcodeDailySolution folder as Oct13,2024.cpp
+
+#### Prompt:
+
+You have k lists of sorted integers in non-decreasing order. Find the smallest range that includes at least one number from each of the k lists.
+
+We define the range [a, b] is smaller than range [c, d] if b - a < d - c or a < c if b - a == d - c.
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<int> smallestRange(vector<vector<int>>& nums) {
+
+        priority_queue<vector<int>, vector<vector<int>>, greater<vector<int>>>
+            minHeap;
+        int curMax = numeric_limits<int>::min();
+
+        for (int i = 0; i < nums.size(); i++) {
+            minHeap.push({nums[i][0], i, 0});
+            curMax = max(curMax, nums[i][0]);
+        }
+        vector<int> smallRange = {0, numeric_limits<int>::max()};
+
+        while (!minHeap.empty()) {
+
+            vector<int> curr = minHeap.top();
+            minHeap.pop();
+            int curMin = curr[0], listIdx = curr[1], elemIdx = curr[2];
+
+            if (curMax - curMin < smallRange[1] - smallRange[0]) {
+                smallRange[0] = curMin;
+                smallRange[1] = curMax;
+            }
+
+            if (elemIdx + 1 < nums[listIdx].size()) {
+                int nextVal = nums[listIdx][elemIdx + 1];
+                minHeap.push({nextVal, listIdx, elemIdx + 1});
+                curMax = max(curMax, nextVal);
+            } else {
+
+                break;
+            }
+        }
+        
+        return smallRange;
+      }
+    };
+
+Runtime: 85 ms, beating 13.66% of leetcode users solutions using C++.
+Memory: 27.32 mb, beating 10.22% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, priority queue, min, max, for loop, while loop, if statements, and else statement.
