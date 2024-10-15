@@ -18248,3 +18248,55 @@ Memory: 27.32 mb, beating 10.22% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, priority queue, min, max, for loop, while loop, if statements, and else statement.
+
+### Solution Oct 14, 2024 (C++, leetcode) 2530. Maximal Score After Applying K Operations (Medium)
+In .LeetcodeDailySolution folder as Oct14,2024.cpp
+
+#### Prompt:
+
+You are given a 0-indexed integer array nums and an integer k. You have a starting score of 0.
+
+In one operation:
+
+choose an index i such that 0 <= i < nums.length,
+increase your score by nums[i], and
+replace nums[i] with ceil(nums[i] / 3).
+Return the maximum possible score you can attain after applying exactly k operations.
+
+The ceiling function ceil(val) is the least integer greater than or equal to val.
+
+#### Solution:
+
+    class Solution {
+    public:
+    static long long maxKelements(vector<int>& nums, int k) {
+
+        priority_queue<int> pq(nums.begin(), nums.end());
+
+        long long score = 0;
+
+        for (int i = 0; i < k; i++) {
+
+            int x = pq.top();
+            score += x;
+
+            if (x == 1) {
+                score += (k - 1 - i);
+                
+                break;
+            }
+
+            pq.pop();
+            pq.push((x + 2) / 3);
+        }
+
+        return score;
+      }
+    };
+
+Runtime: 163 ms, beating 94.95% of leetcode users solutions using C++.
+Memory: 75.74 mb, beating 96.72% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Priority queue, arrays, for loop, and if statement.
