@@ -18300,3 +18300,45 @@ Memory: 75.74 mb, beating 96.72% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Priority queue, arrays, for loop, and if statement.
+
+### Solution Oct 15, 2024 (C++, leetcode) 2938. Separate Black and White Balls (Medium)
+In .LeetcodeDailySolution folder as Oct15,2024.cpp
+
+#### Prompt:
+
+There are n balls on a table, each ball has a color black or white.
+
+You are given a 0-indexed binary string s of length n, where 1 and 0 represent black and white balls, respectively.
+
+In each step, you can choose two adjacent balls and swap them.
+
+Return the minimum number of steps to group all the black balls to the right and all the white balls to the left.
+
+#### Solution:
+
+    class Solution {
+    public:
+    long long minimumSteps(string s) {
+
+        long long swap = 0;
+        int black = 0; 
+
+        for (int i = 0; i < s.length(); i++) {
+
+            if (s[i] == '0') 
+                swap += (long long) black; 
+
+            else
+                black++; 
+        }
+        
+        return swap;
+      }
+    };
+
+Runtime: 35 ms, beating 42.12% of leetcode users solutions using C++.
+Memory: 15.28 mb, beating 95.68% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+String, for loop, if statement, and else statement.
