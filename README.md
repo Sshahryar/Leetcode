@@ -18466,3 +18466,51 @@ Memory: 7.58 mb, beating 70.33% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 String, array, for loops, swap, and if statement.
+
+### Solution Oct 18, 2024 (C++, leetcode) 2044. Count Number of Maximum Bitwise-OR Subsets (Medium)
+In .LeetcodeDailySolution folder as Oct18,2024.cpp
+
+#### Prompt:
+
+Given an integer array nums, find the maximum possible bitwise OR of a subset of nums and return the number of different non-empty subsets with the maximum bitwise OR.
+
+An array a is a subset of an array b if a can be obtained from b by deleting some (possibly zero) elements of b. Two subsets are considered different if the indices of the elements chosen are different.
+
+The bitwise OR of an array a is equal to a[0] OR a[1] OR ... OR a[a.length - 1] (0-indexed).
+
+#### Solution:
+
+    class Solution {
+    public:
+    void backtrack(const vector<int>& nums, int index, int currentOR, int maxOR,
+                   int& count) {
+
+        if (currentOR == maxOR) {
+            count++;
+        }
+
+        for (int i = index; i < nums.size(); ++i) {
+            backtrack(nums, i + 1, currentOR | nums[i], maxOR, count);
+        }
+    }
+
+    int countMaxOrSubsets(vector<int>& nums) {
+        int maxOR = 0;
+
+        for (int num : nums) {
+            maxOR |= num;
+        }
+        int count = 0;
+
+        backtrack(nums, 0, 0, maxOR, count);
+
+        return count;
+      }
+    };
+
+Runtime: 8 ms, beating 92.08% of leetcode users solutions using C++.
+Memory: 9.99 mb, beating 93.49% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Array, if statements, backtracking, for loop, and bitwise.
