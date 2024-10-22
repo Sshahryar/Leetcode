@@ -18515,8 +18515,8 @@ Memory: 9.99 mb, beating 93.49% of leetcode users solutions using C++.
 
 Array, if statements, backtracking, for loop, and bitwise.
 
-### Solution Oct 19, 2024 (C++, leetcode) 1593. Split a String Into the Max Number of Unique Substrings (Medium)
-In .LeetcodeDailySolution folder as Oct19,2024.cpp
+### Solution Oct 21, 2024 (C++, leetcode) 1593. Split a String Into the Max Number of Unique Substrings (Medium)
+In .LeetcodeDailySolution folder as Oct21,2024.cpp
 
 #### Prompt:
 
