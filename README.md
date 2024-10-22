@@ -18514,3 +18514,48 @@ Memory: 9.99 mb, beating 93.49% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Array, if statements, backtracking, for loop, and bitwise.
+
+### Solution Oct 19, 2024 (C++, leetcode) 1593. Split a String Into the Max Number of Unique Substrings (Medium)
+In .LeetcodeDailySolution folder as Oct19,2024.cpp
+
+#### Prompt:
+
+Given a string s, return the maximum number of unique substrings that the given string can be split into.
+
+You can split string s into any list of non-empty substrings, where the concatenation of the substrings forms the original string. However, you must split the substrings such that all of them are unique.
+
+A substring is a contiguous sequence of characters within a string.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int maxUniqueSplit(string s) {
+        unordered_set<string> seen;
+        return backtrack(0, s, seen);
+    }
+
+    private:
+    int backtrack(int start, const string& s, unordered_set<string>& seen) {
+        if (start == s.size()) {
+            return 0;
+        }
+        int maxSplits = 0;
+        for (int end = start + 1; end <= s.size(); ++end) {
+            string substring = s.substr(start, end - start);
+            if (seen.find(substring) == seen.end()) {
+                seen.insert(substring);
+                maxSplits = max(maxSplits, 1 + backtrack(end, s, seen));
+                seen.erase(substring);
+            }
+        }
+        return maxSplits;
+      }
+    };
+
+Runtime: 224 ms, beating 61.67% of leetcode users solutions using C++.
+Memory: 47.92 mb, beating 56.48% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Strings, substrings, backtracking, unordered set, if statements, and for loop.
