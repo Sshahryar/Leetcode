@@ -18515,6 +18515,72 @@ Memory: 9.99 mb, beating 93.49% of leetcode users solutions using C++.
 
 Array, if statements, backtracking, for loop, and bitwise.
 
+### Solution Oct 20, 2024 (C++, leetcode) 1106. Parsing A Boolean Expression (Hard)
+In .LeetcodeDailySolution folder as Oct20,2024.cpp
+
+#### Prompt:
+
+A boolean expression is an expression that evaluates to either true or false. It can be in one of the following shapes:
+
+'t' that evaluates to true.
+'f' that evaluates to false.
+'!(subExpr)' that evaluates to the logical NOT of the inner expression subExpr.
+'&(subExpr1, subExpr2, ..., subExprn)' that evaluates to the logical AND of the inner expressions subExpr1, subExpr2, ..., subExprn where n >= 1.
+'|(subExpr1, subExpr2, ..., subExprn)' that evaluates to the logical OR of the inner expressions subExpr1, subExpr2, ..., subExprn where n >= 1.
+Given a string expression that represents a boolean expression, return the evaluation of that expression.
+
+It is guaranteed that the given expression is valid and follows the given rules.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int i = 0;
+    bool parseBoolExpr(const string& expr) {
+
+        char c = expr[i++];
+
+        if (c == 't')
+            return 1;
+
+        if (c == 'f')
+            return 0;
+            
+        if (c == '!') {
+            i++;
+            bool ans = parseBoolExpr(expr);
+            i++;
+            return !ans;
+        }
+        vector<bool> x;
+        i++;
+
+        while (expr[i] != ')') {
+
+            if (expr[i] == ',')
+                i++;
+
+            else
+                x.push_back(parseBoolExpr(expr));
+        }
+        i++;
+
+        if (c == '&')
+            return all_of(x.begin(), x.end(), [](bool b) { return b; });
+
+        if (c == '|')
+            return any_of(x.begin(), x.end(), [](bool b) { return b; });
+        return 0;
+      }
+    };
+
+Runtime: 7 ms, beating 42.32% of leetcode users solutions using C++.
+Memory: 15.64 mb, beating 8.80% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Boolean, strings, if statements, while loop, parsing, and else statement.
+
 ### Solution Oct 21, 2024 (C++, leetcode) 1593. Split a String Into the Max Number of Unique Substrings (Medium)
 In .LeetcodeDailySolution folder as Oct21,2024.cpp
 
