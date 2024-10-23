@@ -18625,3 +18625,53 @@ Memory: 47.92 mb, beating 56.48% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Strings, substrings, backtracking, unordered set, if statements, and for loop.
+
+### Solution Oct 22, 2024 (C++, leetcode) 2583. Kth Largest Sum in a Binary Tree (Medium)
+In .LeetcodeDailySolution folder as Oct22,2024.cpp
+
+#### Prompt:
+
+You are given the root of a binary tree and a positive integer k.
+
+The level sum in the tree is the sum of the values of the nodes that are on the same level.
+
+Return the kth largest level sum in the tree (not necessarily distinct). If there are fewer than k levels in the tree, return -1.
+
+Note that two nodes are on the same level if they have the same distance from the root.
+
+#### Solution:
+
+    class Solution {
+    public:
+    static void f(TreeNode* root, int level, long long* sum, int& sz) {
+
+        if (sz <= level)
+            sz++;
+
+        sum[level] += root->val;
+
+        if (root->left)
+            f(root->left, level + 1, sum, sz);
+        if (root->right)
+            f(root->right, level + 1, sum, sz);
+    }
+    static long long kthLargestLevelSum(TreeNode* root, int k) {
+        long long sum[100000] = {0};
+        int sz = 0;
+        f(root, 0, sum, sz);
+
+        if (sz < k)
+            return -1;
+
+        nth_element(sum, sum + (k - 1), end(sum), greater<>());
+
+        return sum[k - 1];
+      }
+    };
+
+Runtime: 7 ms, beating 99.00% of leetcode users solutions using C++. 
+Memory: 155.77 mb, beating 5.57% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Depth-first search, if statements, and sorting.
