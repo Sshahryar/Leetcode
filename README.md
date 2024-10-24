@@ -18675,3 +18675,77 @@ Memory: 155.77 mb, beating 5.57% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Depth-first search, if statements, and sorting.
+
+### Solution Oct 23, 2024 (C++, leetcode) 2641. Cousins in Binary Tree II (Medium)
+In .LeetcodeDailySolution folder as Oct23,2024.cpp
+
+#### Prompt:
+
+Given the root of a binary tree, replace the value of each node in the tree with the sum of all its cousins' values.
+
+Two nodes of a binary tree are cousins if they have the same depth with different parents.
+
+Return the root of the modified tree.
+
+Note that the depth of a node is the number of edges in the path from the root node to it.
+
+#### Solution:
+
+    class Solution {
+    public:
+    TreeNode* replaceValueInTree(TreeNode* root) {
+
+        root->val = 0;
+
+        dfs(vector<TreeNode*>{root});
+        return root;
+    }
+
+    private:
+    void dfs(vector<TreeNode*> arr) {
+
+        if (arr.empty())
+            return;
+
+        int sum = 0;
+
+        for (auto node : arr) {
+            if (!node)
+                continue;
+            if (node->left)
+                sum += node->left->val;
+            if (node->right)
+                sum += node->right->val;
+        }
+
+        vector<TreeNode*> childArr;
+
+        for (auto node : arr) {
+
+            int curSum = 0;
+
+            if (node->left)
+                curSum += node->left->val;
+            if (node->right)
+                curSum += node->right->val;
+            if (node->left) {
+                node->left->val = sum - curSum;
+                childArr.push_back(node->left);
+            }
+
+            if (node->right) {
+                node->right->val = sum - curSum;
+                childArr.push_back(node->right);
+            }
+        }
+
+        dfs(childArr);
+      }
+    };
+
+Runtime: 602 ms, beating 84.20% of leetcode users solutions using C++.
+Memory: 357.55 mb, beating 16.01% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Root values, depth-first search, if statements, and for loops.
