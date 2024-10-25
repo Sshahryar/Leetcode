@@ -18749,3 +18749,32 @@ Memory: 357.55 mb, beating 16.01% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Root values, depth-first search, if statements, and for loops.
+
+### Solution Oct 24, 2024 (C++, leetcode) 951. Flip Equivalent Binary Trees (Medium)
+In .LeetcodeDailySolution folder as Oct24,2024.cpp
+
+#### Prompt:
+
+    class Solution {
+    public:
+    bool flipEquiv(TreeNode* root1, TreeNode* root2) {
+
+        if (root1 == root2)
+            return 1;
+
+        if (!root1 || !root2 || root1->val != root2->val)
+            return 0;
+
+        return (flipEquiv(root1->left, root2->left) &&
+                flipEquiv(root1->right, root2->right)) ||
+               (flipEquiv(root1->left, root2->right) &&
+                flipEquiv(root1->right, root2->left));
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 14.43 mb, beating 83.88% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Depth-first search, if statements, and binary tree.
