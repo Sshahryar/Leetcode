@@ -18778,3 +18778,50 @@ Memory: 14.43 mb, beating 83.88% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Depth-first search, if statements, and binary tree.
+
+### Solution Oct 25, 2024 (C++, leetcode) 1233. Remove Sub-Folders from the Filesystem (Medium)
+In .LeetcodeDailySolution folder as Oct25,2024.cpp
+
+#### Prompt:
+
+Given a list of folders folder, return the folders after removing all sub-folders in those folders. You may return the answer in any order.
+
+If a folder[i] is located within another folder[j], it is called a sub-folder of it. A sub-folder of folder[j] must start with folder[j], followed by a "/". For example, "/a/b" is a sub-folder of "/a", but "/b" is not a sub-folder of "/a/b/c".
+
+The format of a path is one or more concatenated strings of the form: '/' followed by one or more lowercase English letters.
+
+For example, "/leetcode" and "/leetcode/problems" are valid paths while an empty string and "/" are not.
+
+#### Solution:
+
+    class Solution {
+    public:
+    static vector<string> removeSubfolders(vector<string>& folder) {
+
+        const int n = folder.size();
+
+        sort(folder.begin(), folder.end());
+
+        vector<string> ans = {folder[0]};
+        string prev = folder[0];
+
+        for (int i = 1; i < n; i++) {
+
+            string s = folder[i];
+
+            if (s.find(prev + '/') != 0) {
+                ans.push_back(s);
+                prev = s;
+            }
+        }
+
+        return ans;
+      }
+    };
+
+Runtime: 57 ms, beating 92.01% of leetcode users solutions using C++.
+Memory: 51.48 mb, beating 67.49% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Sorting, arrays, strings, for loop, and if statement.
