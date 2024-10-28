@@ -18903,3 +18903,53 @@ Memory: 183.60 mb, beating 81.29% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, traversals, for loop, if statements, and max.
+
+### Solution Oct 27, 2024 (C++, leetcode) 1277. Count Square Submatrices with All Ones (Medium)
+In .LeetcodeDailySolution folder as Oct27,2024.cpp
+
+#### Prompt:
+
+Given a m * n matrix of ones and zeros, return how many square submatrices have all ones.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int countSquares(vector<vector<int>>& matrix) {
+
+        int n = matrix.size();    
+        int m = matrix[0].size();
+        
+        vector<vector<int>> dp(n, vector<int>(m, 0));
+        
+        int ans = 0;
+        
+        for (int i = 0; i < n; i++) {
+            dp[i][0] = matrix[i][0];
+            ans += dp[i][0];  
+        }
+        
+        for (int j = 1; j < m; j++) {
+            dp[0][j] = matrix[0][j];
+            ans += dp[0][j];  
+        }
+        
+        for(int i = 1; i < n; i++) {
+            for(int j = 1; j < m; j++) {
+                if(matrix[i][j] == 1) {
+                    dp[i][j] = 1 + min({dp[i][j-1], dp[i-1][j], dp[i-1][j-1]});
+                }
+                ans += dp[i][j];
+            }
+        }
+        
+        return ans;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 29 mb, beating 68.73% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Matrix, arrays, for loops, dynamic programming, and if statement.
