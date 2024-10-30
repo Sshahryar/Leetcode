@@ -19001,3 +19001,75 @@ Memory: 111.54 mb, beating 32.52% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Sorting, map, arrays, for loop, rooting, if statement, and else statement.
+
+### Solution Oct 29, 2024 (C++, leetcode) 2684. Maximum Number of Moves in a Grid (Medium)
+In .LeetcodeDailySolution folder as Oct29,2024.cpp
+
+#### Prompt:
+
+You are given a 0-indexed m x n matrix grid consisting of positive integers.
+
+You can start at any cell in the first column of the matrix, and traverse the grid in the following way:
+
+From a cell (row, col), you can move to any of the cells: (row - 1, col + 1), (row, col + 1) and (row + 1, col + 1) such that the value of the cell you move to, should be strictly bigger than the value of the current cell.
+Return the maximum number of moves that you can perform.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int maxMoves(vector<vector<int>>& grid) {
+
+        int m = grid.size();   
+        int n = grid[0].size(); 
+        
+        int res = 0;
+        
+        vector<int> dp(m);
+        
+        for (int j = 1; j < n; ++j) {
+
+            int leftTop = 0;
+
+            bool found = false;
+            
+            for (int i = 0; i < m; ++i) {
+
+                int cur = -1;
+
+                int nxtLeftTop = dp[i];
+                
+                if (i - 1 >= 0 && leftTop != -1 && grid[i][j] > grid[i - 1][j - 1]) {
+                    cur = max(cur, leftTop + 1);
+                }
+                
+                if (dp[i] != -1 && grid[i][j] > grid[i][j - 1]) {
+                    cur = max(cur, dp[i] + 1);
+                }
+                
+                if (i + 1 < m && dp[i + 1] != -1 && grid[i][j] > grid[i + 1][j - 1]) {
+                    cur = max(cur, dp[i + 1] + 1);
+                }
+                
+                dp[i] = cur;
+
+                found = found || (dp[i] != -1);
+
+                leftTop = nxtLeftTop;
+            }
+            
+            if (!found) break;
+
+            res = j;
+        }
+        
+        return res;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++. 
+Memory: 67.33 mb, beating 96.80% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, grid, matrix, dynamic programming, for loops, and if statements.
