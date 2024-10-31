@@ -19073,3 +19073,58 @@ Memory: 67.33 mb, beating 96.80% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, grid, matrix, dynamic programming, for loops, and if statements.
+
+### Solution Oct 30, 2024 (C++, leetcode) 1671. Minimum Number of Removals to Make Mountain Array (Hard)
+In .LeetcodeDailySolution folder as Oct30,2024.cpp
+
+#### Prompt:
+
+You may recall that an array arr is a mountain array if and only if:
+
+arr.length >= 3
+There exists some index i (0-indexed) with 0 < i < arr.length - 1 such that:
+arr[0] < arr[1] < ... < arr[i - 1] < arr[i]
+arr[i] > arr[i + 1] > ... > arr[arr.length - 1]
+Given an integer array nums​​​, return the minimum number of elements to remove to make nums​​​ a mountain array.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int minimumMountainRemovals(vector<int>& nums) {
+
+        int n = nums.size();
+        vector<int> LIS(n, 1), LDS(n, 1);
+
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < i; ++j) {
+                if (nums[i] > nums[j]) {
+                    LIS[i] = max(LIS[i], LIS[j] + 1);
+                }
+            }
+        }
+        for (int i = n - 1; i >= 0; --i) {
+            for (int j = n - 1; j > i; --j) {
+                if (nums[i] > nums[j]) {
+                    LDS[i] = max(LDS[i], LDS[j] + 1);
+                }
+            }
+        }
+        int maxMountainLength = 0;
+
+        for (int i = 1; i < n - 1; ++i) {
+            if (LIS[i] > 1 && LDS[i] > 1) {  
+                maxMountainLength = max(maxMountainLength, LIS[i] + LDS[i] - 1);
+            }
+        }
+
+        return n - maxMountainLength;
+      }
+    };
+
+Runtime: 51 ms, beating 66.67% of leetcode users solutions using C++.
+Memory: 14.86 mb, beating 67.05% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, for loops, if statements, and max.
