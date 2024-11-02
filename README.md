@@ -19201,3 +19201,45 @@ Memory: 15.15 mb, beating 53.37% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, sorting, for loops, deque, while loops, and dynamic programming.
+
+### Solution Nov 1, 2024 (C++, leetcode) 1957. Delete Characters to Make Fancy String (Easy)
+In .LeetcodeDailySolution folder as Nov1,2024.cpp
+
+#### Prompt:
+
+A fancy string is a string where no three consecutive characters are equal.
+
+Given a string s, delete the minimum possible number of characters from s to make it fancy.
+
+Return the final string after the deletion. It can be shown that the answer will always be unique.
+
+#### Solution:
+
+    class Solution {
+    public:
+    string makeFancyString(string s) {
+
+        string ans = "";
+        ans.push_back(s[0]);
+        int n = s.size(), cnt = 1;
+        
+        for (int i = 1; i < n; i++) {
+            if (s[i] == ans.back()) {
+                cnt++;
+                if (cnt < 3)
+                    ans.push_back(s[i]);
+            } else {
+                cnt = 1;
+                ans.push_back(s[i]);
+            }
+        }
+        return ans;
+      }
+    };
+
+Runtime: 33 ms, beating 38.95% of leetcode users solutions using C++.
+Memory: 42.88 mb, beating 31.24% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Strings, for loop, if statements, and else statement.
