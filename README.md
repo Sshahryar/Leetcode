@@ -19243,3 +19243,50 @@ Memory: 42.88 mb, beating 31.24% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Strings, for loop, if statements, and else statement.
+
+### Solution Nov 2, 2024 (C++, leetcode) 2490. Circular Sentence (Easy)
+In .LeetcodeDailySolution folder as Nov2,2024.cpp
+
+#### Prompt:
+
+A sentence is a list of words that are separated by a single space with no leading or trailing spaces.
+
+For example, "Hello World", "HELLO", "hello world hello world" are all sentences.
+Words consist of only uppercase and lowercase English letters. Uppercase and lowercase English letters are considered different.
+
+A sentence is circular if:
+
+The last character of a word is equal to the first character of the next word.
+The last character of the last word is equal to the first character of the first word.
+For example, "leetcode exercises sound delightful", "eetcode", "leetcode eats soul" are all circular sentences. However, "Leetcode is cool", "happy Leetcode", "Leetcode" and "I like Leetcode" are not circular sentences.
+
+Given a string sentence, return true if it is circular. Otherwise, return false.
+
+#### Solution:
+
+    class Solution {
+    public:
+    bool isCircularSentence(string sentence) {
+
+        int n = sentence.size();
+
+        if (sentence[0] != sentence[n - 1])
+            return false;
+
+        for (int i = 1; i < n - 1; i++) {
+            if (sentence[i] == ' ') {
+                if (sentence[i - 1] != sentence[i + 1])
+                    return false;
+            }
+        }
+
+        return true;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 8.26 mb, beating 59.38% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Strings, if statements, and for loop.
