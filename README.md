@@ -19290,3 +19290,35 @@ Memory: 8.26 mb, beating 59.38% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Strings, if statements, and for loop.
+
+### Solution Nov 3, 2024 (C++, leetcode) 796. Rotate String (Easy)
+In .LeetcodeDailySolution folder as Nov3,2024.cpp
+
+#### Prompt:
+
+Given two strings s and goal, return true if and only if s can become goal after some number of shifts on s.
+
+A shift on s consists of moving the leftmost character of s to the rightmost position.
+
+For example, if s = "abcde", then it will be "bcdea" after one shift.
+
+#### Solution:
+
+    class Solution {
+    public:
+    bool rotateString(string s, string goal) {
+
+        if (s.length() != goal.length()) {
+            return false;
+        }
+
+        return (s + s).find(goal) != string::npos;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 7.68 mb, beating 55.50% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Strings, and if statement.
