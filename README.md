@@ -19322,3 +19322,53 @@ Memory: 7.68 mb, beating 55.50% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Strings, and if statement.
+
+### Solution Nov 4, 2024 (C++, leetcode) 3163. String Compression III (Medium)
+In .LeetcodeDailySolution folder as Nov4,2024.cpp
+
+#### Prompt:
+
+Given a string word, compress it using the following algorithm:
+
+Begin with an empty string comp. While word is not empty, use the following operation:
+Remove a maximum length prefix of word made of a single character c repeating at most 9 times.
+Append the length of the prefix followed by c to comp.
+Return the string comp.
+
+#### Solution:
+
+    class Solution {
+    public:
+    static string compressedString(string& word) {
+
+        int n = word.size(), l = 0;
+        string ans;
+        ans.reserve(n);
+
+        for (int r = 0; r < n;) {
+            while (r < n && word[r] == word[l])
+                r++;
+
+            auto [q, rem] = div(r - l, 9);
+
+            for (int i = 0; i < q; i++) {
+                ans.push_back('9');
+                ans.push_back(word[l]);
+            }
+            if (rem > 0) {
+                ans.push_back(rem + '0');
+                ans.push_back(word[l]);
+            }
+            l = r;
+        }
+
+        return ans;
+      }
+    };
+
+Runtime: 3 ms, beating 98.66% of leetcode users solutions using C++.
+Memory: 22.83 mb, beating 100% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Strings, for loops, while loop, and if statement.
