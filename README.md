@@ -19372,3 +19372,41 @@ Memory: 22.83 mb, beating 100% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Strings, for loops, while loop, and if statement.
+
+### Solution Nov 5, 2024 (C++, leetcode) 2914. Minimum Number of Changes to Make Binary String Beautiful (Medium)
+In .LeetcodeDailySolution folder as Nov5,2024.cpp
+
+#### Prompt:
+
+You are given a 0-indexed binary string s having an even length.
+
+A string is beautiful if it's possible to partition it into one or more substrings such that:
+
+Each substring has an even length.
+Each substring contains only 1's or only 0's.
+You can change any character in s to 0 or 1.
+
+Return the minimum number of changes required to make the string s beautiful.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int minChanges(string& s) {
+
+        const int n = s.size();
+        int count = 0;
+
+        for (int i = 0; i < n; i += 2)
+            count += (s[i] != s[i + 1]);
+            
+        return count;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 11.22 mb, beating 99.70% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+String, and for loop.
