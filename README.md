@@ -19410,3 +19410,61 @@ Memory: 11.22 mb, beating 99.70% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 String, and for loop.
+
+### Solution Nov 6, 2024 (C++, leetcode) 3011. Find if Array Can Be Sorted (Medium)
+In .LeetcodeDailySolution folder as Nov6,2024.cpp
+
+#### Prompt:
+
+You are given a 0-indexed array of positive integers nums.
+
+In one operation, you can swap any two adjacent elements if they have the same number of 
+set bits
+. You are allowed to do this operation any number of times (including zero).
+
+Return true if you can sort the array, else return false.
+
+#### Solution:
+
+    class Solution {
+    public:
+    bool canSortArray(std::vector<int>& nums) {
+
+        int prevMax = INT_MIN;
+        int currMax = nums[0];
+        int currMin = nums[0];
+        int setBits = countBits(nums[0]);
+
+        for (size_t i = 1; i < nums.size(); i++) {
+
+            if (setBits == countBits(nums[i])) {
+                currMax = max(currMax, nums[i]);
+                currMin = min(currMin, nums[i]);
+
+            } else {
+
+                if (currMin < prevMax)
+                    return false;
+
+                prevMax = currMax;
+                setBits = countBits(nums[i]);
+                currMin = nums[i];
+                currMax = nums[i];
+            }
+        }
+
+        return currMin > prevMax;
+    }
+
+    private:
+    int countBits(int num) { 
+        
+    return bitset<32>(num).count(); }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++. 
+Memory: 31.32 mb, beating 49.32% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, bit manipulation, max, min, for loop, if statements, and else statement.
