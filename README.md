@@ -19468,3 +19468,59 @@ Memory: 31.32 mb, beating 49.32% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, bit manipulation, max, min, for loop, if statements, and else statement.
+
+### Solution Nov 7, 2024 (C++, leetcode) 2275. Largest Combination With Bitwise AND Greater Than Zero (Medium)
+In .LeetcodeDailySolution folder as Nov7,2024.cpp
+
+#### Prompt:
+
+The bitwise AND of an array nums is the bitwise AND of all integers in nums.
+
+For example, for nums = [1, 5, 3], the bitwise AND is equal to 1 & 5 & 3 = 1.
+Also, for nums = [7], the bitwise AND is 7.
+You are given an array of positive integers candidates. Evaluate the bitwise AND of every combination of numbers of candidates. Each number in candidates may only be used once in each combination.
+
+Return the size of the largest combination of candidates with a bitwise AND greater than 0.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int largestCombination(vector<int>& candidates) {
+
+        vector<int> ans(32, 0);
+        
+        for (int x : candidates) {
+            find(x, ans);
+        }
+        int res = 0;
+
+        for (int i = 0; i < 32; i++) {
+            res = max(res, ans[i]);
+        }
+
+        return res;
+    }
+    void find(int n, vector<int>& ans) {
+
+        int j = 31;
+
+        while (n > 0) {
+
+            int a = (n & 1);
+
+            ans[j] += a;
+
+            n >>= 1;
+
+            j--;
+        }
+      }
+    };
+
+Runtime: 15 ms, beating 84.62% of leetcode users solutions using C++.
+Memory: 60.11 mb, beating 74.67% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, bit count, for loops, while loop, and max.
