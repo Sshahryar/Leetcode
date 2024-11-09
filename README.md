@@ -19524,3 +19524,44 @@ Memory: 60.11 mb, beating 74.67% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, bit count, for loops, while loop, and max.
+
+### Solution Nov 8, 2024 (C++, leetcode) 1829. Maximum XOR for Each Query (Medium)
+In .LeetcodeDailySolution folder as Nov8,2024.cpp
+
+#### Prompt:
+
+You are given a sorted array nums of n non-negative integers and an integer maximumBit. You want to perform the following query n times:
+
+Find a non-negative integer k < 2maximumBit such that nums[0] XOR nums[1] XOR ... XOR nums[nums.length-1] XOR k is maximized. k is the answer to the ith query.
+Remove the last element from the current array nums.
+Return an array answer, where answer[i] is the answer to the ith query.
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<int> getMaximumXor(vector<int>& nums, int maximumBit) {
+
+        int n = nums.size(), xorr = nums[0], maxxorr = pow(2, maximumBit) - 1;
+
+        for (int i = 1; i < n; i++)
+
+            xorr ^= nums[i];
+        vector<int> ans(n);
+
+        for (int i = 0; i < n; i++) {
+
+            ans[i] = xorr ^ maxxorr;
+            xorr ^= nums[n - 1 - i];
+        }
+
+        return ans;
+      }
+    };
+
+Runtime: 4 ms, beating 57.14% of leetcode users solutions using C++.
+Memory: 95.38 mb, beating 82.72% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, for loops, and bit manipulation.
