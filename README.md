@@ -19666,3 +19666,68 @@ Memory: 88.28 mb, beating 73.67% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, bit manipulation, while loops, for loops, if statements, and min.
+
+### Solution Nov 11, 2024 (C++, leetcode) 2601. Prime Subtraction Operation (Medium)
+In .LeetcodeDailySolution folder as Nov11,2024.cpp
+
+#### Prompt:
+
+You are given a 0-indexed integer array nums of length n.
+
+You can perform the following operation as many times as you want:
+
+Pick an index i that you haven’t picked before, and pick a prime p strictly less than nums[i], then subtract p from nums[i].
+Return true if you can make nums a strictly increasing array using the above operation and false otherwise.
+
+A strictly increasing array is an array whose each element is strictly greater than its preceding element.
+
+#### Solution:
+
+    class Solution {
+    public:
+    bool primeSubOperation(vector<int>& nums) {
+
+        int maxElement = *max_element(nums.begin(), nums.end());
+        vector<bool> sieve(maxElement + 1, true);
+        sieve[1] = false;
+
+        for (int i = 2; i <= sqrt(maxElement + 1); i++) {
+            if (sieve[i]) {
+                for (int j = i * i; j <= maxElement; j += i) {
+                    sieve[j] = false;
+                }
+            }
+        }
+        int currValue = 1;
+        int i = 0;
+
+        while (i < nums.size()) {
+
+            int difference = nums[i] - currValue;
+
+            if (difference < 0) {
+                return false;
+            }
+
+            if (sieve[difference] == true || difference == 0) {
+
+                i++;
+                currValue++;
+
+            } else {
+
+                currValue++;
+
+            }
+        }
+        
+        return true;
+      }
+    };
+
+Runtime: 1 ms, beating 76.68% of leetcode users solutions using C++.
+Memory: 27.23 mb, beating 80.07% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, for loops, while loop, if statements, and else statement.
