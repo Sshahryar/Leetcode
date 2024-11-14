@@ -19786,3 +19786,41 @@ Memory: 103.11 mb, beating 23.67% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, sorting, for loops, and if statements.
+
+### Solution Nov 13, 2024 (C++, leetcode) 2563. Count the Number of Fair Pairs (Medium)
+In .LeetcodeDailySolution folder as Nov13,2024.cpp
+
+#### Prompt:
+
+Given a 0-indexed integer array nums of size n and two integers lower and upper, return the number of fair pairs.
+
+A pair (i, j) is fair if:
+0 <= i < j < n, and
+lower <= nums[i] + nums[j] <= upper
+
+#### Solution:
+
+    class Solution {
+    public:
+    long long countFairPairs(vector<int>& v, int lower, int upper) {
+
+        long long ans = 0;
+        sort(v.begin(), v.end());
+
+        for (int i = 0; i < v.size() - 1; i++) {
+
+            auto up = upper_bound(v.begin() + i + 1, v.end(), upper - v[i]);
+            auto low = lower_bound(v.begin() + i + 1, v.end(), lower - v[i]);
+            ans += (up - low);
+        }
+
+        return ans;
+      }
+    };
+
+Runtime: 68 ms, beating 41.04% of leetcode users solutions using C++.
+Memory: 60.37 mb, beating 61.15% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, sorting, and for loop.
