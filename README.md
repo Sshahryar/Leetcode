@@ -19824,3 +19824,60 @@ Memory: 60.37 mb, beating 61.15% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, sorting, and for loop.
+
+### Solution Nov 14, 2024 (C++, leetcode) 2064. Minimized Maximum of Products Distributed to Any Store (Medium)
+In .LeetcodeDailySolution folder as Nov14,2024.cpp
+
+#### Prompt:
+
+You are given an integer n indicating there are n specialty retail stores. There are m product types of varying amounts, which are given as a 0-indexed integer array quantities, where quantities[i] represents the number of products of the ith product type.
+
+You need to distribute all products to the retail stores following these rules:
+
+A store can only be given at most one product type but can be given any amount of it.
+After distribution, each store will have been given some number of products (possibly 0). Let x represent the maximum number of products given to any store. You want x to be as small as possible, i.e., you want to minimize the maximum number of products that are given to any store.
+Return the minimum possible x.
+
+#### Solution:
+
+    class Solution {
+    public:
+    bool isPossible(int n, vector<int>& quantities, int mid) {
+
+        int stores = 0;
+
+        for (auto x : quantities) {
+            stores += x / mid;
+            if (x % mid)
+                stores++;
+            if (stores > n)
+                return 0;
+        }
+
+        return stores <= n;
+    }
+    int minimizedMaximum(int n, vector<int>& quantities) {
+        int s = 1, e = 100000, ans = -1;
+
+        while (s <= e) {
+
+            int mid = s + (e - s) / 2;
+
+            if (isPossible(n, quantities, mid)) {
+                ans = mid;
+                e = mid - 1;
+            } else {
+                s = mid + 1;
+            }
+        }
+
+        return ans;
+      }
+    };
+
+Runtime: 31 ms, beating 79.78% of leetcode users solutions using C++.
+Memory: 87.22 mb, beating 72.39% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, binary search, for loop, if statements, and while loop.
