@@ -19936,3 +19936,58 @@ Memory: 69.51 mb, beating 67.21% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, while loops, if statements, else statement, and min.
+
+### Solution Nov 16, 2024 (C++, leetcode) 3254. Find the Power of K-Size Subarrays I (Medium)
+In .LeetcodeDailySolution folder as Nov16,2024.cpp
+
+#### Prompt:
+
+You are given an array of integers nums of length n and a positive integer k.
+
+The power of an array is defined as:
+
+Its maximum element if all of its elements are consecutive and sorted in ascending order.
+-1 otherwise.
+You need to find the power of all 
+subarrays
+ of nums of size k.
+
+Return an integer array results of size n - k + 1, where results[i] is the power of nums[i..(i + k - 1)].
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<int> resultsArray(vector<int>& nums, int k) {
+        vector<int> res;
+
+        int l = 0;
+        int consec_cnt = 1;
+
+        for (int r = 0; r < nums.size(); r++) {
+            if (r > 0 && nums[r - 1] + 1 == nums[r]) {
+                consec_cnt++;
+            }
+
+            if (r - l + 1 > k) {
+                if (nums[l] + 1 == nums[l + 1]) {
+                    consec_cnt--;
+                }
+                l++;
+            }
+
+            if (r - l + 1 == k) {
+                res.push_back(consec_cnt == k ? nums[r] : -1);
+            }
+        }
+
+        return res;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 33.06 mb, beating 66.35% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Sliding window, arrays, for loop, and if statements.
