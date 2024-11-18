@@ -19991,3 +19991,51 @@ Memory: 33.06 mb, beating 66.35% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Sliding window, arrays, for loop, and if statements.
+
+### Solution Nov 17, 2024 (C++, leetcode) 862. Shortest Subarray with Sum at Least K (Hard)
+In .LeetcodeDailySolution folder as Nov17,2024.cpp
+
+#### Prompt:
+
+Given an integer array nums and an integer k, return the length of the shortest non-empty subarray of nums with a sum of at least k. If there is no such subarray, return -1.
+
+A subarray is a contiguous part of an array.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int shortestSubarray(vector<int>& nums, int k) {
+        int n = nums.size();
+        vector<long long> sum(n + 1);
+
+        for (int i = 0; i < n; i++) {
+            sum[i + 1] = sum[i] + nums[i];
+        }
+
+        vector<int> q(n + 1);
+        int l = 0, r = 0;
+        int minLength = n + 1;
+
+        for (int i = 0; i < sum.size(); i++) {
+            while (r > l && sum[i] >= sum[q[l]] + k) {
+                minLength = min(minLength, i - q[l++]);
+            }
+
+            while (r > l && sum[i] <= sum[q[r - 1]]) {
+                r--;
+            }
+
+            q[r++] = i;
+        }
+
+        return minLength <= n ? minLength : -1;
+      }
+    };
+
+Runtime: 38 ms, beating 66.40% of leetcode users solutions using C++.
+Memory: 107.42 mb, beating 94.14% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Sliding window, arrays, for loops, while loops, and min.
