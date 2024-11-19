@@ -20039,3 +20039,50 @@ Memory: 107.42 mb, beating 94.14% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Sliding window, arrays, for loops, while loops, and min.
+
+### Solution Nov 18, 2024 (C++, leetcode) 1652. Defuse the Bomb (Easy)
+In .LeetcodeDailySolution folder as Nov18,2024.cpp
+
+#### Prompt:
+
+You have a bomb to defuse, and your time is running out! Your informer will provide you with a circular array code of length of n and a key k.
+
+To decrypt the code, you must replace every number. All the numbers are replaced simultaneously.
+
+If k > 0, replace the ith number with the sum of the next k numbers.
+If k < 0, replace the ith number with the sum of the previous k numbers.
+If k == 0, replace the ith number with 0.
+As code is circular, the next element of code[n-1] is code[0], and the previous element of code[0] is code[n-1].
+
+Given the circular array code and an integer key k, return the decrypted code to defuse the bomb!
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<int> decrypt(vector<int>& code, int k) {
+        int N = code.size();
+        vector<int> res(N, 0);
+
+        for (int i = 0; i < N; i++) {
+            if (k > 0) {
+                for (int j = i + 1; j < i + 1 + k; j++) {
+                    res[i] += code[j % N];
+                }
+            } else if (k < 0) {
+                for (int j = i - 1; j > i - 1 - abs(k); j--) {
+                    res[i] += code[((j % N) + N) % N];
+                }
+            }
+        }
+
+        return res;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 10.39 mb, beating 60.16% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, for loops, if statement, and else-if statement.
