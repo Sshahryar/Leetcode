@@ -20086,3 +20086,59 @@ Memory: 10.39 mb, beating 60.16% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, for loops, if statement, and else-if statement.
+
+### Solution Nov 19, 2024 (C++, leetcode) 2461. Maximum Sum of Distinct Subarrays With Length K (Medium)
+In .LeetcodeDailySolution folder as Nov19,2024.cpp
+
+#### Prompt:
+
+You are given an integer array nums and an integer k. Find the maximum subarray sum of all the subarrays of nums that meet the following conditions:
+
+The length of the subarray is k, and
+All the elements of the subarray are distinct.
+Return the maximum subarray sum of all the subarrays that meet the conditions. If no subarray meets the conditions, return 0.
+
+A subarray is a contiguous non-empty sequence of elements within an array.
+
+#### Solution:
+
+    class Solution {
+    public:
+    long long maximumSubarraySum(vector<int>& nums, int k) {
+        int n = nums.size();
+        unordered_set<int> elements;
+        long long current_sum = 0;
+        long long max_sum = 0;
+        int begin = 0;
+
+        for (int end = 0; end < n; end++) {
+            if (elements.find(nums[end]) == elements.end()) {
+                current_sum += nums[end];
+                elements.insert(nums[end]);
+
+                if (end - begin + 1 == k) {
+                    max_sum = max(max_sum, current_sum);
+                    current_sum -= nums[begin];
+                    elements.erase(nums[begin]);
+                    begin++;
+                }
+            } else {
+                while (nums[begin] != nums[end]) {
+                    current_sum -= nums[begin];
+                    elements.erase(nums[begin]);
+                    begin++;
+                }
+                begin++;
+            }
+        }
+
+        return max_sum;
+      }
+    };
+
+Runtime: 103 ms, beating 81.93% of leetcode users solutions using C++.
+Memory: 95.18 mb, beating 77.38% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Sliding window, arrays, unordered set, for loop, if statements, else statement, and while loop.
