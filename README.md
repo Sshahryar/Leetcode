@@ -20308,3 +20308,59 @@ Memory: 75.68 mb, beating 57.30% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, unordered map, for loops, if statement, and else statement.
+
+### Solution Nov 23, 2024 (C++, leetcode) 1861. Rotating the Box (Medium)
+In .LeetcodeDailySolution folder as Nov23,2024.cpp
+
+#### Prompt:
+
+You are given an m x n matrix of characters box representing a side-view of a box. Each cell of the box is one of the following:
+
+A stone '#'
+A stationary obstacle '*'
+Empty '.'
+The box is rotated 90 degrees clockwise, causing some of the stones to fall due to gravity. Each stone falls down until it lands on an obstacle, another stone, or the bottom of the box. Gravity does not affect the obstacles' positions, and the inertia from the box's rotation does not affect the stones' horizontal positions.
+
+It is guaranteed that each stone in box rests on an obstacle, another stone, or the bottom of the box.
+
+Return an n x m matrix representing the box after the rotation described above.
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<vector<char>> rotateTheBox(vector<vector<char>>& box) {
+
+        int m = box.size();
+        int n = box[0].size();
+
+        for (auto& row : box) {
+            int dropPos = n - 1;
+
+            for (int currPos = n - 1; currPos >= 0; currPos--) {
+                if (row[currPos] == '*') {
+                    dropPos = currPos - 1;
+                } else if (row[currPos] == '#') {
+                    swap(row[dropPos], row[currPos]);
+                    dropPos--;
+                }
+            }
+        }
+        vector<vector<char>> rotatedBox(n, vector<char>(m));
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                rotatedBox[j][m - 1 - i] = box[i][j];
+            }
+        }
+
+        return rotatedBox;
+      }
+    };
+
+Runtime: 201 ms, beating 31.82% of leetcode users solutions using C++.
+Memory: 56.41 mb, beating 25.31% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, matrix, for loops, if statement, and else-if statement.
