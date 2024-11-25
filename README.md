@@ -20364,3 +20364,46 @@ Memory: 56.41 mb, beating 25.31% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, matrix, for loops, if statement, and else-if statement.
+
+### Solution Nov 24, 2024 (C++, leetcode) 1975. Maximum Matrix Sum (Medium)
+In .LeetcodeDailySolution folder as Nov24,2024.cpp
+
+#### Prompt:
+
+You are given an n x n integer matrix. You can do the following operation any number of times:
+
+Choose any two adjacent elements of matrix and multiply each of them by -1.
+Two elements are considered adjacent if and only if they share a border.
+
+Your goal is to maximize the summation of the matrix's elements. Return the maximum sum of the matrix's elements using the operation mentioned above.
+
+#### Solution:
+
+    class Solution {
+    public:
+    long long maxMatrixSum(vector<vector<int>>& matrix) {
+        
+        long long absSum = 0;
+        int negCount = 0;
+        int absMin = INT_MAX;
+
+        for (const auto& row : matrix) {
+            for (int num : row) {
+                absSum += abs(num);
+                absMin = min(absMin, abs(num));
+
+                if (num < 0)
+                    negCount++;
+            }
+        }
+
+        return (negCount % 2 == 1) ? absSum - 2 * absMin : absSum;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 38.54 mb, beating 13.99% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, matrix, for loops, absolute value, min, and if statement.
