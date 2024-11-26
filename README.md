@@ -20407,3 +20407,69 @@ Memory: 38.54 mb, beating 13.99% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, matrix, for loops, absolute value, min, and if statement.
+
+### Solution Nov 25, 2024 (C++, leetcode) 773. Sliding Puzzle (Hard)
+In .LeetcodeDailySolution folder as Nov25,2024.cpp
+
+#### Prompt:
+
+On an 2 x 3 board, there are five tiles labeled from 1 to 5, and an empty square represented by 0. A move consists of choosing 0 and a 4-directionally adjacent number and swapping it.
+
+The state of the board is solved if and only if the board is [[1,2,3],[4,5,0]].
+
+Given the puzzle board board, return the least number of moves required so that the state of the board is solved. If it is impossible for the state of the board to be solved, return -1.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int slidingPuzzle(vector<vector<int>>& board) {
+
+        vector<vector<int>> dir = {{1, 3}, {0, 2, 4}, {1, 5},
+                                   {0, 4}, {1, 3, 5}, {2, 4}};
+        string target = "123450";
+        set<string> vis;
+        queue<string> q;
+        string start = "";
+
+        for (auto row : board) {
+            for (auto col : row) {
+                start += col + '0';
+            }
+        }
+
+        q.push(start);
+        vis.insert(start);
+        int step = 0;
+
+        while (!q.empty()) {
+            int size = q.size();
+            while (size--) {
+                string current = q.front();
+                q.pop();
+
+                if (current == target)
+                    return step;
+
+                int zero = current.find('0');
+                for (auto move : dir[zero]) {
+                    string next = current;
+                    swap(next[move], next[zero]);
+                    if (!vis.count(next)) {
+                        vis.insert(next);
+                        q.push(next);
+                    }
+                }
+            }
+            step++;
+        }
+        return -1;
+      }
+    };
+
+Runtime: 10 ms, beating 43.12% of leetcode users solutions using C++.
+Memory: 11.04 mb, beating 86.82% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, grid, matrix, set, queue, for loops, while loops, and if statements.
