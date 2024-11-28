@@ -20522,3 +20522,65 @@ Memory: 94.01 mb, beating 65.90% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, for loops, if statements, and else statement.
+
+### Solution Nov 27, 2024 (C++, leetcode) 3243. Shortest Distance After Road Addition Queries I (Medium)
+In .LeetcodeDailySolution folder as Nov27,2024.cpp
+
+#### Prompt:
+
+You are given an integer n and a 2D integer array queries.
+
+There are n cities numbered from 0 to n - 1. Initially, there is a unidirectional road from city i to city i + 1 for all 0 <= i < n - 1.
+
+queries[i] = [ui, vi] represents the addition of a new unidirectional road from city ui to city vi. After each query, you need to find the length of the shortest path from city 0 to city n - 1.
+
+Return an array answer where for each i in the range [0, queries.length - 1], answer[i] is the length of the shortest path from city 0 to city n - 1 after processing the first i + 1 queries.
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<int> shortestDistanceAfterQueries(int n,
+                                             vector<vector<int>>& queries) {
+        vector<vector<int>> adj(n);
+        for (int i = 0; i < n; i++) {
+            adj[i].push_back(i + 1);
+        }
+
+        auto shortest_path = [&]() {
+            queue<pair<int, int>> q;
+            q.push({0, 0});
+            unordered_set<int> visit;
+            visit.insert(0);
+
+            while (!q.empty()) {
+                auto [cur, length] = q.front();
+                q.pop();
+
+                if (cur == n - 1)
+                    return length;
+
+                for (int nei : adj[cur]) {
+                    if (visit.find(nei) == visit.end()) {
+                        q.push({nei, length + 1});
+                        visit.insert(nei);
+                    }
+                }
+            }
+            return -1;
+        };
+        vector<int> res;
+        for (const auto& query : queries) {
+            adj[query[0]].push_back(query[1]);
+            res.push_back(shortest_path());
+        }
+        return res;
+      }
+    };
+
+Runtime: 799 ms, beating 10.99% of leetcode users solutions using C++.
+Memory: 330.48 mb, beating 9.99% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, for loops, shortest path, queue, pairs, unordered set, while loop, and if statements.
