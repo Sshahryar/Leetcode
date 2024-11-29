@@ -20584,3 +20584,60 @@ Memory: 330.48 mb, beating 9.99% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, for loops, shortest path, queue, pairs, unordered set, while loop, and if statements.
+
+### Solution Nov 28, 2024 (C++, leetcode) 2290. Minimum Obstacle Removal to Reach Corner (Hard)
+In .LeetcodeDailySolution folder as Nov28,2024.cpp
+
+#### Prompt:
+
+You are given a 0-indexed 2D integer array grid of size m x n. Each cell has one of two values:
+
+0 represents an empty cell,
+1 represents an obstacle that may be removed.
+You can move up, down, left, or right from and to an empty cell.
+
+Return the minimum number of obstacles to remove so you can move from the upper left corner (0, 0) to the lower right corner (m - 1, n - 1).
+
+#### Solution:
+
+    class Solution {
+    public:
+    int minimumObstacles(vector<vector<int>>& grid) {
+
+        int m = grid.size(), n = grid[0].size();
+        vector<vector<int>> distance(m, vector<int>(n, INT_MAX));
+        deque<pair<int, int>> dq;
+
+        distance[0][0] = 0;
+        dq.push_front({0, 0});
+        vector<pair<int, int>> directions = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+
+        while (!dq.empty()) {
+            auto [x, y] = dq.front();
+            dq.pop_front();
+            for (auto [dx, dy] : directions) {
+                int nx = x + dx, ny = y + dy;
+                if (nx >= 0 && nx < m && ny >= 0 && ny < n) {
+                    int newDist = distance[x][y] + grid[nx][ny];
+                    if (newDist < distance[nx][ny]) {
+                        distance[nx][ny] = newDist;
+                        if (grid[nx][ny] == 0) {
+                            dq.push_front({nx, ny});
+                        } else {
+                            dq.push_back({nx, ny});
+                        }
+                    }
+                }
+            }
+        }
+
+        return distance[m - 1][n - 1];
+      }
+    };
+
+Runtime: 109 ms, beating 94.33% of leetcode users solutions using C++.
+Memory: 121.78 mb, beating 58.60% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Grid, arrays, deque, pair, while loop, for loop, if statements, and else statement.
