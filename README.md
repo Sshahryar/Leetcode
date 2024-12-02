@@ -20641,3 +20641,42 @@ Memory: 121.78 mb, beating 58.60% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Grid, arrays, deque, pair, while loop, for loop, if statements, and else statement.
+
+### Solution Dec 1, 2024 (C++, leetcode) 1346. Check If N and Its Double Exist (Easy)
+In .LeetcodeDailySolution folder as Dec1,2024.cpp
+
+#### Prompt:
+
+Given an array arr of integers, check if there exist two indices i and j such that :
+
+i != j
+0 <= i, j < arr.length
+arr[i] == 2 * arr[j]
+
+#### Solution:
+
+    class Solution {
+    public:
+    bool checkIfExist(vector<int>& arr) {
+
+        unordered_set<int> seen;
+
+        for (int num : arr) {
+
+            if (seen.count(num * 2) || (num % 2 == 0 && seen.count(num / 2))) {
+                return true;
+            }
+
+            seen.insert(num);
+        }
+
+        return false;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 13.89 mb, beating 16.29% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Unordered set, array, for loop, and if statement.
