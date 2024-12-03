@@ -20680,3 +20680,38 @@ Memory: 13.89 mb, beating 16.29% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Unordered set, array, for loop, and if statement.
+
+### Solution Dec 2, 2024 (C++, leetcode) 1455. Check If a Word Occurs As a Prefix of Any Word in a Sentence (Easy)
+In .LeetcodeDailySolution folder as Dec2,2024.cpp
+
+#### Prompt:
+
+Given a sentence that consists of some words separated by a single space, and a searchWord, check if searchWord is a prefix of any word in sentence.
+
+Return the index of the word in sentence (1-indexed) where searchWord is a prefix of this word. If searchWord is a prefix of more than one word, return the index of the first word (minimum index). If there is no such word return -1.
+
+A prefix of a string s is any leading contiguous substring of s.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int isPrefixOfWord(string& sentence, string& searchWord) {
+
+        string s = " " + sentence, t = " " + searchWord;
+        int n = s.size();
+        int m = s.find(t);
+
+        if (m == -1)
+            return -1;
+            
+        return 1 + count(s.begin(), s.begin() + m, ' ');
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 8.04 mb, beating 10.68% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Strings, two pointers, and if statement.
