@@ -20754,3 +20754,42 @@ Memory: 80.55 mb, beating 93.04% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, strings, for loop, if statement, and two pointers.
+
+### Solution Dec 4, 2024 (C++, leetcode) 2825. Make String a Subsequence Using Cyclic Increments (Medium)
+In .LeetcodeDailySolution folder as Dec4,2024.cpp
+
+#### Prompt:
+
+You are given two 0-indexed strings str1 and str2.
+
+In an operation, you select a set of indices in str1, and for each index i in the set, increment str1[i] to the next character cyclically. That is 'a' becomes 'b', 'b' becomes 'c', and so on, and 'z' becomes 'a'.
+
+Return true if it is possible to make str2 a subsequence of str1 by performing the operation at most once, and false otherwise.
+
+Note: A subsequence of a string is a new string that is formed from the original string by deleting some (possibly none) of the characters without disturbing the relative positions of the remaining characters.
+
+#### Solution:
+
+    class Solution {
+    public:
+    bool canMakeSubsequence(string src, string tgt) {
+
+        int tgtIndex = 0;
+        int tgtLength = tgt.length();
+
+        for (char ch : src) {
+            if (tgtIndex < tgtLength && (tgt[tgtIndex] - ch + 26) % 26 <= 1) {
+                tgtIndex++;
+            }
+        }
+
+        return tgtIndex == tgtLength;
+      }
+    };
+
+Runtime: 3 ms, beating 67.21% of leetcode users solutions using C++.
+Memory: 16.98 mb, beating 18.83% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Strings, two pointers, for loop, and if statement.
