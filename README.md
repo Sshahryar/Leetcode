@@ -20839,3 +20839,52 @@ Memory: 18.80 mb, beating 97.06% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Strings, for loop, while loops, and if statements.
+
+### Solution Dec 6, 2024 (C++, leetcode) 2554. Maximum Number of Integers to Choose From a Range I (Medium)
+In .LeetcodeDailySolution folder as Dec6,2024.cpp
+
+#### Prompt:
+
+You are given an integer array banned and two integers n and maxSum. You are choosing some number of integers following the below rules:
+
+The chosen integers have to be in the range [1, n].
+Each integer can be chosen at most once.
+The chosen integers should not be in the array banned.
+The sum of the chosen integers should not exceed maxSum.
+Return the maximum number of integers you can choose following the mentioned rules.
+
+#### Solution:
+
+    class Solution {
+
+    public:
+    int maxCount(vector<int>& banned, int n, int maxSum) {
+
+        unordered_set<int> bannedSet(banned.begin(), banned.end());
+
+        long long sum = 0;
+        int count = 0;
+
+        for (int i = 1; i <= n; i++) {
+
+            if (bannedSet.count(i))
+                continue;
+
+            sum += i;
+
+            if (sum > maxSum)
+                break;
+
+            count++;
+        }
+
+        return count;
+      }
+    };
+
+Runtime: 191 ms, beating 50.17% of leetcode users solutions using C++.
+Memory: 177.96 mb, beating 44.27% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, unordered set, for loop, and if statements.
