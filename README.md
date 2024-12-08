@@ -20888,3 +20888,49 @@ Memory: 177.96 mb, beating 44.27% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, unordered set, for loop, and if statements.
+
+### Solution Dec 7, 2024 (C++, leetcode) 1760. Minimum Limit of Balls in a Bag (Medium)
+In .LeetcodeDailySolution folder as Dec7,2024.cpp
+
+#### Prompt:
+
+You are given an integer array nums where the ith bag contains nums[i] balls. You are also given an integer maxOperations.
+
+You can perform the following operation at most maxOperations times:
+
+Take any bag of balls and divide it into two new bags with a positive number of balls.
+For example, a bag of 5 balls can become two new bags of 1 and 4 balls, or two new bags of 2 and 3 balls.
+Your penalty is the maximum number of balls in a bag. You want to minimize your penalty after the operations.
+
+Return the minimum possible penalty after performing the operations.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int minimumSize(vector<int>& nums, int maxOps) {
+
+        int low = 1, high = *max_element(nums.begin(), nums.end());
+
+        while (low < high) {
+
+            int mid = low + (high - low) / 2;
+            int ops = 0;
+
+            for (int n : nums)
+                if ((ops += (n - 1) / mid) > maxOps)
+                    break;
+                    
+            ops <= maxOps ? high = mid : low = mid + 1;
+        }
+
+        return high;
+      }
+    };
+
+Runtime: 15 ms, beating 99.78% of leetcode users solutions using C++.
+Memory: 59.82 mb, beating 15.30% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, while loop, for loop, and if statement.
