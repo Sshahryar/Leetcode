@@ -20998,3 +20998,52 @@ Memory: 124.24 mb, beating 87.30% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, sorting, for loops, while loop, if statements, else statement, and binary search.
+
+### Solution Dec 9, 2024 (C++, leetcode) 3152. Special Array II (Medium)
+In .LeetcodeDailySolution folder as Dec9,2024.cpp
+
+#### Prompt:
+
+An array is considered special if every pair of its adjacent elements contains two numbers with different parity.
+
+You are given an array of integer nums and a 2D integer matrix queries, where for queries[i] = [fromi, toi] your task is to check that 
+subarray nums[fromi..toi] is special or not.
+
+Return an array of booleans answer such that answer[i] is true if nums[fromi..toi] is special.
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<bool> isArraySpecial(vector<int>& nums,
+                                vector<vector<int>>& queries) {
+
+        const int n = nums.size();
+        int prev = nums[0] & 1;
+        vector<int> sameParity(n, 0);
+
+        for (int i = 1, j = 0; i < n; i++) {
+            bool x = nums[i] & 1;
+            if (x == prev)
+                j++;
+            sameParity[i] = j;
+            prev = x;
+        }
+        const int m = queries.size();
+        vector<bool> ans(m, 0);
+
+        for (int i = 0; i < m; i++) {
+            int s = queries[i][0], t = queries[i][1];
+            ans[i] = (sameParity[s] == sameParity[t]);
+        }
+
+        return ans;
+      }
+    };
+
+Runtime: 8 ms, beating 72.22% of leetcode users solutions using C++.
+Memory: 126.66 mb, beating 66.25% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, for loops, and if statement.
