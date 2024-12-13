@@ -21166,3 +21166,41 @@ Memory: 105.46 mb, beating 51.61% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, for loops, max, min, and while loop.
+
+### Solution Dec 12, 2024 (C++, leetcode) 2558. Take Gifts From the Richest Pile (Easy)
+In .LeetcodeDailySolution folder as Dec12,2024.cpp
+
+#### Prompt:
+
+You are given an integer array gifts denoting the number of gifts in various piles. Every second, you do the following:
+
+Choose the pile with the maximum number of gifts.
+If there is more than one pile with the maximum number of gifts, choose any.
+Leave behind the floor of the square root of the number of gifts in the pile. Take the rest of the gifts.
+Return the number of gifts remaining after k seconds.
+
+#### Solution:
+
+    class Solution {
+    public:
+    long long pickGifts(vector<int>& gifts, int k) {
+
+        make_heap(gifts.begin(), gifts.end());
+
+        for (int i = 0, x = INT_MAX; i < k && x > 1; i++) {
+            pop_heap(gifts.begin(), gifts.end());
+            x = gifts.back();
+            gifts.back() = sqrt(gifts.back());
+            push_heap(gifts.begin(), gifts.end());
+        }
+
+        return accumulate(gifts.begin(), gifts.end(), 0LL);
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 12.88 mb, beating 94.37% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, priority queue, for loop, and math.
