@@ -21204,3 +21204,45 @@ Memory: 12.88 mb, beating 94.37% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, priority queue, for loop, and math.
+
+### Solution Dec 13, 2024 (C++, leetcode) 2593. Find Score of an Array After Marking All Elements (Medium)
+In .LeetcodeDailySolution folder as Dec13,2024.cpp
+
+#### Prompt:
+
+You are given an array nums consisting of positive integers.
+
+Starting with score = 0, apply the following algorithm:
+
+Choose the smallest integer of the array that is not marked. If there is a tie, choose the one with the smallest index.
+Add the value of the chosen integer to score.
+Mark the chosen element and its two adjacent elements if they exist.
+Repeat until all the array elements are marked.
+Return the score you get after applying the above algorithm.
+
+#### Solution:
+
+    class Solution {
+    public:
+    long long findScore(vector<int>& nums) {
+        const int n = nums.size();
+        long long sum = 0;
+        for (int l = 0, r = 0; r < n; r += 2) {
+            l = r; 
+
+            while (r + 1 < n && nums[r] > nums[r + 1])
+                r++;
+
+            for (int i = r; i >= l; i -= 2)
+                sum += nums[i];
+        }
+        return sum;
+      }
+    };
+
+Runtime: 4 ms, beating 99.31% of leetcode users solutions using C++.
+Memory: 92.22 mb, beating 99.69% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Array, for loops, and while loop.
