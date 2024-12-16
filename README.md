@@ -21302,3 +21302,61 @@ Memory: 115.68 mb, beating 70.19% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, deque, for loop, while loops, and if statements.
+
+### Solution Dec 15, 2024 (C++, leetcode) 1792. Maximum Average Pass Ratio (Medium)
+In .LeetcodeDailySolution folder as Dec15,2024.cpp
+
+#### Prompt:
+
+There is a school that has classes of students and each class will be having a final exam. You are given a 2D integer array classes, where classes[i] = [passi, totali]. You know beforehand that in the ith class, there are totali total students, but only passi number of students will pass the exam.
+
+You are also given an integer extraStudents. There are another extraStudents brilliant students that are guaranteed to pass the exam of any class they are assigned to. You want to assign each of the extraStudents students to a class in a way that maximizes the average pass ratio across all the classes.
+
+The pass ratio of a class is equal to the number of students of the class that will pass the exam divided by the total number of students of the class. The average pass ratio is the sum of pass ratios of all the classes divided by the number of the classes.
+
+Return the maximum possible average pass ratio after assigning the extraStudents students. Answers within 10-5 of the actual answer will be accepted.
+
+#### Solution:
+
+    class Solution {
+    public:
+    double maxAverageRatio(vector<vector<int>>& classes, int extraStudents) {
+
+        priority_queue<pair<double, pair<int, int>>> pq;
+
+        for (int i = 0; i < classes.size(); i++) {
+            int n = classes[i][0];
+            int d = classes[i][1];
+            double change = (double)(n + 1) / (d + 1) - (double)n / d;
+            pq.push({change, {n, d}});
+        }
+        for (int i = 0; i < extraStudents; i++) {
+            auto [change, p] = pq.top();
+            pq.pop();
+            int n = p.first;
+            int d = p.second;
+            n++;
+            d++;
+            double newchange = (double)(n + 1) / (d + 1) - (double)n / d;
+            pq.push({newchange, {n, d}});
+        }
+        double passratio = 0;
+
+        while (!pq.empty()) {
+            auto [a, b] = pq.top();
+            pq.pop();
+            int n = b.first;
+            int d = b.second;
+            passratio += (double)n / d;
+        }
+
+        return passratio / classes.size();
+      }
+    };
+
+Runtime: 307 ms, beating 84.30% of leetcode users solutions using C++. 
+Memory: 97.73 mb, beating 58.14% of leetcode user solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, priority queue, pair, for loops, and while loop.
