@@ -21490,3 +21490,39 @@ Memory: 14.17 mb, beating 18.80% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, for loops, and if statement.
+
+### Solution Dec 19, 2024 (C++, leetcode) 769. Max Chunks To Make Sorted (Medium)
+In .LeetcodeDailySolution folder as Dec19,2024.cpp
+
+#### Prompt:
+
+You are given an integer array arr of length n that represents a permutation of the integers in the range [0, n - 1].
+
+We split arr into some number of chunks (i.e., partitions), and individually sort each chunk. After concatenating them, the result should equal the sorted array.
+
+Return the largest number of chunks we can make to sort the array.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int maxChunksToSorted(vector<int>& arr) {
+
+        const int n = arr.size();
+        int cnt = 0, diff = 0;
+        
+        for (int i = 0; i < n; i++) {
+            diff += arr[i] - i;
+            cnt += (diff == 0);
+        }
+
+        return cnt;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 9.21 mb, beating 21.11% of leetcode user solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, and for loop.
