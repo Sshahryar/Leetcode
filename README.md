@@ -21526,3 +21526,52 @@ Memory: 9.21 mb, beating 21.11% of leetcode user solutions using C++.
 #### Concepts Applied:
 
 Arrays, and for loop.
+
+### Solution Dec 20, 2024 (C++, leetcode) 2415. Reverse Odd Levels of Binary Tree (Medium)
+In .LeetcodeDailySolution folder as Dec20,2024.cpp
+
+#### Prompt:
+
+Given the root of a perfect binary tree, reverse the node values at each odd level of the tree.
+
+For example, suppose the node values at level 3 are [2,1,3,4,7,11,29,18], then it should become [18,29,11,7,4,3,1,2].
+Return the root of the reversed tree.
+
+A binary tree is perfect if all parent nodes have two children and all leaves are on the same level.
+
+The level of a node is the number of edges along the path between it and the root node.
+
+#### Solution:
+
+    class Solution {
+    public:
+    TreeNode* reverseOddLevels(TreeNode* root) {
+
+        dfs(root->left, root->right, 0);
+
+        return root;
+    }
+
+    private:
+    void dfs(TreeNode* leftChild, TreeNode* rightChild, int level) {
+
+        if (leftChild == nullptr || rightChild == nullptr) {
+            return;
+        }
+        if (level % 2 == 0) {
+            int temp = leftChild->val;
+            leftChild->val = rightChild->val;
+            rightChild->val = temp;
+        }
+
+        dfs(leftChild->left, rightChild->right, level + 1);
+        dfs(leftChild->right, rightChild->left, level + 1);
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 76.98 mb, beating 77.63% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Depth-first search, and if statements.
