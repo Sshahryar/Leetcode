@@ -21575,3 +21575,61 @@ Memory: 76.98 mb, beating 77.63% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Depth-first search, and if statements.
+
+### Solution Dec 21, 2024 (C++, leetcode) 2872. Maximum Number of K-Divisible Components (Hard)
+In .LeetcodeDailySolution folder as Dec21,2024.cpp
+
+#### Prompt:
+
+There is an undirected tree with n nodes labeled from 0 to n - 1. You are given the integer n and a 2D integer array edges of length n - 1, where edges[i] = [ai, bi] indicates that there is an edge between nodes ai and bi in the tree.
+
+You are also given a 0-indexed integer array values of length n, where values[i] is the value associated with the ith node, and an integer k.
+
+A valid split of the tree is obtained by removing any set of edges, possibly empty, from the tree such that the resulting components all have values that are divisible by k, where the value of a connected component is the sum of the values of its nodes.
+
+Return the maximum number of components in any valid split.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int maxKDivisibleComponents(int n, vector<vector<int>>& edges,
+                                vector<int>& values, int k) {
+
+        unordered_map<int, unordered_set<int>> g;
+
+        for (auto& edge : edges) {
+            g[edge[0]].insert(edge[1]);
+            g[edge[1]].insert(edge[0]);
+        }
+        int res = 1;
+
+        function<int(int)> dfs = [&](int node) {
+            int total = values[node];
+
+            for (int next_node : g[node]) {
+
+                g[next_node].erase(node);
+                int next_total = dfs(next_node);
+
+                if (next_total % k == 0) {
+                    res++;
+                } else {
+                    total += next_total;
+                }
+            }
+
+            return total % k;
+        };
+        dfs(0);
+
+        return res;
+      }
+    };
+
+Runtime: 450 ms, beating 5.52% of leetcode users solutions using C++.
+Memory: 270.26 mb, beating 7.36% of leetcode user solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, depth-first search, unordered maps, for loops, if statement, and else statement.
