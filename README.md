@@ -21633,3 +21633,73 @@ Memory: 270.26 mb, beating 7.36% of leetcode user solutions using C++.
 #### Concepts Applied:
 
 Arrays, depth-first search, unordered maps, for loops, if statement, and else statement.
+
+### Solution Dec 23, 2024 (C++, leetcode) 2940. Find Building Where Alice and Bob Can Meet (Hard)
+In .LeetcodeDailySolution folder as Dec23,2024.cpp
+
+#### Prompt:
+
+You are given a 0-indexed array heights of positive integers, where heights[i] represents the height of the ith building.
+
+If a person is in building i, they can move to any other building j if and only if i < j and heights[i] < heights[j].
+
+You are also given another array queries where queries[i] = [ai, bi]. On the ith query, Alice is in building ai while Bob is in building bi.
+
+Return an array ans where ans[i] is the index of the leftmost building where Alice and Bob can meet on the ith query. If Alice and Bob cannot move to a common building on query i, set ans[i] to -1.
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<int> leftmostBuildingQueries(vector<int>& heights,
+                                        vector<vector<int>>& queries) {
+        int n = heights.size();
+        int queryCount = queries.size();
+
+        vector<int> result(queryCount, -1);
+        vector<vector<pair<int, int>>> deferredQueries(n);
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<>>
+            minHeap;
+
+        for (int queryIndex = 0; queryIndex < queryCount; ++queryIndex) {
+
+            int aliceStart = queries[queryIndex][0];
+            int bobStart = queries[queryIndex][1];
+
+            if (aliceStart == bobStart) {
+                result[queryIndex] = aliceStart;
+            } else if (aliceStart < bobStart &&
+                       heights[aliceStart] < heights[bobStart]) {
+                result[queryIndex] = bobStart;
+            } else if (aliceStart > bobStart &&
+                       heights[aliceStart] > heights[bobStart]) {
+                result[queryIndex] = aliceStart;
+            } else {
+                int maxHeight = max(heights[aliceStart], heights[bobStart]);
+                int maxIndex = max(aliceStart, bobStart);
+                deferredQueries[maxIndex].emplace_back(maxHeight, queryIndex);
+            }
+        }
+        for (int currentBuilding = 0; currentBuilding < n; ++currentBuilding) {
+
+            while (!minHeap.empty() &&
+                   minHeap.top().first < heights[currentBuilding]) {
+                int queryIndex = minHeap.top().second;
+                minHeap.pop();
+                result[queryIndex] = currentBuilding;
+            }
+            for (auto& query : deferredQueries[currentBuilding]) {
+                minHeap.emplace(query.first, query.second);
+            }
+        }
+
+        return result;
+      }
+    };
+
+Runtime: 79 ms, beating 77.56% of leetcode users solutions using C++.
+Memory: 264.84 mb, beating 57.69% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, priority queue, pairs, for loops, while loop, if statements, else-if statements, and max.
