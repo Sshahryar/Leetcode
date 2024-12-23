@@ -21634,8 +21634,8 @@ Memory: 270.26 mb, beating 7.36% of leetcode user solutions using C++.
 
 Arrays, depth-first search, unordered maps, for loops, if statement, and else statement.
 
-### Solution Dec 23, 2024 (C++, leetcode) 2940. Find Building Where Alice and Bob Can Meet (Hard)
-In .LeetcodeDailySolution folder as Dec23,2024.cpp
+### Solution Dec 22, 2024 (C++, leetcode) 2940. Find Building Where Alice and Bob Can Meet (Hard)
+In .LeetcodeDailySolution folder as Dec22,2024.cpp
 
 #### Prompt:
 
