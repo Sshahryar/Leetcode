@@ -21703,3 +21703,76 @@ Memory: 264.84 mb, beating 57.69% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, priority queue, pairs, for loops, while loop, if statements, else-if statements, and max.
+
+### Solution Dec 23, 2024 (C++, leetcode) 2471. Minimum Number of Operations to Sort a Binary Tree by Level (Medium)
+In .LeetcodeDailySolution folder as Dec23,2024.cpp
+
+#### Prompt:
+
+You are given the root of a binary tree with unique values.
+
+In one operation, you can choose any two nodes at the same level and swap their values.
+
+Return the minimum number of operations needed to make the values at each level sorted in a strictly increasing order.
+
+The level of a node is the number of edges along the path between it and the root node.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int minimumOperations(TreeNode* root) {
+
+        if (!root)
+            return 0;
+
+        queue<TreeNode*> q;
+        q.push(root);
+        int operations = 0;
+
+        while (!q.empty()) {
+
+            int size = q.size();
+            vector<int> level;
+
+            for (int i = 0; i < size; ++i) {
+
+                TreeNode* node = q.front();
+                q.pop();
+                level.push_back(node->val);
+
+                if (node->left)
+                    q.push(node->left);
+
+                if (node->right)
+                    q.push(node->right);
+            }
+            vector<int> sort_level = level;
+            sort(sort_level.begin(), sort_level.end());
+            unordered_map<int, int> mp;
+
+            for (int i = 0; i < level.size(); ++i) {
+                mp[level[i]] = i;
+            }
+            for (int i = 0; i < level.size(); ++i) {
+
+                while (level[i] != sort_level[i]) {
+
+                    ++operations;
+                    int cur = mp[sort_level[i]];
+                    mp[level[i]] = cur;
+                    swap(level[i], level[cur]);
+                }
+            }
+        }
+
+        return operations;
+      }
+    };
+
+Runtime: 174 ms, beating 36.36% of leetcode users solutions using C++.
+Memory: 217.21 mb, beating 15.83% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Tree, if statements, queue, while loops, for loops, arrays, sorting, and urordered map.
