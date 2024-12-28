@@ -21852,8 +21852,48 @@ Memory: 295.94 mb, beating 93.67% of leetcode users solutions using C++.
 
 Arrays, for loops, queue, if statements, and max. 
 
-### Solution Dec 26, 2024 (C++, leetcode) 1014. Best Sightseeing Pair (Medium)
+### Solution Dec 26, 2024 (C++, leetcode) 494. Target Sum (Medium)
 In .LeetcodeDailySolution folder as Dec26,2024.cpp
+
+#### Prompt:
+
+You are given an integer array nums and an integer target.
+
+You want to build an expression out of nums by adding one of the symbols '+' and '-' before each integer in nums and then concatenate all the integers.
+
+For example, if nums = [2, 1], you can add a '+' before 2 and a '-' before 1 and concatenate them to build the expression "+2-1".
+Return the number of different expressions that you can build, which evaluates to target.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int findTargetSumWays(vector<int>& nums, int target) {
+
+        return cal(nums, target, 0, 0);
+    }
+    int cal(vector<int>& nums, int tar, int idx, int currSum) {
+
+        if (idx == nums.size()) {
+            return (currSum == tar) ? 1 : 0;
+        }
+
+        int add = cal(nums, tar, idx + 1, currSum + nums[idx]);
+        int sub = cal(nums, tar, idx + 1, currSum - nums[idx]);
+
+        return add + sub;
+      }
+    };
+
+Runtime: 927 ms, beating 10.71% of leetcode users solutions using C++.
+Memory: 11.66 mb, beating 72.39% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, if statement, and math.
+
+### Solution Dec 27, 2024 (C++, leetcode) 1014. Best Sightseeing Pair (Medium)
+In .LeetcodeDailySolution folder as Dec27,2024.cpp
 
 #### Prompt:
 
