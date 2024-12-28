@@ -21851,3 +21851,39 @@ Memory: 295.94 mb, beating 93.67% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, for loops, queue, if statements, and max. 
+
+### Solution Dec 26, 2024 (C++, leetcode) 1014. Best Sightseeing Pair (Medium)
+In .LeetcodeDailySolution folder as Dec26,2024.cpp
+
+#### Prompt:
+
+You are given an integer array values where values[i] represents the value of the ith sightseeing spot. Two sightseeing spots i and j have a distance j - i between them.
+
+The score of a pair (i < j) of sightseeing spots is values[i] + values[j] + i - j: the sum of the values of the sightseeing spots, minus the distance between them.
+
+Return the maximum score of a pair of sightseeing spots.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int maxScoreSightseeingPair(vector<int>& values) {
+
+        int ans = 0;
+        int Prev = values[0];
+
+        for (int j = 1; j < values.size(); j++) {
+            ans = max(ans, Prev + values[j] - j);
+            Prev = max(Prev, values[j] + j);
+        }
+
+        return ans;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 45.51 mb, beating 55.63% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, for loop, and max.
