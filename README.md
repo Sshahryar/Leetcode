@@ -22059,3 +22059,54 @@ Memory: 61.40 mb, beating 36.50% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Modulo, arrays, unordered map, for loops, functions, if statements, and traversals.
+
+### Solution Dec 30, 2024 (C++, leetcode) 2466. Count Ways To Build Good Strings (Medium)
+In .LeetcodeDailySolution folder as Dec30,2024.cpp
+
+#### Prompt:
+
+Given the integers zero, one, low, and high, we can construct a string by starting with an empty string, and then at each step perform either of the following:
+
+Append the character '0' zero times.
+Append the character '1' one times.
+This can be performed any number of times.
+
+A good string is a string constructed by the above process having a length between low and high (inclusive).
+
+Return the number of different good strings that can be constructed satisfying these properties. Since the answer can be large, return it modulo 109 + 7.
+
+#### Solution:
+
+    class Solution {
+    private:
+    const int mod = 1e9 + 7;
+
+    public:
+    int countGoodStrings(int low, int high, int zero, int one) {
+        
+        if (zero > one)
+            return countGoodStrings(low, high, one, zero);
+
+        vector<int> dp(high + 1, 0);
+        dp[0] = 1;
+        int res = 0;
+
+        for (int i = 1; i <= high; i++) {
+            if (i >= zero)
+                dp[i] = (dp[i] + dp[i - zero]) % mod;
+            if (i >= one)
+                dp[i] = (dp[i] + dp[i - one]) % mod;
+            if (i >= low)
+                res = (res + dp[i]) % mod;
+        }
+
+        return res;
+      }
+    };
+
+Runtime: 6 ms, beating 63.35% of leetcode users solutions using C++.
+Memory: 11.56 mb, beating 75.63% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Modulo, if statements, for loop, array, and dynamic programming.
