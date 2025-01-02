@@ -22177,3 +22177,47 @@ Memory: 13.18 mb, beating 47.97% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, dynamic programming, if statements, while loops, and min.
+
+### Solution Jan 1, 2025 (C++, leetcode) 1422. Maximum Score After Splitting a String (Easy)
+In .LeetcodeDailySolution folder as Jan1,2025.cpp
+
+#### Prompt:
+
+Given a string s of zeros and ones, return the maximum score after splitting the string into two non-empty substrings (i.e. left substring and right substring).
+
+The score after splitting a string is the number of zeros in the left substring plus the number of ones in the right substring.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int maxScore(string s) {
+
+        int totalZeros = 0;
+
+        for (char c : s) {
+            if (c == '0')
+                totalZeros++;
+        }
+        int ans = -1;
+        int zeros = 0;
+        int L = s.length();
+
+        for (int i = 1; i < L; i++) {
+            if (s.at(i - 1) == '0') {
+                zeros++;
+                totalZeros--;
+            }
+            ans = max(ans, (zeros + (L - totalZeros - (i))));
+        }
+        
+        return ans;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 8.65 mb, beating 53.68% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+For loops, strings, if statements, and max.
