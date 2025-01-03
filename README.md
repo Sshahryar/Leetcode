@@ -22221,3 +22221,51 @@ Memory: 8.65 mb, beating 53.68% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 For loops, strings, if statements, and max.
+
+### Solution Jan 2, 2025 (C++, leetcode) 2559. Count Vowel Strings in Ranges (Medium)
+In .LeetcodeDailySolution folder as Jan2,2025.cpp
+
+#### Prompt:
+
+You are given a 0-indexed array of strings words and a 2D array of integers queries.
+
+Each query queries[i] = [li, ri] asks us to find the number of strings present in the range li to ri (both inclusive) of words that start and end with a vowel.
+
+Return an array ans of size queries.length, where ans[i] is the answer to the ith query.
+
+Note that the vowel letters are 'a', 'e', 'i', 'o', and 'u'.
+
+#### Solution:
+
+    class Solution {
+    public:
+    static vector<int> vowelStrings(vector<string>& words,
+                                    vector<vector<int>>& queries) {
+
+        const bitset<26> isVowel = 1 + (1 << ('e' - 'a')) + (1 << ('i' - 'a')) +
+                                   (1 << ('o' - 'a')) + (1 << ('u' - 'a'));
+        const int n = words.size(), qz = queries.size();
+        vector<int> cnt(n + 1, 0);
+
+        for (int i = 0; i < n; i++) {
+            string& w = words[i];
+            cnt[i + 1] =
+                cnt[i] + (isVowel[w[0] - 'a'] && isVowel[w.back() - 'a']);
+        }
+        vector<int> ans(qz, 0);
+        int i = 0;
+
+        for (auto& q : queries) {
+            ans[i++] = cnt[q[1] + 1] - cnt[q[0]];
+        }
+
+        return ans;
+      }
+    };
+
+Runtime: 4 ms, beating 81.15% of leetcode users solutions using C++.
+Memory: 69.32 mb, beating 70.68% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, strings, for loops, and bitset.
