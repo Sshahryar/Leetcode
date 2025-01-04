@@ -22269,3 +22269,46 @@ Memory: 69.32 mb, beating 70.68% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, strings, for loops, and bitset.
+
+### Solution Jan 3, 2025 (C++, leetcode) 2270. Number of Ways to Split Array (Medium)
+In .LeetcodeDailySolution folder as Jan3,2025.cpp
+
+#### Prompt:
+
+You are given a 0-indexed integer array nums of length n.
+
+nums contains a valid split at index i if the following are true:
+
+The sum of the first i + 1 elements is greater than or equal to the sum of the last n - i - 1 elements.
+There is at least one element to the right of i. That is, 0 <= i < n - 1.
+Return the number of valid splits in nums.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int waysToSplitArray(vector<int>& nums) {
+
+        int N = nums.size();
+        vector<long long> Prefix(N + 1, 0);
+
+        for (int i = 0; i < N; i++) {
+            Prefix[i + 1] = Prefix[i] + nums[i];
+        }
+        int ans = 0;
+
+        for (int i = 1; i < N; i++) {
+            if (Prefix[i] >= Prefix[N] - Prefix[i]) {
+                ans++;
+            }
+        }
+        return ans;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 97.04 mb, beating 26.46% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, splitting, for loops, and if statement.
