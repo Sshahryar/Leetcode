@@ -22312,3 +22312,56 @@ Memory: 97.04 mb, beating 26.46% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, splitting, for loops, and if statement.
+
+### Solution Jan 4, 2025 (C++, leetcode) 1930. Unique Length-3 Palindromic Subsequences (Medium)
+In .LeetcodeDailySolution folder as Jan4,2025.cpp
+
+#### Prompt:
+
+Given a string s, return the number of unique palindromes of length three that are a subsequence of s.
+
+Note that even if there are multiple ways to obtain the same subsequence, it is still only counted once.
+
+A palindrome is a string that reads the same forwards and backwards.
+
+A subsequence of a string is a new string generated from the original string with some characters (can be none) deleted without changing the relative order of the remaining characters.
+
+For example, "ace" is a subsequence of "abcde".
+
+#### Solution:
+
+    class Solution {
+    public:
+    int countPalindromicSubsequence(string s) {
+
+        vector<int> R(26, 0);
+
+        for (auto& u : s) {
+            R[u - 'a']++;
+        }
+        vector<int> L(26, 0);
+        unordered_set<int> S;
+
+        for (int i = 0; i < s.length(); i++) {
+
+            int t = s[i] - 'a';
+            R[t]--;
+
+            for (int j = 0; j < 26; j++) {
+                if (L[j] > 0 && R[j] > 0) {
+                    S.insert(26 * t + j);
+                }
+            }
+            L[t]++;
+        }
+
+        return S.size();
+      }
+    };
+
+Runtime: 158 ms, beating 70.90% of leetcode users solutions using C++.
+Memory: 16.27 mb, beating 38.39% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Palindrome, arrays, unordered set, for loops, and if statement.
