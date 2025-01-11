@@ -22552,3 +22552,70 @@ Memory: 12.86 mb, beating 98.98% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Prefix, strings, for loop, and if statement.
+
+### Solution Jan 10, 2025 (C++, leetcode) 916. Word Subsets (Medium)
+In .LeetcodeDailySolution folder as Jan10,2025.cpp
+
+#### Prompt:
+
+You are given two string arrays words1 and words2.
+
+A string b is a subset of string a if every letter in b occurs in a including multiplicity.
+
+For example, "wrr" is a subset of "warrior" but is not a subset of "world".
+A string a from words1 is universal if for every string b in words2, b is a subset of a.
+
+Return an array of all the universal strings in words1. You may return the answer in any order.
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<string> wordSubsets(vector<string>& mainWords, vector<string>& requiredWords) {
+
+        int maxCharFreq[26] = {0};
+        int tempCharFreq[26];
+        
+        for (const auto& word : requiredWords) {
+
+            memset(tempCharFreq, 0, sizeof tempCharFreq);
+
+            for (char ch : word) {
+                tempCharFreq[ch - 'a']++;
+            }
+            for (int i = 0; i < 26; ++i) {
+                maxCharFreq[i] = max(maxCharFreq[i], tempCharFreq[i]);
+            }
+        }
+        vector<string> universalWords;
+        
+        for (const auto& word : mainWords) {
+
+            memset(tempCharFreq, 0, sizeof tempCharFreq);
+
+            for (char ch : word) {
+                tempCharFreq[ch - 'a']++;
+            }
+            bool isUniversal = true;
+            
+            for (int i = 0; i < 26; ++i) {
+                if (maxCharFreq[i] > tempCharFreq[i]) {
+                    isUniversal = false;
+                    break;
+                }
+            }
+            if (isUniversal) {
+                universalWords.emplace_back(word);
+            }
+        }
+        
+        return universalWords;
+      }
+    };
+
+Runtime: 18 ms, beating 78.34% of leetcode users solutions using C++.
+Memory: 61.84 mb, beating 84.33% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, for loops, if statements, memset, and frequencies.
