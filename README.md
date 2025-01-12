@@ -22619,3 +22619,46 @@ Memory: 61.84 mb, beating 84.33% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, for loops, if statements, memset, and frequencies.
+
+### Solution Jan 11, 2025 (C++, leetcode) 1400. Construct K Palindrome Strings (Medium)
+In .LeetcodeDailySolution folder as Jan11,2025.cpp
+
+#### Prompt:
+
+Given a string s and an integer k, return true if you can use all the characters in s to construct k palindrome strings or false otherwise.
+
+#### Solution:
+
+    class Solution {
+    public:
+    bool canConstruct(string s, int k) {
+
+        if (s.length() < k)
+            return false;
+
+        sort(s.begin(), s.end());
+        int oddCount = 0;
+
+        for (int i = 0; i < s.length();) {
+
+            char current = s[i];
+            int count = 0;
+
+            while (i < s.length() && s[i] == current) {
+                count++;
+                i++;
+            }
+            if (count % 2 != 0)
+                oddCount++;
+        }
+
+        return oddCount <= k;
+      }
+    };
+
+Runtime: 32 ms, beating 5.54% of leetcode users solutions using C++.
+Memory: 14.85 mb, beating 67.38% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Palindromes, if statements, for loop, and while loop.
