@@ -22812,3 +22812,50 @@ Memory: 86.36 mb, beating 65.88% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, for loop, and if statements.
+
+### Solution Jan 15, 2025 (C++, leetcode) 2429. Minimize XOR (Medium)
+In .LeetcodeDailySolution folder as Jan15,2025.cpp
+
+#### Prompt:
+
+Given two positive integers num1 and num2, find the positive integer x such that:
+
+x has the same number of set bits as num2, and
+The value x XOR num1 is minimal.
+Note that XOR is the bitwise XOR operation.
+
+Return the integer x. The test cases are generated such that x is uniquely determined.
+
+The number of set bits of an integer is the number of 1's in its binary representation.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int minimizeXor(int num1, int num2) {
+
+        int a = __builtin_popcount(num1);
+        int b = __builtin_popcount(num2);
+        int res = num1;
+
+        for (int i = 0; i < 32; ++i) {
+            if (a > b && (1 << i) & num1) {
+                res ^= 1 << i;
+                --a;
+            }
+            if (a < b && !((1 << i) & num1)) {
+                res ^= 1 << i;
+                ++a;
+            }
+        }
+
+        return res;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 8.10 mb, beating 40.55% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+XOR, for loop, and if statements.
