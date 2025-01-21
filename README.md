@@ -23004,3 +23004,50 @@ Memory: 26.21 mb, beating 36.15% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Grid, arrays, deque, while loop, for loop, if statements, and else statement.
+
+### Solution Jan 20, 2025 (C++, leetcode) 2661. First Completely Painted Row or Column (Medium)
+In .LeetcodeDailySolution folder as Jan20,2025.cpp
+
+#### Prompt:
+
+You are given a 0-indexed integer array arr, and an m x n integer matrix mat. arr and mat both contain all the integers in the range [1, m * n].
+
+Go through each index i in arr starting from index 0 and paint the cell in mat containing the integer arr[i].
+
+Return the smallest index i at which either a row or a column will be completely painted in mat.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int firstCompleteIndex(vector<int>& arr, vector<vector<int>>& mat) {
+        
+        int rows = mat.size(), cols = mat[0].size();
+        unordered_map<int, pair<int, int>> positionMap;
+        vector<int> rowCount(rows, cols), colCount(cols, rows);
+
+        for (int r = 0; r < rows; ++r) {
+            for (int c = 0; c < cols; ++c) {
+                positionMap[mat[r][c]] = {r, c};
+            }
+        }
+
+        for (int idx = 0; idx < arr.size(); ++idx) {
+            int val = arr[idx];
+            auto [row, col] = positionMap[val];
+
+            if (--rowCount[row] == 0 || --colCount[col] == 0) {
+                return idx;
+            }
+        }
+
+        return -1;
+      }
+    };
+
+Runtime: 93 ms, beating 69.28% of leetcode users solutions using C++.
+Memory: 171.11 mb, beating 22.89% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, unordered map, matrcies, for loops, and if statement.
