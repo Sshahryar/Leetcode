@@ -23051,3 +23051,71 @@ Memory: 171.11 mb, beating 22.89% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, unordered map, matrcies, for loops, and if statement.
+
+### Solution Jan 22, 2025 (C++, leetcode) 1765. Map of Highest Peak (Medium)
+In .LeetcodeDailySolution folder as Jan22,2025.cpp
+
+#### Prompt:
+
+You are given an integer matrix isWater of size m x n that represents a map of land and water cells.
+
+If isWater[i][j] == 0, cell (i, j) is a land cell.
+If isWater[i][j] == 1, cell (i, j) is a water cell.
+You must assign each cell a height in a way that follows these rules:
+
+The height of each cell must be non-negative.
+If the cell is a water cell, its height must be 0.
+Any two adjacent cells must have an absolute height difference of at most 1. A cell is adjacent to another cell if the former is directly north, east, south, or west of the latter (i.e., their sides are touching).
+Find an assignment of heights such that the maximum height in the matrix is maximized.
+
+Return an integer matrix height of size m x n where height[i][j] is cell (i, j)'s height. If there are multiple solutions, return any of them.
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<vector<int>> highestPeak(vector<vector<int>>& isWater) {
+
+        int R = isWater.size();
+        int C = isWater[0].size();
+        vector<vector<int>> height(R, vector<int>(C, R + C));
+
+        for (int i = 0; i < R; i++) {
+
+            for (int j = 0; j < C; j++) {
+
+                if (isWater[i][j] == 1) {
+                    height[i][j] = 0;
+
+                } else {
+
+                    if (i > 0)
+                        height[i][j] = min(height[i][j], height[i - 1][j] + 1);
+
+                    if (j > 0)
+                        height[i][j] = min(height[i][j], height[i][j - 1] + 1);
+                }
+            }
+        }
+        for (int i = R - 1; i >= 0; i--) {
+
+            for (int j = C - 1; j >= 0; j--) {
+
+                if (i < R - 1)
+                    height[i][j] = min(height[i][j], height[i + 1][j] + 1);
+
+                if (j < C - 1)
+                    height[i][j] = min(height[i][j], height[i][j + 1] + 1);
+            }
+        }
+
+        return height;
+      }
+    };
+
+Runtime: 24 ms, beating 98.56% of leetcode users solutions using C++. 
+Memory: 97.75 mb, beating 98.67% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, matrix, for loop, if statements, else statement, and min.
