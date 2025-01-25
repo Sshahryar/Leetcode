@@ -23119,3 +23119,72 @@ Memory: 97.75 mb, beating 98.67% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, matrix, for loop, if statements, else statement, and min.
+
+### Solution Jan 24, 2025 (C++, leetcode) 802. Find Eventual Safe States (Medium)
+In .LeetcodeDailySolution folder as Jan24,2025.cpp
+
+#### Prompt:
+
+There is a directed graph of n nodes with each node labeled from 0 to n - 1. The graph is represented by a 0-indexed 2D integer array graph where graph[i] is an integer array of nodes adjacent to node i, meaning there is an edge from node i to each node in graph[i].
+
+A node is a terminal node if there are no outgoing edges. A node is a safe node if every possible path starting from that node leads to a terminal node (or another safe node).
+
+Return an array containing all the safe nodes of the graph. The answer should be sorted in ascending order.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int n;
+    vector<int> degreein;
+    vector<vector<int>> rGraph;
+    vector<int> ans;
+
+    void init(vector<vector<int>>& G) {
+
+        n = G.size();
+        degreein = vector<int>(n, 0);
+        rGraph.resize(n, vector<int>(0));
+
+        for (int u = 0; u < n; u++) {
+            for (int v : G[u]) {
+                rGraph[v].push_back(u);
+                degreein[u]++;
+            }
+        }
+    }
+    vector<int> eventualSafeNodes(vector<vector<int>>& graph) {
+
+        init(graph);
+        queue<int> que;
+
+        for (int i = 0; i < n; i++) {
+            
+            if (degreein[i] == 0)
+                que.push(i);
+        }
+        while (que.size()) {
+
+            int u = que.front();
+            que.pop();
+            ans.push_back(u);
+
+            for (int v : rGraph[u]) {
+                degreein[v]--;
+
+                if (degreein[v] == 0)
+                    que.push(v);
+            }
+        }
+        sort(ans.begin(), ans.end());
+
+        return ans;
+      }
+    };
+
+Runtime: 56 ms, beating 26.13% of leetcode users solutions using C++.
+Memory: 66.64 mb, beating 11.93% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, graph, queue, for loops, while loop, if statements, and sorting.
