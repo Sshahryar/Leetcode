@@ -23254,3 +23254,56 @@ Memory: 169.27 mb, beating 65.54% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, sorting, for loops, if statement, and else statement.
+
+### Solution Jan 27, 2025 (C++, leetcode) 1462. Course Schedule IV (Medium)
+In .LeetcodeDailySolution folder as Jan27,2025.cpp
+
+#### Prompt:
+
+There are a total of numCourses courses you have to take, labeled from 0 to numCourses - 1. You are given an array prerequisites where prerequisites[i] = [ai, bi] indicates that you must take course ai first if you want to take course bi.
+
+For example, the pair [0, 1] indicates that you have to take course 0 before you can take course 1.
+Prerequisites can also be indirect. If course a is a prerequisite of course b, and course b is a prerequisite of course c, then course a is a prerequisite of course c.
+
+You are also given an array queries where queries[j] = [uj, vj]. For the jth query, you should answer whether course uj is a prerequisite of course vj or not.
+
+Return a boolean array answer, where answer[j] is the answer to the jth query.
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<bool> checkIfPrerequisite(int numCourses,
+                                     vector<vector<int>>& prerequisites,
+                                     vector<vector<int>>& queries) {
+
+        unordered_map<int, unordered_set<int>> reachable;
+
+        for (auto& prereq : prerequisites) {
+            reachable[prereq[1]].insert(prereq[0]);
+        }
+
+        for (int i = 0; i < numCourses; ++i) {
+            for (int j = 0; j < numCourses; ++j) {
+                if (reachable[j].count(i)) {
+                    reachable[j].insert(reachable[i].begin(),
+                                        reachable[i].end());
+                }
+            }
+        }
+        vector<bool> result;
+
+        for (auto& query : queries) {
+            result.push_back(reachable[query[1]].count(query[0]) > 0);
+        }
+
+        return result;
+      }
+    };
+
+Runtime: 48 ms, beating 62.20% of leetcode users solutions using C++.
+Memory: 71.10 mb, beating 56.03% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, unordered map and set, for loops, and if statement.
