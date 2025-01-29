@@ -23307,3 +23307,64 @@ Memory: 71.10 mb, beating 56.03% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, unordered map and set, for loops, and if statement.
+
+### Solution Jan 28, 2025 (C++, leetcode) 2658. Maximum Number of Fish in a Grid (Medium)
+In .LeetcodeDailySolution folder as Jan28,2025.cpp
+
+#### Prompt:
+
+You are given a 0-indexed 2D matrix grid of size m x n, where (r, c) represents:
+
+A land cell if grid[r][c] = 0, or
+A water cell containing grid[r][c] fish, if grid[r][c] > 0.
+A fisher can start at any water cell (r, c) and can do the following operations any number of times:
+
+Catch all the fish at cell (r, c), or
+Move to any adjacent water cell.
+Return the maximum number of fish the fisher can catch if he chooses his starting cell optimally, or 0 if no water cell exists.
+
+An adjacent cell of the cell (r, c), is one of the cells (r, c + 1), (r, c - 1), (r + 1, c) or (r - 1, c) if it exists.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int m, n, dir[5] = {-1, 0, 1, 0, -1};
+
+    int dfs(vector<vector<int>>& grid, int i, int j) {
+
+        if (i < 0 || i >= m || j < 0 || j >= n || !grid[i][j])
+            return 0;
+
+        int sum = grid[i][j];
+        grid[i][j] = 0;
+
+        for (int k = 0; k < 4; k++)
+            sum += dfs(grid, i + dir[k], j + dir[k + 1]);
+
+        return sum;
+    }
+
+    int findMaxFish(vector<vector<int>>& grid) {
+
+        m = grid.size(), n = grid[0].size();
+        int maxFish = 0;
+
+        for (int i = 0; i < m; i++)
+
+            for (int j = 0; j < n; j++)
+
+                if (grid[i][j])
+
+                    maxFish = max(maxFish, dfs(grid, i, j));
+
+        return maxFish;
+      }
+    };
+
+Runtime: 4 ms, beating 78.58% of leetcode users solutions using C++.
+Memory: 93.99 mb, beating 94.30% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Depth-first search, arrays, if statements, for loops, grid, and max.
