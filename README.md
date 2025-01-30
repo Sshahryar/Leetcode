@@ -23368,3 +23368,67 @@ Memory: 93.99 mb, beating 94.30% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Depth-first search, arrays, if statements, for loops, grid, and max.
+
+### Solution Jan 29, 2025 (C++, leetcode) 684. Redundant Connection (Medium)
+In .LeetcodeDailySolution folder as Jan29,2025.cpp
+
+#### Prompt:
+
+In this problem, a tree is an undirected graph that is connected and has no cycles.
+
+You are given a graph that started as a tree with n nodes labeled from 1 to n, with one additional edge added. The added edge has two different vertices chosen from 1 to n, and was not an edge that already existed. The graph is represented as an array edges of length n where edges[i] = [ai, bi] indicates that there is an edge between nodes ai and bi in the graph.
+
+Return an edge that can be removed so that the resulting graph is a tree of n nodes. If there are multiple answers, return the answer that occurs last in the input.
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<int> findRedundantConnection(vector<vector<int>>& edges) {
+
+        unordered_map<int, vector<int>> graph;
+
+        auto isConnected = [&](int u, int v) {
+
+            unordered_set<int> visited;
+            stack<int> stack;
+            stack.push(u);
+
+            while (!stack.empty()) {
+                int node = stack.top();
+                stack.pop();
+
+                if (visited.count(node)) continue;
+                visited.insert(node);
+
+                if (node == v) return true;
+
+                for (int neighbor : graph[node]) {
+                    stack.push(neighbor);
+                }
+            }
+
+            return false;
+        };
+        for (const auto& edge : edges) {
+
+            int u = edge[0], v = edge[1];
+
+            if (graph.count(u) && graph.count(v) && isConnected(u, v)) {
+                return edge;
+            }
+
+            graph[u].push_back(v);
+            graph[v].push_back(u);
+        }
+
+        return {};
+      }
+    };
+
+Runtime: 7 ms, beating 18.82% of leetcode users solutions using C++.
+Memory: 17.91 mb, beating 9.59% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, unordered maps, graph, stack, while loop, for loops, and if statements.
