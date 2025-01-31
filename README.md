@@ -23432,3 +23432,75 @@ Memory: 17.91 mb, beating 9.59% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, unordered maps, graph, stack, while loop, for loops, and if statements.
+
+### Solution Jan 30, 2025 (C++, leetcode) 2493. Divide Nodes Into the Maximum Number of Groups (Hard)
+In .LeetcodeDailySolution folder as Jan30,2025.cpp
+
+#### Prompt:
+
+You are given a positive integer n representing the number of nodes in an undirected graph. The nodes are labeled from 1 to n.
+
+You are also given a 2D integer array edges, where edges[i] = [ai, bi] indicates that there is a bidirectional edge between nodes ai and bi. Notice that the given graph may be disconnected.
+
+Divide the nodes of the graph into m groups (1-indexed) such that:
+
+Each node in the graph belongs to exactly one group.
+For every pair of nodes in the graph that are connected by an edge [ai, bi], if ai belongs to the group with index x, and bi belongs to the group with index y, then |y - x| = 1.
+Return the maximum number of groups (i.e., maximum m) into which you can divide the nodes. Return -1 if it is impossible to group the nodes with the given conditions.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int magnificentSets(int n, vector<vector<int>>& edges) {
+
+        vector<int> g[n];
+
+        for (auto& e : edges) {
+
+            int a = e[0] - 1, b = e[1] - 1;
+            g[a].push_back(b);
+            g[b].push_back(a);
+        }
+        vector<int> d(n);
+
+        for (int i = 0; i < n; ++i) {
+
+            queue<int> q{{i}};
+            vector<int> dist(n);
+            dist[i] = 1;
+            int mx = 1;
+            int root = i;
+
+            while (q.size()) {
+
+                int a = q.front();
+                q.pop();
+                root = min(root, a);
+
+                for (int b : g[a]) {
+
+                    if (dist[b] == 0) {
+
+                        dist[b] = dist[a] + 1;
+                        mx = max(mx, dist[b]);
+                        q.push(b);
+                    } else if (abs(dist[b] - dist[a]) != 1) {
+
+                        return -1;
+                    }
+                }
+            }
+            d[root] = max(d[root], mx);
+        }
+
+        return accumulate(d.begin(), d.end(), 0);
+      }
+    };
+
+Runtime: 169 ms, beating 38.91% of leetcode users solutions using C++.
+Memory: 58.84 mb, beating 25.11% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+For loops, while loop, arrays, queue, min, max, absolute value, and if statements.
