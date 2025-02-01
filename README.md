@@ -23504,3 +23504,96 @@ Memory: 58.84 mb, beating 25.11% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 For loops, while loop, arrays, queue, min, max, absolute value, and if statements.
+
+### Solution Jan 31, 2025 (C++, leetcode) 827. Making A Large Island (Hard)
+In .LeetcodeDailySolution folder as Jan31,2025.cpp
+
+#### Prompt:
+
+You are given an n x n binary matrix grid. You are allowed to change at most one 0 to be 1.
+
+Return the size of the largest island in grid after applying this operation.
+
+An island is a 4-directionally connected group of 1s.
+
+#### Solution:
+
+    class Solution {
+
+    int d[5] = {1, 0, -1, 0, 1};
+    int n;
+
+    int dfs(int row, int col, int id, vector<vector<int>>& grid) {
+
+        grid[row][col] = id;
+        int cnt = 1;
+
+        for (int i = 0; i < 4; i++) {
+
+            int nr = row + d[i];
+            int nc = col + d[i + 1];
+
+            if (nr >= 0 && nc >= 0 && nr < n && nc < n && grid[nr][nc] == 1)
+                cnt += dfs(nr, nc, id, grid);
+        }
+
+        return cnt;
+    }
+
+    public:
+    int largestIsland(vector<vector<int>>& grid) {
+
+        n = grid.size();
+        vector<int> key;
+        int id = 2;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == 1)
+                    key.push_back(dfs(i, j, id++, grid));
+            }
+        }
+
+        if (key.empty())
+            return 1;
+
+        int ans = 1;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == 0) {
+                    int cnt = 1;
+
+                    for (int k = 0; k < 4; k++) {
+                        int nr = i + d[k];
+                        int nc = j + d[k + 1];
+
+                        if (nr >= 0 && nc >= 0 && nr < n && nc < n &&
+                            grid[nr][nc] != 0 && key[grid[nr][nc] - 2] > 0)
+                            cnt += key[grid[nr][nc] - 2],
+                                key[grid[nr][nc] - 2] *= -1;
+                    }
+                    for (int k = 0; k < 4; k++) {
+                        int nr = i + d[k];
+                        int nc = j + d[k + 1];
+
+                        if (nr >= 0 && nc >= 0 && nr < n && nc < n &&
+                            grid[nr][nc] != 0 && key[grid[nr][nc] - 2] < 0)
+                            key[grid[nr][nc] - 2] *= -1;
+                    }
+
+                    ans = max(ans, cnt);
+                }
+            }
+        }
+
+        return ans == 1 ? n * n : ans;
+      }
+    };
+
+Runtime: 29 ms, beating 99.77% of leetcode users solutions using C++.
+Memory: 57.33 mb, beating 99.66% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Depth-first search, grid, arrays, for loops, if statements, and max.
