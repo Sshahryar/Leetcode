@@ -23597,3 +23597,36 @@ Memory: 57.33 mb, beating 99.66% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Depth-first search, grid, arrays, for loops, if statements, and max.
+
+### Solution Feb 1, 2025 (C++, leetcode) 3151. Special Array I (Easy)
+In .LeetcodeDailySolution folder as Feb1,2025.cpp
+
+#### Prompt:
+
+An array is considered special if every pair of its adjacent elements contains two numbers with different parity.
+
+You are given an array of integers nums. Return true if nums is a special array, otherwise, return false.
+
+#### Solution:
+
+    class Solution {
+    public:
+    bool isArraySpecial(vector<int>& nums) {
+
+        for (int i = 0; i < nums.size() - 1; i++) {
+            
+            if (nums[i] % 2 == nums[i + 1] % 2) {
+                return false;
+            }
+        }
+
+        return true;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 27.62 mb, beating 61.84% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+For loop, array, and if statement.
