@@ -23630,3 +23630,38 @@ Memory: 27.62 mb, beating 61.84% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 For loop, array, and if statement.
+
+### Solution Feb 2, 2025 (C++, leetcode) 1752. Check if Array Is Sorted and Rotated (Easy)
+In .LeetcodeDailySolution folder as Feb2,2025.cpp
+
+#### Prompt:
+
+Given an array nums, return true if the array was originally sorted in non-decreasing order, then rotated some number of positions (including zero). Otherwise, return false.
+
+There may be duplicates in the original array.
+
+Note: An array A rotated by x positions results in an array B of the same length such that A[i] == B[(i+x) % A.length], where % is the modulo operation.
+
+#### Solution:
+
+    class Solution {
+    public:
+    bool check(vector<int>& nums) {
+
+        int count = 0, n = nums.size();
+
+        for (int i = 0; i < n; i++)
+
+            if (nums[i] > nums[(i + 1) % n] && ++count > 1)
+                return false;
+
+        return true;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 11.26 mb, beating 23% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Boolean, array, for loop, and if statement.
