@@ -23665,3 +23665,47 @@ Memory: 11.26 mb, beating 23% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Boolean, array, for loop, and if statement.
+
+### Solution Feb 3, 2025 (C++, leetcode) 3105. Longest Strictly Increasing or Strictly Decreasing Subarray (Easy)
+In .LeetcodeDailySolution folder as Feb3,2025.cpp
+
+#### Prompt:
+
+You are given an array of integers nums. Return the length of the longest subarray of nums which is either strictly increasing or strictly decreasing.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int longestMonotonicSubarray(vector<int>& nums) {
+
+        int n = nums.size(), i = 0, ans = 0;
+        int inc = 1, dec = 1;
+
+        if (n == 1)
+            return 1;
+
+        for (i = 1; i < n; i++) {
+
+            if (nums[i] > nums[i - 1])
+                inc++, dec = 1;
+
+            else if (nums[i] < nums[i - 1])
+                inc = 1, dec++;
+
+            else
+                inc = dec = 1;
+
+            ans = max({ans, dec, inc});
+        }
+
+        return ans;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 27.91 mb, beating 27.25% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, if statements, for loop, else statements, else-if statement, and max.
