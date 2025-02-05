@@ -23709,3 +23709,38 @@ Memory: 27.91 mb, beating 27.25% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, if statements, for loop, else statements, else-if statement, and max.
+
+### Solution Feb 4, 2025 (C++, leetcode) 1800. Maximum Ascending Subarray Sum (Easy)
+In .LeetcodeDailySolution folder as Feb4,2025.cpp
+
+#### Prompt:
+
+Given an array of positive integers nums, return the maximum possible sum of an ascending subarray in nums.
+
+A subarray is defined as a contiguous sequence of numbers in an array.
+
+A subarray [numsl, numsl+1, ..., numsr-1, numsr] is ascending if for all i where l <= i < r, numsi  < numsi+1. Note that a subarray of size 1 is ascending.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int maxAscendingSum(vector<int>& nums) {
+
+        int curr = nums[0], ans = nums[0];
+
+        for (int i = 1; i < nums.size(); ++i) {
+            curr = nums[i] > nums[i - 1] ? curr + nums[i] : nums[i];
+            ans = max(ans, curr);
+        }
+        
+        return ans;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 11.07 mb, beating 77.91% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Array, for loop, and max.
