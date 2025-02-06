@@ -23744,3 +23744,48 @@ Memory: 11.07 mb, beating 77.91% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Array, for loop, and max.
+
+### Solution Feb 5, 2025 (C++, leetcode) 1790. Check if One String Swap Can Make Strings Equal (Easy)
+In .LeetcodeDailySolution folder as Feb5,2025.cpp
+
+#### Prompt:
+
+You are given two strings s1 and s2 of equal length. A string swap is an operation where you choose two indices in a string (not necessarily different) and swap the characters at these indices.
+
+Return true if it is possible to make both strings equal by performing at most one string swap on exactly one of the strings. Otherwise, return false.
+
+#### Solution:
+
+    class Solution {
+    public:
+    bool areAlmostEqual(string s1, string s2) {
+        int i = -1, j = -1;
+        int cnt = 0;
+
+        for (int k = 0; k < s1.length(); k++) {
+            if (s1[k] != s2[k]) {
+                cnt++;
+                if (i == -1) {
+                    i = k;
+                } else if (j == -1) {
+                    j = k;
+                }
+            }
+        }
+
+        if (cnt == 0) {
+            return true;
+        } else if (cnt == 2 && s1[i] == s2[j] && s1[j] == s2[i]) {
+            return true;
+        }
+
+        return false;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 8.46 mb, beating 36.36% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Strings, for loop, if statements, and else-if statements.
