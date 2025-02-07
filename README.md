@@ -23789,3 +23789,38 @@ Memory: 8.46 mb, beating 36.36% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Strings, for loop, if statements, and else-if statements.
+
+### Solution Feb 7, 2025 (C++, leetcode) 1726. Tuple with Same Product (Medium)
+In .LeetcodeDailySolution folder as Feb7,2025.cpp
+
+#### Prompt:
+
+Given an array nums of distinct positive integers, return the number of tuples (a, b, c, d) such that a * b = c * d where a, b, c, and d are elements of nums, and a != b != c != d.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int tupleSameProduct(vector<int>& nums) {
+
+        unordered_map<int, int> mp;
+        int ans = 0, n = nums.size();
+
+        for (int i = 0; i < n; i++)
+
+            for (int j = i + 1; j < n; j++) {
+                int product = nums[i] * nums[j];
+                ans += 8 * mp[product];
+                mp[product]++;
+            }
+
+        return ans;
+      }
+    };
+
+Runtime: 315 ms, beating 60.99% of leetcode users solutions using C++.
+Memory: 85 mb, beating 45.82% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, unorderd map, and for loops.
