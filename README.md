@@ -23876,3 +23876,56 @@ Memory: 155.82 mb, beating 60.81% of leetcode user solutions using C++.
 #### Concepts Applied:
 
 Arrays, unordered map, for loop, and if statements.
+
+### Solution Feb 8, 2025 (C++, leetcode) 2349. Design a Number Container System (Medium)
+In .LeetcodeDailySolution folder as Feb8,2025.cpp
+
+#### Prompt:
+
+Design a number container system that can do the following:
+
+Insert or Replace a number at the given index in the system.
+Return the smallest index for the given number in the system.
+Implement the NumberContainers class:
+
+NumberContainers() Initializes the number container system.
+void change(int index, int number) Fills the container at index with the number. If there is already a number at that index, replace it.
+int find(int number) Returns the smallest index for the given number, or -1 if there is no index that is filled by number in the system.
+
+#### Solution:
+
+    class NumberContainers {
+    public:
+
+    unordered_map<int, priority_queue<int, vector<int>, greater<int>>> res;
+    unordered_map<int, int> index_val;
+
+    void change(int index, int number) {
+
+        if (index_val.count(index)) {
+            int prevNum = index_val[index];
+
+            if (prevNum == number)
+                return;
+
+            res[prevNum].push(INT_MAX);
+        }
+        res[number].push(index);
+        index_val[index] = number;
+    }
+    int find(int number) {
+
+        while (!res[number].empty() && index_val[res[number].top()] != number) {
+            res[number].pop();
+        }
+
+        return res[number].empty() ? -1 : res[number].top();
+      }
+    };
+
+Runtime: 109 ms, beating 69.55% of leetcode users solutions using C++.
+Memory: 185.75 mb, beating 89.85% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Unordered map, priority queue, if statements, and while loop.
