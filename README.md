@@ -23929,3 +23929,41 @@ Memory: 185.75 mb, beating 89.85% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Unordered map, priority queue, if statements, and while loop.
+
+### Solution Feb 9, 2025 (C++, leetcode) 2364. Count Number of Bad Pairs (Medium)
+In .LeetcodeDailySolution folder as Feb9,2025.cpp
+
+#### Prompt:
+
+You are given a 0-indexed integer array nums. A pair of indices (i, j) is a bad pair if i < j and j - i != nums[j] - nums[i].
+
+Return the total number of bad pairs in nums.
+
+#### Solution:
+
+    class Solution {
+    public:
+    long long countBadPairs(vector<int>& nums) {
+
+        int n = nums.size();
+        long long totalPairs = (long long)n * (n - 1) / 2;
+
+        unordered_map<int, long long> diffCount;
+
+        for (int i = 0; i < n; i++) {
+
+            int diff = nums[i] - i;
+            totalPairs -= diffCount[diff];
+            diffCount[diff]++;
+        }
+
+        return totalPairs;
+      }
+    };
+
+Runtime: 69 ms, beating 56.15% of leetcode users solutions using C++.
+Memory: 92.60 mb, beating 19.82% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Array, unordered map, and for loop.
