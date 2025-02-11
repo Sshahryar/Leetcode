@@ -23967,3 +23967,46 @@ Memory: 92.60 mb, beating 19.82% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Array, unordered map, and for loop.
+
+### Solution Feb 10, 2025 (C++, leetcode) 3174. Clear Digits (Easy)
+In .LeetcodeDailySolution folder as Feb10,2025.cpp
+
+#### Prompt:
+
+You are given a string s.
+
+Your task is to remove all digits by doing this operation repeatedly:
+
+Delete the first digit and the closest non-digit character to its left.
+Return the resulting string after removing all digits.
+
+#### Solution:
+
+    class Solution {
+    public:
+    string clearDigits(string s) {
+
+        string stack;
+
+        for (char c : s) {
+
+            if (isdigit(c)) {
+
+                if (!stack.empty())
+                    stack.pop_back();
+                    
+            } else {
+                stack.push_back(c);
+            }
+        }
+
+        return stack;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 8.39 mb, beating 87.07% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Stack, strings, for loop, and if statements.
