@@ -24010,3 +24010,51 @@ Memory: 8.39 mb, beating 87.07% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Stack, strings, for loop, and if statements.
+
+### Solution Feb 11, 2025 (C++, leetcode) 1910. Remove All Occurrences of a Substring (Medium)
+In .LeetcodeDailySolution folder as Feb11,2025.cpp
+
+#### Prompt:
+
+Given two strings s and part, perform the following operation on s until all occurrences of the substring part are removed:
+
+Find the leftmost occurrence of the substring part and remove it from s.
+Return s after removing all occurrences of part.
+
+A substring is a contiguous sequence of characters in a string.
+
+#### Solution:
+
+    class Solution {
+    public:
+    string removeOccurrences(string s, string part) {
+
+        string resultStack;
+        int targetLength = part.size();
+        char targetEndChar = part.back();
+
+        for (char currentChar : s) {
+
+            resultStack.push_back(currentChar);
+
+            if (currentChar == targetEndChar &&
+
+                resultStack.size() >= targetLength) {
+
+                if (resultStack.substr(resultStack.size() - targetLength) ==
+                    part) {
+                    resultStack.erase(resultStack.size() - targetLength);
+                }
+            }
+        }
+
+        return resultStack;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 9.80 mb, beating 12.46% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Strings, for loop, and if statements.
