@@ -24058,3 +24058,56 @@ Memory: 9.80 mb, beating 12.46% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Strings, for loop, and if statements.
+
+### Solution Feb 12, 2025 (C++, leetcode) 2342. Max Sum of a Pair With Equal Sum of Digits (Medium)
+In .LeetcodeDailySolution folder as Feb12,2025.cpp
+
+#### Prompt:
+
+You are given a 0-indexed array nums consisting of positive integers. You can choose two indices i and j, such that i != j, and the sum of digits of the number nums[i] is equal to that of nums[j].
+
+Return the maximum value of nums[i] + nums[j] that you can obtain over all possible indices i and j that satisfy the conditions.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int maximumSum(vector<int>& nums) {
+
+        unordered_map<int, priority_queue<int>> mp;
+
+        for (int i : nums) {
+
+            int sum = 0, n = i;
+
+            while (n) {
+
+                sum += n % 10;
+                n /= 10;
+            }
+
+            mp[sum].push(i);
+        }
+        int ans = -1;
+
+        for (auto& i : mp) {
+
+            if (i.second.size() > 1) {
+
+                int sum = i.second.top();
+                i.second.pop();
+                sum += i.second.top();
+                ans = max(ans, sum);
+            }
+        }
+
+        return ans;
+      }
+    };
+
+Runtime: 23 ms, beating 66.41% of leetcode users solutions using C++.
+Memory: 71.62 mb, beating 36.47% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Unordered map, priority queue, array, for loops, while loop, if statement, and max.
