@@ -24111,3 +24111,60 @@ Memory: 71.62 mb, beating 36.47% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Unordered map, priority queue, array, for loops, while loop, if statement, and max.
+
+### Solution Feb 13, 2025 (C++, leetcode) 3066. Minimum Operations to Exceed Threshold Value II (Medium)
+In .LeetcodeDailySolution folder as Feb13,2025.cpp
+
+#### Prompt:
+
+You are given a 0-indexed integer array nums, and an integer k.
+
+You are allowed to perform some operations on nums, where in a single operation, you can:
+
+Select the two smallest integers x and y from nums.
+Remove x and y from nums.
+Insert (min(x, y) * 2 + max(x, y)) at any position in the array.
+Note that you can only apply the described operation if nums contains at least two elements.
+
+Return the minimum number of operations needed so that all elements of the array are greater than or equal to k.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int minOperations(vector<int>& a, int k) {
+
+        sort(a.begin(), a.end());
+        vector<int> b;
+
+        for (int i = 0, j = 0, count = 0, x, y;; ++count) {
+
+            if (i < a.size() && (j >= b.size() || a[i] <= b[j]))
+                x = a[i++];
+
+            else
+                x = b[j++];
+
+            if (x >= k)
+                return count;
+
+            if (i < a.size() && (j >= b.size() || a[i] <= b[j]))
+                y = a[i++];
+
+            else
+                y = b[j++];
+
+            long t = 2L * x + y;
+            b.push_back(t < k ? (int)t : k);
+        }
+
+        return -1;
+      }
+    };
+
+Runtime: 31 ms, beating 100% of leetcode users solutions using C++.
+Memory: 89.37 mb, beating 96.28% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Sorting, arrays, for loop, if statements, and else statement.
