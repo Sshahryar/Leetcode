@@ -24168,3 +24168,53 @@ Memory: 89.37 mb, beating 96.28% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Sorting, arrays, for loop, if statements, and else statement.
+
+### Solution Feb 14, 2025 (C++, leetcode) 1352. Product of the Last K Numbers (Medium)
+In .LeetcodeDailySolution folder as Feb14,2025.cpp
+
+#### Prompt:
+
+Design an algorithm that accepts a stream of integers and retrieves the product of the last k integers of the stream.
+
+Implement the ProductOfNumbers class:
+
+ProductOfNumbers() Initializes the object with an empty stream.
+void add(int num) Appends the integer num to the stream.
+int getProduct(int k) Returns the product of the last k numbers in the current list. You can assume that always the current list has at least k numbers.
+The test cases are generated so that, at any time, the product of any contiguous sequence of numbers will fit into a single 32-bit integer without overflowing.
+
+#### Solution:
+
+    class ProductOfNumbers {
+    public:
+
+    int product[40000];
+    int n = 1;
+
+    ProductOfNumbers() { product[0] = 1; }
+
+    void add(int num) {
+
+        if (num == 0) {
+            n = 1;
+
+        } else {
+            product[n] = product[n - 1] * num;
+            n++;
+        }
+    }
+    int getProduct(int k) {
+
+        if (n <= k)
+            return 0;
+
+        return product[n - 1] / product[n - k - 1];
+      }
+    };
+
+Runtime: 8 ms, beating 97.88% of leetcode users solutions using C++.
+Memory: 78.61 mb, beating 11.51% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Product, if statements, and else statement.
