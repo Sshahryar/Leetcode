@@ -24261,3 +24261,74 @@ Memory: 8.17 mb, beating 67.92% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Array, for loop, and if statement.
+
+### Solution Feb 16, 2025 (C++, leetcode) 1718. Construct the Lexicographically Largest Valid Sequence (Medium)
+In .LeetcodeDailySolution folder as Feb16,2025.cpp
+
+#### Prompt:
+
+Given an integer n, find a sequence with elements in the range [1, n] that satisfies all of the following:
+
+The integer 1 occurs once in the sequence.
+Each integer between 2 and n occurs twice in the sequence.
+For every integer i between 2 and n, the distance between the two occurrences of i is exactly i.
+The distance between two numbers on the sequence, a[i] and a[j], is the absolute difference of their indices, |j - i|.
+
+Return the lexicographically largest sequence. It is guaranteed that under the given constraints, there is always a solution.
+
+A sequence a is lexicographically larger than a sequence b (of the same length) if in the first position where a and b differ, sequence a has a number greater than the corresponding number in b. For example, [0,1,9,0] is lexicographically larger than [0,1,5,6] because the first position they differ is at the third number, and 9 is greater than 5.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int n, az;
+    bitset<21> viz = 0;
+    vector<int> ans;
+
+    bool dfs(int pos) {
+
+        if (pos == az)
+            return viz.count() == n;
+
+        if (ans[pos] != 0)
+            return dfs(pos + 1);
+
+        for (int j = n; j >= 1; j--) {
+
+            if (viz[j])
+                continue;
+                
+            int next_pos = (j > 1) ? pos + j : pos;
+
+            if (next_pos >= az || ans[next_pos] != 0)
+                continue;
+
+            ans[pos] = ans[next_pos] = j;
+            viz[j] = 1;
+
+            if (dfs(pos + 1))
+                return 1;
+
+            ans[pos] = ans[next_pos] = viz[j] = 0;
+        }
+
+        return 0;
+    }
+    vector<int> constructDistancedSequence(int n) {
+
+        this->n = n;
+        az = 2 * n - 1;
+        ans.assign(az, 0);
+        dfs(0);
+
+        return ans;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 8.64 mb, beating 26% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Bitset, arrays, if statements, for loop, and depth-first search.
