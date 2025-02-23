@@ -24332,3 +24332,62 @@ Memory: 8.64 mb, beating 26% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Bitset, arrays, if statements, for loop, and depth-first search.
+
+### Solution Feb 17, 2025 (C++, leetcode) 1079. Letter Tile Possibilities (Medium)
+In .LeetcodeDailySolution folder as Feb17,2025.cpp
+
+#### Prompt:
+
+You have n  tiles, where each tile has one letter tiles[i] printed on it.
+
+Return the number of possible non-empty sequences of letters you can make using the letters printed on those tiles.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int Perm(int n, vector<int>& freq, int fz) {
+
+        if (n == 1)
+            return fz - count(freq.begin(), freq.end(), 0);
+
+        int ans = 0;
+
+        for (int i = 0; i < fz; i++) {
+
+            if (freq[i] > 0) {
+                freq[i]--;
+                ans += Perm(n - 1, freq, fz);
+                freq[i]++;
+            }
+        }
+
+        return ans;
+    }
+    int numTilePossibilities(string& tiles) {
+        int sz = 0, tz = tiles.size();
+        vector<int> freq(26, 0);
+
+        for (char c : tiles)
+
+            if (++freq[c - 'A'] == 1)
+                sz++;
+
+        sort(freq.begin(), freq.end(), greater<int>());
+        freq.resize(sz);
+
+        int cnt = 0;
+
+        for (int len = 1; len <= tz; len++)
+            cnt += Perm(len, freq, sz);
+
+        return cnt;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 7.88 mb, beating 87.48% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+If statements, counting, for loops, sorting, and arrays.
