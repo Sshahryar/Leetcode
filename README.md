@@ -24498,3 +24498,33 @@ Memory: 8.30 mb, beating 69.41% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Strings, if statements, for loop, and depth-first search.
+
+### Solution Feb 20, 2025 (C++, leetcode) 1980. Find Unique Binary String (Medium)
+In .LeetcodeDailySolution folder as Feb20,2025.cpp
+
+#### Prompt:
+
+Given an array of strings nums containing n unique binary strings each of length n, return a binary string of length n that does not appear in nums. If there are multiple answers, you may return any of them.
+
+#### Solution:
+
+    class Solution {
+    public:
+    string findDifferentBinaryString(vector<string>& nums) {
+        
+        string result;
+
+        for (int i = 0; i < nums.size(); ++i) {
+            result += (nums[i][i] == '0' ? '1' : '0');
+        }
+
+        return result;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 12.68 mb, beating 66.89% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Strings, and for loop. 
