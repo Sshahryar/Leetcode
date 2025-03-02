@@ -24586,3 +24586,59 @@ Memory: 27.36 mb, beating 77.76% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Unordered map, if statements, and binary tree.
+
+### Solution Feb 22, 2025 (C++, leetcode) 1028. Recover a Tree From Preorder Traversal (Hard)
+In .LeetcodeDailySolution folder as Feb22,2025.cpp
+
+#### Prompt:
+
+We run a preorder depth-first search (DFS) on the root of a binary tree.
+
+At each node in this traversal, we output D dashes (where D is the depth of this node), then we output the value of this node.  If the depth of a node is D, the depth of its immediate child is D + 1.  The depth of the root node is 0.
+
+If a node has only one child, that child is guaranteed to be the left child.
+
+Given the output traversal of this traversal, recover the tree and return its root.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int i = 0;
+
+    TreeNode* recoverFromPreorder(string& T, int depth = 0) {
+
+        if (i >= T.size())
+            return NULL;
+
+        int D = 0;
+
+        while (T[i] == '-')
+            D++, i++;
+
+        if (D < depth) {
+            i -= D;
+
+            return NULL;
+        }
+        int x = 0;
+
+        while (isdigit(T[i])) {
+            x = x * 10 + T[i] - '0';
+            i++;
+        }
+        TreeNode* node = new TreeNode(x);
+
+        node->left = recoverFromPreorder(T, depth + 1);
+        node->right = recoverFromPreorder(T, depth + 1);
+
+        return node;
+      }
+    };
+
+Runtime: 3 ms, beating 57.11% of leetcode users solutions using C++.
+Memory: 21.44 mb, beating 49.60% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Strings, tree, if statements, while loops, and depth-first search.
