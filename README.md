@@ -24642,3 +24642,56 @@ Memory: 21.44 mb, beating 49.60% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Strings, tree, if statements, while loops, and depth-first search.
+
+### Solution Feb 23, 2025 (C++, leetcode) 889. Construct Binary Tree from Preorder and Postorder Traversal (Medium)
+In .LeetcodeDailySolution folder as Feb23,2025.cpp
+
+#### Prompt:
+
+Given two integer arrays, preorder and postorder where preorder is the preorder traversal of a binary tree of distinct values and postorder is the postorder traversal of the same tree, reconstruct and return the binary tree.
+
+If there exist multiple answers, you can return any of them.
+
+#### Solution:
+
+    class Solution {
+    public:
+    TreeNode* constructFromPrePost(vector<int>& pre, vector<int>& post) {
+
+        int index = 0;
+
+        return construct(pre, post, index, 0, pre.size() - 1);
+    }
+
+    private:
+    TreeNode* construct(vector<int>& pre, vector<int>& post, int& index, int l,
+                        int h) {
+
+        if (index >= pre.size() || l > h)
+            return nullptr;
+
+        TreeNode* root = new TreeNode(pre[index++]);
+
+        if (l == h)
+            return root;
+
+        int i = l;
+
+        while (i <= h && post[i] != pre[index])
+            i++;
+
+        if (i <= h) {
+            root->left = construct(pre, post, index, l, i);
+            root->right = construct(pre, post, index, i + 1, h - 1);
+        }
+
+        return root;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 28.15 mb, beating 68.76% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Tree, arrays, if statements, and while loop.
