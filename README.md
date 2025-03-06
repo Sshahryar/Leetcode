@@ -24798,3 +24798,37 @@ Memory: 160.05 mb, beating 54.03% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, tree, max, for loops, if statements, and else-if statement.
+
+### Solution Feb 25, 2025 (C++, leetcode) 1524. Number of Sub-arrays With Odd Sum (Medium)
+In .LeetcodeDailySolution folder as Feb25,2025.cpp
+
+#### Prompt:
+
+Given an array of integers arr, return the number of subarrays with an odd sum.
+
+Since the answer can be very large, return it modulo 109 + 7.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int numOfSubarrays(vector<int>& arr) {
+
+        long long oddCount = 0, prefixSum = 0;
+
+        for (int a : arr) {
+            prefixSum += a;
+            oddCount += prefixSum % 2;
+        }
+        oddCount += (arr.size() - oddCount) * oddCount;
+
+        return oddCount % 1'000'000'007;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 112.02 mb, beating 51.51% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Array, for loop, and prefix sum.
