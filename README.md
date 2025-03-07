@@ -24832,3 +24832,46 @@ Memory: 112.02 mb, beating 51.51% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Array, for loop, and prefix sum.
+
+### Solution Feb 26, 2025 (C++, leetcode) 1749. Maximum Absolute Sum of Any Subarray (Medium)
+In .LeetcodeDailySolution folder as Feb26,2025.cpp
+
+#### Prompt:
+
+You are given an integer array nums. The absolute sum of a subarray [numsl, numsl+1, ..., numsr-1, numsr] is abs(numsl + numsl+1 + ... + numsr-1 + numsr).
+
+Return the maximum absolute sum of any (possibly empty) subarray of nums.
+
+Note that abs(x) is defined as follows:
+
+If x is a negative integer, then abs(x) = -x.
+If x is a non-negative integer, then abs(x) = x.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int maxAbsoluteSum(vector<int>& nums) {
+
+        int sum = 0, minSum = 0, maxSum = 0;
+
+        for (int num : nums) {
+            sum += num;
+
+            if (sum > maxSum)
+                maxSum = sum;
+                
+            if (sum < minSum)
+                minSum = sum;
+        }
+
+        return abs(maxSum - minSum);
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 45.16 mb, beating 50.37% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Array, for loop, if statements, min, max, and absolute value.
