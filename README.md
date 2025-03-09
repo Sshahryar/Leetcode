@@ -24875,3 +24875,61 @@ Memory: 45.16 mb, beating 50.37% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Array, for loop, if statements, min, max, and absolute value.
+
+### Solution Feb 27, 2025 (C++, leetcode) 873. Length of Longest Fibonacci Subsequence (Medium)
+In .LeetcodeDailySolution folder as Feb27,2025.cpp
+
+#### Prompt:
+
+A sequence x1, x2, ..., xn is Fibonacci-like if:
+
+n >= 3
+xi + xi+1 == xi+2 for all i + 2 <= n
+Given a strictly increasing array arr of positive integers forming a sequence, return the length of the longest Fibonacci-like subsequence of arr. If one does not exist, return 0.
+
+A subsequence is derived from another sequence arr by deleting any number of elements (including none) from arr, without changing the order of the remaining elements. For example, [3, 5, 8] is a subsequence of [3, 4, 5, 6, 7, 8].
+
+#### Solution:
+
+    class Solution {
+    public:
+    int lenLongestFibSubseq(vector<int>& arr) {
+
+        int n = arr.size();
+        vector<vector<int>> dp(n, vector<int>(n, 0));
+        int maxLen = 0;
+
+        for (int curr = 2; curr < n; curr++) {
+
+            int start = 0, end = curr - 1;
+
+            while (start < end) {
+
+                int pairSum = arr[start] + arr[end];
+
+                if (pairSum > arr[curr]) {
+                    end--;
+
+                } else if (pairSum < arr[curr]) {
+                    start++;
+
+                } else {
+
+                    dp[end][curr] = dp[start][end] + 1;
+                    maxLen = max(dp[end][curr], maxLen);
+                    end--;
+                    start++;
+                }
+            }
+        }
+
+        return maxLen == 0 ? 0 : maxLen + 2;
+      }
+    };
+
+Runtime: 109 ms, beating 88.83% of leetcode users solutions using C++.
+Memory: 147.78 mb, beating 39.03% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Sequence, arrays, dynamic programming, for loop, while loop, if statement, else-if statement, else statement, and max.
