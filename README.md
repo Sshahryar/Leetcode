@@ -25056,3 +25056,66 @@ Memory: 13.19 mb, beating 61.13% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Array, for loops, if statements, and while loop.
+
+### Solution Mar 2, 2025 (C++, leetcode) 2570. Merge Two 2D Arrays by Summing Values (Easy)
+In .LeetcodeDailySolution folder as Mar2,2025.cpp
+
+#### Prompt:
+
+You are given two 2D integer arrays nums1 and nums2.
+
+nums1[i] = [idi, vali] indicate that the number with the id idi has a value equal to vali.
+nums2[i] = [idi, vali] indicate that the number with the id idi has a value equal to vali.
+Each array contains unique ids and is sorted in ascending order by id.
+
+Merge the two arrays into one array that is sorted in ascending order by id, respecting the following conditions:
+
+Only ids that appear in at least one of the two arrays should be included in the resulting array.
+Each id should be included only once and its value should be the sum of the values of this id in the two arrays. If the id does not exist in one of the two arrays, then assume its value in that array to be 0.
+Return the resulting array. The returned array must be sorted in ascending order by id.
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<vector<int>> mergeArrays(vector<vector<int>>& nums1, vector<vector<int>>& nums2) {
+
+        int i = 0, j = 0;
+        vector<vector<int>> result;
+        
+        while (i < nums1.size() && j < nums2.size()) {
+
+            int id1 = nums1[i][0], val1 = nums1[i][1];
+            int id2 = nums2[j][0], val2 = nums2[j][1];
+            
+            if (id1 < id2) {
+                result.push_back({id1, val1});
+                i++;
+            } else if (id2 < id1) {
+                result.push_back({id2, val2});
+                j++;
+            } else {
+                result.push_back({id1, val1 + val2});
+                i++;
+                j++;
+            }
+        }
+        while (i < nums1.size()) {
+            result.push_back(nums1[i]);
+            i++;
+        }        
+        while (j < nums2.size()) {
+            result.push_back(nums2[j]);
+            j++;
+        }
+        
+        return result;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 14.86 mb, beating 42.90% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, while loops, if statement, else-if statement, and else statement.
