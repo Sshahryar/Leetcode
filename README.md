@@ -25170,3 +25170,37 @@ Memory: 127.61 mb, beating 83.06% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, for loop, if statements, and while loop.
+
+### Solution Mar 4, 2025 (C++, leetcode) 1780. Check if Number is a Sum of Powers of Three (Medium)
+In .LeetcodeDailySolution folder as Mar4,2025.cpp
+
+#### Prompt:
+
+Given an integer n, return true if it is possible to represent n as the sum of distinct powers of three. Otherwise, return false.
+
+An integer y is a power of three if there exists an integer x such that y == 3x.
+
+#### Solution:
+
+    class Solution {
+    public:
+    bool checkPowersOfThree(int n) {
+
+        while (n > 0) {
+
+            if (n % 3 == 2) {
+                return false;
+            }
+            n /= 3;
+        }
+
+        return true;
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 7.88 mb, beating 44.69% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+While loop, if statement, and math.
