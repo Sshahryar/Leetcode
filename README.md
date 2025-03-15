@@ -25233,3 +25233,52 @@ Memory: 7.88 mb, beating 63.52% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Math.
+
+### Solution Mar 6, 2025 (C++, leetcode) 2965. Find Missing and Repeated Values (Easy)
+In .LeetcodeDailySolution folder as Mar6,2025.cpp
+
+#### Prompt:
+
+You are given a 0-indexed 2D integer matrix grid of size n * n with values in the range [1, n2]. Each integer appears exactly once except a which appears twice and b which is missing. The task is to find the repeating and missing numbers a and b.
+
+Return a 0-indexed integer array ans of size 2 where ans[0] equals to a and ans[1] equals to b.
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<int> findMissingAndRepeatedValues(vector<vector<int>>& grid) {
+
+        int n = grid.size();
+        int size = n * n;
+        vector<int> count(size + 1, 0);
+
+        for (int i = 0; i < n; i++) {
+
+            for (int j = 0; j < n; j++) {
+                count[grid[i][j]]++;
+            }
+        }
+
+        int a = -1, b = -1;
+
+        for (int num = 1; num <= size; num++) {
+
+            if (count[num] == 2) {
+                a = num;
+
+            } else if (count[num] == 0) {
+                b = num;
+            }
+        }
+
+        return {a, b};
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 26.90 mb, beating 48.81% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, for loops, if statement, and else-if statement.
