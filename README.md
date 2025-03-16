@@ -25282,3 +25282,67 @@ Memory: 26.90 mb, beating 48.81% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, for loops, if statement, and else-if statement.
+
+### Solution Mar 7, 2025 (C++, leetcode) 2523. Closest Prime Numbers in Range (Medium)
+In .LeetcodeDailySolution folder as Mar7,2025.cpp
+
+#### Prompt:
+
+Given two positive integers left and right, find the two integers num1 and num2 such that:
+
+left <= num1 < num2 <= right .
+Both num1 and num2 are prime numbers.
+num2 - num1 is the minimum amongst all other pairs satisfying the above conditions.
+Return the positive integer array ans = [num1, num2]. If there are multiple pairs satisfying these conditions, return the one with the smallest num1 value. If no such numbers exist, return [-1, -1].
+
+#### Solution:
+
+    class Solution {
+    public:
+    vector<int> closestPrimes(int left, int right) {
+
+        if (left > right)
+            return {-1, -1};
+
+        vector<bool> isPrime(right + 1, true);
+        isPrime[0] = isPrime[1] = false;
+
+        for (int i = 2; i * i <= right; i++) {
+            if (isPrime[i]) {
+                for (int j = i * i; j <= right; j += i) {
+                    isPrime[j] = false;
+                }
+            }
+        }
+        vector<int> primes;
+
+        for (int i = left; i <= right; i++) {
+            if (isPrime[i])
+                primes.push_back(i);
+        }
+        if (primes.size() < 2)
+            return {-1, -1};
+
+        int minDiff = INT_MAX, num1 = -1, num2 = -1;
+
+        for (size_t i = 1; i < primes.size(); i++) {
+
+            int diff = primes[i] - primes[i - 1];
+
+            if (diff < minDiff) {
+                minDiff = diff;
+                num1 = primes[i - 1];
+                num2 = primes[i];
+            }
+        }
+
+        return {num1, num2};
+      }
+    };
+
+Runtime: 183 ms, beating 68.84% of leetcode users solutions using C++.
+Memory: 23.48 mb, beating 24.15% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, primes, if statements, and for loops.
