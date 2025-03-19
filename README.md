@@ -25444,3 +25444,69 @@ Memory: 102.83 mb, beating 47.10% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, for loop, if statements, and else statement.
+
+### Solution Mar 10, 2025 (C++, leetcode) 3306. Count of Substrings Containing Every Vowel and K Consonants II (Medium)
+In .LeetcodeDailySolution folder as Mar10,2025.cpp
+
+#### Prompt:
+
+You are given a string word and a non-negative integer k.
+
+Return the total number of substrings of word that contain every vowel ('a', 'e', 'i', 'o', and 'u') at least once and exactly k consonants.
+
+#### Solution:
+
+    class Solution {
+    public:
+    long long countOfSubstrings(string word, int k) {
+
+        vector<int> isVowel(128, 0), freq(128, 0);
+        string vowels = "aeiou";
+
+        for (char v : vowels) {
+            isVowel[v] = 1;
+        }
+        long long response = 0;
+        int currentK = 0, vowelCount = 0, extraLeft = 0, left = 0;
+
+        for (int right = 0; right < word.size(); right++) {
+
+            char rightChar = word[right];
+
+            if (isVowel[rightChar]) {
+                if (++freq[rightChar] == 1) vowelCount++;
+            } else {
+                currentK++;
+            }
+            while (currentK > k) {
+
+                char leftChar = word[left];
+
+                if (isVowel[leftChar]) {
+                    if (--freq[leftChar] == 0) vowelCount--;
+                } else {
+                    currentK--;
+                }
+                left++;
+                extraLeft = 0;
+            }
+            while (vowelCount == 5 && currentK == k && left < right && isVowel[word[left]] && freq[word[left]] > 1) {
+                extraLeft++;
+                freq[word[left]]--;
+                left++;
+            }
+            if (currentK == k && vowelCount == 5) {
+                response += (1 + extraLeft);
+            }
+        }
+
+        return response;
+      }
+    };
+
+Runtime: 36 ms, beating 95.12% of leetcode users solutions using C++.
+Memory: 31.49 mb, beating 85.10% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Strings, arrays, for loops, while loops, and if statements.
