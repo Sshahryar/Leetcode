@@ -25510,3 +25510,46 @@ Memory: 31.49 mb, beating 85.10% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Strings, arrays, for loops, while loops, and if statements.
+
+### Solution Mar 11, 2025 (C++, leetcode) 1358. Number of Substrings Containing All Three Characters (Medium)
+In .LeetcodeDailySolution folder as Mar11,2025.cpp
+
+#### Prompt:
+
+Given a string s consisting only of characters a, b and c.
+
+Return the number of substrings containing at least one occurrence of all these characters a, b and c.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int numberOfSubstrings(string s) {
+
+        int count = 0;
+        int left = 0;
+        unordered_map<char, int> char_count = {{'a', 0}, {'b', 0}, {'c', 0}};
+
+        for (int right = 0; right < s.length(); ++right) {
+
+            char_count[s[right]]++;
+
+            while (char_count['a'] > 0 && char_count['b'] > 0 &&
+                   char_count['c'] > 0) {
+
+                count += s.length() - right;
+                char_count[s[left]]--;
+                left++;
+            }
+        }
+
+        return count;
+      }
+    };
+
+Runtime: 10 ms, beating 55.53% of leetcode users solutions using C++.
+Memory: 11.11 mb, beating 41.49% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Strings, unordered map, for loop, and while loop.
