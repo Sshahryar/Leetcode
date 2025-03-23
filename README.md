@@ -25553,3 +25553,62 @@ Memory: 11.11 mb, beating 41.49% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Strings, unordered map, for loop, and while loop.
+
+### Solution Mar 12, 2025 (C++, leetcode) 2529. Maximum Count of Positive Integer and Negative Integer (Easy)
+In .LeetcodeDailySolution folder as Mar12,2025.cpp
+
+#### Prompt:
+
+Given an array nums sorted in non-decreasing order, return the maximum between the number of positive integers and the number of negative integers.
+
+In other words, if the number of positive integers in nums is pos and the number of negative integers is neg, then return the maximum of pos and neg.
+Note that 0 is neither positive nor negative.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int maximumCount(std::vector<int>& nums) {
+
+        int n = nums.size();
+        int left = 0;
+        int right = n - 1;
+
+        while (left <= right) {
+
+            int mid = left + (right - left) / 2;
+
+            if (nums[mid] > 0) {
+                right = mid - 1;
+
+            } else {
+                left = mid + 1;
+            }
+        }
+        int positiveCount = n - left;
+        left = 0;
+        right = n - 1;
+
+        while (left <= right) {
+
+            int mid = left + (right - left) / 2;
+
+            if (nums[mid] < 0) {
+                left = mid + 1;
+
+            } else {
+                right = mid - 1;
+            }
+        }
+        int negativeCount = right + 1;
+
+        return max(positiveCount, negativeCount);
+      }
+    };
+
+Runtime: 0 ms, beating 100% of leetcode users solutions using C++.
+Memory: 21.30 mb, beating 95.52% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Array, binary search, while loops, if statements, else statements, and max.
