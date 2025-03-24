@@ -25612,3 +25612,62 @@ Memory: 21.30 mb, beating 95.52% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Array, binary search, while loops, if statements, else statements, and max.
+
+### Solution Mar 13, 2025 (C++, leetcode) 3356. Zero Array Transformation II (Medium)
+In .LeetcodeDailySolution folder as Mar13,2025.cpp
+
+#### Prompt:
+
+You are given an integer array nums of length n and a 2D array queries where queries[i] = [li, ri, vali].
+
+Each queries[i] represents the following action on nums:
+
+Decrement the value at each index in the range [li, ri] in nums by at most vali.
+The amount by which each value is decremented can be chosen independently for each index.
+A Zero Array is an array with all its elements equal to 0.
+
+Return the minimum possible non-negative value of k, such that after processing the first k queries in sequence, nums becomes a Zero Array. If no such k exists, return -1.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int minZeroArray(vector<int>& nums, vector<vector<int>>& queries) {
+
+        int n = nums.size(), sum = 0, queryCount = 0;
+        vector<int> diffArray(n + 1);
+
+        for (int i = 0; i < n; i++) {
+
+            while (sum + diffArray[i] < nums[i]) {
+                queryCount++;
+
+                if (queryCount > queries.size())
+                    return -1;
+
+                int left = queries[queryCount - 1][0],
+                    right = queries[queryCount - 1][1],
+                    value = queries[queryCount - 1][2];
+
+                if (right >= i) {
+
+                    diffArray[max(left, i)] += value;
+
+                    if (right + 1 < diffArray.size()) {
+                        diffArray[right + 1] -= value;
+                    }
+                }
+            }
+            sum += diffArray[i];
+        }
+
+        return queryCount;
+      }
+    };
+
+Runtime: 5 ms, beating 89.38% of leetcode users solutions using C++.
+Memory: 323.07 mb, beating 75.97% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, for loop, while loop, and if statements.
