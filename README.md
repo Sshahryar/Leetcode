@@ -25671,3 +25671,52 @@ Memory: 323.07 mb, beating 75.97% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, for loop, while loop, and if statements.
+
+### Solution Mar 14, 2025 (C++, leetcode) 2226. Maximum Candies Allocated to K Children (Medium)
+In .LeetcodeDailySolution folder as Mar14,2025.cpp
+
+#### Prompt:
+
+You are given a 0-indexed integer array candies. Each element in the array denotes a pile of candies of size candies[i]. You can divide each pile into any number of sub piles, but you cannot merge two piles together.
+
+You are also given an integer k. You should allocate piles of candies to k children such that each child gets the same number of candies. Each child can be allocated candies from only one pile of candies and some piles of candies may go unused.
+
+Return the maximum number of candies each child can get.
+
+#### Solution:
+
+    class Solution {
+    public:
+    int maximumCandies(vector<int>& candies, long long k) {
+
+        long long left = 1,
+                  right = *max_element(candies.begin(), candies.end());
+        int result = 0;
+
+        while (left <= right) {
+
+            long long mid = left + (right - left) / 2;
+            long long children_count = 0;
+
+            for (int pile : candies) {
+                children_count += pile / mid;
+            }
+            if (children_count >= k) {
+                result = mid;
+                left = mid + 1;
+
+            } else {
+                right = mid - 1;
+            }
+        }
+
+        return result;
+      }
+    };
+
+Runtime: 28 ms, beating 42.69% of leetcode users solutions using C++.
+Memory: 88.12 mb, beating 75.24% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, binary search, while loop, for loop, if statement, and else statement.
