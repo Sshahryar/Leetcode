@@ -25720,3 +25720,65 @@ Memory: 88.12 mb, beating 75.24% of leetcode users solutions using C++.
 #### Concepts Applied:
 
 Arrays, binary search, while loop, for loop, if statement, and else statement.
+
+### Solution Mar 15, 2025 (C++, leetcode) 2560. House Robber IV (Medium)
+In .LeetcodeDailySolution folder as Mar15,2025.cpp
+
+#### Prompt:
+
+There are several consecutive houses along a street, each of which has some money inside. There is also a robber, who wants to steal money from the homes, but he refuses to steal from adjacent homes.
+
+The capability of the robber is the maximum amount of money he steals from one house of all the houses he robbed.
+
+You are given an integer array nums representing how much money is stashed in each house. More formally, the ith house from the left has nums[i] dollars.
+
+You are also given an integer k, representing the minimum number of houses the robber will steal from. It is always possible to steal at least k houses.
+
+Return the minimum capability of the robber out of all the possible ways to steal at least k houses.
+
+#### Solution:
+
+    class Solution {
+    public:
+    bool canRob(vector<int>& nums, int mid, int k) {
+
+        int count = 0, n = nums.size();
+
+        for (int i = 0; i < n; i++) {
+
+            if (nums[i] <= mid) {
+                count++;
+                i++;
+            }
+        }
+
+        return count >= k;
+    }
+    int minCapability(vector<int>& nums, int k) {
+
+        int left = 1, right = *max_element(nums.begin(), nums.end()),
+            ans = right;
+
+        while (left <= right) {
+
+            int mid = (left + right) / 2;
+
+            if (canRob(nums, mid, k)) {
+                ans = mid;
+                right = mid - 1;
+                
+            } else {
+                left = mid + 1;
+            }
+        }
+
+        return ans;
+      }
+    };
+
+Runtime: 26 ms, beating 32.96% of leetcode users solutions using C++.
+Memory: 60.79 mb, beating 94.04% of leetcode users solutions using C++.
+
+#### Concepts Applied:
+
+Arrays, for loop, if statements, while loop, and else statement.
